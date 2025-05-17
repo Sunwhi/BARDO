@@ -1,2 +1,2 @@
-# Bardo
-Bardo 프로젝트
+# BARDO
+BARDO 프로젝트
