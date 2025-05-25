@@ -9,12 +9,6 @@ public class PlayerIdleState : PlayerState
 
     public override void Update()
     {
-        if (!Player.controller.IsGrounded())
-        {
-            fsm.ChangeState(fsm.JumpState);
-            return;
-        }
-
         if (Player.controller.MoveInput.x != 0)
         {
             fsm.ChangeState(fsm.MoveState);

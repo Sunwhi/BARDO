@@ -1,4 +1,6 @@
-﻿public class PlayerStateMachine
+﻿using UnityEngine;
+
+public class PlayerStateMachine
 {
     public Player Player { get; private set; }
     public PlayerState CurrentState { get; private set; }
@@ -18,6 +20,8 @@
         MoveState = new PlayerMoveState(this);
         JumpState = new PlayerJumpState(this);
         DieState = new PlayerDieState(this);
+
+        CurrentState = IdleState;
     }
 
     public void Update()

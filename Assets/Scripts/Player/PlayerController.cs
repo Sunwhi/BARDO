@@ -8,7 +8,7 @@ public class PlayerController
     public bool JumpInput { get; set; }
 
     public float moveSpeed = 5f;
-    public float jumpForce = 12f;
+    public float jumpForce = 7f;
 
     public PlayerController(Player player)
     {
@@ -17,7 +17,19 @@ public class PlayerController
 
     public void Move()
     {
-        player.rb.linearVelocity = new Vector2(MoveInput.x * moveSpeed, player.rb.linearVelocity.y);
+        Vector2 velocity = player.rb.linearVelocity;
+        velocity.x = MoveInput.x * moveSpeed;
+
+        if (velocity.x > 0 && IsTouchingWallRight())
+        {
+            velocity.x = 0;
+        }
+        else if (velocity.x < 0 && IsTouchingWallLeft())
+        {
+            velocity.x = 0;
+        }
+
+        player.rb.linearVelocity = velocity;
 
         if (MoveInput.x != 0)
         {
@@ -38,4 +50,22 @@ public class PlayerController
     {
         return Physics2D.OverlapCircle(player.groundCheck.position, 0.1f, player.groundLayer);
     }
+
+    public bool IsTouchingWallLeft()
+    {
+        float height = player.spriteRenderer.bounds.size.y * player.collisionHeight;
+        Vector2 size = new Vector2(0.05f, height);
+        Vector2 origin = player.rb.position + Vector2.left * player.collisionWidth;
+        return Physics2D.OverlapBox(origin, size, 0f, player.groundLayer);
+    }
+
+    public bool IsTouchingWallRight()
+    {
+        float height = player.spriteRenderer.bounds.size.y * player.collisionHeight;
+        Vector2 size = new Vector2(0.05f, height);
+        Vector2 origin = player.rb.position + Vector2.right * player.collisionWidth;
+        return Physics2D.OverlapBox(origin, size, 0f, player.groundLayer);
+    }
+
+
 }

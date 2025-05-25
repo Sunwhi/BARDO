@@ -11,9 +11,11 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
 
-    [Header("Ground Check")]
+    [Header("Player Collision Settings")]
     public Transform groundCheck;
     public LayerMask groundLayer;
+    public float collisionHeight;
+    public float collisionWidth;
 
     [Header("Animation")]
     [SerializeField] private PlayerAnimationData animationData;
@@ -24,11 +26,6 @@ public class Player : MonoBehaviour
         animationData.Initialize();
         controller = new PlayerController(this);
         fsm = new PlayerStateMachine(this);
-    }
-
-    private void Start()
-    {
-        fsm.ChangeState(fsm.IdleState);
     }
 
     private void Update()
@@ -53,4 +50,23 @@ public class Player : MonoBehaviour
             controller.JumpInput = true;
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (spriteRenderer == null) return;
+
+        float height = spriteRenderer.bounds.size.y * collisionHeight;
+        Vector2 size = new Vector2(0.05f, height);
+        Vector2 leftOrigin = (Vector2)transform.position + Vector2.left * collisionWidth;
+        Vector2 rightOrigin = (Vector2)transform.position + Vector2.right * collisionWidth;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(leftOrigin, size);
+        Gizmos.DrawWireCube(rightOrigin, size);
+
+        Gizmos.color = Color.red;
+        if (groundCheck != null)
+            Gizmos.DrawWireSphere(groundCheck.position, 0.1f);
+    }
+
 }
