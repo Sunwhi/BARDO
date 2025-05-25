@@ -1,0 +1,39 @@
+public class PlayerIdleState : PlayerState
+{
+    public PlayerIdleState(PlayerStateMachine fsm) : base(fsm) { }
+
+    public override void Enter()
+    {
+        Player.animator.SetBool(Player.AnimationData.MoveParameterHash, false);
+    }
+
+    public override void Update()
+    {
+        if (!Player.controller.IsGrounded())
+        {
+            fsm.ChangeState(fsm.JumpState);
+            return;
+        }
+
+        if (Player.controller.MoveInput.x != 0)
+        {
+            fsm.ChangeState(fsm.MoveState);
+            return;
+        }
+
+        if (Player.controller.JumpInput)
+        {
+            fsm.ChangeState(fsm.JumpState);
+        }
+    }
+
+    public override void FixedUpdate()
+    {
+        // 지면 고정, 이동 없음
+    }
+
+    public override void Exit()
+    {
+        Player.animator.SetBool(Player.AnimationData.MoveParameterHash, true);
+    }
+}
