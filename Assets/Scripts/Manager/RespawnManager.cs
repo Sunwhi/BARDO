@@ -18,9 +18,15 @@ public class RespawnManager : Singleton<RespawnManager>
 
     private void OnViewportExit(ViewportExitEvent e)
     {
-        if (e.direction == ViewportExitDirection.Bottom || e.direction == ViewportExitDirection.Left)
+        player.controller.InputEnabled = false;
+
+        if (e.direction == ViewportExitDirection.Bottom)
         {
             StartCoroutine(HandleRespawn());
+        }
+        else if (e.direction == ViewportExitDirection.Left)
+        {
+            Debug.LogWarning("왼쪽에서 벗어났습니다. 리스폰 처리하지 않습니다.");
         }
     }
 
@@ -29,18 +35,21 @@ public class RespawnManager : Singleton<RespawnManager>
         //fade out
         yield return UIManager.Instance.fadeView.FadeOut();
 
-        Vector3 respawnPos = TriggerManager.Instance.GetRespawnPosition();
-        player.transform.position = respawnPos;
-
         ResetPlayer();
 
         //delay & fade in
         yield return new WaitForSeconds(delayBeforeRespawn);
         yield return UIManager.Instance.fadeView.FadeIn();
+        
+        //Player 입력 활성화
+        player.controller.InputEnabled = true;
     }
 
     private void ResetPlayer()
     {
+        Vector3 respawnPos = TriggerManager.Instance.GetRespawnPosition();
+        player.transform.position = respawnPos;
+
         player.spriteRenderer.flipX = false;
         player.rb.linearVelocity = Vector2.zero;
         player.fsm.ChangeState(player.fsm.IdleState);
