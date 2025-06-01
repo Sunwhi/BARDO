@@ -1,5 +1,5 @@
 using UnityEngine;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,8 +16,8 @@ public enum ESaveSlot
 
 public class SaveManager : Singleton<SaveManager>
 {
-    private SaveData saveData;
-    public SaveData MySaveData { get { return saveData; } }
+    /*//private SaveData saveData;
+    //public SaveData MySaveData { get { return saveData; } }
     private readonly Dictionary<string, FieldInfo> fieldCache = new();
 
     private bool isAutoDirty;
@@ -151,5 +151,5 @@ public class SaveManager : Singleton<SaveManager>
         return Path.Combine(directory, $"{slot}.json");
     }
 
-    #endregion
+    #endregion*/
 }
