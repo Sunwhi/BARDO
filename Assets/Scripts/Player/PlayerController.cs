@@ -40,7 +40,7 @@ public class PlayerController
 
     public void Jump()
     {
-        if (!InputEnabled || !IsGrounded()) return;
+        if (!InputEnabled) return;
 
         Vector2 velocity = player.rb.linearVelocity;
         velocity.y = 0f;
@@ -48,11 +48,6 @@ public class PlayerController
 
         player.rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         JumpInput = false;
-    }
-
-    public bool IsGrounded()
-    {
-        return Physics2D.OverlapCircle(player.groundCheck.position, 0.1f, player.groundLayer);
     }
 
     public bool IsTouchingWall(Vector2 direction)

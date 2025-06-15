@@ -12,7 +12,7 @@ public class PlayerJumpState : PlayerState
 
     public override void Update()
     {
-        if (Player.controller.IsGrounded() && Mathf.Abs(Player.rb.linearVelocity.y) < 0.01f)
+        if (Player.isGrounded && Mathf.Abs(Player.rb.linearVelocity.y) < 0.01f)
         {
             if (Player.controller.MoveInput.x != 0)
                 fsm.ChangeState(fsm.MoveState);

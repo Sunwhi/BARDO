@@ -14,12 +14,16 @@ public class Player : MonoBehaviour
     [Header("Player Collision Settings")]
     public Transform groundCheck;
     public LayerMask groundLayer;
+    public LayerMask platformLayer;
     public float collisionHeight;
     public float collisionWidth;
 
     [Header("Animation")]
     [SerializeField] private PlayerAnimationData animationData;
     public PlayerAnimationData AnimationData => animationData;
+
+    [HideInInspector]
+    public bool isGrounded = true;
 
     private void Awake()
     {
@@ -45,7 +49,7 @@ public class Player : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed || isGrounded)
         {
             controller.JumpInput = true;
         }
@@ -68,5 +72,4 @@ public class Player : MonoBehaviour
         if (groundCheck != null)
             Gizmos.DrawWireSphere(groundCheck.position, 0.1f);
     }
-
 }
