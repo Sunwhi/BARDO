@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
     public LayerMask platformLayer;
+    public LayerMask disableLayer; // 이름 변경
     public float collisionHeight;
     public float collisionWidth;
 
@@ -49,27 +50,30 @@ public class Player : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed || isGrounded)
+        if (context.started)
         {
-            controller.JumpInput = true;
+            if (isGrounded)
+                controller.JumpInput = true;
+        }
+        else if (context.canceled)
+        {
+            controller.JumpInput = false;
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (spriteRenderer == null) return;
+        if (((1 << collision.gameObject.layer) & disableLayer) != 0)
+        {
+            controller.InputEnabled = false;
+        }
+    }
 
-        float height = spriteRenderer.bounds.size.y * collisionHeight;
-        Vector2 size = new Vector2(0.05f, height);
-        Vector2 leftOrigin = (Vector2)transform.position + Vector2.left * collisionWidth;
-        Vector2 rightOrigin = (Vector2)transform.position + Vector2.right * collisionWidth;
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(leftOrigin, size);
-        Gizmos.DrawWireCube(rightOrigin, size);
-
-        Gizmos.color = Color.red;
-        if (groundCheck != null)
-            Gizmos.DrawWireSphere(groundCheck.position, 0.1f);
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (((1 << collision.gameObject.layer) & disableLayer) != 0)
+        {
+            controller.InputEnabled = true;
+        }
     }
 }
