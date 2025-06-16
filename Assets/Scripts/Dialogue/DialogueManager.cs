@@ -76,7 +76,7 @@ public class DialogueManager : Singleton<DialogueManager>
         }
         // story Ω√¿€
         ContinueOrExitStory();
-    }
+    } 
 
     private void ContinueOrExitStory()
     {
