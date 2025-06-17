@@ -12,6 +12,9 @@ public class DialogueManager : Singleton<DialogueManager>
     [SerializeField] private TextAsset inkJson;
 
     private Story story;
+
+    private int currentChoiceIndex = -1;
+
     private bool dialoguePlaying = false;    // dialogue가 playing중인가?
 
 
@@ -28,6 +31,7 @@ public class DialogueManager : Singleton<DialogueManager>
             // 이벤트 추가
             GameEventManager.Instance.dialogueEvents.onEnterDialogue += EnterDialogue;
             GameEventManager.Instance.inputEvents.onSubmitPressed += SubmitPressed;
+            GameEventManager.Instance.dialogueEvents.onUpdateChoiceIndex += UpdateChoiceIndex;
         }
     }
     private void OnDisable()
@@ -37,9 +41,15 @@ public class DialogueManager : Singleton<DialogueManager>
             // 이벤트 삭제
             GameEventManager.Instance.dialogueEvents.onEnterDialogue -= EnterDialogue;
             GameEventManager.Instance.inputEvents.onSubmitPressed -= SubmitPressed;
+            GameEventManager.Instance.dialogueEvents.onUpdateChoiceIndex -= UpdateChoiceIndex;
+
         }
     }
 
+    private void UpdateChoiceIndex(int choiceIndex)
+    {
+        this.currentChoiceIndex = choiceIndex;
+    }
     private void SubmitPressed(InputEventContext inputEventContext)
     {
         // if context isn't dialogue, we never want to register input here
@@ -80,12 +90,35 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void ContinueOrExitStory()
     {
+        // make a choice, if applicable
+        if (story.currentChoices.Count > 0 && currentChoiceIndex != -1)
+        {
+            story.ChooseChoiceIndex(currentChoiceIndex);
+            // reset choice index for next time
+            currentChoiceIndex = -1;
+        }
         if (story.canContinue)
         {
             string dialogueLIne = story.Continue();
-            GameEventManager.Instance.dialogueEvents.DisplayDialogue(dialogueLIne, story.currentChoices);
+
+            // handle the case where there's an empty line of dialogue
+            // by continuing until we get a line with content
+            while(IsLineBlank(dialogueLIne) && story.canContinue)
+            {
+                dialogueLIne = story.Continue();
+            }
+            // handle the case where the last line of dialogue is blank
+            // (empty choice, external function, etc..)
+            if(IsLineBlank(dialogueLIne) && !story.canContinue)
+            {
+                ExitDialogue();
+            }
+            else
+            {
+                GameEventManager.Instance.dialogueEvents.DisplayDialogue(dialogueLIne, story.currentChoices);
+            }
         }
-        else
+        else if (story.currentChoices.Count == 0)
         {
             ExitDialogue();
         }
@@ -104,5 +137,10 @@ public class DialogueManager : Singleton<DialogueManager>
 
         // reset story state
         story.ResetState();
+    }
+
+    private bool IsLineBlank(string dialogueLine)
+    {
+        return dialogueLine.Trim().Equals("") || dialogueLine.Trim().Equals("\n");
     }
 }

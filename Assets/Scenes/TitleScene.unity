@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueEvents: {fileID: 0}
-  dialogueInputEvents: {fileID: 0}
+  inputEvents: {fileID: 0}
 --- !u!1 &203837945
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,8 +657,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC2DC\uC791\n\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7658ea7c0026ef34087da047d2824978, type: 2}
-  m_sharedMaterial: {fileID: 8458789156946325796, guid: 7658ea7c0026ef34087da047d2824978, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7d4ebea3977dc9045aa5c473f92a23f1, type: 2}
+  m_sharedMaterial: {fileID: -5599164791651953598, guid: 7d4ebea3977dc9045aa5c473f92a23f1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

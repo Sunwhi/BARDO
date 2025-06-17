@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using Ink.Runtime;
 using System.Collections.Generic;
+using System.Linq;
 
 public class DialoguePanelUI : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class DialoguePanelUI : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private DialogueChoiceBtn[] choiceButtons;
+    [SerializeField] private GameObject nextButton;
     private void Start()
     {
         if(UIManager.Instance != null)
@@ -21,9 +23,6 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log($"GameEventManager.Instance is null? {GameEventManager.Instance == null}");
-        Debug.Log($"dialogueEvents is null? {GameEventManager.Instance?.dialogueEvents == null}");
-
         GameEventManager.Instance.dialogueEvents.onDialogueStarted += DialogueStart;
         GameEventManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
         GameEventManager.Instance.dialogueEvents.onDisplayDialogue += DisplayDialogue;
@@ -31,9 +30,6 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log($"GameEventManager.Instance is null? {GameEventManager.Instance == null}");
-        Debug.Log($"dialogueEvents is null? {GameEventManager.Instance?.dialogueEvents == null}");
-
         GameEventManager.Instance.dialogueEvents.onDialogueStarted -= DialogueStart;
         GameEventManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
         GameEventManager.Instance.dialogueEvents.onDisplayDialogue -= DisplayDialogue;
@@ -41,7 +37,6 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void DialogueStart()
     {
-        Debug.Log("startpanel");
         UIManager.Instance.ShowPanel("DialoguePanel");
     }
 
@@ -55,8 +50,60 @@ public class DialoguePanelUI : MonoBehaviour
     private void DisplayDialogue(string dialogueLine, List<Ink.Runtime.Choice> dialogueChoices)
     {
         dialogueText.text = dialogueLine;
+
+        // 선택지 dialogue에서는 next 버튼 비활성화
+        if(dialogueChoices.Count > 0)
+        {
+            InActiveNextBtn(); 
+        }
+        else
+        {
+            ActiveNextBtn();
+        }
+
+        // defensive check - if there are more choices coming in than we can support, Log an error
+        if (dialogueChoices.Count > choiceButtons.Length)
+        {
+            Debug.LogError("More dialogue choices("
+                + dialogueChoices.Count + ") came through than are supported ("
+                + choiceButtons.Length + ").");
+        }
+
+        // start with all of the choice buttons hidden
+        foreach (DialogueChoiceBtn choiceBtn in choiceButtons)
+        {
+            choiceBtn.gameObject.SetActive(false);
+        }
+
+        // enable and set info for buttons depending on ink choice information
+        int choiceButtonIndex = dialogueChoices.Count - 1;
+        for(int inkChoiceIndex = 0; inkChoiceIndex < dialogueChoices.Count; inkChoiceIndex++)
+        {
+            Ink.Runtime.Choice dialogueChoice = dialogueChoices[inkChoiceIndex];
+            DialogueChoiceBtn choiceButton = choiceButtons[choiceButtonIndex];
+
+            choiceButton.gameObject.SetActive(true);
+            choiceButton.SetChoiceText(dialogueChoice.text);
+            choiceButton.SetChoiceIndex(inkChoiceIndex);
+
+            if(inkChoiceIndex == 0)
+            {
+                choiceButton.SelectButton();
+                GameEventManager.Instance.dialogueEvents.UpdateChoiceIndex(0);
+            }
+
+            choiceButtonIndex--;
+        }
     }
 
+    private void ActiveNextBtn()
+    {
+        nextButton.SetActive(true);
+    }
+    private void InActiveNextBtn()
+    {
+        nextButton.SetActive(false);
+    }
     private void ResetPanel()
     {
         dialogueText.text = "";
