@@ -11,6 +11,8 @@ public class PlayerController
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
 
+    public bool isTouchingWall = false;
+
     public PlayerController(Player player)
     {
         this.player = player;
@@ -23,9 +25,7 @@ public class PlayerController
         Vector2 velocity = player.rb.linearVelocity;
         velocity.x = MoveInput.x * moveSpeed;
 
-        if (velocity.x > 0 && IsTouchingWall(Vector2.right))
-            velocity.x = 0;
-        else if (velocity.x < 0 && IsTouchingWall(Vector2.left))
+        if (isTouchingWall)
             velocity.x = 0;
 
         player.rb.linearVelocity = velocity;
@@ -40,27 +40,14 @@ public class PlayerController
 
     public void Jump()
     {
-        if (!InputEnabled || !IsGrounded()) return;
+        if (!InputEnabled) return;
+        if (!player.isGrounded) return;
 
         Vector2 velocity = player.rb.linearVelocity;
         velocity.y = 0f;
         player.rb.linearVelocity = velocity;
 
         player.rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        JumpInput = false;
-    }
-
-    public bool IsGrounded()
-    {
-        return Physics2D.OverlapCircle(player.groundCheck.position, 0.1f, player.groundLayer);
-    }
-
-    public bool IsTouchingWall(Vector2 direction)
-    {
-        float height = player.spriteRenderer.bounds.size.y * player.collisionHeight;
-        Vector2 size = new Vector2(0.05f, height);
-        Vector2 origin = player.rb.position + direction.normalized * player.collisionWidth;
-        return Physics2D.OverlapBox(origin, size, 0f, player.groundLayer);
     }
 
     public void ResetInput()

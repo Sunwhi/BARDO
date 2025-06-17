@@ -57,6 +57,7 @@ public class TriggerManager : Singleton<TriggerManager>
         switch (type)
         {
             case TriggerType.Tutorial:
+                GameEventBus.Raise(new TutorialEvent(triggerID));
                 break;
             case TriggerType.Dialogue:
                 break;

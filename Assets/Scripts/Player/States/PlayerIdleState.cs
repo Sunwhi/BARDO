@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerIdleState : PlayerState
 {
     public PlayerIdleState(PlayerStateMachine fsm) : base(fsm) { }
@@ -28,6 +30,6 @@ public class PlayerIdleState : PlayerState
 
     public override void Exit()
     {
-        Player.animator.SetBool(Player.AnimationData.MoveParameterHash, true);
+        
     }
 }
