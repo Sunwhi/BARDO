@@ -16,6 +16,7 @@ public class StageOptionUI : MonoBehaviour
     
     public void OnClickContinue()
     {
+        Debug.Log("onclickcontinue");
         UIManager.Instance.HidePanel("OptionPanel");
     }
 

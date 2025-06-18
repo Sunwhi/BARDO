@@ -12,23 +12,6 @@ public class UIManager : Singleton<UIManager>
 
     public Fadeview fadeView;
 
-    /*public override void Awake()
-    {
-        RegisterAllPanels();
-    }
-    
-    // 게임 내의 모든 패널들을 딕셔너리에 추가한다.
-    private void RegisterAllPanels()
-    {
-        GameObject[] panels = GameObject.FindGameObjectsWithTag("UIPanel");
-
-        foreach (var panel in panels)
-        {
-            uiPanels[panel.name] = panel;
-            panel.SetActive(false); // 모든 패널 시작시에 비활성화한다.
-        }
-    }
-    */
     // 파라미터로 받은 패널을 uiPanels의 딕셔너리에 추가한다.
     public void RegisterPanels(GameObject panel)
     {
@@ -45,6 +28,10 @@ public class UIManager : Singleton<UIManager>
         {
             Debug.LogWarning($"[UIPanel] : {panelName}패널을 찾을 수 없습니다");
         }
+    }
+    public void ShowUiPanels()
+    {
+        foreach (var panel in uiPanels.Values) Debug.Log(panel.name);
     }
     // Panel을 숨기는 함수
     public void HidePanel(string panelName)
