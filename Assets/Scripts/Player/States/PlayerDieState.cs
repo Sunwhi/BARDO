@@ -8,6 +8,8 @@ public class PlayerDieState : PlayerState
     {
         Player.animator.SetTrigger(Player.AnimationData.DieTriggerHash);
         Player.controller.MoveInput = Vector2.zero;
+
+        SoundManager.Instance.PlaySFX(eSFX.Character_Death);
     }
 
     public override void Update()

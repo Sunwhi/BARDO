@@ -26,6 +26,7 @@ public class SoundManager : Singleton<SoundManager>
     [Header("Audio Sources")]
     public AudioSource bgmSource;
     public AudioSource sfxSource;
+    public AudioSource ambientSource;
 
     [Header("Audio Clips")]
     public AudioClip[] bgmClips;
@@ -34,19 +35,12 @@ public class SoundManager : Singleton<SoundManager>
     [Header("Audio Mixer")]
     public AudioMixer audioMixer;
 
-    void Start()
-    {
-        PlayBGM(eBGM.Stage1);
-    }
-
-
     public void PlayBGM(eBGM bgmType)
     {
         int index = (int)bgmType;
         if (index >= 0 && index < bgmClips.Length)
         {
             bgmSource.clip = bgmClips[index];
-            bgmSource.loop = true;
             bgmSource.Play();
         }
     }
@@ -57,6 +51,22 @@ public class SoundManager : Singleton<SoundManager>
         if (index >= 0 && index < sfxClips.Length)
         {
             sfxSource.PlayOneShot(sfxClips[index]);
+        }
+    }
+
+    public void StopSFX()
+    {
+        sfxSource.Stop();
+        sfxSource.loop = false;
+    }
+
+    public void PlayAmbientSound(eSFX sfxType)
+    {
+        int index = (int)sfxType;
+        if (index >= 0 && index < sfxClips.Length)
+        {
+            ambientSource.clip = sfxClips[index];
+            ambientSource.Play();
         }
     }
 

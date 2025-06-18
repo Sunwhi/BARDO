@@ -48,6 +48,11 @@ public class Player : MonoBehaviour
         controller.MoveInput = context.ReadValue<Vector2>();
     }
 
+    public void ForceMove(Vector2 moveInput)
+    {
+        controller.MoveInput = moveInput;
+    }
+
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.started)

@@ -7,6 +7,9 @@ public class PlayerMoveState : PlayerState
     public override void Enter()
     {
         Player.animator.SetBool(Player.AnimationData.MoveParameterHash, true);
+
+        SoundManager.Instance.PlaySFX(eSFX.Character_Walk);
+        SoundManager.Instance.sfxSource.loop = true;
     }
 
     public override void Update()
@@ -30,6 +33,6 @@ public class PlayerMoveState : PlayerState
 
     public override void Exit()
     {
-        
+        SoundManager.Instance.StopSFX();
     }
 }
