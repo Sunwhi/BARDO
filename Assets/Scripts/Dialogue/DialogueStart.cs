@@ -14,6 +14,7 @@ public class DialogueStart : MonoBehaviour
     }
     private void OnDisable()
     {
+        Debug.Log("OnDiable");
         GameEventManager.Instance.inputEvents.onSubmitPressed -= SubmitPressed;
     }
 
