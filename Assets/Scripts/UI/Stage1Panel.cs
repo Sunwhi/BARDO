@@ -11,7 +11,6 @@ public class Stage1Panel : MonoBehaviour
         // panelsToRegister에 들어가있는 패널들을 UIManager의 uiPanels에 등록한다.
         foreach(var panel in panelsToRegister)
         {
-            Debug.Log("ok");
             UIManager.Instance.RegisterPanels(panel);
         }
     }

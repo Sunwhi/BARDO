@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 /*
  * UIManager
@@ -11,6 +12,15 @@ public class UIManager : Singleton<UIManager>
     private Dictionary<string, GameObject> uiPanels = new Dictionary<string, GameObject>();
 
     public Fadeview fadeView;
+
+    private void Update()
+    {
+        // TitleScene에서 Prototype Scene 넘어갈때 UIManager에 fadeview 넣기
+        if (fadeView == null)
+        {
+            fadeView = FindAnyObjectByType<Fadeview>();
+        }
+    }
 
     // 파라미터로 받은 패널을 uiPanels의 딕셔너리에 추가한다.
     public void RegisterPanels(GameObject panel)
@@ -29,10 +39,10 @@ public class UIManager : Singleton<UIManager>
             Debug.LogWarning($"[UIPanel] : {panelName}패널을 찾을 수 없습니다");
         }
     }
-    public void ShowUiPanels()
+    /*public void ShowUiPanels()
     {
         foreach (var panel in uiPanels.Values) Debug.Log(panel.name);
-    }
+    }*/
     // Panel을 숨기는 함수
     public void HidePanel(string panelName)
     {
@@ -52,5 +62,15 @@ public class UIManager : Singleton<UIManager>
         {
             if (panel.activeSelf) panel.SetActive(false);
         }
+    }
+
+    public bool IsPanelActive(string panelName)
+    {
+        if (uiPanels.TryGetValue(panelName, out var panel))
+        {
+            if (panel.activeSelf) return true;
+            else return false;
+        }
+        else return false;
     }
 }

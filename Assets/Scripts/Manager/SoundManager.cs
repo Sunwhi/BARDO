@@ -72,11 +72,11 @@ public class SoundManager : Singleton<SoundManager>
 
     public void SetBGMVolume(float volume)
     {
-        audioMixer.SetFloat("BGMVolume", Mathf.Log10(Mathf.Clamp01(volume)) * 20);
+        audioMixer.SetFloat("BGM", Mathf.Log10(Mathf.Clamp01(volume)) * 20);
     }
 
     public void SetSFXVolume(float volume)
     {
-        audioMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Clamp01(volume)) * 20);
+        audioMixer.SetFloat("SFX", Mathf.Log10(Mathf.Clamp01(volume)) * 20);
     }
 }

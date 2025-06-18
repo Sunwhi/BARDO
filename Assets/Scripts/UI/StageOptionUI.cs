@@ -10,18 +10,21 @@ public class StageOptionUI : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            UIManager.Instance.ShowPanel("OptionPanel");
+            SoundManager.Instance.PlaySFX(eSFX.UI_Btn_Open_Settings);
+            if (UIManager.Instance.IsPanelActive("OptionPanel")) UIManager.Instance.HidePanel("OptionPanel");
+            else UIManager.Instance.ShowPanel("OptionPanel");
         }
     }
     
     public void OnClickContinue()
     {
-        Debug.Log("onclickcontinue");
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
         UIManager.Instance.HidePanel("OptionPanel");
     }
 
     public void OnClickTItle()
     {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
         MySceneManager.Instance.LoadScene(SceneType.Title);
     }
 }

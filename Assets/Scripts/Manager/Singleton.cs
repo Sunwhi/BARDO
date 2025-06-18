@@ -55,8 +55,8 @@ public class Singleton<T> : MonoBehaviour where T : Component
         }
     }
 
-    /*private void OnDestroy()
+    private void OnDestroy()
     {
-        isShuttingDown = true;
-    }*/
+        instance = null;
+    }
 }

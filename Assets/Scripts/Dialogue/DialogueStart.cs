@@ -14,7 +14,6 @@ public class DialogueStart : MonoBehaviour
     }
     private void OnDisable()
     {
-        Debug.Log("OnDisable");
         GameEventManager.Instance.inputEvents.onSubmitPressed -= SubmitPressed;
     }
 
@@ -27,7 +26,7 @@ public class DialogueStart : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            UIManager.Instance.ShowUiPanels();
+            //UIManager.Instance.ShowUiPanels(); µð¹ö±ë ¿ëµµ
 
             if(!inputEventContext.Equals(InputEventContext.DEFAULT))
             {

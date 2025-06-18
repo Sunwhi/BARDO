@@ -27,12 +27,13 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler
         choiceBtn.Select();
     }
     public void OnSelect(BaseEventData eventData)
-    {
+    { 
         GameEventManager.Instance.dialogueEvents.UpdateChoiceIndex(choiceIndex);
     }
 
     public void OnSelectChoice()
     {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
         GameEventManager.Instance.inputEvents.SubmitPressed();
     }
 }
