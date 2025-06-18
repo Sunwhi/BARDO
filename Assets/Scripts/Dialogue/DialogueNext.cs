@@ -3,6 +3,8 @@ using UnityEngine;
 public class DialogueContinue : MonoBehaviour
 {
     private string dialogueKnotName = "start";
+
+    // Next button Å¬¸¯
     public void OnClickDialogueNext()
     {
         PressedDialogueNext();

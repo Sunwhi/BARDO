@@ -5,14 +5,14 @@ using UnityEngine;
  */
 public class Singleton<T> : MonoBehaviour where T : Component
 {
-    private static bool isShuttingDown = false;
+    //private static bool isShuttingDown = false;
 
     private static T instance;
     public static T Instance
     {
         get 
         {
-            if (isShuttingDown) return null;
+            //if (isShuttingDown) return null;
 
             if(instance == null)
             {
@@ -55,8 +55,8 @@ public class Singleton<T> : MonoBehaviour where T : Component
         }
     }
 
-    private void OnDestroy()
+    /*private void OnDestroy()
     {
         isShuttingDown = true;
-    }
+    }*/
 }
