@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 /*
  * UIManager
@@ -10,6 +9,8 @@ public class UIManager : Singleton<UIManager>
 {
     // ÆÐ³ÎµéÀ» ´ã´Â µñ¼Å³Ê¸®
     private Dictionary<string, GameObject> uiPanels = new Dictionary<string, GameObject>();
+
+    public Fadeview fadeView;
 
     /*public override void Awake()
     {
