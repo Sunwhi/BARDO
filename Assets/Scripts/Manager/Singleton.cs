@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 /*
  * Generic Singleton.
@@ -17,8 +18,9 @@ public class Singleton<T> : MonoBehaviour where T : Component
             if(instance == null)
             {
                 instance = (T)FindAnyObjectByType(typeof(T));
-                if(instance == null )
+                if(instance == null)
                 {
+                    Debug.Log("thisisget");
                     SetupInstance();
                 }
             }
@@ -28,6 +30,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
     public virtual void Awake()
     {
         RemoveDuplicates();
+        Debug.Log("awake" + this.gameObject.name);
     }
 
     private static void SetupInstance()
@@ -58,5 +61,9 @@ public class Singleton<T> : MonoBehaviour where T : Component
     private void OnDestroy()
     {
         instance = null;
+        if(instance == null)
+        {
+            Debug.Log("destroy" + this.gameObject.name);
+        }
     }
 }

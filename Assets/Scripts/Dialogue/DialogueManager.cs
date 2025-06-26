@@ -2,6 +2,7 @@ using UnityEngine;
 using Ink.Runtime;
 using System.Collections;
 using UnityEditor.Build.Content;
+using UnityEngine.Rendering.Universal;
 /*
  * DialogueManager
  * Dialogue Event를 listen하고 맞는 ink dialogue를 실행한다.
@@ -43,6 +44,7 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         if (GameEventManager.Instance != null)
         {
+            Debug.Log("dm ondisable");
             // 이벤트 삭제
             GameEventManager.Instance.dialogueEvents.onEnterDialogue -= EnterDialogue;
             GameEventManager.Instance.inputEvents.onSubmitPressed -= SubmitPressed;
