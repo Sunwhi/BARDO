@@ -11,7 +11,7 @@ public class TutorialGuide : MonoBehaviour
         GameEventBus.Subscribe<TutorialEvent>(Show);
     }
 
-    private void OnDisable()
+         private void OnDisable()
     {
         GameEventBus.Unsubscribe<TutorialEvent>(Show);
     }
