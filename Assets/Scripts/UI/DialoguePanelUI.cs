@@ -5,6 +5,7 @@ using Ink.Runtime;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 
 public class DialoguePanelUI : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("panelEnable");
+        //Debug.Log("panelEnable");
         GameEventManager.Instance.dialogueEvents.onDialogueStarted += DialogueStart;
         GameEventManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
         GameEventManager.Instance.dialogueEvents.onDisplayDialogue += DisplayDialogue;
@@ -35,7 +36,7 @@ public class DialoguePanelUI : MonoBehaviour
     {
         if(GameEventManager.Instance != null)
         {
-            Debug.Log("wtf");
+            //Debug.Log("wtf");
             GameEventManager.Instance.dialogueEvents.onDialogueStarted -= DialogueStart;
             GameEventManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
             GameEventManager.Instance.dialogueEvents.onDisplayDialogue -= DisplayDialogue;

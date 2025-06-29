@@ -8,7 +8,7 @@ public class GameEventManager : Singleton<GameEventManager>
  
     public override void Awake() 
     {
-        Debug.Log("pppp awake");
+        //Debug.Log("pppp awake");
         base.Awake();
         dialogueEvents = gameObject.AddComponent<DialogueEvents>();
         inputEvents = gameObject.AddComponent<InputEvents>();

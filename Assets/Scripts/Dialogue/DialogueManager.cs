@@ -44,7 +44,7 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         if (GameEventManager.Instance != null)
         {
-            Debug.Log("dm ondisable");
+            // Debug.Log("dm ondisable");
             // 이벤트 삭제
             GameEventManager.Instance.dialogueEvents.onEnterDialogue -= EnterDialogue;
             GameEventManager.Instance.inputEvents.onSubmitPressed -= SubmitPressed;
