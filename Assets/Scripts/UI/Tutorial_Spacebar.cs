@@ -1,16 +1,20 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class TutorialGuide : MonoBehaviour
+public class Tutorial_Spacebar : MonoBehaviour
 {
-    public Image image;
+    private SpriteRenderer spaceBar;
+
+    private void Start()
+    {
+        spaceBar = GetComponent<SpriteRenderer>();
+    }
 
     private void OnEnable()
     {
         GameEventBus.Subscribe<TutorialEvent>(Show);
     }
-
     private void OnDisable()
     {
         GameEventBus.Unsubscribe<TutorialEvent>(Show);
@@ -20,11 +24,11 @@ public class TutorialGuide : MonoBehaviour
     {
         switch (ev.tutorialId)
         {
-            case "Move_On":
-                image.DOFade(1f, 1f);
+            case "Jump_On":
+                spaceBar.DOFade(1f, 1f);
                 break;
-            case "Move_Off":
-                image.DOFade(0f, 1f);
+            case "Jump_Off":
+                spaceBar.DOFade(0f, 1f);
                 break;
         }
     }
