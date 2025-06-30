@@ -13,8 +13,11 @@ public class DialogueStart : MonoBehaviour
         GameEventManager.Instance.inputEvents.onSubmitPressed += SubmitPressed;
     }
     private void OnDisable()
-    {
-        GameEventManager.Instance.inputEvents.onSubmitPressed -= SubmitPressed;
+    {   
+        if(GameEventManager.Instance != null)
+        {
+            GameEventManager.Instance.inputEvents.onSubmitPressed -= SubmitPressed;
+        }
     }
 
     private void Update()

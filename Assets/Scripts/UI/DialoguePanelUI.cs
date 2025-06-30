@@ -4,6 +4,8 @@ using UnityEngine;
 using Ink.Runtime;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
+using Unity.VisualScripting;
 
 public class DialoguePanelUI : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class DialoguePanelUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private DialogueChoiceBtn[] choiceButtons;
     [SerializeField] private GameObject nextButton;
+
     private void Start()
     {
         if(UIManager.Instance != null)
@@ -23,6 +26,7 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void OnEnable()
     {
+        //Debug.Log("panelEnable");
         GameEventManager.Instance.dialogueEvents.onDialogueStarted += DialogueStart;
         GameEventManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
         GameEventManager.Instance.dialogueEvents.onDisplayDialogue += DisplayDialogue;
@@ -30,9 +34,13 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void OnDisable()
     {
-        GameEventManager.Instance.dialogueEvents.onDialogueStarted -= DialogueStart;
-        GameEventManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
-        GameEventManager.Instance.dialogueEvents.onDisplayDialogue -= DisplayDialogue;
+        if(GameEventManager.Instance != null)
+        {
+            //Debug.Log("wtf");
+            GameEventManager.Instance.dialogueEvents.onDialogueStarted -= DialogueStart;
+            GameEventManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
+            GameEventManager.Instance.dialogueEvents.onDisplayDialogue -= DisplayDialogue;
+        }
     }
 
     private void DialogueStart()
@@ -107,5 +115,10 @@ public class DialoguePanelUI : MonoBehaviour
     private void ResetPanel()
     {
         dialogueText.text = "";
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("destroying dialoguepanelui");
     }
 }
