@@ -52,6 +52,12 @@ public class PlayerController
 
     public void ResetInput()
     {
+        if (player.transform.localScale.x < 0)
+        {
+            Vector3 scale = player.transform.localScale;
+            scale.x = Mathf.Abs(scale.x);
+            player.transform.localScale = scale;
+        }
         MoveInput = Vector2.zero;
         JumpInput = false;
     }
