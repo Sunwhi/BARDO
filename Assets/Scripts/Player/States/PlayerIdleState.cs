@@ -6,7 +6,7 @@ public class PlayerIdleState : PlayerState
 
     public override void Enter()
     {
-        Player.animator.SetBool(Player.AnimationData.MoveParameterHash, false);
+        Player.animator.SetBool(Player.AnimationData.MoveParamHash, false);
     }
 
     public override void Update()
