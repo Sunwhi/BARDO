@@ -15,8 +15,6 @@ public class PlayerJumpState : PlayerState
     {
         if (Player.isGrounded)
         {
-            Player.animator.SetBool(Player.AnimationData.JumpParamHash, false);
-
             if (Player.controller.MoveInput.x != 0)
                 fsm.ChangeState(fsm.MoveState);
             else
@@ -31,5 +29,6 @@ public class PlayerJumpState : PlayerState
 
     public override void Exit()
     {
+        Player.animator.SetBool(Player.AnimationData.JumpParamHash, false);
     }
 }
