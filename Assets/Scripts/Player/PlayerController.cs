@@ -11,8 +11,6 @@ public class PlayerController
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
 
-    public bool isTouchingWall = false;
-
     public PlayerController(Player player)
     {
         this.player = player;
@@ -24,9 +22,6 @@ public class PlayerController
 
         Vector2 velocity = player.rb.linearVelocity;
         velocity.x = MoveInput.x * moveSpeed;
-
-        if (isTouchingWall)
-            velocity.x = 0;
 
         player.rb.linearVelocity = velocity;
 
