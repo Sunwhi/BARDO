@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class DialoguePanelUI : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class DialoguePanelUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private DialogueChoiceBtn[] choiceButtons;
     [SerializeField] private GameObject nextButton;
+    [SerializeField] private float typingSpeed = 0.04f;
+    private Coroutine displayLineCoroutine;
 
     private void Start()
     {
@@ -57,7 +60,12 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void DisplayDialogue(string dialogueLine, List<Ink.Runtime.Choice> dialogueChoices)
     {
-        dialogueText.text = dialogueLine;
+        if(displayLineCoroutine != null)
+        {
+            StopCoroutine(displayLineCoroutine);
+        }
+
+        displayLineCoroutine = StartCoroutine(DisplayLine(dialogueLine));
 
         // 선택지 dialogue에서는 next 버튼 비활성화
         if(dialogueChoices.Count > 0)
@@ -103,7 +111,26 @@ public class DialoguePanelUI : MonoBehaviour
             choiceButtonIndex--;
         }
     }
+    private IEnumerator DisplayLine(string line)
+    {
+        dialogueText.text = "";
 
+        DialogueManager.Instance.canContinueToNextLine = false;
+
+        //타이핑 효과, 한 글자씩 출력
+        foreach (char letter in line.ToCharArray()) 
+        {
+            if (UIInputManager.Instance.GetSubmitPressed())
+            {
+                Debug.Log("diaojokl");
+                dialogueText.text = line;
+                break;
+            }
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+        DialogueManager.Instance.canContinueToNextLine = true;
+    }
     private void ActiveNextBtn()
     {
         nextButton.SetActive(true);
@@ -119,6 +146,6 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("destroying dialoguepanelui");
+        //Debug.Log("destroying dialoguepanelui");
     }
 }
