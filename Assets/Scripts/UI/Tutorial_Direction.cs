@@ -26,10 +26,10 @@ public class Tutorial : MonoBehaviour
         switch(ev.tutorialId)
         {
             case "Move_On":
-                directionSprite.DOFade(1f, 1f);
+                directionSprite.DOFade(1f, 3f);
                 break;
             case "Move_Off":
-                directionSprite.DOFade(0f, 1f);
+                directionSprite.DOFade(0f, 2f);
                 break;  
         }
     }
