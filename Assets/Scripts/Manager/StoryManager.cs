@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Diagnostics;
 using UnityEditor.SceneManagement;
 using UnityEditorInternal;
 using UnityEngine;
@@ -20,13 +21,16 @@ public class StoryManager : Singleton<StoryManager>
     }
     private void OnEnable()
     {
-        Debug.Log("StoryManger OnEnable");
+        UnityEngine.Debug.Log("StoryManger OnEnable");
         GameEventManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
     }
     private void OnDisable()
     {
-        Debug.Log("StoryManager OnDisable");
-        GameEventManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
+        UnityEngine.Debug.Log("StoryManager OnDisable");
+        if(GameEventManager.Instance != null)
+        {
+            GameEventManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
+        }
     }
     private IEnumerator Start()
     {

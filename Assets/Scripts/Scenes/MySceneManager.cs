@@ -17,7 +17,7 @@ public class MySceneManager : Singleton<MySceneManager>
                 SceneManager.LoadScene("TitleScene");
                 break;
             case SceneType.Prototype:
-                SceneManager.LoadScene("PrototypeTest");
+                SceneManager.LoadScene("Prototype");
                 break;
             case SceneType.Stage1:
                 SceneManager.LoadScene("Stage1");
