@@ -17,7 +17,7 @@ public class DialoguePanelUI : MonoBehaviour
     [SerializeField] private GameObject nextButton;
     [SerializeField] private float typingSpeed = 0.04f;
     private Coroutine displayLineCoroutine;
-
+    private bool skipDialogue = false;
     private void Start()
     {
         if(UIManager.Instance != null)
@@ -26,7 +26,14 @@ public class DialoguePanelUI : MonoBehaviour
         }
         ResetPanel();
     }
-
+    private void Update()
+    {
+        if (UIInputManager.Instance.GetSubmitPressed() && !DialogueManager.Instance.canContinueToNextLine)
+        {
+            Debug.Log("update");
+            skipDialogue = true;
+        }
+    }
     private void OnEnable()
     {
         //Debug.Log("panelEnable");
@@ -120,9 +127,9 @@ public class DialoguePanelUI : MonoBehaviour
         //타이핑 효과, 한 글자씩 출력
         foreach (char letter in line.ToCharArray()) 
         {
-            if (UIInputManager.Instance.GetSubmitPressed())
+            if (skipDialogue)//UIInputManager.Instance.GetSubmitPressed()
             {
-                Debug.Log("diaojokl");
+                skipDialogue = false;
                 dialogueText.text = line;
                 break;
             }

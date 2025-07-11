@@ -5,7 +5,7 @@ VAR grade = ""
 === Start ===
 바르도 세계에 오신걸 환영합니다.
 
-당신은 몇학년? 테스트테스테테테테테테테테ㅌ아아아아아ㅏ아아아아아아아ㅏ아아아
+당신은 몇학년? 테스트테스테테테테테테테테ㅌ아아아아아ㅏ아아아아아아아ㅏ아아아aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     *[1학년]
         ~ grade = 1
         새내기시군요.
@@ -20,13 +20,13 @@ VAR grade = ""
         -> Start2
     *[4학년]
         ~ grade = 4 
-        4학년이시군요.ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+        4학년이시군요.ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         -> Start2
         
 === Start2 ===
-당신은 몇학기? 타이핑테스트입니다아아아아아아아아아ㅏㅇ가가ㅏ나나나난다다다다라라라라마마마
+당신은 몇학기? 타이핑테스트입니다아아아아아아아아아ㅏㅇ가가ㅏ나나나난다다다다라라라라마마마aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     *[1학기]
         {grade}학년 1학기시군요.ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
     *[2학기]
-        {grade}학년 2학기시군요.ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+        {grade}학년 2학기시군요.ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 - -> END

@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+//
+// Dialogue 관련해서, PlayerInput이용하여 구현
+//
 [RequireComponent(typeof(PlayerInput))]
 public class UIInputManager : Singleton<UIInputManager>
 {
@@ -24,9 +26,10 @@ public class UIInputManager : Singleton<UIInputManager>
 
     public bool GetSubmitPressed()
     {
+        Debug.Log("호출됐잖아");
         bool result = submitPressed;
         submitPressed = false;
-        if (result) Debug.Log("GSP :" + result);
+        Debug.Log(result); 
         return result;
     }
 }
