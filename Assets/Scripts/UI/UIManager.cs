@@ -39,10 +39,7 @@ public class UIManager : Singleton<UIManager>
             Debug.LogWarning($"[UIPanel] : {panelName}패널을 찾을 수 없습니다");
         }
     }
-    /*public void ShowUiPanels()
-    {
-        foreach (var panel in uiPanels.Values) Debug.Log(panel.name);
-    }*/
+
     // Panel을 숨기는 함수
     public void HidePanel(string panelName)
     {
