@@ -2,14 +2,15 @@ using UnityEngine;
 using System;
 using Ink.Runtime;
 using System.Collections.Generic;
-public class DialogueEvents : MonoBehaviour 
+public class DialogueEvents : MonoBehaviour, IGameEvent
 {
     // string을 받아서 void를 반환하는 함수를 담을 수 있는 delegate 타입
     // 이벤트 정의
     public event Action<string> onEnterDialogue;
-
     public void EnterDialogue(string knotName)
     {
+        //Debug.Log("DialogueEvents");
+        //Debug.Log(knotName);
         //onEnterDialogue 이벤트가 비어있지 않으면, 등록된 모든 콜백을 knotName 인자로 호출
         onEnterDialogue?.Invoke(knotName);
     }
@@ -36,7 +37,6 @@ public class DialogueEvents : MonoBehaviour
 
 
     public event Action<int> onUpdateChoiceIndex;
-
     public void UpdateChoiceIndex(int choiceIndex)
     {
         onUpdateChoiceIndex?.Invoke(choiceIndex);

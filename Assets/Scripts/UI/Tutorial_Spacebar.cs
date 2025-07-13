@@ -25,10 +25,10 @@ public class Tutorial_Spacebar : MonoBehaviour
         switch (ev.tutorialId)
         {
             case "Jump_On":
-                spaceBar.DOFade(1f, 1f);
+                spaceBar.DOFade(1f, 2f);
                 break;
             case "Jump_Off":
-                spaceBar.DOFade(0f, 1f);
+                spaceBar.DOFade(0f, 2f);
                 break;
         }
     }

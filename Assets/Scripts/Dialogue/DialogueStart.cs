@@ -10,24 +10,25 @@ public class DialogueStart : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEventManager.Instance.inputEvents.onSubmitPressed += SubmitPressed;
+        GameEventManager.Instance.inputEvents.onStartDialogue += StartDialogue;
+        //GameEventBus.Subscribe<>
     }
     private void OnDisable()
     {   
         if(GameEventManager.Instance != null)
         {
-            GameEventManager.Instance.inputEvents.onSubmitPressed -= SubmitPressed;
+            GameEventManager.Instance.inputEvents.onStartDialogue -= StartDialogue;
         }
     }
 
     private void Update()
     {
-        SubmitPressed(InputEventContext.DEFAULT);
+        StartDialogue(InputEventContext.DEFAULT);
     }
 
-    private void SubmitPressed(InputEventContext inputEventContext)
+    private void StartDialogue(InputEventContext inputEventContext)
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        /*if (Input.GetKeyDown(KeyCode.S))
         {
             //UIManager.Instance.ShowUiPanels(); 디버깅 용도
 
@@ -40,6 +41,6 @@ public class DialogueStart : MonoBehaviour
                 // dialogue 이벤트 호출
                 GameEventManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
             }
-        }
+        }*/
     }
 }

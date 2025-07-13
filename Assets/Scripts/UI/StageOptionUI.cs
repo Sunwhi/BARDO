@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class StageOptionUI : MonoBehaviour
 {
     private void Start()
@@ -8,7 +8,7 @@ public class StageOptionUI : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "TitleScene")
         {
             SoundManager.Instance.PlaySFX(eSFX.UI_Btn_Open_Settings);
             if (UIManager.Instance.IsPanelActive("OptionPanel")) UIManager.Instance.HidePanel("OptionPanel");
@@ -26,5 +26,11 @@ public class StageOptionUI : MonoBehaviour
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
         MySceneManager.Instance.LoadScene(SceneType.Title);
+    }
+
+    public void OnClickOptionExit()
+    {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        UIManager.Instance.HidePanel("OptionPanel");
     }
 }
