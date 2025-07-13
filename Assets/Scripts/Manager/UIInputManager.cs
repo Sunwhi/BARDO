@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class UIInputManager : Singleton<UIInputManager>
 {
-    private bool submitPressed = false;
+    public bool submitPressed = false;
 
     // spacebar 누르면 실행, Dialogue에서 
     public void OnSubmit(InputAction.CallbackContext context)
@@ -26,9 +26,7 @@ public class UIInputManager : Singleton<UIInputManager>
 
     public bool GetSubmitPressed()
     {
-        Debug.Log("호출됐잖아");
         bool result = submitPressed;
-        submitPressed = false;
         Debug.Log(result); 
         return result;
     }

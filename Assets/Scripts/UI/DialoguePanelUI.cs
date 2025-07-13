@@ -28,15 +28,16 @@ public class DialoguePanelUI : MonoBehaviour
     }
     private void Update()
     {
+        // 스페이스바를 누르고, 모든 줄이 출력되지 않았을 때
         if (UIInputManager.Instance.GetSubmitPressed() && !DialogueManager.Instance.canContinueToNextLine)
         {
+            UIInputManager.Instance.submitPressed = false;
             Debug.Log("update");
             skipDialogue = true;
         }
     }
     private void OnEnable()
     {
-        //Debug.Log("panelEnable");
         GameEventManager.Instance.dialogueEvents.onDialogueStarted += DialogueStart;
         GameEventManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
         GameEventManager.Instance.dialogueEvents.onDisplayDialogue += DisplayDialogue;
@@ -46,7 +47,6 @@ public class DialoguePanelUI : MonoBehaviour
     {
         if(GameEventManager.Instance != null)
         {
-            //Debug.Log("wtf");
             GameEventManager.Instance.dialogueEvents.onDialogueStarted -= DialogueStart;
             GameEventManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
             GameEventManager.Instance.dialogueEvents.onDisplayDialogue -= DisplayDialogue;
