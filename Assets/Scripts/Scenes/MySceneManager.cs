@@ -18,7 +18,6 @@ public class MySceneManager : Singleton<MySceneManager>
                 break;
             case SceneType.Prototype:
                 SceneManager.LoadScene("Prototype");
-                
                 break;
             case SceneType.Stage1:
                 SceneManager.LoadScene("Stage1");

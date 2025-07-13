@@ -33,7 +33,11 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler
 
     public void OnSelectChoice()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
-        GameEventManager.Instance.inputEvents.SubmitPressed();
+        // 문장 끝날때까지 선택지 못 누름
+        if (DialogueManager.Instance.canContinueToNextLine)
+        {
+            SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
+            GameEventManager.Instance.inputEvents.StartDialogue();
+        }
     }
 }

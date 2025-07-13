@@ -11,10 +11,9 @@ public class InputEvents : MonoBehaviour
         this.inputEventContext = newContext;
     }
 
-    public event Action<InputEventContext> onSubmitPressed;
-    public void SubmitPressed()
+    public event Action<InputEventContext> onStartDialogue;
+    public void StartDialogue()
     {
-        onSubmitPressed?.Invoke(this.inputEventContext); 
-    }
-    
+        onStartDialogue?.Invoke(this.inputEventContext); 
+    }    
 }

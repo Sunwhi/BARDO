@@ -8,7 +8,11 @@ public class DialogueContinue : MonoBehaviour
     // Next button 클릭
     public void OnClickDialogueNext()
     {
-        PressedDialogueNext();
+        // 문장 끝날 때 까지 next 버튼 못 누름
+        if (DialogueManager.Instance.canContinueToNextLine)
+        {
+            PressedDialogueNext();
+        }
     }
     /*private void Update()
     {
@@ -18,13 +22,20 @@ public class DialogueContinue : MonoBehaviour
             PressedDialogueNext();
         }
     }*/
+    private void Update()
+    {
+        if (UIInputManager.Instance.GetSubmitPressed() && DialogueManager.Instance.canContinueToNextLine)
+        {
+            PressedDialogueNext();
+        }
+    }
 
     private void PressedDialogueNext()
     {
         if (!dialogueKnotName.Equals(""))
         {
             SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
-            GameEventManager.Instance.inputEvents.SubmitPressed();
+            GameEventManager.Instance.inputEvents.StartDialogue();
         }
     }
 }

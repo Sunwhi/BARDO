@@ -18,12 +18,11 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private int currentChoiceIndex = -1;
 
-    private bool dialoguePlaying = false;    // dialogue가 playing중인가?
+    public bool dialoguePlaying { get; private set; } = false;    // dialogue가 playing중인가?
 
-    private void Update()
-    {
-        
-    }
+    // Dialogue 다음 라인으로 넘어갈 수 있는가? 타이핑 도중 next로 넘어가지 못하게
+    public bool canContinueToNextLine { get; set; } = false; 
+
     public override void Awake()
     {
         base.Awake();
@@ -34,9 +33,10 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         if (GameEventManager.Instance != null)
         {
+            //Debug.Log("OnEnable호출됨");
             // 이벤트 추가
             GameEventManager.Instance.dialogueEvents.onEnterDialogue += EnterDialogue;
-            GameEventManager.Instance.inputEvents.onSubmitPressed += SubmitPressed;
+            GameEventManager.Instance.inputEvents.onStartDialogue += StartDialogue;
             GameEventManager.Instance.dialogueEvents.onUpdateChoiceIndex += UpdateChoiceIndex;
         }
     }
@@ -47,7 +47,7 @@ public class DialogueManager : Singleton<DialogueManager>
             // Debug.Log("dm ondisable");
             // 이벤트 삭제
             GameEventManager.Instance.dialogueEvents.onEnterDialogue -= EnterDialogue;
-            GameEventManager.Instance.inputEvents.onSubmitPressed -= SubmitPressed;
+            GameEventManager.Instance.inputEvents.onStartDialogue -= StartDialogue;
             GameEventManager.Instance.dialogueEvents.onUpdateChoiceIndex -= UpdateChoiceIndex;
 
         }
@@ -57,10 +57,10 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         this.currentChoiceIndex = choiceIndex;
     }
-    private void SubmitPressed(InputEventContext inputEventContext)
+    private void StartDialogue(InputEventContext inputEventContext)
     {
-        Debug.Log("submitpressed");
         haveChoices = false;
+
         // if context isn't dialogue, we never want to register input here
         if(!inputEventContext.Equals(InputEventContext.DIALOGUE))
         {
@@ -71,7 +71,6 @@ public class DialogueManager : Singleton<DialogueManager>
     }
     private void EnterDialogue(string knotName)
     {
-
         // 이미 dialogue에 들어가 있다면 또 다시 dialogue에 들어가지 않는다.
         if (dialoguePlaying)
         {
@@ -98,9 +97,8 @@ public class DialogueManager : Singleton<DialogueManager>
         ContinueOrExitStory();
     } 
 
-    private void ContinueOrExitStory()
+    private void ContinueOrExitStory() 
     {
-        Debug.Log("continueorexit");
         // make a choice, if applicable
         if (story.currentChoices.Count > 0 && currentChoiceIndex != -1)
         {
