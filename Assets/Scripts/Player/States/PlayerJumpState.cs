@@ -8,12 +8,12 @@ public class PlayerJumpState : PlayerState
     {
         Player.controller.Jump();
         SoundManager.Instance.PlaySFX(eSFX.Character_Jump);
-        Player.animator.SetTrigger(Player.AnimationData.JumpTriggerHash);
+        Player.animator.SetBool(Player.AnimationData.JumpParamHash, true);
     }
 
     public override void Update()
     {
-        if (Player.isGrounded && Mathf.Abs(Player.rb.linearVelocity.y) < 0.01f)
+        if (Player.isGrounded)
         {
             if (Player.controller.MoveInput.x != 0)
                 fsm.ChangeState(fsm.MoveState);
@@ -29,5 +29,6 @@ public class PlayerJumpState : PlayerState
 
     public override void Exit()
     {
+        Player.animator.SetBool(Player.AnimationData.JumpParamHash, false);
     }
 }
