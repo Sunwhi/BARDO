@@ -29,6 +29,7 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler
     public void OnSelect(BaseEventData eventData)
     { 
         GameEventManager.Instance.dialogueEvents.UpdateChoiceIndex(choiceIndex);
+        //Debug.Log("이 버튼 선택됨");
     }
 
     public void OnSelectChoice()

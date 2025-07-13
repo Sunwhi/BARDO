@@ -32,7 +32,6 @@ public class DialoguePanelUI : MonoBehaviour
         if (UIInputManager.Instance.GetSubmitPressed() && !DialogueManager.Instance.canContinueToNextLine)
         {
             UIInputManager.Instance.submitPressed = false;
-            Debug.Log("update");
             skipDialogue = true;
         }
     }
@@ -67,22 +66,24 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void DisplayDialogue(string dialogueLine, List<Ink.Runtime.Choice> dialogueChoices)
     {
+        //ActiveNextBtn();
         if(displayLineCoroutine != null)
         {
             StopCoroutine(displayLineCoroutine);
         }
 
-        displayLineCoroutine = StartCoroutine(DisplayLine(dialogueLine));
 
         // 선택지 dialogue에서는 next 버튼 비활성화
         if(dialogueChoices.Count > 0)
         {
             InActiveNextBtn(); 
         }
-        else
+        /*else if(dialogueChoices.Count == 0)
         {
+            //Debug.Log("out");
             ActiveNextBtn();
-        }
+            hasChoices = false;
+        }*/
 
         // defensive check - if there are more choices coming in than we can support, Log an error
         if (dialogueChoices.Count > choiceButtons.Length)
@@ -105,7 +106,7 @@ public class DialoguePanelUI : MonoBehaviour
             Ink.Runtime.Choice dialogueChoice = dialogueChoices[inkChoiceIndex];
             DialogueChoiceBtn choiceButton = choiceButtons[choiceButtonIndex];
 
-            choiceButton.gameObject.SetActive(true);
+            //choiceButton.gameObject.SetActive(true);
             choiceButton.SetChoiceText(dialogueChoice.text);
             choiceButton.SetChoiceIndex(inkChoiceIndex);
 
@@ -117,12 +118,20 @@ public class DialoguePanelUI : MonoBehaviour
 
             choiceButtonIndex--;
         }
+
+        displayLineCoroutine = StartCoroutine(DisplayLine(dialogueLine));
     }
     private IEnumerator DisplayLine(string line)
     {
         dialogueText.text = "";
 
         DialogueManager.Instance.canContinueToNextLine = false;
+
+        // 대화줄 다 뜨기 전까지 next버튼 비활성화
+        if (!DialogueManager.Instance.ContainChoices())
+        {
+            InActiveNextBtn();
+        }
 
         //타이핑 효과, 한 글자씩 출력
         foreach (char letter in line.ToCharArray()) 
@@ -137,6 +146,19 @@ public class DialoguePanelUI : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
         DialogueManager.Instance.canContinueToNextLine = true;
+
+        // 대화줄이 다 뜨면 next버튼 다시 활성화
+        if (!DialogueManager.Instance.ContainChoices())
+        {
+            ActiveNextBtn(); 
+        }
+        else
+        {
+            foreach(var choice in choiceButtons)
+            {
+                choice.gameObject.SetActive(true);
+            }
+        }
     }
     private void ActiveNextBtn()
     {

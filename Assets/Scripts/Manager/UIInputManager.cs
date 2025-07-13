@@ -11,6 +11,7 @@ public class UIInputManager : Singleton<UIInputManager>
     // spacebar 누르면 실행, Dialogue에서 
     public void OnSubmit(InputAction.CallbackContext context)
     {
+        Debug.Log("OnSubmit");
         if (DialogueManager.Instance.dialoguePlaying)
         {
             if (context.performed)
@@ -27,7 +28,7 @@ public class UIInputManager : Singleton<UIInputManager>
     public bool GetSubmitPressed()
     {
         bool result = submitPressed;
-        Debug.Log(result); 
+        //Debug.Log(result); 
         return result;
     }
 }
