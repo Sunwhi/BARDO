@@ -1,5 +1,5 @@
 using UnityEngine;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,18 +9,20 @@ using System;
 public enum ESaveSlot
 {
     Auto = 0,
-    Slot1 = 1,
-    Slot2 = 2,
-    Slot3 = 3
+    Slot1,
+    Slot2,
+    Slot3,
+    Slot4,
+    Slot5,
 }
 
 public class SaveManager : Singleton<SaveManager>
 {
-    /*//private SaveData saveData;
-    //public SaveData MySaveData { get { return saveData; } }
+    private SaveData saveData;
+    public SaveData MySaveData { get { return saveData; } }
     private readonly Dictionary<string, FieldInfo> fieldCache = new();
 
-    private bool isAutoDirty;
+    private bool isDirty;
     private string directory;
 
     #region Unity Life Cycles
@@ -39,7 +41,7 @@ public class SaveManager : Singleton<SaveManager>
             }
         }
 
-        isAutoDirty = false;
+        isDirty = false;
     }
 
     private void OnApplicationQuit()
@@ -48,7 +50,7 @@ public class SaveManager : Singleton<SaveManager>
         {
             SaveSlot(0);
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             Debug.LogError($"[SaveManager] 종료 저장 실패: {e.Message}");
         }
@@ -56,23 +58,21 @@ public class SaveManager : Singleton<SaveManager>
     #endregion
 
     #region Main Methods
-    public void CreateSaveData()
+    
+
+    public void SaveSlot(ESaveSlot slot, string slotName = "")
     {
-        saveData = new();
+        if (slot == 0 && !isDirty) return;
 
-        // 기본 정보 추가
-        saveData.ownedRecipes.Add(1);
-
-        string path = GetSlotPath(0);
-        string json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
-        File.WriteAllText(path, json);
-    }
-
-    public void SaveSlot(ESaveSlot slot)
-    {
-        if (slot == 0 && !isAutoDirty) return;
-        SetSaveData(nameof(SaveData.lastSaveTime), DateTime.Now.Ticks);
         string path = GetSlotPath(slot);
+        if (!File.Exists(path))
+        {
+            CreateSaveData(slot);
+        }
+
+        SetSaveData(nameof(SaveData.saveName), slotName.IsNullOrWhiteSpace() ? slotName : saveData.saveName);
+        SetSaveData(nameof(SaveData.lastSaveTime), DateTime.Now.Ticks);
+
         string json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
         File.WriteAllText(path, json);
     }
@@ -92,7 +92,7 @@ public class SaveManager : Singleton<SaveManager>
             string json = File.ReadAllText(path);
             saveData = JsonConvert.DeserializeObject<SaveData>(json);
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             Debug.LogError($"로딩 실패: {e.Message}");
             saveData = new SaveData();
@@ -139,17 +139,42 @@ public class SaveManager : Singleton<SaveManager>
             return;
         }
 
-        isAutoDirty = true;
-        EventManager.Instance.InvokeSaveDataChanged(field);
+        isDirty = true;
     }
 
     #endregion
 
     #region Sub Methods
+    private void CreateSaveData(ESaveSlot slot)
+    {
+        saveData = new();
+        switch (slot)
+        {
+            case ESaveSlot.Auto:
+                saveData.saveName = "Auto Save";
+                break;
+            case ESaveSlot.Slot1:
+                saveData.saveName = "Slot 1";
+                break;
+            case ESaveSlot.Slot2:
+                saveData.saveName = "Slot 2";
+                break;
+            case ESaveSlot.Slot3:
+                saveData.saveName = "Slot 3";
+                break;
+            case ESaveSlot.Slot4:
+                saveData.saveName = "Slot 4";
+                break;
+            case ESaveSlot.Slot5:
+                saveData.saveName = "Slot 5";
+                break;
+        }
+    }
+
     private string GetSlotPath(ESaveSlot slot)
     {
         return Path.Combine(directory, $"{slot}.json");
     }
 
-    #endregion*/
+    #endregion
 }
