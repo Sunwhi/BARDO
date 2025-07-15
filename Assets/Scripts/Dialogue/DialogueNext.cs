@@ -26,6 +26,7 @@ public class DialogueContinue : MonoBehaviour
     {
         if (UIInputManager.Instance.GetSubmitPressed() && DialogueManager.Instance.canContinueToNextLine)
         {
+            UIInputManager.Instance.submitPressed = false; // 스페이사 눌렀을 때만 false되게
             PressedDialogueNext();
         }
     }

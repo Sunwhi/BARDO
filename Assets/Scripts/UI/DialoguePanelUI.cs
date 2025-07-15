@@ -28,10 +28,12 @@ public class DialoguePanelUI : MonoBehaviour
     }
     private void Update()
     {
-        // 스페이스바를 누르고, 모든 줄이 출력되지 않았을 때
+        Debug.Log("GetSubmitPressed "+UIInputManager.Instance.GetSubmitPressed());
+        // 모든 줄이 출력되지 않았을 때, space를 눌러 dialogue를 skip한다.
         if (UIInputManager.Instance.GetSubmitPressed() && !DialogueManager.Instance.canContinueToNextLine)
         {
-            UIInputManager.Instance.submitPressed = false;
+            // 이게 지금 실행이 안되고 있다. 그 이유는 GetSubmitPressed()가 true가 안되고 있음*************************************************** why??
+            UIInputManager.Instance.submitPressed = false; // 스페이스바 눌렀을때만 false되게. 이렇게 안하고 GetSubmitPressed에서 false하면 계속해서 false가 출력돼서 작동을 안함. true가 안나옴.
             skipDialogue = true;
         }
     }
@@ -78,12 +80,6 @@ public class DialoguePanelUI : MonoBehaviour
         {
             InActiveNextBtn(); 
         }
-        /*else if(dialogueChoices.Count == 0)
-        {
-            //Debug.Log("out");
-            ActiveNextBtn();
-            hasChoices = false;
-        }*/
 
         // defensive check - if there are more choices coming in than we can support, Log an error
         if (dialogueChoices.Count > choiceButtons.Length)
@@ -125,6 +121,7 @@ public class DialoguePanelUI : MonoBehaviour
     {
         dialogueText.text = "";
 
+        yield return new WaitForSeconds(0.1f);
         DialogueManager.Instance.canContinueToNextLine = false;
 
         // 대화줄 다 뜨기 전까지 next버튼 비활성화
@@ -145,6 +142,8 @@ public class DialoguePanelUI : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
+
+        //yield return new WaitForSeconds(1f);
         DialogueManager.Instance.canContinueToNextLine = true;
 
         // 대화줄이 다 뜨면 next버튼 다시 활성화
