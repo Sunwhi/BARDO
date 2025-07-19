@@ -48,7 +48,7 @@ public class SaveManager : Singleton<SaveManager>
     {
         try
         {
-            SaveSlot(0);
+            SaveSlot(ESaveSlot.Auto);
         }
         catch (Exception e)
         {
@@ -58,11 +58,9 @@ public class SaveManager : Singleton<SaveManager>
     #endregion
 
     #region Main Methods
-    
-
-    public void SaveSlot(ESaveSlot slot, string slotName = "")
+    public void SaveSlot(ESaveSlot slot = ESaveSlot.Auto, string slotName = "")
     {
-        if (slot == 0 && !isDirty) return;
+        if (!isDirty) return;
 
         string path = GetSlotPath(slot);
         if (!File.Exists(path))
@@ -83,7 +81,6 @@ public class SaveManager : Singleton<SaveManager>
         if (!File.Exists(path))
         {
             Debug.LogWarning($"파일 없음: {path}");
-            saveData = new SaveData();
             return;
         }
 
@@ -151,22 +148,22 @@ public class SaveManager : Singleton<SaveManager>
         switch (slot)
         {
             case ESaveSlot.Auto:
-                saveData.saveName = "Auto Save";
+                saveData.saveName = "Auto";
                 break;
             case ESaveSlot.Slot1:
-                saveData.saveName = "Slot 1";
+                saveData.saveName = "Slot1";
                 break;
             case ESaveSlot.Slot2:
-                saveData.saveName = "Slot 2";
+                saveData.saveName = "Slot2";
                 break;
             case ESaveSlot.Slot3:
-                saveData.saveName = "Slot 3";
+                saveData.saveName = "Slot3";
                 break;
             case ESaveSlot.Slot4:
-                saveData.saveName = "Slot 4";
+                saveData.saveName = "Slot4";
                 break;
             case ESaveSlot.Slot5:
-                saveData.saveName = "Slot 5";
+                saveData.saveName = "Slot5";
                 break;
         }
     }
