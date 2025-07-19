@@ -18,6 +18,10 @@ public class DialoguePanelUI : MonoBehaviour
     [SerializeField] private float typingSpeed = 0.04f;
     private Coroutine displayLineCoroutine;
     private bool skipDialogue = false;
+    // 대화 출력이 완료되고 next버튼 활성화 전까지 OnSubmit이 여러번 출력되어 skipDialogue가 다음줄까지 true가 되는 버그를 방지하기 위해,
+    // 한번 OnSubmit으로 대화창 스킵하면, next버튼 활성화 되기 전까지 다시 OnSubmit이 호출 안되게 함.
+    // 즉, 한번 OnSubmit 누르면 next 버튼 활성화 전까지 OnSubmit이 호출이 안되고, 다시 skipDialogue가 true되지 않게 함.
+    private bool isOnSubmitPressed = false; 
     private void Start()
     {
         if(UIManager.Instance != null)
@@ -28,13 +32,17 @@ public class DialoguePanelUI : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("GetSubmitPressed "+UIInputManager.Instance.GetSubmitPressed());
         // 모든 줄이 출력되지 않았을 때, space를 눌러 dialogue를 skip한다.
         if (UIInputManager.Instance.GetSubmitPressed() && !DialogueManager.Instance.canContinueToNextLine)
         {
-            // 이게 지금 실행이 안되고 있다. 그 이유는 GetSubmitPressed()가 true가 안되고 있음*************************************************** why??
-            UIInputManager.Instance.submitPressed = false; // 스페이스바 눌렀을때만 false되게. 이렇게 안하고 GetSubmitPressed에서 false하면 계속해서 false가 출력돼서 작동을 안함. true가 안나옴.
-            skipDialogue = true;
+            if (!isOnSubmitPressed) 
+            {
+                Debug.Log("skip:");
+                isOnSubmitPressed = true;
+                // 이게 지금 실행이 안되고 있다. 그 이유는 GetSubmitPressed()가 true가 안되고 있음*************************************************** why??
+                UIInputManager.Instance.submitPressed = false; // 스페이스바 눌렀을때만 false되게. 이렇게 안하고 GetSubmitPressed에서 false하면 계속해서 false가 출력돼서 작동을 안함. true가 안나옴.
+                skipDialogue = true;
+            }
         }
     }
     private void OnEnable()
@@ -95,29 +103,9 @@ public class DialoguePanelUI : MonoBehaviour
             choiceBtn.gameObject.SetActive(false);
         }
 
-        // enable and set info for buttons depending on ink choice information
-        int choiceButtonIndex = dialogueChoices.Count - 1;
-        for(int inkChoiceIndex = 0; inkChoiceIndex < dialogueChoices.Count; inkChoiceIndex++)
-        {
-            Ink.Runtime.Choice dialogueChoice = dialogueChoices[inkChoiceIndex];
-            DialogueChoiceBtn choiceButton = choiceButtons[choiceButtonIndex];
-
-            //choiceButton.gameObject.SetActive(true);
-            choiceButton.SetChoiceText(dialogueChoice.text);
-            choiceButton.SetChoiceIndex(inkChoiceIndex);
-
-            if(inkChoiceIndex == 0)
-            {
-                choiceButton.SelectButton();
-                GameEventManager.Instance.dialogueEvents.UpdateChoiceIndex(0);
-            }
-
-            choiceButtonIndex--;
-        }
-
-        displayLineCoroutine = StartCoroutine(DisplayLine(dialogueLine));
+        displayLineCoroutine = StartCoroutine(DisplayLine(dialogueLine, dialogueChoices));
     }
-    private IEnumerator DisplayLine(string line)
+    private IEnumerator DisplayLine(string line, List<Ink.Runtime.Choice> dialogueChoices)
     {
         dialogueText.text = "";
 
@@ -136,14 +124,17 @@ public class DialoguePanelUI : MonoBehaviour
             if (skipDialogue)//UIInputManager.Instance.GetSubmitPressed()
             {
                 skipDialogue = false;
-                dialogueText.text = line;
-                break;
+                //dialogueText.text = line;
+                //break;
+                typingSpeed = 0.005f;
             }
             dialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
 
-        //yield return new WaitForSeconds(1f);
+        typingSpeed = 0.04f;
+
+        yield return new WaitForSeconds(0.5f);
         DialogueManager.Instance.canContinueToNextLine = true;
 
         // 대화줄이 다 뜨면 next버튼 다시 활성화
@@ -153,10 +144,31 @@ public class DialoguePanelUI : MonoBehaviour
         }
         else
         {
-            foreach(var choice in choiceButtons)
+            SetChoiceBtns(dialogueChoices);
+        }
+
+        isOnSubmitPressed = false;
+    }
+    private void SetChoiceBtns(List<Ink.Runtime.Choice> dialogueChoices)
+    {
+        // enable and set info for buttons depending on ink choice information
+        int choiceButtonIndex = dialogueChoices.Count - 1;
+        for (int inkChoiceIndex = 0; inkChoiceIndex < dialogueChoices.Count; inkChoiceIndex++)
+        {
+            Ink.Runtime.Choice dialogueChoice = dialogueChoices[inkChoiceIndex];
+            DialogueChoiceBtn choiceButton = choiceButtons[choiceButtonIndex];
+
+            choiceButton.gameObject.SetActive(true);
+            choiceButton.SetChoiceText(dialogueChoice.text);
+            choiceButton.SetChoiceIndex(inkChoiceIndex);
+
+            if (inkChoiceIndex == 0)
             {
-                choice.gameObject.SetActive(true);
+                choiceButton.SelectButton();
+                GameEventManager.Instance.dialogueEvents.UpdateChoiceIndex(0);
             }
+
+            choiceButtonIndex--;
         }
     }
     private void ActiveNextBtn()

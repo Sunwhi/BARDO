@@ -1,27 +1,25 @@
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class DialogueContinue : MonoBehaviour
+public class DialogueNext : MonoBehaviour
 {
     private string dialogueKnotName = "start";
 
     // Next button 클릭
     public void OnClickDialogueNext()
     {
+        // next 버튼 누르면 null을 select하게 해서 더이상 highlighted상태가 되지 않게.(next 누르고도 계속 회색으로 칠해져 있는 버그 수정 코드)
+        EventSystem.current.SetSelectedGameObject(null);
+
         // 문장 끝날 때 까지 next 버튼 못 누름
         if (DialogueManager.Instance.canContinueToNextLine)
         {
             PressedDialogueNext();
         }
     }
-    /*private void Update()
-    {
-        //Debug.Log(DialogueManager.Instance.haveChoices);
-        if (Input.GetKeyDown(KeyCode.Return) && !DialogueManager.Instance.haveChoices)
-        {
-            PressedDialogueNext();
-        }
-    }*/
+
     private void Update()
     {
         if (UIInputManager.Instance.GetSubmitPressed() && DialogueManager.Instance.canContinueToNextLine)
@@ -30,7 +28,7 @@ public class DialogueContinue : MonoBehaviour
             PressedDialogueNext();
         }
     }
-
+    
     private void PressedDialogueNext()
     {
         if (!dialogueKnotName.Equals(""))
