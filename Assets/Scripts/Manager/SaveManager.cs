@@ -184,7 +184,6 @@ public class SaveManager : Singleton<SaveManager>
 
         isDirty = true;
     }
-
     #endregion
 
     #region Sub Methods
