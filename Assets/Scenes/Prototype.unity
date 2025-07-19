@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 8480972}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65, y: -2.8, z: -10}
+  m_LocalPosition: {x: -57.22222, y: -0.79999995, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -874,6 +874,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a3a35640b7e71743b6e2f477dd4ca26, type: 3}
+--- !u!61 &227130877 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6479781681425051361, guid: 4a3a35640b7e71743b6e2f477dd4ca26, type: 3}
+  m_PrefabInstance: {fileID: 227130876}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &371981165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,7 +1285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoundingShape2D: {fileID: 0}
+  BoundingShape2D: {fileID: 227130877}
   Damping: 0.5
   SlowingDistance: 5
   OversizeWindow:
