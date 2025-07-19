@@ -33,7 +33,7 @@ public class SaveManager : Singleton<SaveManager>
     #region Unity Life Cycles
     public void Init()
     {
-        //ÀúÀåÇÒ ÆÄÀÏ°æ·Î ¼³Á¤
+        //ì €ì¥í•  íŒŒì¼ê²½ë¡œ ì„¤ì •
         directory = Path.Combine(Application.persistentDataPath, "Save");
         if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
         isDirty = false;
@@ -48,7 +48,7 @@ public class SaveManager : Singleton<SaveManager>
             }
         }
 
-        bool isAutoCache = true; //ÀÚµ¿ ÀúÀå ½½·ÔÀÌ ´Ù¸¥ ½½·Ô°ú ´Ù¸¦ °æ¿ì¿¡¸¸ true·Î ¼³Á¤
+        bool isAutoCache = true; //ìë™ ì €ì¥ ìŠ¬ë¡¯ì´ ë‹¤ë¥¸ ìŠ¬ë¡¯ê³¼ ë‹¤ë¥¼ ê²½ìš°ì—ë§Œ trueë¡œ ì„¤ì •
 
         for (int i = 0; i < 6; i++)
         {
@@ -74,12 +74,17 @@ public class SaveManager : Singleton<SaveManager>
 
         if (isAutoCache)
         {
-            //TODO : ÆÄÀÏ º¹±¸ UI ¶ç¿ì±â
+            //TODO : íŒŒì¼ ë³µêµ¬ UI ë„ìš°ê¸°
         }
     }
     #endregion
 
     #region Main Methods
+    /// <summary>
+    /// [ì €ì¥í•˜ê¸°] ì„ íƒ
+    /// </summary>
+    /// <param name="slot">ì €ì¥í•  ìŠ¬ë¡¯ ë²ˆí˜¸</param>
+    /// <param name="slotName">ì €ì¥í•  ìŠ¬ë¡¯ì˜ ìƒˆë¡œìš´ ì´ë¦„</param>
     public void SaveSlot(ESaveSlot slot = ESaveSlot.Auto, string slotName = "")
     {
         if (!isDirty) return;
@@ -102,26 +107,50 @@ public class SaveManager : Singleton<SaveManager>
             File.WriteAllText(GetSlotPath(ESaveSlot.Auto), json);
     }
 
+
+    /// <summary>
+    /// [ìƒˆë¡œí•˜ê¸°] ì„ íƒ
+    /// </summary>
+    /// <returns>[ìƒˆë¡œí•˜ê¸°] ê°€ëŠ¥ ì—¬ë¶€</returns>
+    public bool NewSlot()
+    {
+        foreach (var slot in saveCache.Keys)
+        {
+            if (saveCache[slot].lastSaveTime == 0)
+            {
+                curSlot = slot;
+                SetSaveData(nameof(SaveData.lastSaveTime), DateTime.Now.Ticks);
+                return true;
+            }
+        }
+
+        return false; //ë¹ˆ ìŠ¬ë¡¯ì´ ì—†ìŒ
+    }
+
+    /// <summary>
+    /// [ì´ì–´í•˜ê¸°] ì„ íƒ
+    /// </summary>
+    /// <param name="slot">[ì´ì–´í•˜ê¸°]ì—ì„œ ì„ íƒí•œ ìŠ¬ë¡¯ ë²ˆí˜¸</param>
     public void LoadSlot(ESaveSlot slot)
     {
         if (saveCache[(int)slot].lastSaveTime == 0)
         {
-            Debug.LogWarning($"ÀúÀåµÈ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù: {slot}");
+            Debug.LogWarning($"ì €ì¥ëœ ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤: {slot}");
             return;
         }
 
         curSlot = (int)slot;
     }
 
-    /// <summary> ÀúÀå µ¥ÀÌÅÍ ÇÒ´ç </summary>
-    /// <param name="field">SaveDataÀÇ ÇÊµå¸í</param>
-    /// <param name="value">fieldÀÇ ÀÚ·áÇü¿¡ ÇØ´çÇÏ´Â µ¤¾î¾²±â °ª</param>
+    /// <summary> ì €ì¥ ë°ì´í„° í• ë‹¹ </summary>
+    /// <param name="field">SaveDataì˜ í•„ë“œëª…</param>
+    /// <param name="value">fieldì˜ ìë£Œí˜•ì— í•´ë‹¹í•˜ëŠ” ë®ì–´ì“°ê¸° ê°’</param>
     /// <param name="indexOrKey"></param>
     public void SetSaveData(string field, object value, object indexOrKey = null)
     {
         if (!fieldCache.TryGetValue(field, out var fieldInfo))
         {
-            Debug.LogError($"{field} ÇÊµå¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError($"{field} í•„ë“œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
@@ -139,7 +168,7 @@ public class SaveManager : Singleton<SaveManager>
             }
             else
             {
-                Debug.LogError($"ÀÎµ¦½º ¹üÀ§ ÃÊ°ú: {idx}");
+                Debug.LogError($"ì¸ë±ìŠ¤ ë²”ìœ„ ì´ˆê³¼: {idx}");
                 return;
             }
         }
@@ -149,7 +178,7 @@ public class SaveManager : Singleton<SaveManager>
         }
         else
         {
-            Debug.LogError($"ÄÃ·º¼ÇÀÌ ¾Æ´Ñ ÇÊµå¿¡ indexOrKey¸¦ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError($"ì»¬ë ‰ì…˜ì´ ì•„ë‹Œ í•„ë“œì— indexOrKeyë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
