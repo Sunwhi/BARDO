@@ -1,10 +1,10 @@
-using UnityEngine;
 using Newtonsoft.Json;
-using System.IO;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
-using System;
+using UnityEngine;
 
 public enum ESaveSlot
 {
@@ -18,9 +18,14 @@ public enum ESaveSlot
 
 public class SaveManager : Singleton<SaveManager>
 {
-    private SaveData saveData;
-    public SaveData MySaveData { get { return saveData; } }
+    public SaveData MySaveData 
+    { 
+        get { return saveCache[curSlot]; } 
+        private set { saveCache[curSlot] = value; } 
+    }
     private readonly Dictionary<string, FieldInfo> fieldCache = new();
+    private Dictionary<int, SaveData> saveCache = new();
+    private int curSlot = 0;
 
     private bool isDirty;
     private string directory;
@@ -28,10 +33,12 @@ public class SaveManager : Singleton<SaveManager>
     #region Unity Life Cycles
     public void Init()
     {
+        //저장할 파일경로 설정
         directory = Path.Combine(Application.persistentDataPath, "Save");
-
         if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+        isDirty = false;
 
+        //SaveData Field Cache
         var fields = typeof(SaveData).GetFields(BindingFlags.Public | BindingFlags.Instance);
         foreach (var field in fields)
         {
@@ -41,18 +48,33 @@ public class SaveManager : Singleton<SaveManager>
             }
         }
 
-        isDirty = false;
-    }
+        bool isAutoCache = true; //자동 저장 슬롯이 다른 슬롯과 다를 경우에만 true로 설정
 
-    private void OnApplicationQuit()
-    {
-        try
+        for (int i = 0; i < 6; i++)
         {
-            SaveSlot(ESaveSlot.Auto);
+            ESaveSlot slot = (ESaveSlot)i;
+            string path = GetSlotPath(slot);
+
+            if (!File.Exists(path))
+            {
+                SaveData slotData = CreateSaveData(slot);
+                File.WriteAllText(path, JsonConvert.SerializeObject(slotData, Formatting.Indented));
+                saveCache[(int)slot] = slotData;
+            }
+            else
+            {
+                saveCache[(int)slot] = JsonConvert.DeserializeObject<SaveData>(File.ReadAllText(path));
+            }
+
+            if (isAutoCache && slot != ESaveSlot.Auto)
+            {
+                isAutoCache = !(saveCache[0].lastSaveTime == saveCache[i].lastSaveTime);
+            }
         }
-        catch (Exception e)
+
+        if (isAutoCache)
         {
-            Debug.LogError($"[SaveManager] 종료 저장 실패: {e.Message}");
+            //TODO : 파일 복구 UI 띄우기
         }
     }
     #endregion
@@ -68,32 +90,27 @@ public class SaveManager : Singleton<SaveManager>
             CreateSaveData(slot);
         }
 
-        SetSaveData(nameof(SaveData.saveName), slotName.IsNullOrWhiteSpace() ? slotName : saveData.saveName);
+        //Save Slot Name
+        SetSaveData(nameof(SaveData.saveName), slotName.IsNullOrWhiteSpace() ? MySaveData.saveName : slotName);
+        //Save Time
         SetSaveData(nameof(SaveData.lastSaveTime), DateTime.Now.Ticks);
 
-        string json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
+        string json = JsonConvert.SerializeObject(MySaveData, Formatting.Indented);
         File.WriteAllText(path, json);
+
+        if (slot != ESaveSlot.Auto)
+            File.WriteAllText(GetSlotPath(ESaveSlot.Auto), json);
     }
 
     public void LoadSlot(ESaveSlot slot)
     {
-        string path = GetSlotPath(slot);
-        if (!File.Exists(path))
+        if (saveCache[(int)slot].lastSaveTime == 0)
         {
-            Debug.LogWarning($"파일 없음: {path}");
+            Debug.LogWarning($"저장된 데이터가 없습니다: {slot}");
             return;
         }
 
-        try
-        {
-            string json = File.ReadAllText(path);
-            saveData = JsonConvert.DeserializeObject<SaveData>(json);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"로딩 실패: {e.Message}");
-            saveData = new SaveData();
-        }
+        curSlot = (int)slot;
     }
 
     /// <summary> 저장 데이터 할당 </summary>
@@ -108,11 +125,11 @@ public class SaveManager : Singleton<SaveManager>
             return;
         }
 
-        var fieldValue = fieldInfo.GetValue(saveData);
+        var fieldValue = fieldInfo.GetValue(MySaveData);
 
         if (indexOrKey == null)
         {
-            fieldInfo.SetValue(saveData, value);
+            fieldInfo.SetValue(MySaveData, value);
         }
         else if (fieldValue is IList list && indexOrKey is int idx)
         {
@@ -128,7 +145,7 @@ public class SaveManager : Singleton<SaveManager>
         }
         else if (fieldValue is IDictionary dict)
         {
-            dict[indexOrKey] = value;
+                dict[indexOrKey] = value;
         }
         else
         {
@@ -142,9 +159,9 @@ public class SaveManager : Singleton<SaveManager>
     #endregion
 
     #region Sub Methods
-    private void CreateSaveData(ESaveSlot slot)
+    private SaveData CreateSaveData(ESaveSlot slot)
     {
-        saveData = new();
+        SaveData saveData = new();
         switch (slot)
         {
             case ESaveSlot.Auto:
@@ -166,12 +183,13 @@ public class SaveManager : Singleton<SaveManager>
                 saveData.saveName = "Slot5";
                 break;
         }
+
+        return saveData;
     }
 
     private string GetSlotPath(ESaveSlot slot)
     {
         return Path.Combine(directory, $"{slot}.json");
     }
-
     #endregion
 }
