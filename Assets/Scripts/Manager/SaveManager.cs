@@ -1,10 +1,10 @@
-using UnityEngine;
 using Newtonsoft.Json;
-using System.IO;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
-using System;
+using UnityEngine;
 
 public enum ESaveSlot
 {
@@ -18,9 +18,14 @@ public enum ESaveSlot
 
 public class SaveManager : Singleton<SaveManager>
 {
-    private SaveData saveData;
-    public SaveData MySaveData { get { return saveData; } }
+    public SaveData MySaveData 
+    { 
+        get { return saveCache[curSlot]; } 
+        private set { saveCache[curSlot] = value; } 
+    }
     private readonly Dictionary<string, FieldInfo> fieldCache = new();
+    private Dictionary<int, SaveData> saveCache = new();
+    private int curSlot = 0;
 
     private bool isDirty;
     private string directory;
@@ -28,10 +33,12 @@ public class SaveManager : Singleton<SaveManager>
     #region Unity Life Cycles
     public void Init()
     {
+        //ì €ì¥í•  íŒŒì¼ê²½ë¡œ ì„¤ì •
         directory = Path.Combine(Application.persistentDataPath, "Save");
-
         if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+        isDirty = false;
 
+        //SaveData Field Cache
         var fields = typeof(SaveData).GetFields(BindingFlags.Public | BindingFlags.Instance);
         foreach (var field in fields)
         {
@@ -41,28 +48,46 @@ public class SaveManager : Singleton<SaveManager>
             }
         }
 
-        isDirty = false;
-    }
+        bool isAutoCache = true; //ìë™ ì €ì¥ ìŠ¬ë¡¯ì´ ë‹¤ë¥¸ ìŠ¬ë¡¯ê³¼ ë‹¤ë¥¼ ê²½ìš°ì—ë§Œ trueë¡œ ì„¤ì •
 
-    private void OnApplicationQuit()
-    {
-        try
+        for (int i = 0; i < 6; i++)
         {
-            SaveSlot(0);
+            ESaveSlot slot = (ESaveSlot)i;
+            string path = GetSlotPath(slot);
+
+            if (!File.Exists(path))
+            {
+                SaveData slotData = CreateSaveData(slot);
+                File.WriteAllText(path, JsonConvert.SerializeObject(slotData, Formatting.Indented));
+                saveCache[(int)slot] = slotData;
+            }
+            else
+            {
+                saveCache[(int)slot] = JsonConvert.DeserializeObject<SaveData>(File.ReadAllText(path));
+            }
+
+            if (isAutoCache && slot != ESaveSlot.Auto)
+            {
+                isAutoCache = !(saveCache[0].lastSaveTime == saveCache[i].lastSaveTime);
+            }
         }
-        catch (Exception e)
+
+        if (isAutoCache)
         {
-            Debug.LogError($"[SaveManager] Á¾·á ÀúÀå ½ÇÆĞ: {e.Message}");
+            //TODO : íŒŒì¼ ë³µêµ¬ UI ë„ìš°ê¸°
         }
     }
     #endregion
 
     #region Main Methods
-    
-
-    public void SaveSlot(ESaveSlot slot, string slotName = "")
+    /// <summary>
+    /// [ì €ì¥í•˜ê¸°] ì„ íƒ
+    /// </summary>
+    /// <param name="slot">ì €ì¥í•  ìŠ¬ë¡¯ ë²ˆí˜¸</param>
+    /// <param name="slotName">ì €ì¥í•  ìŠ¬ë¡¯ì˜ ìƒˆë¡œìš´ ì´ë¦„</param>
+    public void SaveSlot(ESaveSlot slot = ESaveSlot.Auto, string slotName = "")
     {
-        if (slot == 0 && !isDirty) return;
+        if (!isDirty) return;
 
         string path = GetSlotPath(slot);
         if (!File.Exists(path))
@@ -70,52 +95,70 @@ public class SaveManager : Singleton<SaveManager>
             CreateSaveData(slot);
         }
 
-        SetSaveData(nameof(SaveData.saveName), slotName.IsNullOrWhiteSpace() ? slotName : saveData.saveName);
+        //Save Slot Name
+        SetSaveData(nameof(SaveData.saveName), slotName.IsNullOrWhiteSpace() ? MySaveData.saveName : slotName);
+        //Save Time
         SetSaveData(nameof(SaveData.lastSaveTime), DateTime.Now.Ticks);
 
-        string json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
+        string json = JsonConvert.SerializeObject(MySaveData, Formatting.Indented);
         File.WriteAllText(path, json);
+
+        if (slot != ESaveSlot.Auto)
+            File.WriteAllText(GetSlotPath(ESaveSlot.Auto), json);
     }
 
+
+    /// <summary>
+    /// [ìƒˆë¡œí•˜ê¸°] ì„ íƒ
+    /// </summary>
+    /// <returns>[ìƒˆë¡œí•˜ê¸°] ê°€ëŠ¥ ì—¬ë¶€</returns>
+    public bool NewSlot()
+    {
+        foreach (var slot in saveCache.Keys)
+        {
+            if (saveCache[slot].lastSaveTime == 0)
+            {
+                curSlot = slot;
+                SetSaveData(nameof(SaveData.lastSaveTime), DateTime.Now.Ticks);
+                return true;
+            }
+        }
+
+        return false; //ë¹ˆ ìŠ¬ë¡¯ì´ ì—†ìŒ
+    }
+
+    /// <summary>
+    /// [ì´ì–´í•˜ê¸°] ì„ íƒ
+    /// </summary>
+    /// <param name="slot">[ì´ì–´í•˜ê¸°]ì—ì„œ ì„ íƒí•œ ìŠ¬ë¡¯ ë²ˆí˜¸</param>
     public void LoadSlot(ESaveSlot slot)
     {
-        string path = GetSlotPath(slot);
-        if (!File.Exists(path))
+        if (saveCache[(int)slot].lastSaveTime == 0)
         {
-            Debug.LogWarning($"ÆÄÀÏ ¾øÀ½: {path}");
-            saveData = new SaveData();
+            Debug.LogWarning($"ì €ì¥ëœ ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤: {slot}");
             return;
         }
 
-        try
-        {
-            string json = File.ReadAllText(path);
-            saveData = JsonConvert.DeserializeObject<SaveData>(json);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"·Îµù ½ÇÆĞ: {e.Message}");
-            saveData = new SaveData();
-        }
+        curSlot = (int)slot;
     }
 
-    /// <summary> ÀúÀå µ¥ÀÌÅÍ ÇÒ´ç </summary>
-    /// <param name="field">SaveDataÀÇ ÇÊµå¸í</param>
-    /// <param name="value">fieldÀÇ ÀÚ·áÇü¿¡ ÇØ´çÇÏ´Â µ¤¾î¾²±â °ª</param>
+    /// <summary> ì €ì¥ ë°ì´í„° í• ë‹¹ </summary>
+    /// <param name="field">SaveDataì˜ í•„ë“œëª…</param>
+    /// <param name="value">fieldì˜ ìë£Œí˜•ì— í•´ë‹¹í•˜ëŠ” ë®ì–´ì“°ê¸° ê°’</param>
     /// <param name="indexOrKey"></param>
     public void SetSaveData(string field, object value, object indexOrKey = null)
     {
         if (!fieldCache.TryGetValue(field, out var fieldInfo))
         {
-            Debug.LogError($"{field} ÇÊµå¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError($"{field} í•„ë“œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
-        var fieldValue = fieldInfo.GetValue(saveData);
+        var fieldValue = fieldInfo.GetValue(MySaveData);
 
         if (indexOrKey == null)
         {
-            fieldInfo.SetValue(saveData, value);
+            fieldInfo.SetValue(MySaveData, value);
         }
         else if (fieldValue is IList list && indexOrKey is int idx)
         {
@@ -125,56 +168,56 @@ public class SaveManager : Singleton<SaveManager>
             }
             else
             {
-                Debug.LogError($"ÀÎµ¦½º ¹üÀ§ ÃÊ°ú: {idx}");
+                Debug.LogError($"ì¸ë±ìŠ¤ ë²”ìœ„ ì´ˆê³¼: {idx}");
                 return;
             }
         }
         else if (fieldValue is IDictionary dict)
         {
-            dict[indexOrKey] = value;
+                dict[indexOrKey] = value;
         }
         else
         {
-            Debug.LogError($"ÄÃ·º¼ÇÀÌ ¾Æ´Ñ ÇÊµå¿¡ indexOrKey¸¦ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError($"ì»¬ë ‰ì…˜ì´ ì•„ë‹Œ í•„ë“œì— indexOrKeyë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
         isDirty = true;
     }
-
     #endregion
 
     #region Sub Methods
-    private void CreateSaveData(ESaveSlot slot)
+    private SaveData CreateSaveData(ESaveSlot slot)
     {
-        saveData = new();
+        SaveData saveData = new();
         switch (slot)
         {
             case ESaveSlot.Auto:
-                saveData.saveName = "Auto Save";
+                saveData.saveName = "Auto";
                 break;
             case ESaveSlot.Slot1:
-                saveData.saveName = "Slot 1";
+                saveData.saveName = "Slot1";
                 break;
             case ESaveSlot.Slot2:
-                saveData.saveName = "Slot 2";
+                saveData.saveName = "Slot2";
                 break;
             case ESaveSlot.Slot3:
-                saveData.saveName = "Slot 3";
+                saveData.saveName = "Slot3";
                 break;
             case ESaveSlot.Slot4:
-                saveData.saveName = "Slot 4";
+                saveData.saveName = "Slot4";
                 break;
             case ESaveSlot.Slot5:
-                saveData.saveName = "Slot 5";
+                saveData.saveName = "Slot5";
                 break;
         }
+
+        return saveData;
     }
 
     private string GetSlotPath(ESaveSlot slot)
     {
         return Path.Combine(directory, $"{slot}.json");
     }
-
     #endregion
 }
