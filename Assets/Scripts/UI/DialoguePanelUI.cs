@@ -7,8 +7,9 @@ using System.Linq;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using System.Collections;
+using UnityEngine.EventSystems;
 
-public class DialoguePanelUI : MonoBehaviour
+public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
 {
     [Header("Components")]
     [SerializeField] private GameObject dialoguePanel;
@@ -32,16 +33,18 @@ public class DialoguePanelUI : MonoBehaviour
     }
     private void Update()
     {
+        //Debug.Log()
         // 모든 줄이 출력되지 않았을 때, space를 눌러 dialogue를 skip한다.
-        if (UIInputManager.Instance.GetSubmitPressed() && !DialogueManager.Instance.canContinueToNextLine)
+        if ((UIInputManager.Instance.GetSubmitPressed() || DialogueManager.Instance.panelClickForSkip) && !DialogueManager.Instance.canContinueToNextLine)
         {
             if (!isOnSubmitPressed) 
             {
-                Debug.Log("skip:");
                 isOnSubmitPressed = true;
                 // 이게 지금 실행이 안되고 있다. 그 이유는 GetSubmitPressed()가 true가 안되고 있음*************************************************** why??
                 UIInputManager.Instance.submitPressed = false; // 스페이스바 눌렀을때만 false되게. 이렇게 안하고 GetSubmitPressed에서 false하면 계속해서 false가 출력돼서 작동을 안함. true가 안나옴.
                 skipDialogue = true;
+
+                DialogueManager.Instance.panelClickForSkip = false;
             }
         }
     }
@@ -126,7 +129,7 @@ public class DialoguePanelUI : MonoBehaviour
                 skipDialogue = false;
                 //dialogueText.text = line;
                 //break;
-                typingSpeed = 0.005f;
+                typingSpeed = 0.005f; // 타이핑 빨라짐.
             }
             dialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
@@ -134,6 +137,7 @@ public class DialoguePanelUI : MonoBehaviour
 
         typingSpeed = 0.04f;
 
+        // 대화창 다 나오면 0.5초 이후에 next버튼 뜬다.
         yield return new WaitForSeconds(0.5f);
         DialogueManager.Instance.canContinueToNextLine = true;
 
@@ -183,9 +187,13 @@ public class DialoguePanelUI : MonoBehaviour
     {
         dialogueText.text = "";
     }
-
-    private void OnDestroy()
+    
+    public void OnPointerClick(PointerEventData eventData)
     {
-        //Debug.Log("destroying dialoguepanelui");
+        // 대화창 나오는중에만 true로 바뀔수잇게
+        /*if (!DialogueManager.Instance.canContinueToNextLine)
+        {
+            DialogueManager.Instance.panelClickForSkip = true;
+        }*/
     }
 }

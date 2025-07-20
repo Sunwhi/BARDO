@@ -21,8 +21,9 @@ public class DialogueManager : Singleton<DialogueManager>
     public bool dialoguePlaying { get; private set; } = false;    // dialogue가 playing중인가?
 
     // Dialogue 다음 라인으로 넘어갈 수 있는가? 타이핑 도중 next로 넘어가지 못하게
-    public bool canContinueToNextLine { get; set; } = false; 
+    public bool canContinueToNextLine { get; set; } = false;
 
+    public bool panelClickForSkip = false;
     public override void Awake()
     {
         base.Awake();

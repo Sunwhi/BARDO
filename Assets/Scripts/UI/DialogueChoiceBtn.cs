@@ -48,7 +48,7 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
         // entered 제외하고 모든 선택지들의 selectedColor = white
         if (gameObject.name != enteredChoiceBtn)
         {
-            Debug.Log("enter : " + gameObject.name);
+            //Debug.Log("enter : " + gameObject.name);
             cb.selectedColor = Color.white;
         }
         choiceBtn.colors = cb;
@@ -59,7 +59,7 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
         // exited 제외하고 모든 선택지들의 selectedColor = gray
         if(gameObject.name != exitedChoiceBtn)
         {
-            Debug.Log("exit : " + gameObject.name);
+            //Debug.Log("exit : " + gameObject.name);
             cb.selectedColor = new Color32(180, 180, 180, 255);
         }
         choiceBtn.colors = cb;
