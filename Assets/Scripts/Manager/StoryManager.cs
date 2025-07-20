@@ -21,12 +21,10 @@ public class StoryManager : Singleton<StoryManager>
     }
     private void OnEnable()
     {
-        UnityEngine.Debug.Log("StoryManger OnEnable");
         GameEventManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
     }
     private void OnDisable()
     {
-        UnityEngine.Debug.Log("StoryManager OnDisable");
         if(GameEventManager.Instance != null)
         {
             GameEventManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;

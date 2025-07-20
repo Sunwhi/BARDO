@@ -11,11 +11,9 @@ public class GameEventManager : Singleton<GameEventManager>
         base.Awake();
         dialogueEvents = gameObject.AddComponent<DialogueEvents>();
         inputEvents = gameObject.AddComponent<InputEvents>();
-        Debug.Log("GEM »ý¼º");
     }
     private void OnDestroy()
     {
-        Debug.Log("GEM destroyed");
         isManagerDestroyed = true;
     }
 }

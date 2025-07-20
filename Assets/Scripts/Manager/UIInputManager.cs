@@ -1,16 +1,20 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+//
+// Dialogue 관련해서, PlayerInput이용하여 구현
+//
 [RequireComponent(typeof(PlayerInput))]
 public class UIInputManager : Singleton<UIInputManager>
 {
-    private bool submitPressed = false;
+    public bool submitPressed = false;
 
     // spacebar 누르면 실행, Dialogue에서 
     public void OnSubmit(InputAction.CallbackContext context)
     {
         if (DialogueManager.Instance.dialoguePlaying)
         {
+            //Debug.Log("OnSubmit");
             if (context.performed)
             {
                 submitPressed = true;
@@ -25,8 +29,8 @@ public class UIInputManager : Singleton<UIInputManager>
     public bool GetSubmitPressed()
     {
         bool result = submitPressed;
-        submitPressed = false;
-        if (result) Debug.Log("GSP :" + result);
+        //submitPressed = false;
+        //Debug.Log("result " + result);
         return result;
     }
 }

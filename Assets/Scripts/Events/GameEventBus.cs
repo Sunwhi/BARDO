@@ -6,7 +6,7 @@ public interface IGameEvent { }
 public static class GameEventBus
 {
     private static Dictionary<Type, List<Delegate>> subscribers = new();
-
+                
     // 구독 등록
     public static void Subscribe<T>(Action<T> callback) where T : IGameEvent
     {
