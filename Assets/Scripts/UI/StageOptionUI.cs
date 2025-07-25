@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 public class StageOptionUI : MonoBehaviour
 {
     private void Start()
     {
         //GameObject optionPanel = this.gameObject;
     }
-    private void Update()
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "TitleScene")
         {
@@ -27,11 +28,16 @@ public class StageOptionUI : MonoBehaviour
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
         MySceneManager.Instance.LoadScene(SceneType.Title);
     }
-
+    */
     public void OnClickOptionExit()
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
         UIManager.Instance.HidePanel("OptionPanel");
-        UIManager.Instance.HidePanel("OptionBGPanel");
+        if (SceneManager.GetActiveScene().name == "TitleScene") UIManager.Instance.HidePanel("EscBGImg");
+
+        if (SceneManager.GetActiveScene().name != "TitleScene")
+        {
+            UIManager.Instance.ShowPanel("EscPanel");
+        }
     }
 }
