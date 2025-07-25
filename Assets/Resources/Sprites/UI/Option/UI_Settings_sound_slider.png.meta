@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: c6e243eed826d3048bb0d164f5df1e3e
+guid: 4f7e08431879f104b95905b945efcd0b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1583566476294299943
-    second: UI_Settings_BGM_slider_0
+      213: -8888314063276232329
+    second: UI_Settings_sound_slider_0
   - first:
-      213: 4995959817902210721
-    second: UI_Settings_BGM_slider_1
+      213: 1593956128166361647
+    second: UI_Settings_sound_slider_1
   - first:
-      213: -3664492871343274438
-    second: UI_Settings_BGM_slider_2
+      213: -7603504512146358315
+    second: UI_Settings_sound_slider_2
   - first:
-      213: -4498418276134272765
-    second: UI_Settings_BGM_slider_3
+      213: -4443266010465100228
+    second: UI_Settings_sound_slider_3
   - first:
-      213: 4080572800453314064
-    second: UI_Settings_BGM_slider_4
+      213: 1375850761101315882
+    second: UI_Settings_sound_slider_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -112,12 +112,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Settings_BGM_slider_0
+      name: UI_Settings_sound_slider_0
       rect:
         serializedVersion: 2
-        x: 1872
-        y: 1304
-        width: 8
+        x: 0
+        y: 9
+        width: 7
         height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -127,18 +127,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9ded24e0eaa060ae0800000000000000
-      internalID: -1583566476294299943
+      spriteID: 771bf46a37d56a480800000000000000
+      internalID: -8888314063276232329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_Settings_BGM_slider_1
+      name: UI_Settings_sound_slider_1
       rect:
         serializedVersion: 2
-        x: 1885
-        y: 1302
+        x: 12
+        y: 7
         width: 10
         height: 10
       alignment: 0
@@ -149,20 +149,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1aebf221cf6355540800000000000000
-      internalID: 4995959817902210721
+      spriteID: f2ab9e647aede1610800000000000000
+      internalID: 1593956128166361647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_Settings_BGM_slider_2
+      name: UI_Settings_sound_slider_2
       rect:
         serializedVersion: 2
-        x: 1899
-        y: 1294
+        x: 26
+        y: 0
         width: 568
-        height: 25
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,18 +171,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a3602a9162b152dc0800000000000000
-      internalID: -3664492871343274438
+      spriteID: 5dfbf696eecea7690800000000000000
+      internalID: -7603504512146358315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_Settings_BGM_slider_3
+      name: UI_Settings_sound_slider_3
       rect:
         serializedVersion: 2
-        x: 2471
-        y: 1302
+        x: 598
+        y: 7
         width: 10
         height: 10
       alignment: 0
@@ -193,19 +193,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 30144e759686291c0800000000000000
-      internalID: -4498418276134272765
+      spriteID: c3e19abda195652c0800000000000000
+      internalID: -4443266010465100228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_Settings_BGM_slider_4
+      name: UI_Settings_sound_slider_4
       rect:
         serializedVersion: 2
-        x: 2486
-        y: 1304
-        width: 8
+        x: 613
+        y: 9
+        width: 7
         height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 016042b975b11a830800000000000000
-      internalID: 4080572800453314064
+      spriteID: a2f05674af0081310800000000000000
+      internalID: 1375850761101315882
       vertices: []
       indices: 
       edges: []
@@ -225,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -234,7 +234,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Settings_sound_slider_0: -8888314063276232329
+      UI_Settings_sound_slider_1: 1593956128166361647
+      UI_Settings_sound_slider_2: -7603504512146358315
+      UI_Settings_sound_slider_3: -4443266010465100228
+      UI_Settings_sound_slider_4: 1375850761101315882
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

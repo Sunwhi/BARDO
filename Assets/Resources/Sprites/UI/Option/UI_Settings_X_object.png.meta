@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: b35d9d2963275794398eb8845221831f
+guid: ed8ed4f6d89c9d145ba2a47f144d7a72
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8752588773245796038
-    second: UI_Settings_SFX_slider_0
-  - first:
-      213: 4512819440478034099
-    second: UI_Settings_SFX_slider_1
-  - first:
-      213: -9196952468214947598
-    second: UI_Settings_SFX_slider_2
-  - first:
-      213: 7428472321077615068
-    second: UI_Settings_SFX_slider_3
-  - first:
-      213: 5831029096657615485
-    second: UI_Settings_SFX_slider_4
+      213: -8193714338790828380
+    second: UI_Settings_X_object_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Settings_SFX_slider_0
+      name: UI_Settings_X_object_0
       rect:
         serializedVersion: 2
-        x: 1872
-        y: 1175
-        width: 8
-        height: 8
+        x: 0
+        y: 0
+        width: 31
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,96 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a31cc9942ee888680800000000000000
-      internalID: -8752588773245796038
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_Settings_SFX_slider_1
-      rect:
-        serializedVersion: 2
-        x: 1885
-        y: 1173
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b89b250f51c0ae30800000000000000
-      internalID: 4512819440478034099
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_Settings_SFX_slider_2
-      rect:
-        serializedVersion: 2
-        x: 1899
-        y: 1165
-        width: 568
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2f065eb257cdd5080800000000000000
-      internalID: -9196952468214947598
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_Settings_SFX_slider_3
-      rect:
-        serializedVersion: 2
-        x: 2471
-        y: 1173
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd917a1e73c371760800000000000000
-      internalID: 7428472321077615068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_Settings_SFX_slider_4
-      rect:
-        serializedVersion: 2
-        x: 2486
-        y: 1175
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d7a7e3db11afbe050800000000000000
-      internalID: 5831029096657615485
+      spriteID: 4a6195598341a4e80800000000000000
+      internalID: -8193714338790828380
       vertices: []
       indices: 
       edges: []

@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: d23ab99a32350194986e20e72e7290dc
+guid: 12e7c8d2479f234468ea02041fe2f02d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8450679974220198134
-    second: UI_Settings_Language_ENG_Select_0
-  - first:
-      213: -3530770376462107434
-    second: UI_Settings_Language_ENG_Select_1
-  - first:
-      213: 5454764033658469328
-    second: UI_Settings_Language_ENG_Select_2
-  - first:
-      213: -3607285780831347313
-    second: UI_Settings_Language_ENG_Select_3
+      213: -7527398391802312354
+    second: UI_Settings_Language_select_box_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Settings_Language_ENG_Select_0
+      name: UI_Settings_Language_select_box_0
       rect:
         serializedVersion: 2
-        x: 1795
-        y: 722
-        width: 31
-        height: 31
+        x: 0
+        y: 0
+        width: 285
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f0f6e5b9a8d64570800000000000000
-      internalID: 8450679974220198134
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_Settings_Language_ENG_Select_1
-      rect:
-        serializedVersion: 2
-        x: 1821
-        y: 721
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6dcf087ac0f200fc0800000000000000
-      internalID: -3530770376462107434
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_Settings_Language_ENG_Select_2
-      rect:
-        serializedVersion: 2
-        x: 1855
-        y: 722
-        width: 31
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0db3acfecf633bb40800000000000000
-      internalID: 5454764033658469328
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_Settings_Language_ENG_Select_3
-      rect:
-        serializedVersion: 2
-        x: 2021
-        y: 707
-        width: 287
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f8dda3ec1b850fdc0800000000000000
-      internalID: -3607285780831347313
+      spriteID: e59c6c56b0f498790800000000000000
+      internalID: -7527398391802312354
       vertices: []
       indices: 
       edges: []

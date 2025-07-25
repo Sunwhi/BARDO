@@ -32,5 +32,6 @@ public class StageOptionUI : MonoBehaviour
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
         UIManager.Instance.HidePanel("OptionPanel");
+        UIManager.Instance.HidePanel("OptionBGPanel");
     }
 }

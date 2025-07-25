@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ce57ecaf971075040a150d085d26d6e7
+guid: 321642001ee991d4f908db9b2da284be
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 159486502851089038
-    second: UI_Settings_SFX_slider_button_0
+      213: -6150551026537582813
+    second: UI_Settings_sound_button_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Settings_SFX_slider_button_0
+      name: UI_Settings_sound_button_0
       rect:
         serializedVersion: 2
-        x: 2153
-        y: 1150
-        width: 56
-        height: 56
+        x: 0
+        y: 0
+        width: 54
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e8298ec112c963200800000000000000
-      internalID: 159486502851089038
+      spriteID: 32f205aad6ad4aaa0800000000000000
+      internalID: -6150551026537582813
       vertices: []
       indices: 
       edges: []
