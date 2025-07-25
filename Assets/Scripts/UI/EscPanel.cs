@@ -1,0 +1,52 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class EscPanel : MonoBehaviour
+{
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "TitleScene")
+        {
+            SoundManager.Instance.PlaySFX(eSFX.UI_Btn_Open_Settings);
+            UIManager.Instance.ShowPanel("EscBGImg");
+            if (UIManager.Instance.IsPanelActive("EscPanel")) UIManager.Instance.HidePanel("EscPanel");
+            else UIManager.Instance.ShowPanel("EscPanel");
+        }
+    }
+    public void OnClickContinue()
+    {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        UIManager.Instance.HidePanel("EscPanel");
+        UIManager.Instance.HidePanel("EscBGImg");
+    }
+
+    public void OnClickTItle()
+    {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        MySceneManager.Instance.LoadScene(SceneType.Title);
+    }
+
+    public void OnClickOption()
+    {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        UIManager.Instance.HidePanel("EscPanel");
+        UIManager.Instance.ShowPanel("OptionPanel");
+    }
+
+    public void OnClickSave()
+    {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+
+    }
+
+    public void OnClickQuit()
+    {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #else
+                Application.Quit();
+    #endif
+    }
+}
