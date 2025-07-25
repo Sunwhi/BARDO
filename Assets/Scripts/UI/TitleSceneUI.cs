@@ -29,6 +29,7 @@ public class TitleSceneUI : MonoBehaviour
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
         UIManager.Instance.ShowPanel("OptionPanel");
+        UIManager.Instance.ShowPanel("OptionBGPanel");
     }
 
     public void OnClickCreditBtn()
