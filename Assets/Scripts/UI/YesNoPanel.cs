@@ -25,6 +25,10 @@ public class YesNoPanel : UIBase
         { EYesNoPanelType.Save, ("Save", "Do you want to save your progress?") }
     };
 
+    //param guide
+    // param[0] : EYesNoPanelType (type of panel to open)
+    // param[1] : UnityAction (action to perform on Yes button click, optional)
+    // param[2] : UnityAction (action to perform on No button click, optional, defaults to NoAction if not provided)
     public override void Opened(object[] param)
     {
         if (param.Length > 0 && param[0] is EYesNoPanelType panelType)
