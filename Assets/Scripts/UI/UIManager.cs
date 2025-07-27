@@ -1,33 +1,32 @@
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 /*
  * UIManager
- * uiPanels¿¡ °ÔÀÓ ³»ÀÇ ¸ğµç panelµéÀ» ÀúÀåÇÏ°í,
- * ShowPanel, HidePanel, HideAllPanels¸¦ ÅëÇØ panelµéÀ» °ü¸®ÇÑ´Ù.
+ * uiPanelsì— ê²Œì„ ë‚´ì˜ ëª¨ë“  panelë“¤ì„ ì €ì¥í•˜ê³ ,
+ * ShowPanel, HidePanel, HideAllPanelsë¥¼ í†µí•´ panelë“¤ì„ ê´€ë¦¬í•œë‹¤.
  */
 public class UIManager : Singleton<UIManager>
 {
-    // ÆĞ³ÎµéÀ» ´ã´Â µñ¼Å³Ê¸®
+    // íŒ¨ë„ë“¤ì„ ë‹´ëŠ” ë”•ì…”ë„ˆë¦¬
     private Dictionary<string, GameObject> uiPanels = new Dictionary<string, GameObject>();
 
     public Fadeview fadeView;
 
     private void Update()
     {
-        // TitleScene¿¡¼­ Prototype Scene ³Ñ¾î°¥¶§ UIManager¿¡ fadeview ³Ö±â
+        // TitleSceneì—ì„œ Prototype Scene ë„˜ì–´ê°ˆë•Œ UIManagerì— fadeview ë„£ê¸°
         if (fadeView == null)
         {
             fadeView = FindAnyObjectByType<Fadeview>();
         }
     }
 
-    // ÆÄ¶ó¹ÌÅÍ·Î ¹ŞÀº ÆĞ³ÎÀ» uiPanelsÀÇ µñ¼Å³Ê¸®¿¡ Ãß°¡ÇÑ´Ù.
+    // íŒŒë¼ë¯¸í„°ë¡œ ë°›ì€ íŒ¨ë„ì„ uiPanelsì˜ ë”•ì…”ë„ˆë¦¬ì— ì¶”ê°€í•œë‹¤.
     public void RegisterPanels(GameObject panel)
     {
         uiPanels[panel.name] = panel;
     }
-    // PanelÀ» ³ªÅ¸³»´Â ÇÔ¼ö
+    // Panelì„ ë‚˜íƒ€ë‚´ëŠ” í•¨ìˆ˜
     public void ShowPanel(string panelName)
     {
         if(uiPanels.TryGetValue(panelName, out var panel))
@@ -36,11 +35,28 @@ public class UIManager : Singleton<UIManager>
         }
         else
         {
-            Debug.LogWarning($"[UIPanel] : {panelName}ÆĞ³ÎÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù");
+            Debug.LogWarning($"[UIPanel] : {panelName}íŒ¨ë„ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
         }
     }
 
-    // PanelÀ» ¼û±â´Â ÇÔ¼ö
+    public void ShowPanelWithParam(string panelName, object[] param)
+    {
+        if (uiPanels.TryGetValue(panelName, out var panel))
+        {
+            if (!panel.activeSelf) panel.SetActive(true);
+            UIBase uiBase = panel.GetComponent<UIBase>();
+            if (uiBase != null)
+            {
+                uiBase.opened?.Invoke(param);
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"[UIPanel] : {panelName}íŒ¨ë„ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
+        }
+    }
+
+    // Panelì„ ìˆ¨ê¸°ëŠ” í•¨ìˆ˜
     public void HidePanel(string panelName)
     {
         if(uiPanels.TryGetValue(panelName, out var panel))
@@ -49,10 +65,10 @@ public class UIManager : Singleton<UIManager>
         }
         else
         {
-            Debug.LogWarning($"[UIPanel] : {panelName}ÆĞ³ÎÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù");
+            Debug.LogWarning($"[UIPanel] : {panelName}íŒ¨ë„ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤");
         }
     }
-    // °ÔÀÓ ³»ÀÇ ¸ğµç ÆĞ³ÎÀ» ¼û±â´Â ÇÔ¼ö
+    // ê²Œì„ ë‚´ì˜ ëª¨ë“  íŒ¨ë„ì„ ìˆ¨ê¸°ëŠ” í•¨ìˆ˜
     public void HideAllPanels()
     {
         foreach(var panel in uiPanels.Values)
