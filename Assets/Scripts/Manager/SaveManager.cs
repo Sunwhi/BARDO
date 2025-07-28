@@ -158,13 +158,15 @@ public class SaveManager : Singleton<SaveManager>
 
         if (indexOrKey == null)
         {
-            fieldInfo.SetValue(MySaveData, value);
+            if (!Equals(fieldValue, value))
+                fieldInfo.SetValue(MySaveData, value);
         }
         else if (fieldValue is IList list && indexOrKey is int idx)
         {
             if (idx >= 0 && idx < list.Count)
             {
-                list[idx] = value;
+                if (!Equals(list[idx], value))
+                    list[idx] = value;
             }
             else
             {
@@ -174,6 +176,8 @@ public class SaveManager : Singleton<SaveManager>
         }
         else if (fieldValue is IDictionary dict)
         {
+            var existing = dict[indexOrKey];
+            if (!Equals(existing, value))
                 dict[indexOrKey] = value;
         }
         else
@@ -181,6 +185,14 @@ public class SaveManager : Singleton<SaveManager>
             Debug.LogError($"컬렉션이 아닌 필드에 indexOrKey를 사용할 수 없습니다.");
             return;
         }
+
+        Type valueType = value.GetType();
+        Type eventType = typeof(DataChangeEvent<>).MakeGenericType(valueType);
+        var eventInstance = Activator.CreateInstance(eventType, field, value);
+        typeof(GameEventBus)
+            .GetMethod("Raise")
+            .MakeGenericMethod(eventType)
+            .Invoke(null, new object[] { eventInstance });
 
         isDirty = true;
     }
