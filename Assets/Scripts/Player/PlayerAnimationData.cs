@@ -4,22 +4,20 @@ using UnityEngine;
 [Serializable]
 public class PlayerAnimationData
 {
-    // --- Bool Parameters ---
-    [SerializeField] private string moveParameterName = "Move";
+    // --- Parameters ---
+    [SerializeField] private string moveParamName = "Move";
+    [SerializeField] private string jumpParamName = "Jump";
+    [SerializeField] private string dieParamName = "Die";
 
-    // --- Trigger Parameters ---
-    [SerializeField] private string jumpTriggerName = "Jump";
-    [SerializeField] private string dieTriggerName = "Die";
-
-    // --- Hashes (Read-only) ---
-    public int MoveParameterHash { get; private set; }
-    public int JumpTriggerHash { get; private set; }
-    public int DieTriggerHash { get; private set; }
+    // --- Hashes ---
+    public int MoveParamHash { get; private set; }
+    public int JumpParamHash { get; private set; }
+    public int DieParamHash { get; private set; }
 
     public void Initialize()
     {
-        MoveParameterHash = Animator.StringToHash(moveParameterName);
-        JumpTriggerHash = Animator.StringToHash(jumpTriggerName);
-        DieTriggerHash = Animator.StringToHash(dieTriggerName);
+        MoveParamHash = Animator.StringToHash(moveParamName);
+        JumpParamHash = Animator.StringToHash(jumpParamName);
+        DieParamHash = Animator.StringToHash(dieParamName);
     }
 }

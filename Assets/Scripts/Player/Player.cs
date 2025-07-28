@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [Header("Components")]
     public SpriteRenderer spriteRenderer;
     public Rigidbody2D rb;
+    public Collider2D col;
     public Animator animator;
 
     [Header("Player Collision Settings")]
@@ -23,8 +24,8 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerAnimationData animationData;
     public PlayerAnimationData AnimationData => animationData;
 
-    [HideInInspector]
     public bool isGrounded = true;
+    private readonly float rayLength = 0.2f;
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         fsm.Update();
+        CheckGroundRay();
     }
 
     private void FixedUpdate()
@@ -66,7 +68,32 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void CheckGroundRay()
+    {
+        Vector2 center = col.bounds.center;
+        Vector2 extents = col.bounds.extents;
+
+        float bottomY = center.y - extents.y;
+        Vector2 leftOrigin = new(center.x - extents.x, bottomY);
+        Vector2 rightOrigin = new(center.x + extents.x, bottomY);
+        Vector2 rayDir = Vector2.down;
+
+        RaycastHit2D leftHit = Physics2D.Raycast(leftOrigin, rayDir, rayLength, groundLayer | platformLayer);
+        Debug.DrawRay(leftOrigin, rayDir * rayLength, Color.red);
+        RaycastHit2D rightHit = Physics2D.Raycast(rightOrigin, rayDir, rayLength, groundLayer | platformLayer);
+        Debug.DrawRay(rightOrigin, rayDir * rayLength, Color.red);
+
+        if (leftHit.collider != null || rightHit.collider != null)
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (((1 << collision.gameObject.layer) & disableLayer) != 0)
         {

@@ -6,7 +6,7 @@ public class PlayerMoveState : PlayerState
 
     public override void Enter()
     {
-        Player.animator.SetBool(Player.AnimationData.MoveParameterHash, true);
+        Player.animator.SetBool(Player.AnimationData.MoveParamHash, true);
 
         SoundManager.Instance.PlaySFX(eSFX.Character_Walk);
         SoundManager.Instance.sfxSource.loop = true;

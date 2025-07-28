@@ -47,11 +47,17 @@ public class RespawnManager : Singleton<RespawnManager>
 
     private void ResetPlayer()
     {
-        Vector3 respawnPos = TriggerManager.Instance.GetRespawnPosition();
-        player.transform.position = respawnPos;
-
-        player.spriteRenderer.flipX = false;
+        player.controller.ResetInput();
         player.rb.linearVelocity = Vector2.zero;
         player.fsm.ChangeState(player.fsm.IdleState);
+
+        Vector3 respawnPos = TriggerManager.Instance.GetRespawnPosition();
+        player.transform.position = respawnPos;
+        if (player.transform.localScale.x < 0)
+        {
+            Vector3 scale = player.transform.localScale;
+            scale.x = Mathf.Abs(scale.x);
+            player.transform.localScale = scale;
+        }
     }
 }
