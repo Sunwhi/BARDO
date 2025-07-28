@@ -11,13 +11,14 @@ public enum ESaveSlot
     Auto = 0,
     Slot1 = 1,
     Slot2 = 2,
-    Slot3 = 3
+    Slot3 = 3,
+    Slot4 = 4
 }
 
 public class SaveManager : Singleton<SaveManager>
 {
-    //private SaveData saveData;
-    //public SaveData MySaveData { get { return saveData; } }
+    private SaveData saveData;
+    public SaveData MySaveData { get { return saveData; } }
     private readonly Dictionary<string, FieldInfo> fieldCache = new();
 
     private bool isAutoDirty;
