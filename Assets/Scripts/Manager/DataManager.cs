@@ -1,11 +1,11 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 
 public class DataManager : Singleton<DataManager>
 {
-    /*private readonly Dictionary<string, string> dataDics = new(); //Resources/JsonÀ¸·ÎºÎÅÍ ÀÚµ¿·Îµå.
+    private readonly Dictionary<string, Dictionary<int, object>> dataDics = new(); //Resources/Jsonìœ¼ë¡œë¶€í„° ìë™ë¡œë“œ.
 
     #region Unity Life Cycles
     public void Init()
@@ -15,80 +15,54 @@ public class DataManager : Singleton<DataManager>
         {
             string fileName = jsonFile.name;
             string jsonData = jsonFile.text;
-            dataDics[fileName] = jsonData;
+
+            var type = Type.GetType(fileName);
+            var genericMethod = GetType().GetMethod("ConvertToDic", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).MakeGenericMethod(type);
+            genericMethod.Invoke(this, new object[] { jsonData });
         }
     }
     #endregion
 
     #region Main Methods
-    /// <summary><typeparamref name="T"/>ÀÇ µ¥ÀÌÅÍ¸¦ object·Î parsing ÈÄ ¹İÈ¯</summary>
-    public T GetObj<T>(string key)
+    /// <summary>
+    /// ì›í•˜ëŠ” íƒ€ì…ì˜ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤.
+    /// </summary>
+    /// <typeparam name="T">___Data.cs</typeparam>
+    /// <param name="id">spread sheetì˜ id</param>
+    public T GetObj<T>(int id)
     {
-        if (dataDics.TryGetValue(key, out var json))
+        string key = typeof(T).Name;
+        if (dataDics.TryGetValue(key, out var objDic))
         {
-            return ConvertToObj<T>(json, key);
+            if (objDic.TryGetValue(id, out var obj))
+            {
+                return (T)obj;
+            }
         }
-        else
-        {
-            Debug.LogWarning($"{key}Àº DataDics¿¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
-            return default;
-        }
-    }
 
-    /// <summary><typeparamref name="T"/>ÀÇ µ¥ÀÌÅÍ¸¦ object·Î parsing ÈÄ ¹İÈ¯</summary>
-    public List<T> GetObjList<T>(string key)
-    {
-        if (dataDics.TryGetValue(key, out var json))
-        {
-            return ConvertToList<T>(json, key);
-        }
-        else
-        {
-            Debug.LogWarning($"{key}Àº DataDics¿¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
-            return null;
-        }
-    }
-
-    /// <summary>µ¥ÀÌÅÍ¸¦ stringÀ¸·Î ¹İÈ¯</summary>
-    public string GetRawDataList(string key)
-    {
-        if (dataDics.TryGetValue(key, out var json))
-        {
-            return json;
-        }
-        else
-        {
-            Debug.LogWarning($"{key}Àº DataDics¿¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
-            return null;
-        }
+        Debug.LogWarning($"{key}ì€ DataDicsì— ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+        return default;
     }
     #endregion
 
     #region Sub Methods
-    private T ConvertToObj<T>(string json, string key)
+    private void ConvertToDic<T>(string jsonData) where T : IData
     {
         try
         {
-            return JsonConvert.DeserializeObject<T>(json);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"'{key}'ÀÇ JSON µ¥ÀÌÅÍ º¯È¯ Áß ¿À·ù ¹ß»ı: {ex.Message}");
-            return default;
-        }
-    }
+            List<T> objList = JsonConvert.DeserializeObject<List<T>>(jsonData);
+            var dic = new Dictionary<int, object>();
+            foreach (var obj in objList)
+            {
+                dic[obj.Id] = obj;
+            }
 
-    private List<T> ConvertToList<T>(string jsonData, string keyName)
-    {
-        try
-        {
-            return JsonConvert.DeserializeObject<List<T>>(jsonData);
+            dataDics[typeof(T).Name] = new Dictionary<int, object>(dic);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Debug.LogError($"'{keyName}'ÀÇ JSON ¡æ List<{typeof(T).Name}> º¯È¯ ½ÇÆĞ: {ex.Message}");
-            return null;
+            Debug.LogError($"JSON parsing error: {jsonData}");
         }
     }
-    #endregion*/
+    #endregion
 }
