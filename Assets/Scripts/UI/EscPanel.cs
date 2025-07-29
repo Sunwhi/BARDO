@@ -37,7 +37,8 @@ public class EscPanel : MonoBehaviour
     public void OnClickSave()
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
-
+        UIManager.Instance.HidePanel("EscPanel");
+        UIManager.Instance.ShowPanel("SavePanel");
     }
 
     public void OnClickQuit()

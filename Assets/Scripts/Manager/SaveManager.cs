@@ -12,7 +12,8 @@ public enum ESaveSlot
     Slot1 = 1,
     Slot2 = 2,
     Slot3 = 3,
-    Slot4 = 4
+    Slot4 = 4,
+    Slot5 = 5
 }
 
 public class SaveManager : Singleton<SaveManager>
@@ -25,12 +26,15 @@ public class SaveManager : Singleton<SaveManager>
     private string directory;
 
     #region Unity Life Cycles
+    
     public void Init()
     {
+        // Save ë””ë ‰í† ë¦¬ ìƒì„±
         directory = Path.Combine(Application.persistentDataPath, "Save");
 
         if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
+        // SaveData í•„ë“œë¥¼ fieldCache ë”•ì…”ë„ˆë¦¬ì— ìºì‹±
         var fields = typeof(SaveData).GetFields(BindingFlags.Public | BindingFlags.Instance);
         foreach (var field in fields)
         {
@@ -47,11 +51,11 @@ public class SaveManager : Singleton<SaveManager>
     {
         try
         {
-            SaveSlot(0);
+            SaveSlot(0); // ìë™ì €ì¥ ìŠ¬ë¡¯
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"[SaveManager] Á¾·á ÀúÀå ½ÇÆĞ: {e.Message}");
+            Debug.LogError($"[SaveManager] ì¢…ë£Œ ì €ì¥ ì‹¤íŒ¨: {e.Message}");
         }
     }
     #endregion
@@ -59,12 +63,12 @@ public class SaveManager : Singleton<SaveManager>
     #region Main Methods
     public void CreateSaveData()
     {
-        saveData = new();
+        saveData = new(); // ìƒˆë¡œìš´ SaveData ì¸ìŠ¤í„´ìŠ¤ ìƒì„±, ë¹ˆ ì €ì¥ ë°ì´í„° ìƒì„±
 
-        // ±âº» Á¤º¸ Ãß°¡
+        // ê¸°ë³¸ ì •ë³´ ì¶”ê°€
         saveData.ownedRecipes.Add(1);
 
-        string path = GetSlotPath(0);
+        string path = GetSlotPath(0); // ìë™ì €ì¥ ìŠ¬ë¡¯
         string json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
         File.WriteAllText(path, json);
     }
@@ -83,7 +87,7 @@ public class SaveManager : Singleton<SaveManager>
         string path = GetSlotPath(slot);
         if (!File.Exists(path))
         {
-            Debug.LogWarning($"ÆÄÀÏ ¾øÀ½: {path}");
+            Debug.LogWarning($"íŒŒì¼ ì—†ìŒ: {path}");
             saveData = new SaveData();
             return;
         }
@@ -95,20 +99,20 @@ public class SaveManager : Singleton<SaveManager>
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"·Îµù ½ÇÆĞ: {e.Message}");
+            Debug.LogError($"ë¡œë”© ì‹¤íŒ¨: {e.Message}");
             saveData = new SaveData();
         }
     }
 
-    /// <summary> ÀúÀå µ¥ÀÌÅÍ ÇÒ´ç </summary>
-    /// <param name="field">SaveDataÀÇ ÇÊµå¸í</param>
-    /// <param name="value">fieldÀÇ ÀÚ·áÇü¿¡ ÇØ´çÇÏ´Â µ¤¾î¾²±â °ª</param>
+    /// <summary> ì €ì¥ ë°ì´í„° í• ë‹¹ </summary>
+    /// <param name="field">SaveDataì˜ í•„ë“œëª…</param>
+    /// <param name="value">fieldì˜ ìë£Œí˜•ì— í•´ë‹¹í•˜ëŠ” ë®ì–´ì“°ê¸° ê°’</param>
     /// <param name="indexOrKey"></param>
     public void SetSaveData(string field, object value, object indexOrKey = null)
     {
         if (!fieldCache.TryGetValue(field, out var fieldInfo))
         {
-            Debug.LogError($"{field} ÇÊµå¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError($"{field} í•„ë“œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
@@ -126,7 +130,7 @@ public class SaveManager : Singleton<SaveManager>
             }
             else
             {
-                Debug.LogError($"ÀÎµ¦½º ¹üÀ§ ÃÊ°ú: {idx}");
+                Debug.LogError($"ì¸ë±ìŠ¤ ë²”ìœ„ ì´ˆê³¼: {idx}");
                 return;
             }
         }
@@ -136,12 +140,12 @@ public class SaveManager : Singleton<SaveManager>
         }
         else
         {
-            Debug.LogError($"ÄÃ·º¼ÇÀÌ ¾Æ´Ñ ÇÊµå¿¡ indexOrKey¸¦ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError($"ì»¬ë ‰ì…˜ì´ ì•„ë‹Œ í•„ë“œì— indexOrKeyë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
         isAutoDirty = true;
-        EventManager.Instance.InvokeSaveDataChanged(field);
+        //EventManager.Instance.InvokeSaveDataChanged(field);
     }
 
     #endregion

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public enum EEnding
 {
@@ -12,12 +13,13 @@ public enum EEnding
 [Serializable]
 public class SaveData
 {
+    public List<int> ownedRecipes = new();
     public string saveName = "New Save";
     public long lastSaveTime = 0;
-    public int stageIdx = 0; //0 : ½ÃÀÛ. 1~ : NÁÖÂ÷.
-    public int storyIdx = 0; //Stage ³»ºÎ Idx
+    public int stageIdx = 0; //0 : ì‹œìž‘. 1~ : Nì£¼ì°¨.
+    public int storyIdx = 0; //Stage ë‚´ë¶€ Idx
 
-    public bool firstJudgement = true; //true = ¼±. false = ¾Ç.
-    public bool secondJudgement = true; //true = ¼±. false = ¾Ç.
+    public bool firstJudgement = true; //true = ì„ . false = ì•….
+    public bool secondJudgement = true; //true = ì„ . false = ì•….
     public EEnding ending = EEnding.Enlightenment; // Ending.
 }
