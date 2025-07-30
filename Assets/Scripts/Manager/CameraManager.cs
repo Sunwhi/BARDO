@@ -3,19 +3,38 @@ using UnityEngine;
 
 public class CameraManager : Singleton<CameraManager>
 {
-    [SerializeField] private CinemachineBrain brain;
-    private CinemachineCamera currentVCam;
+    [SerializeField] private Animator cameraAnimator;
+    [SerializeField] private Player player;
 
-    public void SetCamera(CinemachineCamera newVCam)
+    private void OnEnable()
     {
-        if (newVCam == null || newVCam == currentVCam)
-            return;
+        GameEventBus.Subscribe<ViewportExitEvent>(OnViewportExit);
+    }
 
-        // 우선순위 변경: 새 카메라를 우선으로
-        if (currentVCam != null)
-            currentVCam.Priority = 0;
+    private void OnDisable()
+    {
+        GameEventBus.Unsubscribe<ViewportExitEvent>(OnViewportExit);
+    }
 
-        newVCam.Priority = 10;
-        currentVCam = newVCam;
+    private void OnViewportExit(ViewportExitEvent e)
+    {
+        if (e.direction == ViewportExitDirection.Left)
+        {
+            GoBack();
+        }
+        else if (e.direction == ViewportExitDirection.Right)
+        {
+            GoFront();
+        }
+    }
+
+    public void GoFront()
+    {
+        cameraAnimator.SetTrigger("GoFront");
+    }
+
+    public void GoBack()
+    {
+        cameraAnimator.SetTrigger("GoBack");
     }
 }
