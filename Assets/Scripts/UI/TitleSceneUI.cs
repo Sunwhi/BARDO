@@ -14,9 +14,9 @@ public class TitleSceneUI : MonoBehaviour
     }
     public void OnClickNewGameBtn()
     {
-        //bug.Log(MySceneManager.Instance == null ? "ÀÎ½ºÅÏ½º°¡ null" : "ÀÎ½ºÅÏ½º »ì¾ÆÀÖÀ½");
+        //bug.Log(MySceneManager.Instance == null ? "ì¸ìŠ¤í„´ìŠ¤ê°€ null" : "ì¸ìŠ¤í„´ìŠ¤ ì‚´ì•„ìˆìŒ");
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
-        MySceneManager.Instance.LoadScene(SceneType.Prototype);
+        MySceneManager.Instance.LoadScene(SceneType.MainScene);
     }
 
     public void OnClickContinueBtn()

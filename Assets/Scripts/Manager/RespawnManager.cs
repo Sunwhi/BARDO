@@ -18,15 +18,10 @@ public class RespawnManager : Singleton<RespawnManager>
 
     private void OnViewportExit(ViewportExitEvent e)
     {
-        player.controller.InputEnabled = false;
-
         if (e.direction == ViewportExitDirection.Bottom)
         {
+            player.controller.InputEnabled = false;
             StartCoroutine(HandleRespawn());
-        }
-        else if (e.direction == ViewportExitDirection.Left)
-        {
-            Debug.LogWarning("¿ÞÂÊ¿¡¼­ ¹þ¾î³µ½À´Ï´Ù. ¸®½ºÆù Ã³¸®ÇÏÁö ¾Ê½À´Ï´Ù.");
         }
     }
 
@@ -41,7 +36,7 @@ public class RespawnManager : Singleton<RespawnManager>
         yield return new WaitForSeconds(delayBeforeRespawn);
         yield return UIManager.Instance.fadeView.FadeIn();
         
-        //Player ÀÔ·Â È°¼ºÈ­
+        //Player ìž…ë ¥ í™œì„±í™”
         player.controller.InputEnabled = true;
     }
 
