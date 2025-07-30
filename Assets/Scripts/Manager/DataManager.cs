@@ -8,8 +8,10 @@ public class DataManager : Singleton<DataManager>
     private readonly Dictionary<string, Dictionary<int, object>> dataDics = new(); //Resources/Json으로부터 자동로드.
 
     #region Unity Life Cycles
-    public void Init()
+    public override void Awake()
     {
+        base.Awake();
+
         TextAsset[] jsonFiles = Resources.LoadAll<TextAsset>("Json");
         foreach (var jsonFile in jsonFiles)
         {
