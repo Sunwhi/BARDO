@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1149379846212032477}
   - component: {fileID: 8759833276452341459}
   - component: {fileID: 3586499080750904340}
-  - component: {fileID: 6722935789598652627}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -122,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6722935789598652627}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ClickSaveSlot, Assembly-CSharp
         m_MethodName: OnClickSaveSlot
         m_Mode: 1
@@ -134,18 +133,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6722935789598652627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3346006772227927105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d3f2935ac7d18b4cabd944e07a1bf30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3747495077663979073
 GameObject:
   m_ObjectHideFlags: 0
