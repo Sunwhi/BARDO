@@ -3,12 +3,12 @@ using UnityEngine.SceneManagement;
 /*
  * MySceneManager
  */
-public enum SceneType { // SceneÀÇ ÀÌ¸§µéÀ» ´ã´Â enum º¯¼ö -> LoadScene¿¡ »ç¿ë
-    Title, Stage1, Stage2, Stage3, Stage4, Stage5, Stage6, Stage7, Prototype
+public enum SceneType { // Sceneì˜ ì´ë¦„ë“¤ì„ ë‹´ëŠ” enum ë³€ìˆ˜ -> LoadSceneì— ì‚¬ìš©
+    Title, Stage1, Stage2, Stage3, Stage4, Stage5, Stage6, Stage7, MainScene
 }
 public class MySceneManager : Singleton<MySceneManager>
 {
-    // ¾ÀÀ» ·ÎµåÇÔ.
+    // ì”¬ì„ ë¡œë“œí•¨.
     public void LoadScene(SceneType type)
     {
         switch(type)
@@ -16,14 +16,8 @@ public class MySceneManager : Singleton<MySceneManager>
             case SceneType.Title:
                 SceneManager.LoadScene("TitleScene");
                 break;
-            case SceneType.Prototype:
-                SceneManager.LoadScene("Prototype");
-                break;
-            case SceneType.Stage1:
-                SceneManager.LoadScene("Stage1");
-                break;
-            case SceneType.Stage2:
-                SceneManager.LoadScene("Stage2");
+            case SceneType.MainScene:
+                SceneManager.LoadScene("MainScene");
                 break;
         }
     }

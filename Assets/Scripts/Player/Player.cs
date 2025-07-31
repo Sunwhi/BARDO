@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     public Animator animator;
 
     [Header("Player Collision Settings")]
-    public Transform groundCheck;
     public LayerMask groundLayer;
     public LayerMask platformLayer;
     public LayerMask disableLayer; // 이름 변경
