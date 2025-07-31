@@ -13,7 +13,6 @@ public enum EEnding
 [Serializable]
 public class SaveData
 {
-    public List<int> ownedRecipes = new();
     public string saveName = "New Save";
     public long lastSaveTime = 0;
     public int stageIdx = 0; //0 : 시작. 1~ : N주차.

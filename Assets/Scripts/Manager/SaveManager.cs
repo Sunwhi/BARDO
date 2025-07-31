@@ -78,9 +78,6 @@ public class SaveManager : Singleton<SaveManager>
     {
         saveData = new(); // 새로운 SaveData 인스턴스 생성, 빈 저장 데이터 생성
 
-        // 기본 정보 추가
-        saveData.ownedRecipes.Add(1);
-
         string path = GetSlotPath(0); // 자동저장 슬롯
         string json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
         File.WriteAllText(path, json);
