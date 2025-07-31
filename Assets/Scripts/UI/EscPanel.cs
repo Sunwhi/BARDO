@@ -10,7 +10,11 @@ public class EscPanel : MonoBehaviour
         {
             SoundManager.Instance.PlaySFX(eSFX.UI_Btn_Open_Settings);
             UIManager.Instance.ShowPanel("EscBGImg");
-            if (UIManager.Instance.IsPanelActive("EscPanel")) UIManager.Instance.HidePanel("EscPanel");
+            if (UIManager.Instance.IsPanelActive("EscPanel"))
+            {
+                UIManager.Instance.HidePanel("EscPanel");
+                UIManager.Instance.HidePanel("EscBGImg");
+            }
             else UIManager.Instance.ShowPanel("EscPanel");
         }
     }

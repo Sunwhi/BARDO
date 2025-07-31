@@ -25,8 +25,20 @@ public class SaveManager : Singleton<SaveManager>
     private bool isAutoDirty;
     private string directory;
 
+    private string[] paths = new string[5];
+
+    private void Start()
+    {
+        Init();
+        paths[0] = GetSlotPath(ESaveSlot.Slot1);
+        paths[1] = GetSlotPath(ESaveSlot.Slot2);
+        paths[2] = GetSlotPath(ESaveSlot.Slot3);
+        paths[3] = GetSlotPath(ESaveSlot.Slot4);
+        paths[4] = GetSlotPath(ESaveSlot.Slot5);
+    }
+
     #region Unity Life Cycles
-    
+
     public void Init()
     {
         // Save 디렉토리 생성
@@ -45,6 +57,7 @@ public class SaveManager : Singleton<SaveManager>
         }
 
         isAutoDirty = false;
+        Debug.Log($"[SaveManager] Save directory path: {directory}");
     }
 
     private void OnApplicationQuit()
@@ -156,5 +169,22 @@ public class SaveManager : Singleton<SaveManager>
         return Path.Combine(directory, $"{slot}.json");
     }
 
+    // 비어있는 Slot들 중에 가장 첫번째 Slot index를 반환, 자동저장에 사용
+    public int FirstEmptySlot()
+    {
+        if (!File.Exists(paths[0])) return 1;
+        if (!File.Exists(paths[1])) return 2;
+        if (!File.Exists(paths[2])) return 3;
+        if (!File.Exists(paths[3])) return 4;
+        if (!File.Exists(paths[4])) return 5;
+
+        return 0;
+    }
+
+    public bool HasSaveSlot(ESaveSlot slot)
+    {
+        if (File.Exists(GetSlotPath(slot))) return true;
+        return false;
+    }
     #endregion
 }

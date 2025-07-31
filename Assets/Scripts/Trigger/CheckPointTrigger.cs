@@ -8,5 +8,6 @@ public class CheckpointTrigger : TriggerBase
     {
         Vector3 pos = transform.position;
         TriggerManager.Instance.RegisterCheckpoint(checkpointID, pos);
+        TriggerManager.Instance.HandleTrigger(checkpointID, TriggerType.Checkpoint);
     }
 }

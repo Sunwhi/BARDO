@@ -13,20 +13,20 @@ public class TriggerManager : Singleton<TriggerManager>
     private Dictionary<string, Vector3> checkpointTable = new();
     private string lastCheckpointID;
 
-    // ÇöÀç À¯È¿ÇÑ Ã¼Å©Æ÷ÀÎÆ® ID ¹İÈ¯
+    // í˜„ì¬ ìœ íš¨í•œ ì²´í¬í¬ì¸íŠ¸ ID ë°˜í™˜
     public string GetLastCheckpointID()
     {
         return lastCheckpointID;
     }
 
-    // ÀúÀåµÈ ID·Î Ã¼Å©Æ÷ÀÎÆ® º¹¿ø
+    // ì €ì¥ëœ IDë¡œ ì²´í¬í¬ì¸íŠ¸ ë³µì›
     public void SetLastCheckpointID(string id)
     {
         if (checkpointTable.ContainsKey(id))
             lastCheckpointID = id;
     }
 
-    // À§Ä¡ µî·Ï
+    // ìœ„ì¹˜ ë“±ë¡
     public void RegisterCheckpoint(string id, Vector3 position)
     {
         if (!checkpointTable.ContainsKey(id))
@@ -41,17 +41,17 @@ public class TriggerManager : Singleton<TriggerManager>
         lastCheckpointID = id;
     }
 
-    // ¸®½ºÆù À§Ä¡ ¹İÈ¯
+    // ë¦¬ìŠ¤í° ìœ„ì¹˜ ë°˜í™˜
     public Vector3 GetRespawnPosition()
     {
         if (checkpointTable.TryGetValue(lastCheckpointID, out Vector3 pos))
             return pos;
 
-        Debug.LogWarning("¸®½ºÆù À§Ä¡°¡ ¾ø½À´Ï´Ù. µğÆúÆ® (0,0,0) ¹İÈ¯.");
+        Debug.LogWarning("ë¦¬ìŠ¤í° ìœ„ì¹˜ê°€ ì—†ìŠµë‹ˆë‹¤. ë””í´íŠ¸ (0,0,0) ë°˜í™˜.");
         return Vector3.zero;
     }
 
-    // Æ®¸®°Å¿¡ µû¸¥ °øÅë Ã³¸® (Æ©Åä¸®¾ó, ´ëÈ­ µî È®Àå °¡´É)
+    // íŠ¸ë¦¬ê±°ì— ë”°ë¥¸ ê³µí†µ ì²˜ë¦¬ (íŠœí† ë¦¬ì–¼, ëŒ€í™” ë“± í™•ì¥ ê°€ëŠ¥)
     public void HandleTrigger(string triggerID, TriggerType type)
     {
         switch (type)
@@ -62,6 +62,7 @@ public class TriggerManager : Singleton<TriggerManager>
             case TriggerType.Dialogue:
                 break;
             case TriggerType.Checkpoint:
+                GameEventBus.Raise(new CheckPointEvent(triggerID));
                 break;
         }
     }
