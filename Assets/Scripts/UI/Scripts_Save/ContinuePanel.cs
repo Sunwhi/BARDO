@@ -40,9 +40,4 @@ public class ContinuePanel : MonoBehaviour
             slotText.text = SaveManager.Instance.MySaveData.saveName.ToString();
         }
     }
-    public void OnClickContinueExitBtn()
-    {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
-        UIManager.Instance.HidePanel("ContinuePanel");
-    }
 }

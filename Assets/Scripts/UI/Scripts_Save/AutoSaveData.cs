@@ -82,7 +82,7 @@ public class AutoSaveData : Singleton<AutoSaveData>
             case "Slot2":
                 slotName = "슬롯2";
                 break;
-            case "Slot3":
+            case "Slot3":   
                 slotName = "슬롯3";
                 break;
             case "Slot4":
@@ -100,7 +100,7 @@ public class AutoSaveData : Singleton<AutoSaveData>
 
         switch (sceneName)
         {
-            case "Prototype":
+            case "MainScene":
                 stageName = "7일차 / 스테이지 1";
                 stageIdx = 1;
                 break;
