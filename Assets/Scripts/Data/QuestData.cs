@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class SubQuestData
@@ -11,13 +12,13 @@ public class SubQuestData
 [Serializable]
 public class QuestData : IData
 {
-    public int QuestID;
-    public int Id { get; set; } // Implementing IData interface
-    public string QuestTitle;
-    public SubQuestData[] SubQuests;
-
-    QuestData()
+    public int Id
     {
-        Id = QuestID;
+        get { return QuestID; }
+        set { QuestID = value; }
     }
+
+    public int QuestID;
+    public string QuestTitle;
+    public List<SubQuestData> SubQuests;
 }
