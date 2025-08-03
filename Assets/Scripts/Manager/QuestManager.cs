@@ -46,7 +46,7 @@ public class QuestManager : Singleton<QuestManager>
     public void ClearSubQuest(int subQuestID)
     {
         var curQuest = SaveManager.Instance.MySaveData.currentQuest;
-        if (curQuest != null && curQuest.SubQuests.Length > subQuestID)
+        if (curQuest != null && curQuest.SubQuests.Count > subQuestID)
         {
             curQuest.SubQuests[subQuestID].isCompleted = true;
             SaveManager.Instance.SetSaveData(nameof(SaveData.currentQuest), curQuest);

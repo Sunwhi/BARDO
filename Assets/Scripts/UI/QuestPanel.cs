@@ -70,7 +70,7 @@ public class QuestPanel : UIBase
         }
 
         titleTxt.text = currentQuestData.QuestTitle;
-        for (int i = 0; i < currentQuestData.SubQuests.Length; i++)
+        for (int i = 0; i < currentQuestData.SubQuests.Count; i++)
         {
             var subQuest = currentQuestData.SubQuests[i];
             subQuestTxts.Add(
