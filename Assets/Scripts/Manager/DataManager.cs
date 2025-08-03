@@ -42,7 +42,7 @@ public class DataManager : Singleton<DataManager>
             }
         }
 
-        Debug.LogWarning($"{key}은 DataDics에 존재하지 않습니다.");
+        Debug.LogWarning($"{id}(이)가 {key}의 DataDics에 존재하지 않습니다.");
         return default;
     }
     #endregion
@@ -65,6 +65,8 @@ public class DataManager : Singleton<DataManager>
         {
             Debug.LogError($"JSON parsing error: {jsonData}");
         }
+
+        Debug.Log($"DataManager: {typeof(T).Name} loaded with {dataDics[typeof(T).Name].Count} entries.");
     }
     #endregion
 }
