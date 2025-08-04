@@ -25,7 +25,9 @@ public class SaveManager : Singleton<SaveManager>
     private bool isAutoDirty;
     private string directory;
 
-    private string[] paths = new string[5];
+    private string[] paths = new string[5]; // 슬롯들의 경로 path
+
+    private int lastSavedSlot = -1; // 가장 최근에 저장된 슬롯
 
     private void Start()
     {
@@ -166,7 +168,7 @@ public class SaveManager : Singleton<SaveManager>
         return Path.Combine(directory, $"{slot}.json");
     }
 
-    // 비어있는 Slot들 중에 가장 첫번째 Slot index를 반환, 자동저장에 사용
+    // 비어있는 Slot들 중에 가장 첫번째 Slot index를 반환, autosave에 사용
     public int FirstEmptySlot()
     {
         if (!File.Exists(paths[0])) return 1;
@@ -182,6 +184,11 @@ public class SaveManager : Singleton<SaveManager>
     {
         if (File.Exists(GetSlotPath(slot))) return true;
         return false;
+    }
+
+    public int updateLastSavedSlot()
+    {
+        return 0;
     }
     #endregion
 }

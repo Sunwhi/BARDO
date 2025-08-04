@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /*
  * UIManager
  * uiPanels에 게임 내의 모든 panel들을 저장하고,
@@ -7,10 +9,14 @@ using UnityEngine;
  */
 public class UIManager : Singleton<UIManager>
 {
+
     // 패널들을 담는 딕셔너리
-    private Dictionary<string, GameObject> uiPanels = new Dictionary<string, GameObject>();
+    public Dictionary<string, GameObject> uiPanels = new Dictionary<string, GameObject>();
 
     public Fadeview fadeView;
+
+    // 전 씬의 패널들을 모두 삭제한 뒤 새로운 씬의 패널들을 register하기 위한 변수
+    public bool okToRegisterPanels = false; 
 
     private void Update()
     {
@@ -21,11 +27,29 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // 새로운 씬이 로드되면 uiPanel의 모든 오브젝트들을 삭제 (그리고 다른 Panel 클래스의 Start에서 해당 씬의 패널들을 register한다.)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        uiPanels.Clear();
+        okToRegisterPanels = true;
+    }
+
     // 파라미터로 받은 패널을 uiPanels의 딕셔너리에 추가한다.
     public void RegisterPanels(GameObject panel)
     {
         uiPanels[panel.name] = panel;
     }
+
     // Panel을 나타내는 함수
     public void ShowPanel(string panelName)
     {

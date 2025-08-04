@@ -45,7 +45,7 @@ public class AutoSaveData : Singleton<AutoSaveData>
 
         SetQuestName(ev.checkpointID);
 
-        SetSlotName();
+        //SetSlotName();
         SetStageNameIdx();
         SetSaveDate();
 
@@ -56,7 +56,7 @@ public class AutoSaveData : Singleton<AutoSaveData>
     
     private void SaveCurentData()
     {
-        saveName = '[' + slotName + "]" + " " + stageName + " - " + questName + " - " + saveDate;
+        saveName = " " + stageName + " - " + questName + " - " + saveDate;
         SaveManager.Instance.SetSaveData("saveName", this.saveName); // saveName 저장
         //SaveManager.Instance.SetSaveData("lastSaveTime", DateTime.Now.Ticks); 시간은 자동으로 저장
         SaveManager.Instance.SetSaveData("stageIdx", stageIdx);  // stageIdx 저장
@@ -65,7 +65,7 @@ public class AutoSaveData : Singleton<AutoSaveData>
         SaveManager.Instance.SaveSlot(ESaveSlot.Auto);
     }
 
-    private void SetSlotName()
+    /*private void SetSlotName()
     {
         objName = gameObject.name;
 
@@ -92,7 +92,7 @@ public class AutoSaveData : Singleton<AutoSaveData>
                 slotName = "슬롯5";
                 break;
         }
-    }
+    }*/
 
     private void SetStageNameIdx()
     {
