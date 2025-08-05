@@ -54,7 +54,7 @@ public class AutoSaveSlotUI : MonoBehaviour
             if (slot.name == "Slot" + firstEmptySlotIdx)
             {
                 slotText = slot.GetComponentInChildren<TMP_Text>();
-                slotText.text = SaveManager.Instance.MySaveData.saveName.ToString();
+                slotText.text = "[슬롯" + firstEmptySlotIdx + "]" + SaveManager.Instance.MySaveData.saveName.ToString();
             }
         }
     }
