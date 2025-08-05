@@ -27,6 +27,7 @@ public class TitleSceneUI : MonoBehaviour
         MySceneManager.Instance.LoadScene(SceneType.MainScene);
 
         SaveManager.Instance.CreateSaveData();
+        SaveManager.Instance.currentSaveSlot = SaveManager.Instance.FirstEmptySlot(); // 자동 저장할 슬롯 지정
     }
 
     public void OnClickContinueBtn()

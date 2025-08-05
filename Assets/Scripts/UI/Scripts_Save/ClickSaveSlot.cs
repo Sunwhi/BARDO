@@ -27,22 +27,27 @@ public class ClickSaveSlot : MonoBehaviour
         {
             case "Slot1":
                 SaveManager.Instance.SaveSlot(ESaveSlot.Slot1);
+                SaveManager.Instance.currentSaveSlot = 1;
                 slotName = "[슬롯1]";
                 break;
             case "Slot2":
                 SaveManager.Instance.SaveSlot(ESaveSlot.Slot2);
+                SaveManager.Instance.currentSaveSlot = 2;
                 slotName = "[슬롯2]";
                 break;
             case "Slot3":
                 SaveManager.Instance.SaveSlot(ESaveSlot.Slot3);
+                SaveManager.Instance.currentSaveSlot = 3;
                 slotName = "[슬롯3]";
                 break;
             case "Slot4":
                 SaveManager.Instance.SaveSlot(ESaveSlot.Slot4);
+                SaveManager.Instance.currentSaveSlot = 4;
                 slotName = "[슬롯4]";
                 break;
             case "Slot5":
                 SaveManager.Instance.SaveSlot(ESaveSlot.Slot5);
+                SaveManager.Instance.currentSaveSlot = 5;
                 slotName = "[슬롯5]";
                 break;
         }

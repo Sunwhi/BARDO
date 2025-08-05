@@ -102,31 +102,31 @@ public class AutoSaveData : Singleton<AutoSaveData>
         switch (sceneName)
         {
             case "MainScene":
-                stageName = "7일차 / 스테이지 1";
+                stageName = "1주차 / 스테이지 1";
                 stageIdx = 1;
                 break;
             case "Stage2":
-                stageName = "14일차 / 스테이지 2";
+                stageName = "2주차 / 스테이지 2";
                 stageIdx = 2;
                 break;
             case "Stage3":
-                stageName = "21일차 / 스테이지 3";
+                stageName = "3주차 / 스테이지 3";
                 stageIdx = 3;
                 break;
             case "Stage4":
-                stageName = "28일차 / 스테이지 4";
+                stageName = "4주차 / 스테이지 4";
                 stageIdx = 4;
                 break;
             case "Stage5":
-                stageName = "35일차 / 스테이지 5";
+                stageName = "5주차 / 스테이지 5";
                 stageIdx = 5;
                 break;
             case "Stage6":
-                stageName = "42일차 / 스테이지 6";
+                stageName = "6주차 / 스테이지 6";
                 stageIdx = 6;
                 break;
             case "Stage7":
-                stageName = "49일차 / 스테이지 7";
+                stageName = "7주차 / 스테이지 7";
                 stageIdx = 7;
                 break;
         }

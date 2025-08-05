@@ -28,6 +28,7 @@ public class SaveManager : Singleton<SaveManager>
     private string[] paths = new string[5]; // 슬롯들의 경로 path
 
     private int lastSavedSlot = -1; // 가장 최근에 저장된 슬롯
+    public int currentSaveSlot = 0; // 현재 자동 저장되고 있는 슬롯
 
     private void Start()
     {
