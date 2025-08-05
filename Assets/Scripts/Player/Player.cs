@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
     [Header("Components")]
     public SpriteRenderer spriteRenderer;
+    public PlayerInput playerInput;
     public Rigidbody2D rb;
     public Collider2D col;
     public Animator animator;
