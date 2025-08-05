@@ -2,6 +2,18 @@ using UnityEngine;
 
 public class QuestManager : Singleton<QuestManager>
 {
+    public override void Awake()
+    {
+        base.Awake();
+        //Init();
+    }
+
+    //테스트 코드
+    private void Start()
+    {
+        ShowQuestUI();
+    }
+
     public void Init()
     {
         if (SaveManager.Instance.MySaveData.isQuestActive)
@@ -12,13 +24,13 @@ public class QuestManager : Singleton<QuestManager>
 
     public void ShowQuestUI()
     {
-        UIManager.Instance.ShowPanel(nameof(QuestPanel));
-
         if (!SaveManager.Instance.MySaveData.isQuestActive)
         {
             SaveManager.Instance.SetSaveData(nameof(SaveData.isQuestActive), true);
             SetNewQuest();
         }
+
+        UIManager.Instance.ShowPanel(nameof(QuestPanel));
     }
 
     public void SetNewQuest()
