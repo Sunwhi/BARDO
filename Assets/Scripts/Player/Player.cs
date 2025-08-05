@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     public PlayerAnimationData AnimationData => animationData;
 
     public bool isGrounded = true;
-    private readonly float rayLength = 0.2f;
+    private readonly float rayLength = 0.1f;
 
     private void Awake()
     {
