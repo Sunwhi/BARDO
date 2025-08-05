@@ -39,10 +39,11 @@ public class AutoSaveData : Singleton<AutoSaveData>
     {
         //Debug.Log(SaveManager.Instance.MySaveData.saveName.ToString());
     }
+
+    // CheckPointTrigger마다 새로운 SaveData 생성
     private void OnCheckPointSave(CheckPointEvent ev)
     {
-        SaveManager.Instance.CreateSaveData();
-
+        //SaveManager.Instance.CreateSaveData();
         SetQuestName(ev.checkpointID);
 
         //SetSlotName();
