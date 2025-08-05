@@ -3,34 +3,45 @@ using DG.Tweening;
 using System;
 public class Padma : MonoBehaviour
 {
-    private SpriteRenderer padmaSprite;
-    private Vector2 targetPos = new Vector2(-35, 0.43f);
-    private void Start()
+    [SerializeField] private SpriteRenderer padmaSprite;
+
+    private void Awake()
     {
-        padmaSprite = GetComponent<SpriteRenderer>();
-        if (padmaSprite == null) Debug.Log("warning~!!!!!!!!!!!!!!!!!!!");
+        if (padmaSprite == null)
+            padmaSprite = GetComponent<SpriteRenderer>();
     }
-    // ÆÄµå¸¶ ÆäÀÌµå ÀÎ
-    public void ShowPadma()
+
+    // íŒŒë“œë§ˆ í˜ì´ë“œ ì¸
+    public void Show()
     {
         padmaSprite.DOFade(1f, 2f);
     }
-    // ÆÄµå¸¶ ÆäÀÌµå ¾Æ¿ô
-    public void HidePadma(Action onComplete = null)
+    // íŒŒë“œë§ˆ í˜ì´ë“œ ì•„ì›ƒ
+    public void Hide(Action onComplete = null)
     {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        sr.DOFade(0f, 2f) // 2ÃÊ µ¿¾È Åõ¸íÇÏ°Ô
+        padmaSprite.DOFade(0f, 2f) // 2ì´ˆ ë™ì•ˆ íˆ¬ëª…í•˜ê²Œ
           .OnComplete(() =>
           {
-              onComplete?.Invoke(); // ´Ù ³¡³ª°í ³ª¸é Äİ¹é ½ÇÇà
+              onComplete?.Invoke(); // ë‹¤ ëë‚˜ê³  ë‚˜ë©´ ì½œë°± ì‹¤í–‰
           });
     }
-    // ÆÄµå¸¶ ¿À¸¥ÂÊÀ¸·Î ³¯¶ó°¨.
-    public void FlyRightPadma(Action onComplete = null)
+
+    public void FlipX()
     {
-        this.transform.localScale = new Vector3(0.4f, 0.4f, 1);
-        this.transform.DOMove(targetPos, 3f)
-            .SetEase(Ease.Linear)
+        Vector3 scale = transform.localScale;
+        scale.x = -scale.x;
+        transform.localScale = scale;
+    }
+
+    /// <summary>
+    /// íŒŒë“œë§ˆ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ë‚ ì•„ê°.
+    /// </summary>
+    public void FlyRight(float distance = 13f, float flyTime = 4f, Action onComplete = null)
+    {
+        FlipX();
+        Vector3 targetPos = transform.position + Vector3.right * distance;
+        transform.DOMove(targetPos, flyTime)
+            //.SetEase(Ease.Linear)
             .OnComplete(() => { onComplete?.Invoke(); });
     }
 }
