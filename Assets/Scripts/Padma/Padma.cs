@@ -36,7 +36,7 @@ public class Padma : MonoBehaviour
     /// <summary>
     /// 파드마 오른쪽으로 날아감.
     /// </summary>
-    public void FlyRight(float distance = 13f, float flyTime = 4f, Action onComplete = null)
+    public void FlyRight(float distance, float flyTime, Action onComplete = null)
     {
         FlipX();
         Vector3 targetPos = transform.position + Vector3.right * distance;
