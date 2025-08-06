@@ -2,16 +2,12 @@ using UnityEngine;
 
 public class QuestManager : Singleton<QuestManager>
 {
+    QuestPanel questPanel;
+
     public override void Awake()
     {
         base.Awake();
-        //Init();
-    }
-
-    //테스트 코드
-    private void Start()
-    {
-        ShowQuestUI();
+        Init();
     }
 
     public void Init()
@@ -30,7 +26,7 @@ public class QuestManager : Singleton<QuestManager>
             SetNewQuest();
         }
 
-        UIManager.Instance.ShowPanel(nameof(QuestPanel));
+        questPanel = UIManager.Instance.ShowPanelWithParam<QuestPanel>(nameof(QuestPanel));
     }
 
     public void SetNewQuest()
@@ -62,6 +58,7 @@ public class QuestManager : Singleton<QuestManager>
         {
             curQuest.SubQuests[subQuestID].isCompleted = true;
             SaveManager.Instance.SetSaveData(nameof(SaveData.currentQuest), curQuest);
+            questPanel.CompleteSubQuest(subQuestID);
         }
         else
         {

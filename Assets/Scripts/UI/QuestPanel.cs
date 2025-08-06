@@ -9,7 +9,7 @@ public class QuestPanel : UIBase
     [SerializeField] private TextMeshProUGUI titleTxt;
     [SerializeField] private RectTransform contentParent;
     [SerializeField] private GameObject subQuestTxtPrefab;
-    private List<TextMeshProUGUI> subQuestTxts;
+    private List<TextMeshProUGUI> subQuestTxts = new();
 
     private float questBoxSize = 0f;
     private bool isSlided = false;
@@ -52,6 +52,11 @@ public class QuestPanel : UIBase
         isSlided = !isSlided;
     }
 
+    public void CompleteSubQuest(int id)
+    {
+        subQuestTxts[id].transform.GetChild(0).gameObject.SetActive(true);
+    }
+
     private void OnQuestDataChanged(DataChangeEvent<QuestData> @event)
     {
         currentQuestData = @event.NewValue;
@@ -65,15 +70,20 @@ public class QuestPanel : UIBase
             titleTxt.text = "No Active Quest";
             return;
         }
-
         titleTxt.text = currentQuestData.QuestTitle;
+
+        foreach (var items in subQuestTxts)
+        {
+            Destroy(items.gameObject);
+        }
+        subQuestTxts.Clear();
+
         for (int i = 0; i < currentQuestData.SubQuests.Count; i++)
         {
             var subQuest = currentQuestData.SubQuests[i];
-            subQuestTxts.Add(
-                Instantiate(subQuestTxtPrefab.gameObject, contentParent)
-                .GetComponent<TextMeshProUGUI>()
-                );
+            TextMeshProUGUI newTmp = Instantiate(subQuestTxtPrefab, contentParent)
+                .GetComponent<TextMeshProUGUI>();
+            subQuestTxts.Add(newTmp);
             subQuestTxts[i].text = $"({subQuest.SubQuestID}) {subQuest.SubQuestName}";
         }
     }
