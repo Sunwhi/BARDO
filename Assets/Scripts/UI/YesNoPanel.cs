@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public enum EYesNoPanelType
 {
+    New,
     Continue,
     Quit,
     Save,
@@ -20,9 +21,10 @@ public class YesNoPanel : UIBase
 
     private readonly Dictionary< EYesNoPanelType, (string title, string content) > panelData = new()
     {
-        { EYesNoPanelType.Continue, ("Continue", "Do you want to continue?") },
-        { EYesNoPanelType.Quit, ("Quit", "Are you sure you want to quit?") },
-        { EYesNoPanelType.Save, ("Save", "Do you want to save your progress?") }
+        {EYesNoPanelType.New, ("New Game", "저장 공간이 가득 찼습니다. 가장 예전 기록이 삭제되고 새 게임이 시작됩니다. 계속하시겠습니까?") },
+        { EYesNoPanelType.Continue, ("Continue", "이어하시겠습니까?") },
+        { EYesNoPanelType.Quit, ("Quit", "정말 나가시겠습니까? 마지막 저장 내용 이후의 데이터는 삭제됩니다.") },
+        { EYesNoPanelType.Save, ("Save", "이 슬롯을 덮어쓸까요?") }
     };
 
     //param guide

@@ -38,6 +38,7 @@ public class TriggerManager : Singleton<TriggerManager>
             checkpointTable[id] = position;
         }
 
+        SaveManager.Instance.SetSaveData("savedPosition", new SerializableVector3(position)); // SaveData에 savedPosition저장
         lastCheckpointID = id;
     }
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public class TitleSceneUI : MonoBehaviour
@@ -24,10 +25,26 @@ public class TitleSceneUI : MonoBehaviour
     {
         //bug.Log(MySceneManager.Instance == null ? "인스턴스가 null" : "인스턴스 살아있음");
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
-        MySceneManager.Instance.LoadScene(SceneType.MainScene);
 
-        SaveManager.Instance.CreateSaveData();
-        SaveManager.Instance.currentSaveSlot = SaveManager.Instance.FirstEmptySlot(); // 자동 저장할 슬롯 지정
+        // 남은 saveslot이 없다면
+        if(SaveManager.Instance.FirstEmptySlot() == 0)
+        {
+            UIManager.Instance.ShowPanelWithParam("YesNoPanel", new object[] {
+            EYesNoPanelType.New,
+            new UnityAction(() =>
+            {
+                SaveManager.Instance.CreateSaveData();
+                SaveManager.Instance.currentSaveSlot = SaveManager.Instance.OldestSaveSlot();
+                MySceneManager.Instance.LoadScene(SceneType.MainScene);
+            })
+            });
+        }
+        else
+        {
+            SaveManager.Instance.CreateSaveData();
+            SaveManager.Instance.currentSaveSlot = SaveManager.Instance.FirstEmptySlot(); // 자동 저장할 슬롯 지정, 비어있는 가장 첫번째 슬롯
+            MySceneManager.Instance.LoadScene(SceneType.MainScene);
+        }
     }
 
     public void OnClickContinueBtn()

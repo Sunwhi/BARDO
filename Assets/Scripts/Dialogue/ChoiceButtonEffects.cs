@@ -13,10 +13,8 @@ public class ChoiceButtonEffects : MonoBehaviour, IPointerEnterHandler
     public string enterChoiceBtn;
     public  void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log(gameObject.name);
-        //DoStateTransition(SelectionState.Normal, false);
-        //this.colors
-        Debug.Log(eventData.selectedObject);
+        Debug.Log("hover");
+
         switch (eventData.selectedObject.name)
         {
             case "DialogueChoiceBtn0":

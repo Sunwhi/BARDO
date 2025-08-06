@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public enum EEnding
 {
@@ -18,6 +19,7 @@ public class SaveData
     public long lastSaveTime = 0;
     public int stageIdx = 0; //0 : 시작. 1~ : N주차.
     public int storyIdx = 0; //Stage 내부 Idx
+    public SerializableVector3 savedPosition = new SerializableVector3(0,0,0);
 
     public bool isQuestActive = false;
     public QuestData currentQuest = null;

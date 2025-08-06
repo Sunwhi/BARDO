@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class EscPanel : MonoBehaviour
@@ -28,7 +29,21 @@ public class EscPanel : MonoBehaviour
     public void OnClickTItle()
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
-        MySceneManager.Instance.LoadScene(SceneType.Title);
+        UIManager.Instance.HidePanel("EscBGImg");
+        UIManager.Instance.HidePanel("EscPanel");
+
+        UIManager.Instance.ShowPanelWithParam("YesNoPanel", new object[] {
+        EYesNoPanelType.Quit,
+        new UnityAction(() =>
+        {
+            MySceneManager.Instance.LoadScene(SceneType.Title);
+        }),
+        new UnityAction(() =>
+        {
+            UIManager.Instance.ShowPanel("EscPanel");
+            UIManager.Instance.ShowPanel("EscBGImg");
+        })
+        });
     }
 
     public void OnClickOption()
@@ -48,10 +63,24 @@ public class EscPanel : MonoBehaviour
     public void OnClickQuit()
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
-    #if UNITY_EDITOR
+        UIManager.Instance.HidePanel("EscBGImg");
+        UIManager.Instance.HidePanel("EscPanel");
+
+        UIManager.Instance.ShowPanelWithParam("YesNoPanel", new object[] {
+        EYesNoPanelType.Quit,
+        new UnityAction(() =>
+        {
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
     #else
                 Application.Quit();
     #endif
+        }),
+        new UnityAction(() =>
+        {
+            UIManager.Instance.ShowPanel("EscPanel");
+            UIManager.Instance.ShowPanel("EscBGImg");
+        })
+        });
     }
 }

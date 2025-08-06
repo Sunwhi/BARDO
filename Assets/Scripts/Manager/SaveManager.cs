@@ -27,8 +27,9 @@ public class SaveManager : Singleton<SaveManager>
 
     private string[] paths = new string[5]; // 슬롯들의 경로 path
 
-    private int lastSavedSlot = -1; // 가장 최근에 저장된 슬롯
+    // int lastSavedSlot = -1; // 가장 최근에 저장된 슬롯
     public int currentSaveSlot = 0; // 현재 자동 저장되고 있는 슬롯
+
 
     private void Start()
     {
@@ -187,9 +188,35 @@ public class SaveManager : Singleton<SaveManager>
         return false;
     }
 
-    public int updateLastSavedSlot()
+    // 가장 오래전에 저장된 슬롯을 반환
+    public int OldestSaveSlot()
     {
-        return 0;
+        int returnSlot = 0;
+
+        long[] oldestSaveSlot = new long[5];
+
+        LoadSlot(ESaveSlot.Slot1);
+        oldestSaveSlot[0] = saveData.lastSaveTime;
+        LoadSlot(ESaveSlot.Slot2);
+        oldestSaveSlot[1] = saveData.lastSaveTime;
+        LoadSlot(ESaveSlot.Slot3);
+        oldestSaveSlot[2] = saveData.lastSaveTime;
+        LoadSlot(ESaveSlot.Slot4);
+        oldestSaveSlot[3] = saveData.lastSaveTime;
+        LoadSlot(ESaveSlot.Slot5);
+        oldestSaveSlot[4] = saveData.lastSaveTime;
+
+        long temp = oldestSaveSlot[0];
+        for(int i=0; i<5; i++)
+        {
+            if (oldestSaveSlot[i] < temp)
+            {
+                temp = oldestSaveSlot[i];
+                returnSlot = i+1;
+            }
+        }
+
+        return returnSlot;
     }
     #endregion
 }

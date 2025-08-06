@@ -46,7 +46,6 @@ public class AutoSaveData : Singleton<AutoSaveData>
         //SaveManager.Instance.CreateSaveData();
         SetQuestName(ev.checkpointID);
 
-        //SetSlotName();
         SetStageNameIdx();
         SetSaveDate();
 
@@ -61,39 +60,10 @@ public class AutoSaveData : Singleton<AutoSaveData>
         SaveManager.Instance.SetSaveData("saveName", this.saveName); // saveName 저장
         //SaveManager.Instance.SetSaveData("lastSaveTime", DateTime.Now.Ticks); 시간은 자동으로 저장
         SaveManager.Instance.SetSaveData("stageIdx", stageIdx);  // stageIdx 저장
-        SaveManager.Instance.SetSaveData("storyIdx", storyIdx);  // 아직 필요가 없음
+        SaveManager.Instance.SetSaveData("storyIdx", storyIdx);  // storyIdx 저장
 
         SaveManager.Instance.SaveSlot(ESaveSlot.Auto);
     }
-
-    /*private void SetSlotName()
-    {
-        objName = gameObject.name;
-
-        if(objName == "AutoSaveData")
-        {
-            slotName = "슬롯1";
-            return;
-        }
-        switch (objName)
-        {
-            case "Slot1":
-                slotName = "슬롯1";
-                break;
-            case "Slot2":
-                slotName = "슬롯2";
-                break;
-            case "Slot3":   
-                slotName = "슬롯3";
-                break;
-            case "Slot4":
-                slotName = "슬롯4";
-                break;
-            case "Slot5":
-                slotName = "슬롯5";
-                break;
-        }
-    }*/
 
     private void SetStageNameIdx()
     {
@@ -156,12 +126,15 @@ public class AutoSaveData : Singleton<AutoSaveData>
         {
             case "stage1-1":
                 questName = "파드마와의 만남";
+                storyIdx = 1;
                 break;
             case "stage1-2":
                 questName = "미지의 세계로";
+                storyIdx = 2;
                 break;
             case "stage1-3":
                 questName = "다음 스테이지로 가자";
+                storyIdx = 3;
                 break;
         }
     }
