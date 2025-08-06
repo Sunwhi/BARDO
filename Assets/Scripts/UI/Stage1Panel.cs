@@ -3,15 +3,20 @@ using UnityEngine;
 using System.Collections.Generic;
 public class Stage1Panel : MonoBehaviour
 {
-    // PanelµéÀ» UIManagerÀÇ uiPanels¿¡¼­ °ü¸®ÇÏ±â À§ÇØ Stage1¿¡ Á¸ÀçÇÏ´Â ÆĞ³ÎµéÀ» ¸®½ºÆ®¿¡ ÀúÀåÇÑ´Ù.
+    // Panelë“¤ì„ UIManagerì˜ uiPanelsì—ì„œ ê´€ë¦¬í•˜ê¸° ìœ„í•´ Stage1ì— ì¡´ì¬í•˜ëŠ” íŒ¨ë„ë“¤ì„ ë¦¬ìŠ¤íŠ¸ì— ì €ì¥í•œë‹¤.
     [SerializeField] private List<GameObject> panelsToRegister;
 
     private void Start()
     {
-        // panelsToRegister¿¡ µé¾î°¡ÀÖ´Â ÆĞ³ÎµéÀ» UIManagerÀÇ uiPanels¿¡ µî·ÏÇÑ´Ù.
-        foreach(var panel in panelsToRegister)
+
+        if (UIManager.Instance.okToRegisterPanels)
         {
-            UIManager.Instance.RegisterPanels(panel);
+            // panelsToRegisterì— ë“¤ì–´ê°€ìˆëŠ” íŒ¨ë„ë“¤ì„ UIManagerì˜ uiPanelsì— ë“±ë¡í•œë‹¤.
+            foreach (var panel in panelsToRegister)
+            {
+                UIManager.Instance.RegisterPanels(panel);
+            }
+            UIManager.Instance.okToRegisterPanels = false;
         }
     }
 }

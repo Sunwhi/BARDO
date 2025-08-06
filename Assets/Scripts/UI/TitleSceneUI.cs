@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TitleSceneUI : MonoBehaviour
 {
@@ -7,16 +9,24 @@ public class TitleSceneUI : MonoBehaviour
 
     private void Start()
     {
-        foreach(var panel in panelsToRegister)
+        // uiPanel의 모든 패널들이 Clear되었을 때 register.
+        if (UIManager.Instance.okToRegisterPanels)
         {
-            UIManager.Instance.RegisterPanels(panel);
+            foreach (var panel in panelsToRegister)
+            {
+                UIManager.Instance.RegisterPanels(panel);
+            }
         }
+        UIManager.Instance.okToRegisterPanels = false;
     }
+
     public void OnClickNewGameBtn()
     {
         //bug.Log(MySceneManager.Instance == null ? "인스턴스가 null" : "인스턴스 살아있음");
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
         MySceneManager.Instance.LoadScene(SceneType.MainScene);
+
+        SaveManager.Instance.CreateSaveData();
     }
 
     public void OnClickContinueBtn()

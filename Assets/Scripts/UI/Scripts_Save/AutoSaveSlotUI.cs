@@ -6,6 +6,9 @@ using TMPro;
 using Ink.Parsed;
 using UnityEngine.EventSystems;
 
+/*
+ * 자동저장을 SavePanel UI에 표시한다.
+ */
 public class AutoSaveSlotUI : MonoBehaviour
 {
     public List<GameObject> Slots = new List<GameObject>();
@@ -51,7 +54,7 @@ public class AutoSaveSlotUI : MonoBehaviour
             if (slot.name == "Slot" + firstEmptySlotIdx)
             {
                 slotText = slot.GetComponentInChildren<TMP_Text>();
-                slotText.text = SaveManager.Instance.MySaveData.saveName.ToString();
+                slotText.text = "[슬롯" + firstEmptySlotIdx + "]" + SaveManager.Instance.MySaveData.saveName.ToString();
             }
         }
     }

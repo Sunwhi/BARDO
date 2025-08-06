@@ -39,13 +39,14 @@ public class AutoSaveData : Singleton<AutoSaveData>
     {
         //Debug.Log(SaveManager.Instance.MySaveData.saveName.ToString());
     }
+
+    // CheckPointTrigger마다 새로운 SaveData 생성
     private void OnCheckPointSave(CheckPointEvent ev)
     {
-        SaveManager.Instance.CreateSaveData();
-
+        //SaveManager.Instance.CreateSaveData();
         SetQuestName(ev.checkpointID);
 
-        SetSlotName();
+        //SetSlotName();
         SetStageNameIdx();
         SetSaveDate();
 
@@ -56,7 +57,7 @@ public class AutoSaveData : Singleton<AutoSaveData>
     
     private void SaveCurentData()
     {
-        saveName = '[' + slotName + "]" + " " + stageName + " - " + questName + " - " + saveDate;
+        saveName = " " + stageName + " - " + questName + " - " + saveDate;
         SaveManager.Instance.SetSaveData("saveName", this.saveName); // saveName 저장
         //SaveManager.Instance.SetSaveData("lastSaveTime", DateTime.Now.Ticks); 시간은 자동으로 저장
         SaveManager.Instance.SetSaveData("stageIdx", stageIdx);  // stageIdx 저장
@@ -65,7 +66,7 @@ public class AutoSaveData : Singleton<AutoSaveData>
         SaveManager.Instance.SaveSlot(ESaveSlot.Auto);
     }
 
-    private void SetSlotName()
+    /*private void SetSlotName()
     {
         objName = gameObject.name;
 
@@ -92,7 +93,7 @@ public class AutoSaveData : Singleton<AutoSaveData>
                 slotName = "슬롯5";
                 break;
         }
-    }
+    }*/
 
     private void SetStageNameIdx()
     {
@@ -161,6 +162,9 @@ public class AutoSaveData : Singleton<AutoSaveData>
                 break;
             case "stage1-3":
                 questName = "다음 스테이지로 가자";
+                break;
+            case "stage2-1":
+                questName = "2스테이지 시작";
                 break;
         }
     }
