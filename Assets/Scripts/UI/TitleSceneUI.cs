@@ -49,6 +49,10 @@ public class TitleSceneUI : MonoBehaviour
 
     public void OnClickContinueBtn()
     {
+        if (SoundManager.Instance == null)
+        {
+            Debug.LogError("SoundManager.Instance is null! 씬에 SoundManager가 없거나 아직 초기화되지 않았습니다.");
+        }
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
         UIManager.Instance.ShowPanel("ContinuePanel");
     }

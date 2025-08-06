@@ -209,13 +209,12 @@ public class SaveManager : Singleton<SaveManager>
         long temp = oldestSaveSlot[0];
         for(int i=0; i<5; i++)
         {
-            if (oldestSaveSlot[i] < temp)
+            if (oldestSaveSlot[i] <= temp)
             {
                 temp = oldestSaveSlot[i];
                 returnSlot = i+1;
             }
         }
-
         return returnSlot;
     }
     #endregion
