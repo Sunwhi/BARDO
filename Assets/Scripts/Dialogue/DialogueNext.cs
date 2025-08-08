@@ -3,17 +3,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class DialogueNext : MonoBehaviour
+public class DialogueNext : MonoBehaviour, IPointerEnterHandler
 {
     private string dialogueKnotName = "start";
 
-    // Next button Å¬¸¯
+    // Next button í´ë¦­
     public void OnClickDialogueNext()
     {
-        // next ¹öÆ° ´©¸£¸é nullÀ» selectÇÏ°Ô ÇØ¼­ ´õÀÌ»ó highlighted»óÅÂ°¡ µÇÁö ¾Ê°Ô.(next ´©¸£°íµµ °è¼Ó È¸»öÀ¸·Î Ä¥ÇØÁ® ÀÖ´Â ¹ö±× ¼öÁ¤ ÄÚµå)
+        // next ë²„íŠ¼ ëˆ„ë¥´ë©´ nullì„ selectí•˜ê²Œ í•´ì„œ ë”ì´ìƒ highlightedìƒíƒœê°€ ë˜ì§€ ì•Šê²Œ.(next ëˆ„ë¥´ê³ ë„ ê³„ì† íšŒìƒ‰ìœ¼ë¡œ ì¹ í•´ì ¸ ìˆëŠ” ë²„ê·¸ ìˆ˜ì • ì½”ë“œ)
         EventSystem.current.SetSelectedGameObject(null);
 
-        // ¹®Àå ³¡³¯ ¶§ ±îÁö next ¹öÆ° ¸ø ´©¸§
+        // ë¬¸ì¥ ëë‚  ë•Œ ê¹Œì§€ next ë²„íŠ¼ ëª» ëˆ„ë¦„
         if (DialogueManager.Instance.canContinueToNextLine)
         {
             PressedDialogueNext();
@@ -24,7 +24,7 @@ public class DialogueNext : MonoBehaviour
     {
         if (UIInputManager.Instance.GetSubmitPressed() && DialogueManager.Instance.canContinueToNextLine)
         {
-            UIInputManager.Instance.submitPressed = false; // ½ºÆäÀÌ»ç ´­·¶À» ¶§¸¸ falseµÇ°Ô
+            UIInputManager.Instance.submitPressed = false; // ìŠ¤í˜ì´ì‚¬ ëˆŒë €ì„ ë•Œë§Œ falseë˜ê²Œ
             PressedDialogueNext();
         }
     }
@@ -36,5 +36,10 @@ public class DialogueNext : MonoBehaviour
             SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
             GameEventManager.Instance.inputEvents.StartDialogue();
         }
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(gameObject.name != "DialoguePanel")
+            SoundManager.Instance.PlaySFX(eSFX.UI_Button_Hover);
     }
 }

@@ -13,7 +13,7 @@ public class AutoSaveSlotUI : MonoBehaviour
 {
     public List<GameObject> Slots = new List<GameObject>();
     private TMP_Text slotText;
-    private int firstEmptySlotIdx;
+    private int currentSaveSlot;
     private void OnEnable()
     {
         GameEventBus.Subscribe<CheckPointEvent>(OnCheckPointAutoSave);
@@ -23,15 +23,15 @@ public class AutoSaveSlotUI : MonoBehaviour
         GameEventBus.Unsubscribe<CheckPointEvent>(OnCheckPointAutoSave);
     }
 
-    // 비어있는 첫번째 슬롯에 자동저장 text 표시
+    // 자동저장 text 표시
     private void OnCheckPointAutoSave(CheckPointEvent ev)
     {
         //Debug.Log("oncheckpointautosave");
-        firstEmptySlotIdx =  SaveManager.Instance.FirstEmptySlot();
-
+        currentSaveSlot =  SaveManager.Instance.currentSaveSlot; // 현재 저장되고 있는 슬롯 불러오기
+        Debug.Log(currentSaveSlot);
         foreach (var slot in Slots)
         {
-            switch (firstEmptySlotIdx)
+            switch (currentSaveSlot)
             {
                 case 1:
                     SaveManager.Instance.SaveSlot(ESaveSlot.Slot1);
@@ -51,10 +51,10 @@ public class AutoSaveSlotUI : MonoBehaviour
 
             }
                 
-            if (slot.name == "Slot" + firstEmptySlotIdx)
+            if (slot.name == "Slot" + currentSaveSlot)
             {
                 slotText = slot.GetComponentInChildren<TMP_Text>();
-                slotText.text = "[슬롯" + firstEmptySlotIdx + "]" + SaveManager.Instance.MySaveData.saveName.ToString();
+                slotText.text = "[슬롯" + currentSaveSlot + "]" + SaveManager.Instance.MySaveData.saveName.ToString();
             }
         }
     }

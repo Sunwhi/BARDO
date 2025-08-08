@@ -46,7 +46,6 @@ public class AutoSaveData : Singleton<AutoSaveData>
         //SaveManager.Instance.CreateSaveData();
         SetQuestName(ev.checkpointID);
 
-        //SetSlotName();
         SetStageNameIdx();
         SetSaveDate();
 
@@ -61,39 +60,10 @@ public class AutoSaveData : Singleton<AutoSaveData>
         SaveManager.Instance.SetSaveData("saveName", this.saveName); // saveName 저장
         //SaveManager.Instance.SetSaveData("lastSaveTime", DateTime.Now.Ticks); 시간은 자동으로 저장
         SaveManager.Instance.SetSaveData("stageIdx", stageIdx);  // stageIdx 저장
-        SaveManager.Instance.SetSaveData("storyIdx", storyIdx);  // 아직 필요가 없음
+        SaveManager.Instance.SetSaveData("storyIdx", storyIdx);  // storyIdx 저장
 
         SaveManager.Instance.SaveSlot(ESaveSlot.Auto);
     }
-
-    /*private void SetSlotName()
-    {
-        objName = gameObject.name;
-
-        if(objName == "AutoSaveData")
-        {
-            slotName = "슬롯1";
-            return;
-        }
-        switch (objName)
-        {
-            case "Slot1":
-                slotName = "슬롯1";
-                break;
-            case "Slot2":
-                slotName = "슬롯2";
-                break;
-            case "Slot3":   
-                slotName = "슬롯3";
-                break;
-            case "Slot4":
-                slotName = "슬롯4";
-                break;
-            case "Slot5":
-                slotName = "슬롯5";
-                break;
-        }
-    }*/
 
     private void SetStageNameIdx()
     {
@@ -102,31 +72,31 @@ public class AutoSaveData : Singleton<AutoSaveData>
         switch (sceneName)
         {
             case "MainScene":
-                stageName = "7일차 / 스테이지 1";
+                stageName = "1주차 / 스테이지 1";
                 stageIdx = 1;
                 break;
             case "Stage2":
-                stageName = "14일차 / 스테이지 2";
+                stageName = "2주차 / 스테이지 2";
                 stageIdx = 2;
                 break;
             case "Stage3":
-                stageName = "21일차 / 스테이지 3";
+                stageName = "3주차 / 스테이지 3";
                 stageIdx = 3;
                 break;
             case "Stage4":
-                stageName = "28일차 / 스테이지 4";
+                stageName = "4주차 / 스테이지 4";
                 stageIdx = 4;
                 break;
             case "Stage5":
-                stageName = "35일차 / 스테이지 5";
+                stageName = "5주차 / 스테이지 5";
                 stageIdx = 5;
                 break;
             case "Stage6":
-                stageName = "42일차 / 스테이지 6";
+                stageName = "6주차 / 스테이지 6";
                 stageIdx = 6;
                 break;
             case "Stage7":
-                stageName = "49일차 / 스테이지 7";
+                stageName = "7주차 / 스테이지 7";
                 stageIdx = 7;
                 break;
         }
@@ -156,12 +126,15 @@ public class AutoSaveData : Singleton<AutoSaveData>
         {
             case "stage1-1":
                 questName = "파드마와의 만남";
+                storyIdx = 1;
                 break;
             case "stage1-2":
                 questName = "미지의 세계로";
+                storyIdx = 2;
                 break;
             case "stage1-3":
                 questName = "다음 스테이지로 가자";
+                storyIdx = 3;
                 break;
             case "stage2-1":
                 questName = "2스테이지 시작";

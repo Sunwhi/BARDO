@@ -45,18 +45,18 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
     }
     private void EnterChoiceBtn()
     {
-        // entered Á¦¿ÜÇÏ°í ¸ğµç ¼±ÅÃÁöµéÀÇ selectedColor = white
+        // entered ì œì™¸í•˜ê³  ëª¨ë“  ì„ íƒì§€ë“¤ì˜ selectedColor = white
         if (gameObject.name != enteredChoiceBtn)
         {
             //Debug.Log("enter : " + gameObject.name);
             cb.selectedColor = Color.white;
         }
         choiceBtn.colors = cb;
-        //selectedChoiceBtnÀÇ »öÀ» ¹Ù²Ù¸é µÊ.
+        //selectedChoiceBtnì˜ ìƒ‰ì„ ë°”ê¾¸ë©´ ë¨.
     }
     private void ExitChoiceBtn()
     {
-        // exited Á¦¿ÜÇÏ°í ¸ğµç ¼±ÅÃÁöµéÀÇ selectedColor = gray
+        // exited ì œì™¸í•˜ê³  ëª¨ë“  ì„ íƒì§€ë“¤ì˜ selectedColor = gray
         if(gameObject.name != exitedChoiceBtn)
         {
             //Debug.Log("exit : " + gameObject.name);
@@ -87,7 +87,7 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
 
     public void OnSelectChoice()
     {
-        // ¹®Àå ³¡³¯¶§±îÁö ¼±ÅÃÁö ¸ø ´©¸§
+        // ë¬¸ì¥ ëë‚ ë•Œê¹Œì§€ ì„ íƒì§€ ëª» ëˆ„ë¦„
         if (DialogueManager.Instance.canContinueToNextLine)
         {
             SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
@@ -97,9 +97,10 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Hover);
         //Debug.Log(gameObject.name);
         enteredChoiceBtn = gameObject.name;
-        SelectButton(); // ¸¶¿ì½º·Î Å¬¸¯ÇÑ ¹öÆ°À¸·Î Select º¯°æ
+        SelectButton(); // ë§ˆìš°ìŠ¤ë¡œ í´ë¦­í•œ ë²„íŠ¼ìœ¼ë¡œ Select ë³€ê²½
         onEnterChoiceBtn?.Invoke();
     }
     public void OnPointerExit(PointerEventData eventData)
