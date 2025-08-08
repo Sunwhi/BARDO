@@ -5,23 +5,30 @@ using UnityEngine;
 
 public class QuestPanel : UIBase
 {
+    [SerializeField] private RectTransform questParent;
     [SerializeField] private TextMeshProUGUI titleTxt;
     [SerializeField] private RectTransform contentParent;
     [SerializeField] private GameObject subQuestTxtPrefab;
-    private List<TextMeshProUGUI> subQuestTxts;
+    private List<TextMeshProUGUI> subQuestTxts = new();
 
+    private float questBoxSize = 0f;
     private bool isSlided = false;
-    private bool isOpened = true;
     private Tween slideTween;
-    private Tween openTween;
 
     private QuestData currentQuestData;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        questBoxSize = contentParent.rect.width - 100f;
+    }
 
     private void OnEnable()
     {
         GameEventBus.Subscribe<DataChangeEvent<QuestData>>(OnQuestDataChanged);
         currentQuestData = SaveManager.Instance.MySaveData.currentQuest;
         SetQuestData();
+        SetSlide(true);
     }
 
     private void OnDisable()
@@ -29,30 +36,25 @@ public class QuestPanel : UIBase
         GameEventBus.Unsubscribe<DataChangeEvent<QuestData>>(OnQuestDataChanged);
     }
 
-    public void SetSlide()
+    public void SetSlide(bool alwaysOpen = false)
     {
-        if (slideTween != null && slideTween.IsActive() && slideTween.IsPlaying())
+        if (alwaysOpen) isSlided = false;
+        else if (slideTween != null 
+            && slideTween.IsActive() 
+            && slideTween.IsPlaying())
             return;
 
-        float moveX = isSlided ? 500f : -500f;
-        slideTween = transform.DOMoveX(transform.position.x + moveX, 1f)
-            .SetEase(isSlided ? Ease.InOutBack : Ease.InOutBack)
+        float moveX = isSlided ? questBoxSize : -questBoxSize;
+        slideTween = questParent.DOMoveX(questParent.position.x + moveX, 1f)
+            .SetEase(Ease.InOutBack)
             .OnComplete(() => slideTween = null);
 
         isSlided = !isSlided;
     }
 
-    public void SetOpen()
+    public void CompleteSubQuest(int id)
     {
-        if (openTween != null && openTween.IsActive() && openTween.IsPlaying())
-            return;
-
-        float moveY = isOpened ? contentParent.rect.height : -contentParent.rect.height;
-        openTween = contentParent.DOMoveY(contentParent.position.y + moveY, 1f)
-            .SetEase(isOpened ? Ease.InBack : Ease.OutBack)
-            .OnComplete(() => openTween = null);
-
-        isOpened = !isOpened;
+        subQuestTxts[id].transform.GetChild(0).gameObject.SetActive(true);
     }
 
     private void OnQuestDataChanged(DataChangeEvent<QuestData> @event)
@@ -68,15 +70,20 @@ public class QuestPanel : UIBase
             titleTxt.text = "No Active Quest";
             return;
         }
-
         titleTxt.text = currentQuestData.QuestTitle;
+
+        foreach (var items in subQuestTxts)
+        {
+            Destroy(items.gameObject);
+        }
+        subQuestTxts.Clear();
+
         for (int i = 0; i < currentQuestData.SubQuests.Count; i++)
         {
             var subQuest = currentQuestData.SubQuests[i];
-            subQuestTxts.Add(
-                Instantiate(subQuestTxtPrefab.gameObject, contentParent)
-                .GetComponent<TextMeshProUGUI>()
-                );
+            TextMeshProUGUI newTmp = Instantiate(subQuestTxtPrefab, contentParent)
+                .GetComponent<TextMeshProUGUI>();
+            subQuestTxts.Add(newTmp);
             subQuestTxts[i].text = $"({subQuest.SubQuestID}) {subQuest.SubQuestName}";
         }
     }

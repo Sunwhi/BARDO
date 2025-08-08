@@ -1,17 +1,17 @@
 using System.Collections;
-using System.Diagnostics;
-using UnityEditor.SceneManagement;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class StoryManager : Singleton<StoryManager>
 {
     [SerializeField] private Player player;
+    [SerializeField] private Padma padma;
+    public Player Player => player;
+    public Padma Padma => padma;   
+    
     [SerializeField] private GameObject Tuto_Move_On;
     [SerializeField] private string dialogueKnotName;
-    [SerializeField] GameObject padma;
-    private float alpha;
+    
     public PlayerController playerController { get; set; }
 
     public override void Awake()
@@ -21,18 +21,18 @@ public class StoryManager : Singleton<StoryManager>
     }
     private void OnEnable()
     {
-        GameEventManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
+        GameEventManager.Instance.dialogueEvents.onDialogueFinished += S1_DialogueFinished;
     }
     private void OnDisable()
     {
         if(GameEventManager.Instance != null)
         {
-            GameEventManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
+            GameEventManager.Instance.dialogueEvents.onDialogueFinished -= S1_DialogueFinished;
         }
     }
     private IEnumerator Start()
     {
-        PlayerMovementDisable();
+        player.playerInput.enabled = false;
 
         SoundManager.Instance.PlaySFX(eSFX.Stage_Transition);
         yield return new WaitForSeconds(1f);
@@ -43,48 +43,57 @@ public class StoryManager : Singleton<StoryManager>
         SoundManager.Instance.PlayBGM(eBGM.Stage1);
         SoundManager.Instance.PlayAmbientSound(eSFX.Background_Wind);
 
-        yield return PlayerWalkOut();
+        yield return PlayerWalkLeft();
 
-        //padma.GetComponent<Padma>().ShowPadma(); // ÆÄµå¸¶ ÆäÀÌµå ÀÎ
+        //padma.ShowPadma(); // íŒŒë“œë§ˆ í˜ì´ë“œ ì¸
 
         yield return new WaitForSeconds(2f);
-
-        yield return DialogueStart();
+        yield return S1_DialogueStart();
     }
 
-    private IEnumerator PlayerWalkOut()
+    public IEnumerator PlayerWalkLeft(float duration = 1f)
     {
         player.ForceMove(new Vector2(1, 0));
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(duration);
         player.ForceMove(Vector2.zero);
     }
 
-    private IEnumerator DialogueStart()
+    #region Stage1
+    private IEnumerator S1_DialogueStart()
     {
         if (!dialogueKnotName.Equals(""))
         {
-            // dialogue ÀÌº¥Æ® È£Ãâ
+            // dialogue ì´ë²¤íŠ¸ í˜¸ì¶œ
             GameEventManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
         }
         yield return 1;
     }
 
-    // ÇÃ·¹ÀÌ¾î ¿òÁ÷ÀÌÁö ¸øÇÏ°Ô
-    private void PlayerMovementDisable()
+    // íŒŒë“œë§ˆì™€ì˜ ëŒ€í™”ê°€ ëë‚˜ë©´
+    private void S1_DialogueFinished()
     {
-        player.GetComponent<PlayerInput>().enabled = false;
-    }
-    // ÆÄµå¸¶¿ÍÀÇ ´ëÈ­°¡ ³¡³ª¸é
-    private void DialogueFinished()
-    {
-        // ÆÄµå¸¶°¡ ¿À¸¥ÂÊÀ¸·Î ³¯¾Æ°£´Ù.
-        padma.GetComponent<Padma>().FlyRightPadma(() =>
+        padma.FlyRight(13f, 4f, () =>
         {
-            // FlyRightPadmaÀÇ DoMove°¡ CompleteµÇ¸é ¾Æ·¡ ½ÇÇà
+            // FlyRightPadmaì˜ DoMoveê°€ Completeë˜ë©´ ì•„ë˜ ì‹¤í–‰
             Tuto_Move_On.SetActive(true);
-            player.GetComponent<PlayerInput>().enabled = true;
-            padma.SetActive(false);
+            player.playerInput.enabled = true;
+            padma.transform.position = new Vector3(210, -285, 0);
+            padma.FlipX();
+            padma.Hide();
         });
     }
+    #endregion
 
+    #region Stage2
+    public void S2_EnterStage()
+    {
+
+    }
+    #endregion
+    #region Stage3
+    #endregion
+    #region Stage4
+    #endregion
+    #region Stage5
+    #endregion
 }

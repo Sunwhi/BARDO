@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
     [Header("Components")]
     public SpriteRenderer spriteRenderer;
+    public PlayerInput playerInput;
     public Rigidbody2D rb;
     public Collider2D col;
     public Animator animator;
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour
     public PlayerAnimationData AnimationData => animationData;
 
     public bool isGrounded = true;
-    private readonly float rayLength = 0.2f;
+    private readonly float rayLength = 0.1f;
 
     private void Awake()
     {

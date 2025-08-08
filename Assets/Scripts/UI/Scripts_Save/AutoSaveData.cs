@@ -136,6 +136,9 @@ public class AutoSaveData : Singleton<AutoSaveData>
                 questName = "다음 스테이지로 가자";
                 storyIdx = 3;
                 break;
+            case "stage2-1":
+                questName = "2스테이지 시작";
+                break;
         }
     }
 

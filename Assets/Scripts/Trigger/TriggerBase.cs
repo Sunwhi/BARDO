@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public abstract class TriggerBase : MonoBehaviour
 {
-    [Tooltip("ÇÑ ¹ø¸¸ ¹ßµ¿µÇ´Â Æ®¸®°ÅÀÎÁö ¿©ºÎ")]
+    [Tooltip("í•œ ë²ˆë§Œ ë°œë™ë˜ëŠ” íŠ¸ë¦¬ê±°ì¸ì§€ ì—¬ë¶€")]
     [SerializeField] private bool oneTimeTrigger = true;
     private bool hasTriggered = false;
 

@@ -67,7 +67,7 @@ public class UIManager : Singleton<UIManager>
     //UIManager.Instance.ShowPanelWithParam("PanelName", 변수1, 변수2, ...);
     //변수1부터는 원하는 아무 변수를 원하는 개수만큼.
     //YesNoPanel = EYesNoPanelType, UnityAction yesAction, UnityAction noAction
-    public void ShowPanelWithParam(string panelName, object[] param)
+    public T ShowPanelWithParam<T>(string panelName, object[] param = null) where T : UIBase
     {
         if (uiPanels.TryGetValue(panelName, out var panel))
         {
@@ -77,10 +77,12 @@ public class UIManager : Singleton<UIManager>
             {
                 uiBase.opened?.Invoke(param);
             }
+            return (T)uiBase;
         }
         else
         {
             Debug.LogWarning($"[UIPanel] : {panelName}패널을 찾을 수 없습니다");
+            return default;
         }
     }
 
