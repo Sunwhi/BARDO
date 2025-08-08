@@ -35,7 +35,7 @@ public class ClickSaveSlot : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam("YesNoPanel", new object[] {
+                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
@@ -60,7 +60,7 @@ public class ClickSaveSlot : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam("YesNoPanel", new object[] {
+                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
@@ -84,7 +84,7 @@ public class ClickSaveSlot : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam("YesNoPanel", new object[] {
+                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
@@ -108,7 +108,7 @@ public class ClickSaveSlot : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam("YesNoPanel", new object[] {
+                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
@@ -132,7 +132,7 @@ public class ClickSaveSlot : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam("YesNoPanel", new object[] {
+                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {

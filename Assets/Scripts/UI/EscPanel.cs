@@ -33,7 +33,7 @@ public class EscPanel : MonoBehaviour
         UIManager.Instance.HidePanel("EscBGImg");
         UIManager.Instance.HidePanel("EscPanel");
 
-        UIManager.Instance.ShowPanelWithParam("YesNoPanel", new object[] {
+        UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
         EYesNoPanelType.Quit,
         new UnityAction(() =>
         {
@@ -68,7 +68,7 @@ public class EscPanel : MonoBehaviour
         UIManager.Instance.HidePanel("EscBGImg");
         UIManager.Instance.HidePanel("EscPanel");
 
-        UIManager.Instance.ShowPanelWithParam("YesNoPanel", new object[] {
+        UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
         EYesNoPanelType.Quit,
         new UnityAction(() =>
         {

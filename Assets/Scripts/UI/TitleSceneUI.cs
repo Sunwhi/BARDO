@@ -29,7 +29,7 @@ public class TitleSceneUI : MonoBehaviour
         // 남은 saveslot이 없다면
         if(SaveManager.Instance.FirstEmptySlot() == 0)
         {
-            UIManager.Instance.ShowPanelWithParam("YesNoPanel", new object[] {
+            UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
             EYesNoPanelType.New,
             new UnityAction(() =>
             {
