@@ -3,6 +3,7 @@ using UnityEngine.Audio;
 
 public enum eBGM
 {
+    Title,
     Stage1,
 }
 

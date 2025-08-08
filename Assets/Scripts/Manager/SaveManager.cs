@@ -98,6 +98,7 @@ public class SaveManager : Singleton<SaveManager>
 
     public void LoadSlot(ESaveSlot slot)
     {
+        Debug.Log("faoisejflk");
         string path = GetSlotPath(slot);
         if (!File.Exists(path))
         {

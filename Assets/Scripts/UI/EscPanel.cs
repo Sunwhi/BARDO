@@ -29,6 +29,7 @@ public class EscPanel : MonoBehaviour
     public void OnClickTItle()
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+
         UIManager.Instance.HidePanel("EscBGImg");
         UIManager.Instance.HidePanel("EscPanel");
 
@@ -37,6 +38,7 @@ public class EscPanel : MonoBehaviour
         new UnityAction(() =>
         {
             MySceneManager.Instance.LoadScene(SceneType.Title);
+            SoundManager.Instance.PlayBGM(eBGM.Title);
         }),
         new UnityAction(() =>
         {

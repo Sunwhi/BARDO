@@ -35,7 +35,7 @@ public class ContinueManager : Singleton<ContinueManager>
         player = playerObj.GetComponent<Player>();
 
         savedPosition = SaveManager.Instance.MySaveData.savedPosition.ToVector3();
-
+        Debug.Log(savedPosition);
         controller = player.controller;
         player.GetComponent<PlayerInput>().enabled = true;
         player.rb.linearVelocity = Vector2.zero;
