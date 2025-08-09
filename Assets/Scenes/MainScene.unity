@@ -2176,7 +2176,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1424872976}
   - component: {fileID: 1424872977}
-  - component: {fileID: 1424872978}
   m_Layer: 5
   m_Name: Savepanel
   m_TagString: Untagged
@@ -2214,24 +2213,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fae057a791d41414ca9f7178b8519b2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Slots:
-  - {fileID: 1108462405}
-  - {fileID: 1108462404}
-  - {fileID: 1108462403}
-  - {fileID: 1108462402}
-  - {fileID: 1108462401}
---- !u!114 &1424872978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424872975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c2d4deee76eee745a2f1f0e3afc349e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Slots:
@@ -2970,8 +2951,8 @@ MonoBehaviour:
   StoryManager: {fileID: 1153402255}
   FadeView: {fileID: 605143096}
   Padma: {fileID: 1723892501}
-  Tutorial_Triggers: {fileID: 0}
-  Tuto_Move_On: {fileID: 0}
+  Tutorial_Triggers: {fileID: 5685559984432645883}
+  Tuto_Move_On: {fileID: 5685559984432645882}
 --- !u!4 &2139425161
 Transform:
   m_ObjectHideFlags: 0
@@ -3101,6 +3082,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840466133}
     m_Modifications:
+    - target: {fileID: 1752206984037226969, guid: 5d3eff51643abff419a35b3eed8b53e3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5628665620134570482, guid: 5d3eff51643abff419a35b3eed8b53e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3141,6 +3126,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8358483025795102826, guid: 5d3eff51643abff419a35b3eed8b53e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -712.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358483025795102826, guid: 5d3eff51643abff419a35b3eed8b53e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -812.06
+      objectReference: {fileID: 0}
     - target: {fileID: 8743938975457670720, guid: 5d3eff51643abff419a35b3eed8b53e3, type: 3}
       propertyPath: m_Name
       value: Stage1
@@ -3158,6 +3151,11 @@ BoxCollider2D:
 --- !u!1 &5685559984432645882 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7918143810023841558, guid: 5d3eff51643abff419a35b3eed8b53e3, type: 3}
+  m_PrefabInstance: {fileID: 5685559984432645880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5685559984432645883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6197977245613122044, guid: 5d3eff51643abff419a35b3eed8b53e3, type: 3}
   m_PrefabInstance: {fileID: 5685559984432645880}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5803313029000910291 stripped

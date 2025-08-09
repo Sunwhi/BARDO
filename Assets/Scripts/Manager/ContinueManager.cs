@@ -13,12 +13,10 @@ public class ContinueManager : Singleton<ContinueManager>
 
     private void OnEnable()
     {
-        //SceneManager.sceneLoaded += ContinueGame;
         GameEventBus.Subscribe<ClickContinueEvent>(ContinueGame);
     }
     private void OnDisable()
     {
-        //SceneManager.sceneLoaded -= ContinueGame;
         GameEventBus.Unsubscribe<ClickContinueEvent>(ContinueGame);
     }
 
@@ -35,7 +33,7 @@ public class ContinueManager : Singleton<ContinueManager>
         player = playerObj.GetComponent<Player>();
 
         savedPosition = SaveManager.Instance.MySaveData.savedPosition.ToVector3();
-        Debug.Log(savedPosition);
+        Debug.Log("Continue Manager " + savedPosition);
         controller = player.controller;
         player.GetComponent<PlayerInput>().enabled = true;
         player.rb.linearVelocity = Vector2.zero;

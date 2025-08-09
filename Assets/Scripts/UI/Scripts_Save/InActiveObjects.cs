@@ -20,7 +20,6 @@ public class InActiveObjects : MonoBehaviour
 
     public void InactiveObjects()
     {
-        Debug.Log("inactive");
         StoryManager.SetActive(false);
         FadeView.SetActive(false);
         Padma.SetActive(false);

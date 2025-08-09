@@ -35,6 +35,7 @@ public class TitleSceneUI : MonoBehaviour
             {
                 SaveManager.Instance.CreateSaveData();
                 SaveManager.Instance.currentSaveSlot = SaveManager.Instance.OldestSaveSlot();
+                Debug.Log(SaveManager.Instance.OldestSaveSlot());
                 MySceneManager.Instance.LoadScene(SceneType.MainScene);
             })
             });

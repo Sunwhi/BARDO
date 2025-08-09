@@ -25,7 +25,7 @@ public class ClickContinueSlot : MonoBehaviour
                 if (SaveManager.Instance.HasSaveSlot(ESaveSlot.Slot2))
                 {
                     SaveManager.Instance.LoadSlot(ESaveSlot.Slot2);
-                    Debug.Log(SaveManager.Instance.MySaveData.savedPosition);
+                    Debug.Log(SaveManager.Instance.MySaveData.savedPosition.ToVector3());
                     SaveManager.Instance.currentSaveSlot = 2;
                     hasSaveSlot = true;
                 }
