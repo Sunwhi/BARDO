@@ -54,7 +54,19 @@ public class TitleSceneUI : MonoBehaviour
         {
             Debug.LogError("SoundManager.Instance is null! 씬에 SoundManager가 없거나 아직 초기화되지 않았습니다.");
         }
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        //SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        if (UIManager.Instance == null)
+        {
+            Debug.LogError("UIManager.Instance is null!");
+        }
+        if (SaveManager.Instance == null)
+        {
+            Debug.LogError("SaveManager.Instance is null!");
+        }
+        if (DialogueManager.Instance == null)
+        {
+            Debug.LogError("DialogueManager.Instance is null!");
+        }
         UIManager.Instance.ShowPanel("ContinuePanel");
     }
 

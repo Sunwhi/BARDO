@@ -14,6 +14,6 @@ public class GameEventManager : Singleton<GameEventManager>
     }
     private void OnDestroy()
     {
-        isManagerDestroyed = true;
+        //isManagerDestroyed = true;
     }
 }
