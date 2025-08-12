@@ -39,6 +39,7 @@ public class EscPanel : MonoBehaviour
         {
             MySceneManager.Instance.LoadScene(SceneType.Title);
             SoundManager.Instance.PlayBGM(eBGM.Title);
+            //ContinueManager.Instance.loadedByContinue = false; // 로드 후 메인메뉴로 돌아왔을 때 초기화해야 InActiveObjects가 비활성화된다.
         }),
         new UnityAction(() =>
         {

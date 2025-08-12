@@ -14,8 +14,11 @@ public class InActiveObjects : MonoBehaviour
 
     private void Start()
     {
-        if(ContinueManager.Instance.loadedByContinue)
+        if (ContinueManager.Instance.loadedByContinue)
             InactiveObjects();
+        else
+            ActiveObjects();
+
     }
 
     public void InactiveObjects()
@@ -23,6 +26,16 @@ public class InActiveObjects : MonoBehaviour
         StoryManager.SetActive(false);
         FadeView.SetActive(false);
         Padma.SetActive(false);
+        Tuto_Move_On.SetActive(true);
+        //Tutorial_Triggers.SetActive(false);
+
+        ContinueManager.Instance.loadedByContinue = false;
+    }
+    public void ActiveObjects()
+    {
+        StoryManager.SetActive(true);
+        FadeView.SetActive(true);
+        Padma.SetActive(true);
         Tuto_Move_On.SetActive(true);
         //Tutorial_Triggers.SetActive(false);
 
