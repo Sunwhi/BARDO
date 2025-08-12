@@ -16,7 +16,6 @@ public class Singleton<T> : MonoBehaviour where T : Component
         {
             if (applicationQuit)
             {
-                Debug.Log("quit! return null");
                 return null;
             }
 

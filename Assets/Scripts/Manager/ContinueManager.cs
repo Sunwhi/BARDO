@@ -24,6 +24,7 @@ public class ContinueManager : Singleton<ContinueManager>
     {
         loadedByContinue = true;
         StartCoroutine(SetPlayerPositionDelayed());
+        StartCoroutine(FadeIn());
     }
 
     private IEnumerator SetPlayerPositionDelayed()
@@ -33,7 +34,6 @@ public class ContinueManager : Singleton<ContinueManager>
         player = playerObj.GetComponent<Player>();
 
         savedPosition = SaveManager.Instance.MySaveData.savedPosition.ToVector3();
-        Debug.Log("Continue Manager " + savedPosition);
         controller = player.controller;
         player.GetComponent<PlayerInput>().enabled = true;
         player.rb.linearVelocity = Vector2.zero;
@@ -41,4 +41,9 @@ public class ContinueManager : Singleton<ContinueManager>
         playerObj.transform.position = savedPosition;
     }
 
+    private IEnumerator FadeIn()
+    {
+        yield return null;
+        yield return UIManager.Instance.fadeView.FadeIn();
+    }
 }

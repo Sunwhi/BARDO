@@ -21,16 +21,18 @@ public class InActiveObjects : MonoBehaviour
 
     }
 
+    // 이어하기 눌렀을 때 
     public void InactiveObjects()
     {
         StoryManager.SetActive(false);
-        FadeView.SetActive(false);
+        //FadeView.SetActive(false);
         Padma.SetActive(false);
         Tuto_Move_On.SetActive(true);
         //Tutorial_Triggers.SetActive(false);
 
         ContinueManager.Instance.loadedByContinue = false;
     }
+    // 새 게임 눌렀을 때
     public void ActiveObjects()
     {
         StoryManager.SetActive(true);

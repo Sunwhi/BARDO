@@ -7,7 +7,7 @@ public class Fadeview : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     
     public IEnumerator FadeOut(float duration = 1f)
-    {
+    { 
         canvasGroup.DOFade(1f, duration);
         yield return new WaitForSeconds(duration);
     }

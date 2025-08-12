@@ -28,7 +28,6 @@ public class AutoSaveSlotUI : MonoBehaviour
     {
         //Debug.Log("oncheckpointautosave");
         currentSaveSlot =  SaveManager.Instance.currentSaveSlot; // 현재 저장되고 있는 슬롯 불러오기
-        Debug.Log(currentSaveSlot);
         foreach (var slot in Slots)
         {
             switch (currentSaveSlot)
