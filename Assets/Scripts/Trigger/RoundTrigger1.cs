@@ -8,9 +8,6 @@ public class RoundTrigger1 : TriggerBase
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float playerWalkDuration = 3f;
 
-    //public CinemachineCamera mainCam;
-    public CinemachineCamera playerCam;
-    public CinemachineCamera padmaCam;
     protected override void OnTriggered()
     {
         StartCoroutine(TriggerEffect());   
@@ -31,14 +28,13 @@ public class RoundTrigger1 : TriggerBase
         StoryManager.Instance.S2_EnterStage();
 
         //TODO : Player & Padma Cutscene
-        FocusOnPlayer();
-        yield return new WaitForSeconds(2f);
-        FocusOnPadma();
-        yield return new WaitForSeconds(2f);
+        //FocusOnPlayer();
+        //yield return new WaitForSeconds(2f);
+        //FocusOnPadma();
+        //yield return new WaitForSeconds(2f);
 
-        ResetCamera();
-        yield return new WaitForSeconds(2f);
-
+        //ResetCamera();
+        yield return new WaitForSeconds(1f);
 
         //TODO : Padma 퇴장
         yield return new WaitUntil(() => !DialogueManager.Instance.dialoguePlaying);
@@ -52,7 +48,7 @@ public class RoundTrigger1 : TriggerBase
         //yield return StartCoroutine(StoryManager.Instance.PlayerWalkLeft(playerWalkDuration));
         yield return null;
     }
-    public void FocusOnPlayer()
+    /*public void FocusOnPlayer()
     {
         playerCam.Priority = 20;
         padmaCam.Priority = 10;
@@ -69,5 +65,5 @@ public class RoundTrigger1 : TriggerBase
         playerCam.gameObject.SetActive(false);
         padmaCam.gameObject.SetActive(false);
         //mainCam.Priority = 20;
-    }
+    }*/
 }

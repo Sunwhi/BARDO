@@ -1215,6 +1215,14 @@ MonoBehaviour:
     Camera: {fileID: 835177744}
     ActivateAfter: 0
     MinDuration: 0
+  - FullHash: -1970590810
+    Camera: {fileID: 0}
+    ActivateAfter: 0
+    MinDuration: 0
+  - FullHash: -1970590810
+    Camera: {fileID: 0}
+    ActivateAfter: 0
+    MinDuration: 0
   - FullHash: -19966506
     Camera: {fileID: 247641076}
     ActivateAfter: 0
@@ -1237,6 +1245,8 @@ MonoBehaviour:
   - Hash: 281097466
     HashOfParent: 756556552
   - Hash: -1983355584
+    HashOfParent: 756556552
+  - Hash: -1970590810
     HashOfParent: 756556552
   m_LegacyLookAt: {fileID: 0}
   m_LegacyFollow: {fileID: 0}
@@ -3411,6 +3421,14 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 835177744}
+    - target: {fileID: 5306908036575525214, guid: 04ba9f0a92938564c919b20eb138af74, type: 3}
+      propertyPath: padmaCam
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306908036575525214, guid: 04ba9f0a92938564c919b20eb138af74, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
