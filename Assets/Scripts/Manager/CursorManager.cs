@@ -11,14 +11,14 @@ public class CursorChanger : Singleton<CursorChanger>
     private void Start()
     {
         Cursor.SetCursor(cursorTexture,hotSpot,cursorMode);
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Confined; 화면 밖으로 안 나가게
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
             Cursor.lockState = CursorLockMode.None;
         }
-    }
+    }*/
 }

@@ -44,6 +44,6 @@ public class ContinueManager : Singleton<ContinueManager>
     private IEnumerator FadeIn()
     {
         yield return null;
-        yield return UIManager.Instance.fadeView.FadeIn();
+        yield return UIManager.Instance.fadeView.FadeIn(2f);
     }
 }

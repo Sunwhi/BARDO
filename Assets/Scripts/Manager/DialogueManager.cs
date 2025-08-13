@@ -3,53 +3,54 @@ using Ink.Runtime;
 using System.Collections;
 using UnityEditor.Build.Content;
 using UnityEngine.Rendering.Universal;
+using System.Collections.Generic;
 /*
  * DialogueManager
- * Dialogue Event¸¦ listenÇÏ°í ¸Â´Â ink dialogue¸¦ ½ÇÇàÇÑ´Ù.
+ * Dialogue Eventë¥¼ listení•˜ê³  ë§ëŠ” ink dialogueë¥¼ ì‹¤í–‰í•œë‹¤.
  */
 public class DialogueManager : Singleton<DialogueManager>
 {
     [Header("Ink Story")]
-    [SerializeField] private TextAsset inkJson;
+    [SerializeField] public TextAsset stage1InkJson;
 
-    private Story story;
+    public Story story;
 
     public bool haveChoices = false;
 
     private int currentChoiceIndex = -1;
 
-    public bool dialoguePlaying { get; private set; } = false;    // dialogue°¡ playingÁßÀÎ°¡?
+    public string speaker;
+    private List<string> tags = new List<string>();
+    public bool dialoguePlaying { get; private set; } = false;    // dialogueê°€ playingì¤‘ì¸ê°€?
 
-    // Dialogue ´ÙÀ½ ¶óÀÎÀ¸·Î ³Ñ¾î°¥ ¼ö ÀÖ´Â°¡? Å¸ÀÌÇÎ µµÁß next·Î ³Ñ¾î°¡Áö ¸øÇÏ°Ô
+    // Dialogue ë‹¤ìŒ ë¼ì¸ìœ¼ë¡œ ë„˜ì–´ê°ˆ ìˆ˜ ìˆëŠ”ê°€? íƒ€ì´í•‘ ë„ì¤‘ nextë¡œ ë„˜ì–´ê°€ì§€ ëª»í•˜ê²Œ
     public bool canContinueToNextLine { get; set; } = false;
 
     public bool panelClickForSkip = false;
     public override void Awake()
     {
         base.Awake();
-        story = new Story(inkJson.text);
+        story = new Story(stage1InkJson.text);
     }
 
     private void OnEnable()
     {
-        if (GameEventManager.Instance != null)
+        if (DialogueEventManager.Instance != null)
         {
-            //Debug.Log("OnEnableÈ£ÃâµÊ");
-            // ÀÌº¥Æ® Ãß°¡
-            GameEventManager.Instance.dialogueEvents.onEnterDialogue += EnterDialogue;
-            GameEventManager.Instance.inputEvents.onStartDialogue += StartDialogue;
-            GameEventManager.Instance.dialogueEvents.onUpdateChoiceIndex += UpdateChoiceIndex;
+            // ì´ë²¤íŠ¸ ì¶”ê°€
+            DialogueEventManager.Instance.dialogueEvents.onEnterDialogue += EnterDialogue;
+            DialogueEventManager.Instance.inputEvents.onStartDialogue += StartDialogue;
+            DialogueEventManager.Instance.dialogueEvents.onUpdateChoiceIndex += UpdateChoiceIndex;
         }
     }
     private void OnDisable()
     {
-        if (GameEventManager.Instance != null)
+        if (DialogueEventManager.Instance != null)
         {
-            // Debug.Log("dm ondisable");
-            // ÀÌº¥Æ® »èÁ¦
-            GameEventManager.Instance.dialogueEvents.onEnterDialogue -= EnterDialogue;
-            GameEventManager.Instance.inputEvents.onStartDialogue -= StartDialogue;
-            GameEventManager.Instance.dialogueEvents.onUpdateChoiceIndex -= UpdateChoiceIndex;
+            // ì´ë²¤íŠ¸ ì‚­ì œ
+            DialogueEventManager.Instance.dialogueEvents.onEnterDialogue -= EnterDialogue;
+            DialogueEventManager.Instance.inputEvents.onStartDialogue -= StartDialogue;
+            DialogueEventManager.Instance.dialogueEvents.onUpdateChoiceIndex -= UpdateChoiceIndex;
 
         }
     }
@@ -72,7 +73,8 @@ public class DialogueManager : Singleton<DialogueManager>
     }
     private void EnterDialogue(string knotName)
     {
-        // ÀÌ¹Ì dialogue¿¡ µé¾î°¡ ÀÖ´Ù¸é ¶Ç ´Ù½Ã dialogue¿¡ µé¾î°¡Áö ¾Ê´Â´Ù.
+        
+        // ì´ë¯¸ dialogueì— ë“¤ì–´ê°€ ìˆë‹¤ë©´ ë˜ ë‹¤ì‹œ dialogueì— ë“¤ì–´ê°€ì§€ ì•ŠëŠ”ë‹¤.
         if (dialoguePlaying)
         {
             return;
@@ -80,12 +82,12 @@ public class DialogueManager : Singleton<DialogueManager>
         dialoguePlaying = true;
 
         // inform other parts of our system that we've started diagram
-        GameEventManager.Instance.dialogueEvents.DialogueStarted();
+        DialogueEventManager.Instance.dialogueEvents.DialogueStarted();
 
         // input event context
-        GameEventManager.Instance.inputEvents.ChangeInputEventContext(InputEventContext.DIALOGUE);
+        DialogueEventManager.Instance.inputEvents.ChangeInputEventContext(InputEventContext.DIALOGUE);
 
-        // knotName knot·Î jump
+        // knotName knotë¡œ jump
         if (!knotName.Equals(""))
         {
             story.ChoosePathString(knotName);
@@ -94,7 +96,14 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             Debug.LogWarning("Knot name was empty when entering the dialogue");
         }
-        // story ½ÃÀÛ
+        Debug.Log("enterdialogue");
+        tags = story.currentTags;
+        Debug.Log(story.currentTags);
+        foreach(string tag in tags)
+        {
+            Debug.Log(tag);
+        }
+        // story ì‹œì‘
         ContinueOrExitStory();
     } 
 
@@ -126,7 +135,7 @@ public class DialogueManager : Singleton<DialogueManager>
             else
             {
                 haveChoices = story.currentChoices.Count > 0;
-                GameEventManager.Instance.dialogueEvents.DisplayDialogue(dialogueLIne, story.currentChoices);
+                DialogueEventManager.Instance.dialogueEvents.DisplayDialogue(dialogueLIne, story.currentChoices);
             }
         }
         else if (story.currentChoices.Count == 0)
@@ -141,10 +150,10 @@ public class DialogueManager : Singleton<DialogueManager>
         dialoguePlaying = false;
 
         // inform other parts of our system that we've finished dialogue
-        GameEventManager.Instance.dialogueEvents.DialogueFinished();
+        DialogueEventManager.Instance.dialogueEvents.DialogueFinished();
 
         // input event context
-        GameEventManager.Instance.inputEvents.ChangeInputEventContext(InputEventContext.DEFAULT);
+        DialogueEventManager.Instance.inputEvents.ChangeInputEventContext(InputEventContext.DEFAULT);
 
         // reset story state
         story.ResetState();
@@ -155,7 +164,7 @@ public class DialogueManager : Singleton<DialogueManager>
         return dialogueLine.Trim().Equals("") || dialogueLine.Trim().Equals("\n");
     }
 
-    // ÇöÀç ¹®ÀåÀÌ ¼±ÅÃÁö°¡ ÀÖ´Â ¹®ÀåÀÎ°¡?
+    // í˜„ì¬ ë¬¸ì¥ì´ ì„ íƒì§€ê°€ ìˆëŠ” ë¬¸ì¥ì¸ê°€?
     public bool ContainChoices()
     {
         if (story.currentChoices.Count != 0) return true;

@@ -82,7 +82,7 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
     {
         //Debug.Log(gameObject.name);
         selectedChoiceBtn = gameObject.name;
-        GameEventManager.Instance.dialogueEvents.UpdateChoiceIndex(choiceIndex);
+        DialogueEventManager.Instance.dialogueEvents.UpdateChoiceIndex(choiceIndex);
     }
 
     public void OnSelectChoice()
@@ -91,7 +91,7 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
         if (DialogueManager.Instance.canContinueToNextLine)
         {
             SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
-            GameEventManager.Instance.inputEvents.StartDialogue();
+            DialogueEventManager.Instance.inputEvents.StartDialogue();
         }
     }
 

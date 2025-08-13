@@ -24,7 +24,7 @@ public class InActiveObjects : MonoBehaviour
     // 이어하기 눌렀을 때 
     public void InactiveObjects()
     {
-        StoryManager.SetActive(false);
+        //StoryManager.SetActive(false);
         //FadeView.SetActive(false);
         Padma.SetActive(false);
         Tuto_Move_On.SetActive(true);
@@ -38,7 +38,7 @@ public class InActiveObjects : MonoBehaviour
         StoryManager.SetActive(true);
         FadeView.SetActive(true);
         Padma.SetActive(true);
-        Tuto_Move_On.SetActive(true);
+        Tuto_Move_On.SetActive(false);
         //Tutorial_Triggers.SetActive(false);
 
         ContinueManager.Instance.loadedByContinue = false;

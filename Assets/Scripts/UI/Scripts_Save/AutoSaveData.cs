@@ -136,8 +136,12 @@ public class AutoSaveData : Singleton<AutoSaveData>
                 questName = "다음 스테이지로 가자";
                 storyIdx = 3;
                 break;
+            case "stage1-4":
+                questName = "클리어직전";
+                storyIdx = 4;
+                break;
             case "stage2-1":
-                questName = "2스테이지 시작";
+                questName = "파드마와의 재회";
                 break;
         }
     }

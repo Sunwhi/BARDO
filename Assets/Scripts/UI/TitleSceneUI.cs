@@ -25,6 +25,7 @@ public class TitleSceneUI : MonoBehaviour
     {
         //bug.Log(MySceneManager.Instance == null ? "인스턴스가 null" : "인스턴스 살아있음");
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        ContinueManager.Instance.loadedByContinue = false;
 
         // 남은 saveslot이 없다면
         if(SaveManager.Instance.FirstEmptySlot() == 0)
@@ -35,7 +36,7 @@ public class TitleSceneUI : MonoBehaviour
             {
                 SaveManager.Instance.CreateSaveData();
                 SaveManager.Instance.currentSaveSlot = SaveManager.Instance.OldestSaveSlot();
-                Debug.Log(SaveManager.Instance.OldestSaveSlot());
+                //Debug.Log(SaveManager.Instance.OldestSaveSlot());
                 MySceneManager.Instance.LoadScene(SceneType.MainScene);
             })
             });
