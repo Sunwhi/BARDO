@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
     public bool isGrounded = true;
     private readonly float rayLength = 0.1f;
 
+    private MovingPlatform curPlatform;
+    private bool onPlatform = false;
+
     private void Awake()
     {
         animationData.Initialize();
@@ -90,6 +93,25 @@ public class Player : MonoBehaviour
         else
         {
             isGrounded = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.TryGetComponent(out MovingPlatform platform))
+        {
+            onPlatform = true;
+            curPlatform = platform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (curPlatform != null 
+            && collision.collider.GetComponent<MovingPlatform>() == curPlatform)
+        {
+            onPlatform = false;
+            curPlatform = null;
         }
     }
 
