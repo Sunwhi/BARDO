@@ -15,7 +15,6 @@ public class RoundTrigger1 : TriggerBase
 
     private IEnumerator TriggerEffect()
     {
-        Debug.Log("adfse");
         yield return UIManager.Instance.fadeView.FillWhite();
         StoryManager.Instance.Player.playerInput.enabled = false;
         StoryManager.Instance.Player.transform.position = playerTransform.position;
