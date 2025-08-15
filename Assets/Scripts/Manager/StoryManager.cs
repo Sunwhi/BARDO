@@ -4,7 +4,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using Ink.Runtime;
 
 
 public class StoryManager : Singleton<StoryManager>

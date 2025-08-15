@@ -70,7 +70,6 @@ public class ClickContinueSlot : MonoBehaviour
     {
 
         stageIdx = SaveManager.Instance.MySaveData.stageIdx;
-
         switch (stageIdx)
         {
             case 1:
