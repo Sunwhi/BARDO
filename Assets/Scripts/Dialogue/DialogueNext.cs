@@ -34,7 +34,7 @@ public class DialogueNext : MonoBehaviour, IPointerEnterHandler
         if (!dialogueKnotName.Equals(""))
         {
             SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
-            GameEventManager.Instance.inputEvents.StartDialogue();
+            DialogueEventManager.Instance.inputEvents.StartDialogue();
         }
     }
     public void OnPointerEnter(PointerEventData eventData)

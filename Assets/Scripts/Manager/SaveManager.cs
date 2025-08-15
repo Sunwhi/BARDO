@@ -61,7 +61,7 @@ public class SaveManager : Singleton<SaveManager>
         }
 
         isAutoDirty = false;
-        Debug.Log($"[SaveManager] Save directory path: {directory}");
+        //Debug.Log($"[SaveManager] Save directory path: {directory}");
     }
 
     private void OnApplicationQuit()
@@ -98,7 +98,6 @@ public class SaveManager : Singleton<SaveManager>
 
     public void LoadSlot(ESaveSlot slot)
     {
-        Debug.Log("faoisejflk");
         string path = GetSlotPath(slot);
         if (!File.Exists(path))
         {

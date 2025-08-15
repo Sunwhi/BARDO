@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4d851a260c2714b843d89d803c4186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJson: {fileID: 4900000, guid: 0b8f71e42c668544599afd4dd9ccae45, type: 3}
+  stage1InkJson: {fileID: 4900000, guid: 62eb69f293dab714d9b9a824189bc1e2, type: 3}
   haveChoices: 0
   panelClickForSkip: 0
 --- !u!1 &268069202
@@ -1746,9 +1746,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6143055f848e54a9da5a9b42c3c24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: cad69088847a17a45852d1b9006986f3, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 6ba9e5bbd923b1444b58e466f84555e7, type: 3}
   hotSpot: {x: 0, y: 0}
   cursorMode: 0
+  resolution: {x: 1920, y: 1080}
 --- !u!4 &701990443
 Transform:
   m_ObjectHideFlags: 0

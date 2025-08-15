@@ -25,6 +25,7 @@ public class TitleSceneUI : MonoBehaviour
     {
         //bug.Log(MySceneManager.Instance == null ? "인스턴스가 null" : "인스턴스 살아있음");
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        ContinueManager.Instance.loadedByContinue = false;
 
         // 남은 saveslot이 없다면
         if(SaveManager.Instance.FirstEmptySlot() == 0)
@@ -35,6 +36,7 @@ public class TitleSceneUI : MonoBehaviour
             {
                 SaveManager.Instance.CreateSaveData();
                 SaveManager.Instance.currentSaveSlot = SaveManager.Instance.OldestSaveSlot();
+                //Debug.Log(SaveManager.Instance.OldestSaveSlot());
                 MySceneManager.Instance.LoadScene(SceneType.MainScene);
             })
             });
@@ -53,7 +55,19 @@ public class TitleSceneUI : MonoBehaviour
         {
             Debug.LogError("SoundManager.Instance is null! 씬에 SoundManager가 없거나 아직 초기화되지 않았습니다.");
         }
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        //SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        if (UIManager.Instance == null)
+        {
+            Debug.LogError("UIManager.Instance is null!");
+        }
+        if (SaveManager.Instance == null)
+        {
+            Debug.LogError("SaveManager.Instance is null!");
+        }
+        if (DialogueManager.Instance == null)
+        {
+            Debug.LogError("DialogueManager.Instance is null!");
+        }
         UIManager.Instance.ShowPanel("ContinuePanel");
     }
 

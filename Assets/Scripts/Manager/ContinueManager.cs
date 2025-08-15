@@ -13,19 +13,20 @@ public class ContinueManager : Singleton<ContinueManager>
 
     private void OnEnable()
     {
-        //SceneManager.sceneLoaded += ContinueGame;
         GameEventBus.Subscribe<ClickContinueEvent>(ContinueGame);
     }
     private void OnDisable()
     {
-        //SceneManager.sceneLoaded -= ContinueGame;
         GameEventBus.Unsubscribe<ClickContinueEvent>(ContinueGame);
     }
 
     private void ContinueGame(ClickContinueEvent ev)
     {
+        SoundManager.Instance.PlayBGM(eBGM.Stage1);
+
         loadedByContinue = true;
         StartCoroutine(SetPlayerPositionDelayed());
+        StartCoroutine(FadeIn());
     }
 
     private IEnumerator SetPlayerPositionDelayed()
@@ -35,7 +36,6 @@ public class ContinueManager : Singleton<ContinueManager>
         player = playerObj.GetComponent<Player>();
 
         savedPosition = SaveManager.Instance.MySaveData.savedPosition.ToVector3();
-        Debug.Log(savedPosition);
         controller = player.controller;
         player.GetComponent<PlayerInput>().enabled = true;
         player.rb.linearVelocity = Vector2.zero;
@@ -43,4 +43,9 @@ public class ContinueManager : Singleton<ContinueManager>
         playerObj.transform.position = savedPosition;
     }
 
+    private IEnumerator FadeIn()
+    {
+        yield return null;
+        yield return UIManager.Instance.fadeView.FadeIn(2f);
+    }
 }

@@ -10,14 +10,14 @@ public class DialogueStart : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEventManager.Instance.inputEvents.onStartDialogue += StartDialogue;
+        DialogueEventManager.Instance.inputEvents.onStartDialogue += StartDialogue;
         //GameEventBus.Subscribe<>
     }
     private void OnDisable()
     {   
-        if(GameEventManager.Instance != null)
+        if(DialogueEventManager.Instance != null)
         {
-            GameEventManager.Instance.inputEvents.onStartDialogue -= StartDialogue;
+            DialogueEventManager.Instance.inputEvents.onStartDialogue -= StartDialogue;
         }
     }
 
@@ -30,7 +30,7 @@ public class DialogueStart : MonoBehaviour
     {
         /*if (Input.GetKeyDown(KeyCode.S))
         {
-            //UIManager.Instance.ShowUiPanels(); µπˆ±Î øÎµµ
+            //UIManager.Instance.ShowUiPanels(); ÎîîÎ≤ÑÍπÖ Ïö©ÎèÑ
 
             if(!inputEventContext.Equals(InputEventContext.DEFAULT))
             {
@@ -38,7 +38,7 @@ public class DialogueStart : MonoBehaviour
             }
             if (!dialogueKnotName.Equals(""))
             {
-                // dialogue ¿Ã∫•∆Æ »£√‚
+                // dialogue Ïù¥Î≤§Ìä∏ Ìò∏Ï∂ú
                 GameEventManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
             }
         }*/

@@ -4,14 +4,12 @@ using Ink.Runtime;
 using System.Collections.Generic;
 public class DialogueEvents : MonoBehaviour, IGameEvent
 {
-    // stringÀ» ¹Ş¾Æ¼­ void¸¦ ¹İÈ¯ÇÏ´Â ÇÔ¼ö¸¦ ´ãÀ» ¼ö ÀÖ´Â delegate Å¸ÀÔ
-    // ÀÌº¥Æ® Á¤ÀÇ
+    // stringì„ ë°›ì•„ì„œ voidë¥¼ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜ë¥¼ ë‹´ì„ ìˆ˜ ìˆëŠ” delegate íƒ€ì…
+    // ì´ë²¤íŠ¸ ì •ì˜
     public event Action<string> onEnterDialogue;
     public void EnterDialogue(string knotName)
     {
-        //Debug.Log("DialogueEvents");
-        //Debug.Log(knotName);
-        //onEnterDialogue ÀÌº¥Æ®°¡ ºñ¾îÀÖÁö ¾ÊÀ¸¸é, µî·ÏµÈ ¸ğµç Äİ¹éÀ» knotName ÀÎÀÚ·Î È£Ãâ
+        //onEnterDialogue ì´ë²¤íŠ¸ê°€ ë¹„ì–´ìˆì§€ ì•Šìœ¼ë©´, ë“±ë¡ëœ ëª¨ë“  ì½œë°±ì„ knotName ì¸ìë¡œ í˜¸ì¶œ
         onEnterDialogue?.Invoke(knotName);
     }
 

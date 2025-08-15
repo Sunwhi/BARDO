@@ -19,9 +19,9 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private float typingSpeed = 0.04f;
     private Coroutine displayLineCoroutine;
     private bool skipDialogue = false;
-    // ´ëÈ­ Ãâ·ÂÀÌ ¿Ï·áµÇ°í next¹öÆ° È°¼ºÈ­ Àü±îÁö OnSubmitÀÌ ¿©·¯¹ø Ãâ·ÂµÇ¾î skipDialogue°¡ ´ÙÀ½ÁÙ±îÁö true°¡ µÇ´Â ¹ö±×¸¦ ¹æÁöÇÏ±â À§ÇØ,
-    // ÇÑ¹ø OnSubmitÀ¸·Î ´ëÈ­Ã¢ ½ºÅµÇÏ¸é, next¹öÆ° È°¼ºÈ­ µÇ±â Àü±îÁö ´Ù½Ã OnSubmitÀÌ È£Ãâ ¾ÈµÇ°Ô ÇÔ.
-    // Áï, ÇÑ¹ø OnSubmit ´©¸£¸é next ¹öÆ° È°¼ºÈ­ Àü±îÁö OnSubmitÀÌ È£ÃâÀÌ ¾ÈµÇ°í, ´Ù½Ã skipDialogue°¡ trueµÇÁö ¾Ê°Ô ÇÔ.
+    // ëŒ€í™” ì¶œë ¥ì´ ì™„ë£Œë˜ê³  nextë²„íŠ¼ í™œì„±í™” ì „ê¹Œì§€ OnSubmitì´ ì—¬ëŸ¬ë²ˆ ì¶œë ¥ë˜ì–´ skipDialogueê°€ ë‹¤ìŒì¤„ê¹Œì§€ trueê°€ ë˜ëŠ” ë²„ê·¸ë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•´,
+    // í•œë²ˆ OnSubmitìœ¼ë¡œ ëŒ€í™”ì°½ ìŠ¤í‚µí•˜ë©´, nextë²„íŠ¼ í™œì„±í™” ë˜ê¸° ì „ê¹Œì§€ ë‹¤ì‹œ OnSubmitì´ í˜¸ì¶œ ì•ˆë˜ê²Œ í•¨.
+    // ì¦‰, í•œë²ˆ OnSubmit ëˆ„ë¥´ë©´ next ë²„íŠ¼ í™œì„±í™” ì „ê¹Œì§€ OnSubmitì´ í˜¸ì¶œì´ ì•ˆë˜ê³ , ë‹¤ì‹œ skipDialogueê°€ trueë˜ì§€ ì•Šê²Œ í•¨.
     private bool isOnSubmitPressed = false; 
     private void Start()
     {
@@ -33,15 +33,14 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
     }
     private void Update()
     {
-        //Debug.Log()
-        // ¸ğµç ÁÙÀÌ Ãâ·ÂµÇÁö ¾Ê¾ÒÀ» ¶§, space¸¦ ´­·¯ dialogue¸¦ skipÇÑ´Ù.
+        // ëª¨ë“  ì¤„ì´ ì¶œë ¥ë˜ì§€ ì•Šì•˜ì„ ë•Œ, spaceë¥¼ ëˆŒëŸ¬ dialogueë¥¼ skipí•œë‹¤.
         if ((UIInputManager.Instance.GetSubmitPressed() || DialogueManager.Instance.panelClickForSkip) && !DialogueManager.Instance.canContinueToNextLine)
         {
             if (!isOnSubmitPressed) 
             {
                 isOnSubmitPressed = true;
-                // ÀÌ°Ô Áö±İ ½ÇÇàÀÌ ¾ÈµÇ°í ÀÖ´Ù. ±× ÀÌÀ¯´Â GetSubmitPressed()°¡ true°¡ ¾ÈµÇ°í ÀÖÀ½*************************************************** why??
-                UIInputManager.Instance.submitPressed = false; // ½ºÆäÀÌ½º¹Ù ´­·¶À»¶§¸¸ falseµÇ°Ô. ÀÌ·¸°Ô ¾ÈÇÏ°í GetSubmitPressed¿¡¼­ falseÇÏ¸é °è¼ÓÇØ¼­ false°¡ Ãâ·ÂµÅ¼­ ÀÛµ¿À» ¾ÈÇÔ. true°¡ ¾È³ª¿È.
+                // ì´ê²Œ ì§€ê¸ˆ ì‹¤í–‰ì´ ì•ˆë˜ê³  ìˆë‹¤. ê·¸ ì´ìœ ëŠ” GetSubmitPressed()ê°€ trueê°€ ì•ˆë˜ê³  ìˆìŒ*************************************************** why??
+                UIInputManager.Instance.submitPressed = false; // ìŠ¤í˜ì´ìŠ¤ë°” ëˆŒë €ì„ë•Œë§Œ falseë˜ê²Œ. ì´ë ‡ê²Œ ì•ˆí•˜ê³  GetSubmitPressedì—ì„œ falseí•˜ë©´ ê³„ì†í•´ì„œ falseê°€ ì¶œë ¥ë¼ì„œ ì‘ë™ì„ ì•ˆí•¨. trueê°€ ì•ˆë‚˜ì˜´.
                 skipDialogue = true;
 
                 DialogueManager.Instance.panelClickForSkip = false;
@@ -50,18 +49,18 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
     }
     private void OnEnable()
     {
-        GameEventManager.Instance.dialogueEvents.onDialogueStarted += DialogueStart;
-        GameEventManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
-        GameEventManager.Instance.dialogueEvents.onDisplayDialogue += DisplayDialogue;
+        DialogueEventManager.Instance.dialogueEvents.onDialogueStarted += DialogueStart;
+        DialogueEventManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
+        DialogueEventManager.Instance.dialogueEvents.onDisplayDialogue += DisplayDialogue;
     }
 
     private void OnDisable()
     {
-        if(GameEventManager.Instance != null)
+        if(DialogueEventManager.Instance != null)
         {
-            GameEventManager.Instance.dialogueEvents.onDialogueStarted -= DialogueStart;
-            GameEventManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
-            GameEventManager.Instance.dialogueEvents.onDisplayDialogue -= DisplayDialogue;
+            DialogueEventManager.Instance.dialogueEvents.onDialogueStarted -= DialogueStart;
+            DialogueEventManager.Instance.dialogueEvents.onDialogueFinished -= DialogueFinished;
+            DialogueEventManager.Instance.dialogueEvents.onDisplayDialogue -= DisplayDialogue;
         }
     }
 
@@ -86,7 +85,7 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
         }
 
 
-        // ¼±ÅÃÁö dialogue¿¡¼­´Â next ¹öÆ° ºñÈ°¼ºÈ­
+        // ì„ íƒì§€ dialogueì—ì„œëŠ” next ë²„íŠ¼ ë¹„í™œì„±í™”
         if(dialogueChoices.Count > 0)
         {
             InActiveNextBtn(); 
@@ -115,13 +114,13 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
         yield return new WaitForSeconds(0.1f);
         DialogueManager.Instance.canContinueToNextLine = false;
 
-        // ´ëÈ­ÁÙ ´Ù ¶ß±â Àü±îÁö next¹öÆ° ºñÈ°¼ºÈ­
+        // ëŒ€í™”ì¤„ ë‹¤ ëœ¨ê¸° ì „ê¹Œì§€ nextë²„íŠ¼ ë¹„í™œì„±í™”
         if (!DialogueManager.Instance.ContainChoices())
         {
             InActiveNextBtn();
         }
 
-        //Å¸ÀÌÇÎ È¿°ú, ÇÑ ±ÛÀÚ¾¿ Ãâ·Â
+        //íƒ€ì´í•‘ íš¨ê³¼, í•œ ê¸€ìì”© ì¶œë ¥
         foreach (char letter in line.ToCharArray()) 
         {
             if (skipDialogue)//UIInputManager.Instance.GetSubmitPressed()
@@ -129,7 +128,7 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
                 skipDialogue = false;
                 //dialogueText.text = line;
                 //break;
-                typingSpeed = 0.005f; // Å¸ÀÌÇÎ »¡¶óÁü.
+                typingSpeed = 0.005f; // íƒ€ì´í•‘ ë¹¨ë¼ì§.
             }
             dialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
@@ -137,11 +136,11 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
 
         typingSpeed = 0.04f;
 
-        // ´ëÈ­Ã¢ ´Ù ³ª¿À¸é 0.5ÃÊ ÀÌÈÄ¿¡ next¹öÆ° ¶á´Ù.
+        // ëŒ€í™”ì°½ ë‹¤ ë‚˜ì˜¤ë©´ 0.5ì´ˆ ì´í›„ì— nextë²„íŠ¼ ëœ¬ë‹¤.
         yield return new WaitForSeconds(0.5f);
         DialogueManager.Instance.canContinueToNextLine = true;
 
-        // ´ëÈ­ÁÙÀÌ ´Ù ¶ß¸é next¹öÆ° ´Ù½Ã È°¼ºÈ­
+        // ëŒ€í™”ì¤„ì´ ë‹¤ ëœ¨ë©´ nextë²„íŠ¼ ë‹¤ì‹œ í™œì„±í™”
         if (!DialogueManager.Instance.ContainChoices())
         {
             ActiveNextBtn(); 
@@ -169,7 +168,7 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
             if (inkChoiceIndex == 0)
             {
                 choiceButton.SelectButton();
-                GameEventManager.Instance.dialogueEvents.UpdateChoiceIndex(0);
+                DialogueEventManager.Instance.dialogueEvents.UpdateChoiceIndex(0);
             }
 
             choiceButtonIndex--;
@@ -190,7 +189,7 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
     
     public void OnPointerClick(PointerEventData eventData)
     {
-        // ´ëÈ­Ã¢ ³ª¿À´ÂÁß¿¡¸¸ true·Î ¹Ù²ğ¼öÀÕ°Ô
+        // ëŒ€í™”ì°½ ë‚˜ì˜¤ëŠ”ì¤‘ì—ë§Œ trueë¡œ ë°”ë€”ìˆ˜ì‡ê²Œ
         /*if (!DialogueManager.Instance.canContinueToNextLine)
         {
             DialogueManager.Instance.panelClickForSkip = true;

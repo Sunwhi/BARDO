@@ -2,27 +2,28 @@ using Unity.VisualScripting;
 using UnityEngine;
 /*
  * Generic Singleton.
- * ¸ğµç ¸Å´ÏÀú, ½Ì±ÛÅæÀ» ÀÌ Singleton.cs¿¡ »ó¼Ó½ÃÅ²´Ù.
+ * ëª¨ë“  ë§¤ë‹ˆì €, ì‹±ê¸€í†¤ì„ ì´ Singleton.csì— ìƒì†ì‹œí‚¨ë‹¤.
  */
 public class Singleton<T> : MonoBehaviour where T : Component
 {
-    //private static bool isShuttingDown = false;
-    public static bool isManagerDestroyed = false; // ÇÑ¹ø singletonÀ» »ó¼Ó¹ŞÀº Manager°¡ destroyµÇ¸é OnDisable()ÀÌµç ¾îµğµç Á¢±Ù ÇØ¼­ ´Ù½Ã »ı¼ºµÇÁö ¾Ê°Ô.
-    
+
+    //private static bool isManagerDestroyed = false; // í•œë²ˆ singletonì„ ìƒì†ë°›ì€ Managerê°€ destroyë˜ë©´ OnDisable()ì´ë“  ì–´ë””ë“  ì ‘ê·¼ í•´ì„œ ë‹¤ì‹œ ìƒì„±ë˜ì§€ ì•Šê²Œ.
+    private static bool applicationQuit = false;
     private static T instance;
     public static T Instance
     {
         get 
         {
-            //if (isShuttingDown) return null;
-            if (isManagerDestroyed) return null;
+            if (applicationQuit)
+            {
+                return null;
+            }
 
             if(instance == null)
             {
                 instance = (T)FindAnyObjectByType(typeof(T));
                 if(instance == null)
                 {
-                    //Debug.Log("thisisget");
                     SetupInstance();
                 }
             }
@@ -32,7 +33,6 @@ public class Singleton<T> : MonoBehaviour where T : Component
     public virtual void Awake()
     {
         RemoveDuplicates();
-        //Debug.Log("awake" + this.gameObject.name);
     }
 
     private static void SetupInstance()
@@ -67,6 +67,11 @@ public class Singleton<T> : MonoBehaviour where T : Component
         {
             //Debug.Log("destroy" + this.gameObject.name);
         }
-        isManagerDestroyed = true;
+        //isManagerDestroyed = true;
+    }
+
+    private void OnApplicationQuit()
+    {
+        applicationQuit = true;
     }
 }

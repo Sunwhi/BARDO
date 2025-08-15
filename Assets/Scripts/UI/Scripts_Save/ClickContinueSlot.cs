@@ -16,7 +16,6 @@ public class ClickContinueSlot : MonoBehaviour
                 if (SaveManager.Instance.HasSaveSlot(ESaveSlot.Slot1))
                 {
                     SaveManager.Instance.LoadSlot(ESaveSlot.Slot1);
-                    Debug.Log(SaveManager.Instance.MySaveData.savedPosition);
                     SaveManager.Instance.currentSaveSlot = 1;
                     hasSaveSlot = true;
                 }
@@ -25,7 +24,6 @@ public class ClickContinueSlot : MonoBehaviour
                 if (SaveManager.Instance.HasSaveSlot(ESaveSlot.Slot2))
                 {
                     SaveManager.Instance.LoadSlot(ESaveSlot.Slot2);
-                    Debug.Log(SaveManager.Instance.MySaveData.savedPosition);
                     SaveManager.Instance.currentSaveSlot = 2;
                     hasSaveSlot = true;
                 }
@@ -34,7 +32,6 @@ public class ClickContinueSlot : MonoBehaviour
                 if (SaveManager.Instance.HasSaveSlot(ESaveSlot.Slot3))
                 {
                     SaveManager.Instance.LoadSlot(ESaveSlot.Slot3);
-                    Debug.Log(SaveManager.Instance.MySaveData.savedPosition);
                     SaveManager.Instance.currentSaveSlot = 3;
                     hasSaveSlot = true;
                 }
@@ -43,7 +40,6 @@ public class ClickContinueSlot : MonoBehaviour
                 if (SaveManager.Instance.HasSaveSlot(ESaveSlot.Slot4))
                 {
                     SaveManager.Instance.LoadSlot(ESaveSlot.Slot4);
-                    Debug.Log(SaveManager.Instance.MySaveData.savedPosition);
                     SaveManager.Instance.currentSaveSlot = 4;
                     hasSaveSlot = true;
                 }
@@ -52,7 +48,6 @@ public class ClickContinueSlot : MonoBehaviour
                 if (SaveManager.Instance.HasSaveSlot(ESaveSlot.Slot5))
                 {
                     SaveManager.Instance.LoadSlot(ESaveSlot.Slot5);
-                    Debug.Log(SaveManager.Instance.MySaveData.savedPosition);
                     SaveManager.Instance.currentSaveSlot = 5;
                     hasSaveSlot = true;
                 }
@@ -75,7 +70,6 @@ public class ClickContinueSlot : MonoBehaviour
     {
 
         stageIdx = SaveManager.Instance.MySaveData.stageIdx;
-
         switch (stageIdx)
         {
             case 1:
