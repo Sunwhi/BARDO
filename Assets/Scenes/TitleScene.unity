@@ -621,6 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stage1InkJson: {fileID: 4900000, guid: 62eb69f293dab714d9b9a824189bc1e2, type: 3}
   haveChoices: 0
+  speaker: 
   panelClickForSkip: 0
 --- !u!1 &268069202
 GameObject:
@@ -924,19 +925,19 @@ MonoBehaviour:
   sfxSource: {fileID: 1567757891}
   ambientSource: {fileID: 2121566427}
   bgmClips:
-  - {fileID: 8300000, guid: 006b3ba1687536a408f953046b6033e8, type: 3}
+  - {fileID: 8300000, guid: c3315c7fb87b7c840b82f865d47b27b2, type: 3}
   sfxClips:
-  - {fileID: 8300000, guid: d3264e651d3fcc3409547dac69f5639b, type: 3}
-  - {fileID: 8300000, guid: 8048469cfdc3d9441995433397b54d5d, type: 3}
-  - {fileID: 8300000, guid: f5b1e7638078e20458bf1c4254150572, type: 3}
-  - {fileID: 8300000, guid: c9024452cbe796a4099af484db8e0d5e, type: 3}
+  - {fileID: 8300000, guid: af0c89cd6eda2d048892c8d306a9ad22, type: 3}
+  - {fileID: 8300000, guid: b5015e64047e1b0408838b9373ac1269, type: 3}
+  - {fileID: 8300000, guid: cb4cc21efa11c0245a107efc5520c916, type: 3}
+  - {fileID: 8300000, guid: a83a571d69bf94749865b681f83ad666, type: 3}
   - {fileID: 8300000, guid: 8d2eeb41b9d783048aa80b10b5c314d1, type: 3}
-  - {fileID: 8300000, guid: ac3c98b918c91d141b355e5fbe110593, type: 3}
-  - {fileID: 8300000, guid: e509498a78acd144d965cf269b26eecb, type: 3}
-  - {fileID: 8300000, guid: dd8b7be8d9cda4846b0219303649dd45, type: 3}
-  - {fileID: 8300000, guid: 43efed4f99e10ca4ca790decccb9c455, type: 3}
-  - {fileID: 8300000, guid: 013d9bb18efcfc3488df55c8551e35c0, type: 3}
-  - {fileID: 8300000, guid: 10489052d18d7fa4dbe980d2765e7cad, type: 3}
+  - {fileID: 8300000, guid: a453d1b12fc6da64c91012c91c01d456, type: 3}
+  - {fileID: 8300000, guid: 32d730593050a6147b697d033930260f, type: 3}
+  - {fileID: 8300000, guid: 1a51e0cd865f0274faea5d2c777a21ec, type: 3}
+  - {fileID: 8300000, guid: ff8dfb1b4d696c541a3579f4155c576d, type: 3}
+  - {fileID: 8300000, guid: 52011c4d053e3864c955d8aa2cf9dacc, type: 3}
+  - {fileID: 8300000, guid: b97ab9506f09da4499a49cf03d340807, type: 3}
   audioMixer: {fileID: 24100000, guid: 554a10d72ceefc044bb1cecb7c25f6d4, type: 2}
 --- !u!4 &292843566
 Transform:

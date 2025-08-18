@@ -20,6 +20,8 @@ public enum eSFX
     UI_Button_Select_Settings,
     Stage_Transition,
     UI_Button_Hover,
+    Item_Get,
+    UI_Mouse_Click,
 }
 
 public class SoundManager : Singleton<SoundManager>
