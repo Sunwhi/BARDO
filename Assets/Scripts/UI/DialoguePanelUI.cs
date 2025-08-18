@@ -107,6 +107,8 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
 
         displayLineCoroutine = StartCoroutine(DisplayLine(dialogueLine, dialogueChoices));
     }
+
+    int letterCount = 0;
     private IEnumerator DisplayLine(string line, List<Ink.Runtime.Choice> dialogueChoices)
     {
         dialogueText.text = "";
@@ -131,6 +133,14 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
                 typingSpeed = 0.005f; // 타이핑 빨라짐.
             }
             dialogueText.text += letter;
+
+            letterCount++;
+
+            if (letterCount % 2 == 0 && typingSpeed != 0.005f)
+            {
+                SoundManager.Instance.PlaySFX(eSFX.UI_Txt_Scroll);
+            }
+
             yield return new WaitForSeconds(typingSpeed);
         }
 
@@ -187,6 +197,11 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
         dialogueText.text = "";
     }
     
+    IEnumerator typingSfx()
+    {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
+        yield return new WaitForSeconds(1f);
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
         // 대화창 나오는중에만 true로 바뀔수잇게

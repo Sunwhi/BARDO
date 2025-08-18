@@ -925,6 +925,7 @@ MonoBehaviour:
   sfxSource: {fileID: 1567757891}
   ambientSource: {fileID: 2121566427}
   bgmClips:
+  - {fileID: 0}
   - {fileID: 8300000, guid: c3315c7fb87b7c840b82f865d47b27b2, type: 3}
   sfxClips:
   - {fileID: 8300000, guid: af0c89cd6eda2d048892c8d306a9ad22, type: 3}
@@ -938,6 +939,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ff8dfb1b4d696c541a3579f4155c576d, type: 3}
   - {fileID: 8300000, guid: 52011c4d053e3864c955d8aa2cf9dacc, type: 3}
   - {fileID: 8300000, guid: b97ab9506f09da4499a49cf03d340807, type: 3}
+  - {fileID: 8300000, guid: 2a0a07e61350b7e4e99bf5e7f83ccc82, type: 3}
+  - {fileID: 8300000, guid: d7188fe8ae0e63047ba8640d1c51778d, type: 3}
   audioMixer: {fileID: 24100000, guid: 554a10d72ceefc044bb1cecb7c25f6d4, type: 2}
 --- !u!4 &292843566
 Transform:
