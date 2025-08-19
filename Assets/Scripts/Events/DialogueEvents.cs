@@ -27,10 +27,10 @@ public class DialogueEvents : MonoBehaviour, IGameEvent
         onDialogueFinished?.Invoke();
     }
 
-    public event Action<string, List<Choice>> onDisplayDialogue;
-    public void DisplayDialogue(string dialogueLine, List<Choice> dialogueChoices)
+    public event Action<string, List<Choice>, Story> onDisplayDialogue;
+    public void DisplayDialogue(string dialogueLine, List<Choice> dialogueChoices, Story story)
     {
-        onDisplayDialogue?.Invoke(dialogueLine, dialogueChoices);
+        onDisplayDialogue?.Invoke(dialogueLine, dialogueChoices, story);
     }
 
 
