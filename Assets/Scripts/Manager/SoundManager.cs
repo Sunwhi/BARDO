@@ -5,6 +5,8 @@ public enum eBGM
 {
     Title,
     Stage1,
+    Stage2,
+    Stage3,
 }
 
 public enum eSFX
@@ -20,6 +22,8 @@ public enum eSFX
     UI_Button_Select_Settings,
     Stage_Transition,
     UI_Button_Hover,
+    UI_Mouse_Click,
+    Item_Get, 
 }
 
 public class SoundManager : Singleton<SoundManager>

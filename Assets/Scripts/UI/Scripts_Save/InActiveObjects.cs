@@ -29,8 +29,6 @@ public class InActiveObjects : MonoBehaviour
         Padma.SetActive(false);
         Tuto_Move_On.SetActive(true);
         //Tutorial_Triggers.SetActive(false);
-
-        ContinueManager.Instance.loadedByContinue = false;
     }
     // 새 게임 눌렀을 때
     public void ActiveObjects()
@@ -40,7 +38,5 @@ public class InActiveObjects : MonoBehaviour
         Padma.SetActive(true);
         Tuto_Move_On.SetActive(false);
         //Tutorial_Triggers.SetActive(false);
-
-        ContinueManager.Instance.loadedByContinue = false;
     }
 }

@@ -45,6 +45,7 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
     }
     private void EnterChoiceBtn()
     {
+        //SoundManager.Instance.PlaySFX(eSFX.UI_Button_Hover);
         // entered 제외하고 모든 선택지들의 selectedColor = white
         if (gameObject.name != enteredChoiceBtn)
         {
@@ -80,6 +81,8 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
     }
     public void OnSelect(BaseEventData eventData)
     {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Hover);
+
         //Debug.Log(gameObject.name);
         selectedChoiceBtn = gameObject.name;
         DialogueEventManager.Instance.dialogueEvents.UpdateChoiceIndex(choiceIndex);
@@ -97,7 +100,7 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Hover);
+        //SoundManager.Instance.PlaySFX(eSFX.UI_Button_Hover);
         //Debug.Log(gameObject.name);
         enteredChoiceBtn = gameObject.name;
         SelectButton(); // 마우스로 클릭한 버튼으로 Select 변경
