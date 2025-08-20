@@ -55,14 +55,14 @@ public class ClickContinueSlot : MonoBehaviour
         }
         if (hasSaveSlot)
         {
-            UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
+            UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
             EYesNoPanelType.Continue,
             new UnityAction(() =>
             {
                 ContinueGame(clickedSlot);
                 SoundManager.Instance.PlayBGM(eBGM.Stage1);
             })
-            });
+            );
             hasSaveSlot = false;
         }
     }

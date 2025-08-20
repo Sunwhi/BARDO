@@ -35,7 +35,7 @@ public class ClickSaveSlot : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
+                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
@@ -44,7 +44,7 @@ public class ClickSaveSlot : MonoBehaviour
                         slotName = "[슬롯1]";
                         changeSlotText();
                     })
-                    });
+                    );
                 }
 
                 break;
@@ -60,7 +60,7 @@ public class ClickSaveSlot : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
+                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
@@ -69,7 +69,7 @@ public class ClickSaveSlot : MonoBehaviour
                         slotName = "[슬롯2]";
                         changeSlotText();
                     })
-                    });
+                    );
                 }
                 break;
             case "Slot3":
@@ -84,7 +84,7 @@ public class ClickSaveSlot : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
+                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
@@ -93,7 +93,7 @@ public class ClickSaveSlot : MonoBehaviour
                         slotName = "[슬롯3]";
                         changeSlotText();
                     })
-                    });
+                    );
                 }
                 break;
             case "Slot4":
@@ -108,7 +108,7 @@ public class ClickSaveSlot : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
+                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
@@ -117,7 +117,7 @@ public class ClickSaveSlot : MonoBehaviour
                         slotName = "[슬롯4]";
                         changeSlotText();
                     })
-                    });
+                    );
                 }
                 break;
             case "Slot5":
@@ -132,7 +132,7 @@ public class ClickSaveSlot : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
+                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
@@ -141,7 +141,7 @@ public class ClickSaveSlot : MonoBehaviour
                         slotName = "[슬롯5]";
                         changeSlotText();
                     })
-                    });
+                    );
                 }
                 break;
         }

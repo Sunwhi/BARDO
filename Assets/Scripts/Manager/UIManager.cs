@@ -67,8 +67,10 @@ public class UIManager : Singleton<UIManager>
     //UIManager.Instance.ShowPanelWithParam("PanelName", 변수1, 변수2, ...);
     //변수1부터는 원하는 아무 변수를 원하는 개수만큼.
     //YesNoPanel = EYesNoPanelType, UnityAction yesAction, UnityAction noAction
-    public T ShowPanelWithParam<T>(string panelName, object[] param = null) where T : UIBase
+    public T ShowPanelWithParam<T>(params object[] param) where T : UIBase
     {
+        string panelName = typeof(T).Name;
+
         if (uiPanels.TryGetValue(panelName, out var panel))
         {
             if (!panel.activeSelf) panel.SetActive(true);

@@ -33,7 +33,7 @@ public class EscPanel : MonoBehaviour
         UIManager.Instance.HidePanel("EscBGImg");
         UIManager.Instance.HidePanel("EscPanel");
 
-        UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
+        UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
         EYesNoPanelType.Quit,
         new UnityAction(() =>
         {
@@ -46,7 +46,7 @@ public class EscPanel : MonoBehaviour
             UIManager.Instance.ShowPanel("EscPanel");
             UIManager.Instance.ShowPanel("EscBGImg");
         })
-        });
+        );
     }
 
     public void OnClickOption()
@@ -69,7 +69,7 @@ public class EscPanel : MonoBehaviour
         UIManager.Instance.HidePanel("EscBGImg");
         UIManager.Instance.HidePanel("EscPanel");
 
-        UIManager.Instance.ShowPanelWithParam<YesNoPanel>("YesNoPanel", new object[] {
+        UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
         EYesNoPanelType.Quit,
         new UnityAction(() =>
         {
@@ -84,6 +84,6 @@ public class EscPanel : MonoBehaviour
             UIManager.Instance.ShowPanel("EscPanel");
             UIManager.Instance.ShowPanel("EscBGImg");
         })
-        });
+        );
     }
 }
