@@ -16,10 +16,13 @@ public class RoundTrigger1 : TriggerBase
 
     private IEnumerator TriggerEffect()
     {
+        //TODO : Player & Padma Cutscene
+        cutscene.SetActive(true);
+
         yield return UIManager.Instance.fadeView.FillWhite();
         StoryManager.Instance.Player.playerInput.enabled = false;
         StoryManager.Instance.Player.transform.position = playerTransform.position;
-        yield return UIManager.Instance.fadeView.FadeIn(2f);
+        yield return UIManager.Instance.fadeView.FadeIn(3f);
 
         //yield return StoryManager.Instance.PlayerWalkLeft();
         StoryManager.Instance.Padma.Show();
@@ -27,8 +30,6 @@ public class RoundTrigger1 : TriggerBase
         //TODO : Dialogue 시작
         StoryManager.Instance.S2_EnterStage();
 
-        //TODO : Player & Padma Cutscene
-        cutscene.SetActive(true);
 
         //TODO : Padma 퇴장
         yield return new WaitUntil(() => !DialogueManager.Instance.dialoguePlaying);
@@ -38,7 +39,6 @@ public class RoundTrigger1 : TriggerBase
             QuestManager.Instance.ShowQuestUI();
             StoryManager.Instance.Player.playerInput.enabled = true;
         });*/
-
         //yield return StartCoroutine(StoryManager.Instance.PlayerWalkLeft(playerWalkDuration));
         yield return null;
     }

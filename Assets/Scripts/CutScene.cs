@@ -10,7 +10,7 @@ public class CutScene : MonoBehaviour
     private Sprite[] cutscenePadmaA;
     private Sprite[] cutscenePadmaB;
     [SerializeField] private float duration = 0.01f;
-    bool keycode;
+    private string speaker;
     private void Start()
     {
         cutsceneBardo = Resources.LoadAll<Sprite>("Sprites/CutScene/Stage2_Bardo");
@@ -21,14 +21,21 @@ public class CutScene : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)) keycode = true;
+        speaker = DialogueManager.Instance.speaker;
     }
     private IEnumerator PlayCutscene()
     {
         yield return PlayCutsceneDouble();
+
         yield return PlayCutsceneBardo();
         yield return PlayCutscenePadmaA();
+        yield return PlayCutsceneBardo();
+        yield return PlayCutscenePadmaA();
+
         yield return PlayCutscenePadmaB();
+
+        cutsceneImage.sprite = null;
+        cutsceneImage.gameObject.SetActive(false);
     }
     private IEnumerator PlayCutsceneDouble()
     {
@@ -36,14 +43,12 @@ public class CutScene : MonoBehaviour
         {
             foreach (var sprite in cutsceneDouble)
             {
+                if (speaker == "Player") yield break;
+
                 cutsceneImage.sprite = sprite;
                 yield return new WaitForSeconds(duration);
             }
-            if (keycode)
-            {
-                keycode = false;
-                break;
-            }
+
         }
     }
     private IEnumerator PlayCutsceneBardo()
@@ -52,13 +57,10 @@ public class CutScene : MonoBehaviour
         {
             foreach (var sprite in cutsceneBardo)
             {
+                if (speaker == "Padma") yield break;
+
                 cutsceneImage.sprite = sprite;
                 yield return new WaitForSeconds(duration);
-            }
-            if (keycode)
-            {
-                keycode = false;
-                break;
             }
         }
     }
@@ -68,30 +70,22 @@ public class CutScene : MonoBehaviour
         {
             foreach (var sprite in cutscenePadmaA)
             {
+                if (speaker == "Player" || !DialogueManager.Instance.dialoguePlaying) yield break;
+
                 cutsceneImage.sprite = sprite;
                 yield return new WaitForSeconds(duration);
-            }
-            if (keycode)
-            {
-                keycode = false;
-                break;
             }
         }
     }
     private IEnumerator PlayCutscenePadmaB()
     {
-        while (true)
+        foreach (var sprite in cutscenePadmaB)
         {
-            foreach (var sprite in cutscenePadmaB)
-            {
-                cutsceneImage.sprite = sprite;
-                yield return new WaitForSeconds(duration);
-            }
-            if (keycode)
-            {
-                keycode = false;
-                break;
-            }
+            cutsceneImage.sprite = sprite;
+            yield return new WaitForSeconds(duration);
         }
+        yield return new WaitForSeconds(4f);
+        Debug.Log("afoisej");
+        QuestManager.Instance.ShowQuestUI();
     }
 }

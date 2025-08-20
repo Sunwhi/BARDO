@@ -21,7 +21,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private int currentChoiceIndex = -1;
 
-    //private const string SPEAKER_TAG = "speaker";
+    private const string SPEAKER_TAG = "speaker";
+    public string speaker;
 
     public bool dialoguePlaying { get; private set; } = false;    // dialogue가 playing중인가?
 
@@ -118,7 +119,7 @@ public class DialogueManager : Singleton<DialogueManager>
             string dialogueLIne = story.Continue();
 
             // handle tags
-            //HandleTags(story.currentTags);
+            HandleTags(story.currentTags);
 
             // handle the case where there's an empty line of dialogue
             // by continuing until we get a line with content
@@ -135,7 +136,7 @@ public class DialogueManager : Singleton<DialogueManager>
             else
             {
                 haveChoices = story.currentChoices.Count > 0;
-                DialogueEventManager.Instance.dialogueEvents.DisplayDialogue(dialogueLIne, story.currentChoices, story);
+                DialogueEventManager.Instance.dialogueEvents.DisplayDialogue(dialogueLIne, story.currentChoices);
             }
         }
         else if (story.currentChoices.Count == 0)
@@ -160,7 +161,7 @@ public class DialogueManager : Singleton<DialogueManager>
     }
 
     // ink dialogue내 tag들을 처리한다.
-    /*private void HandleTags(List<string> currentTags)
+    private void HandleTags(List<string> currentTags)
     {
         foreach(string tag in currentTags)
         {
@@ -175,12 +176,12 @@ public class DialogueManager : Singleton<DialogueManager>
             switch(tagKey)
             {
                 case SPEAKER_TAG:
-                    displaySpeakerText.text = tagValue;
+                    speaker = tagValue;
                     break;
             }
         }
     
-    }*/
+    }
     private bool IsLineBlank(string dialogueLine)
     {
         return dialogueLine.Trim().Equals("") || dialogueLine.Trim().Equals("\n");

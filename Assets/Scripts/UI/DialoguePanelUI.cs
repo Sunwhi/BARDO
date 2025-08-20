@@ -80,7 +80,7 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
         ResetPanel();
     }
 
-    private void DisplayDialogue(string dialogueLine, List<Ink.Runtime.Choice> dialogueChoices, Ink.Runtime.Story story)
+    private void DisplayDialogue(string dialogueLine, List<Ink.Runtime.Choice> dialogueChoices)
     {
         //ActiveNextBtn();
         if(displayLineCoroutine != null)
@@ -88,7 +88,7 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
             StopCoroutine(displayLineCoroutine);
         }
 
-        HandleTags(story.currentTags);
+        displaySpeakerText.text = DialogueManager.Instance.speaker;
 
         // 선택지 dialogue에서는 next 버튼 비활성화
         if (dialogueChoices.Count > 0)
@@ -203,28 +203,6 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
         dialogueText.text = "";
     }
 
-    // ink dialogue내 tag들을 처리한다.
-    private void HandleTags(List<string> currentTags)
-    {
-        foreach (string tag in currentTags)
-        {
-            string[] splitTag = tag.Split(":");
-            if (splitTag.Length != 2)
-            {
-                Debug.LogError("Tag could not be appropriately parsed: " + tag);
-            }
-            string tagKey = splitTag[0];
-            string tagValue = splitTag[1];
-
-            switch (tagKey)
-            {
-                case SPEAKER_TAG:
-                    displaySpeakerText.text = tagValue;
-                    break;
-            }
-        }
-
-    }
     IEnumerator typingSfx()
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);

@@ -63,9 +63,9 @@ public class StoryManager : Singleton<StoryManager>
         yield return new WaitForSeconds(0.5f);
         UIManager.Instance.ShowPanelWithParam<RoundTransition>(nameof(RoundTransition), new object[] { 1 });
         yield return new WaitForSeconds(1f);
-
+           
         SoundManager.Instance.PlaySFX(eSFX.Opening_Door);
-        //yield return UIManager.Instance.fadeView.FadeIn();
+        yield return UIManager.Instance.fadeView.FadeIn();
 
             SoundManager.Instance.PlayBGM(eBGM.Stage1);
             SoundManager.Instance.PlayAmbientSound(eSFX.Background_Wind);
@@ -76,6 +76,8 @@ public class StoryManager : Singleton<StoryManager>
 
             yield return new WaitForSeconds(2f);
             yield return S1_DialogueStart();
+
+            yield return UIManager.Instance.fadeView.imgAlpha1();
         }
 
     }

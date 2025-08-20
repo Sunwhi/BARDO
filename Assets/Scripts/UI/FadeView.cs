@@ -1,11 +1,18 @@
 using DG.Tweening;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Fadeview : MonoBehaviour
 {
     [SerializeField] private CanvasGroup canvasGroup;
-    
+    [SerializeField] private Image img;
+    public IEnumerator imgAlpha1()
+    {
+        img.color = new Color(1f, 1f, 1f, 1f);
+        return null;
+    }
     public IEnumerator FillWhite()
     {
         canvasGroup.alpha = 1;
