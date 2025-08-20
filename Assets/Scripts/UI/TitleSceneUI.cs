@@ -19,13 +19,13 @@ public class TitleSceneUI : MonoBehaviour
             }
         }
         UIManager.Instance.okToRegisterPanels = false;
+        ContinueManager.Instance.loadedByContinue = false;
     }
 
     public void OnClickNewGameBtn()
     {
         //bug.Log(MySceneManager.Instance == null ? "인스턴스가 null" : "인스턴스 살아있음");
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
-        ContinueManager.Instance.loadedByContinue = false;
+        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
 
         // 남은 saveslot이 없다면
         if(SaveManager.Instance.FirstEmptySlot() == 0)
@@ -51,6 +51,8 @@ public class TitleSceneUI : MonoBehaviour
 
     public void OnClickContinueBtn()
     {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
+
         if (SoundManager.Instance == null)
         {
             Debug.LogError("SoundManager.Instance is null! 씬에 SoundManager가 없거나 아직 초기화되지 않았습니다.");
@@ -73,20 +75,20 @@ public class TitleSceneUI : MonoBehaviour
 
     public void OnClickOptionBtn()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
         UIManager.Instance.ShowPanel("OptionPanel");
         UIManager.Instance.ShowPanel("EscBGImg");
     }
 
     public void OnClickCreditBtn()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
         UIManager.Instance.ShowPanel("CreditPanel");
     }
 
     public void OnClickGameExitBtn()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
         #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
         #else

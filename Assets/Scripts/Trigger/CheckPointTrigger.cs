@@ -17,5 +17,7 @@ public class CheckpointTrigger : TriggerBase
 
         TriggerManager.Instance.RegisterCheckpoint(checkpointID, pos);
         TriggerManager.Instance.HandleTrigger(checkpointID, TriggerType.Checkpoint);
+
+        ContinueManager.Instance.loadedByContinue = false;
     }
 }

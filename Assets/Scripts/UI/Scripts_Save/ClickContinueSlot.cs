@@ -59,35 +59,16 @@ public class ClickContinueSlot : MonoBehaviour
             EYesNoPanelType.Continue,
             new UnityAction(() =>
             {
-                ContinueGame(clickedSlot);
+                ContinueGame();
                 SoundManager.Instance.PlayBGM(eBGM.Stage1);
             })
             );
             hasSaveSlot = false;
         }
     }
-    private void ContinueGame(GameObject clickedSlot)
+    private void ContinueGame()
     {
-
-        stageIdx = SaveManager.Instance.MySaveData.stageIdx;
-        switch (stageIdx)
-        {
-            case 1:
-                MySceneManager.Instance.LoadScene(SceneType.MainScene);
-                break;
-            case 2:
-                MySceneManager.Instance.LoadScene(SceneType.Stage2);
-                break;
-            case 3:
-                MySceneManager.Instance.LoadScene(SceneType.Stage3);
-                break;
-            case 4:
-                MySceneManager.Instance.LoadScene(SceneType.Stage4);
-                break;
-            case 5:
-                MySceneManager.Instance.LoadScene(SceneType.Stage5);
-                break;
-        }
+        MySceneManager.Instance.LoadScene(SceneType.MainScene);
 
         GameEventBus.Raise(new ClickContinueEvent());
     }

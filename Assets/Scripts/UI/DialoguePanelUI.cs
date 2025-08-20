@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
 {
@@ -22,7 +23,10 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
     // 대화 출력이 완료되고 next버튼 활성화 전까지 OnSubmit이 여러번 출력되어 skipDialogue가 다음줄까지 true가 되는 버그를 방지하기 위해,
     // 한번 OnSubmit으로 대화창 스킵하면, next버튼 활성화 되기 전까지 다시 OnSubmit이 호출 안되게 함.
     // 즉, 한번 OnSubmit 누르면 next 버튼 활성화 전까지 OnSubmit이 호출이 안되고, 다시 skipDialogue가 true되지 않게 함.
-    private bool isOnSubmitPressed = false; 
+    private bool isOnSubmitPressed = false;
+
+    public TextMeshProUGUI displaySpeakerText;
+    private const string SPEAKER_TAG = "speaker";
     private void Start()
     {
         if(UIManager.Instance != null)
@@ -84,9 +88,10 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
             StopCoroutine(displayLineCoroutine);
         }
 
+        displaySpeakerText.text = DialogueManager.Instance.speaker;
 
         // 선택지 dialogue에서는 next 버튼 비활성화
-        if(dialogueChoices.Count > 0)
+        if (dialogueChoices.Count > 0)
         {
             InActiveNextBtn(); 
         }
@@ -107,6 +112,8 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
 
         displayLineCoroutine = StartCoroutine(DisplayLine(dialogueLine, dialogueChoices));
     }
+
+    int letterCount = 0;
     private IEnumerator DisplayLine(string line, List<Ink.Runtime.Choice> dialogueChoices)
     {
         dialogueText.text = "";
@@ -131,6 +138,14 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
                 typingSpeed = 0.005f; // 타이핑 빨라짐.
             }
             dialogueText.text += letter;
+
+            letterCount++;
+
+            if (letterCount % 2 == 0 && typingSpeed != 0.005f)
+            {
+                SoundManager.Instance.PlaySFX(eSFX.UI_Txt_Scroll);
+            }
+
             yield return new WaitForSeconds(typingSpeed);
         }
 
@@ -152,6 +167,7 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
 
         isOnSubmitPressed = false;
     }
+
     private void SetChoiceBtns(List<Ink.Runtime.Choice> dialogueChoices)
     {
         // enable and set info for buttons depending on ink choice information
@@ -186,7 +202,12 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
     {
         dialogueText.text = "";
     }
-    
+
+    IEnumerator typingSfx()
+    {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
+        yield return new WaitForSeconds(1f);
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
         // 대화창 나오는중에만 true로 바뀔수잇게

@@ -21,14 +21,14 @@ public class EscPanel : MonoBehaviour
     }
     public void OnClickContinue()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
         UIManager.Instance.HidePanel("EscPanel");
         UIManager.Instance.HidePanel("EscBGImg");
     }
 
     public void OnClickTItle()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
 
         UIManager.Instance.HidePanel("EscBGImg");
         UIManager.Instance.HidePanel("EscPanel");
@@ -51,21 +51,21 @@ public class EscPanel : MonoBehaviour
 
     public void OnClickOption()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
         UIManager.Instance.HidePanel("EscPanel");
         UIManager.Instance.ShowPanel("OptionPanel");
     }
 
     public void OnClickSave()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
         UIManager.Instance.HidePanel("EscPanel");
         UIManager.Instance.ShowPanel("SavePanel");
     }
 
     public void OnClickQuit()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
         UIManager.Instance.HidePanel("EscBGImg");
         UIManager.Instance.HidePanel("EscPanel");
 

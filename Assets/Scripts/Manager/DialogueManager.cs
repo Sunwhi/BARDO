@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEditor.Build.Content;
 using UnityEngine.Rendering.Universal;
 using System.Collections.Generic;
+using TMPro;
 /*
  * DialogueManager
  * Dialogue Event를 listen하고 맞는 ink dialogue를 실행한다.
@@ -12,6 +13,7 @@ public class DialogueManager : Singleton<DialogueManager>
 {
     [Header("Ink Story")]
     [SerializeField] public TextAsset stage1InkJson;
+    //public TextMeshProUGUI displaySpeakerText;
 
     public Story story;
 
@@ -19,8 +21,9 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private int currentChoiceIndex = -1;
 
+    private const string SPEAKER_TAG = "speaker";
     public string speaker;
-    private List<string> tags = new List<string>();
+
     public bool dialoguePlaying { get; private set; } = false;    // dialogue가 playing중인가?
 
     // Dialogue 다음 라인으로 넘어갈 수 있는가? 타이핑 도중 next로 넘어가지 못하게
@@ -97,12 +100,7 @@ public class DialogueManager : Singleton<DialogueManager>
             Debug.LogWarning("Knot name was empty when entering the dialogue");
         }
         Debug.Log("enterdialogue");
-        tags = story.currentTags;
-        Debug.Log(story.currentTags);
-        foreach(string tag in tags)
-        {
-            Debug.Log(tag);
-        }
+
         // story 시작
         ContinueOrExitStory();
     } 
@@ -119,6 +117,9 @@ public class DialogueManager : Singleton<DialogueManager>
         if (story.canContinue)
         {
             string dialogueLIne = story.Continue();
+
+            // handle tags
+            HandleTags(story.currentTags);
 
             // handle the case where there's an empty line of dialogue
             // by continuing until we get a line with content
@@ -159,6 +160,28 @@ public class DialogueManager : Singleton<DialogueManager>
         story.ResetState();
     }
 
+    // ink dialogue내 tag들을 처리한다.
+    private void HandleTags(List<string> currentTags)
+    {
+        foreach(string tag in currentTags)
+        {
+            string[] splitTag = tag.Split(":");
+            if(splitTag.Length != 2 )
+            {
+                Debug.LogError("Tag could not be appropriately parsed: " + tag);
+            }
+            string tagKey = splitTag[0];
+            string tagValue = splitTag[1];
+
+            switch(tagKey)
+            {
+                case SPEAKER_TAG:
+                    speaker = tagValue;
+                    break;
+            }
+        }
+    
+    }
     private bool IsLineBlank(string dialogueLine)
     {
         return dialogueLine.Trim().Equals("") || dialogueLine.Trim().Equals("\n");

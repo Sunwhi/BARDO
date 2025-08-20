@@ -26,7 +26,9 @@ public class ContinueManager : Singleton<ContinueManager>
 
         loadedByContinue = true;
         StartCoroutine(SetPlayerPositionDelayed());
+        StartCoroutine(FadeOut());
         StartCoroutine(FadeIn());
+        
     }
 
     private IEnumerator SetPlayerPositionDelayed()
@@ -47,5 +49,10 @@ public class ContinueManager : Singleton<ContinueManager>
     {
         yield return null;
         yield return UIManager.Instance.fadeView.FadeIn(2f);
+    }
+    private IEnumerator FadeOut()
+    {
+        yield return null;
+        yield return UIManager.Instance.fadeView.FadeOut(2f);
     }
 }
