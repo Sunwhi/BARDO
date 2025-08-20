@@ -1314,8 +1314,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8183240919d374096eabe41dc2d3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnSceneLoad: 1
   cameraAnimator: {fileID: 501472327}
-  player: {fileID: 2807780823127625904}
+  brain: {fileID: 8480977}
+  ignoreDuringSwitch: 0.5
+  animLayer: 0
 --- !u!1 &605143096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,6 +1468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb852e8ca8cd53a4a98915fb3454a7eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnSceneLoad: 0
   bgmSource: {fileID: 401193137}
   sfxSource: {fileID: 1406081329}
   ambientSource: {fileID: 1025817354}
@@ -1550,7 +1554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Priority:
     Enabled: 1
-    m_Value: 2
+    m_Value: 1
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -2017,6 +2021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2066f49477eda5b429bdc3ee6879a7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnSceneLoad: 0
 --- !u!1001 &1108462398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2197,6 +2202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca8fcbd4bba4ec4fbd0792f4d769786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnSceneLoad: 0
   player: {fileID: 2807780823127625904}
   padma: {fileID: 1723892500}
   Tuto_Move_On: {fileID: 4538969352667303159}
@@ -2435,6 +2441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9222d6953983fd04b9cdcaeed2826696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnSceneLoad: 0
 --- !u!1 &1692449063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2859,6 +2866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a907f0e8340dc34290602c467618879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnSceneLoad: 0
   player: {fileID: 2807780823127625904}
 --- !u!4 &2083677590
 Transform:
@@ -3302,7 +3310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Priority:
     Enabled: 1
-    m_Value: 1
+    m_Value: 2
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001

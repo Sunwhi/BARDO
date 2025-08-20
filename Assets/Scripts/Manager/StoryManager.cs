@@ -80,6 +80,11 @@ public class StoryManager : Singleton<StoryManager>
 
     }
 
+    public void PlayerWalkCoroutine(float duration = 1f)
+    {
+        StartCoroutine(PlayerWalkLeft(duration));
+    }
+
     public IEnumerator PlayerWalkLeft(float duration = 1f)
     {
         player.ForceMove(new Vector2(1, 0));
