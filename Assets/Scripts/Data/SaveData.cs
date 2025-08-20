@@ -22,7 +22,7 @@ public class SaveData
 
     public bool isQuestActive = false;
     public QuestData currentQuest = null;
-    public bool[] questItemAcquired = new bool[3]; //0: Karma Shard, 1: Memory Lamp, 2: Soul Thread
+    public bool[] quest1ItemAcquired = new bool[3]; //0: Karma Shard, 1: Memory Lamp, 2: Soul Thread
 
     //Endings
     public bool firstJudgement = true; //true = 선. false = 악.
