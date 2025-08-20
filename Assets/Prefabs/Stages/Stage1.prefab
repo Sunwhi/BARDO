@@ -778,6 +778,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
   checkpointID: stage1-3
+  stageId: 1
+  storyId: 3
 --- !u!212 &8371740523946041788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2416,7 +2418,7 @@ GameObject:
   - component: {fileID: 5896712828920177588}
   - component: {fileID: 9201029853620832742}
   m_Layer: 0
-  m_Name: CheckPointTrigger3 (1)
+  m_Name: CheckPointTrigger4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2486,7 +2488,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
-  checkpointID: stage1-3
+  checkpointID: stage1-4
+  stageId: 1
+  storyId: 4
 --- !u!212 &9201029853620832742
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3628,6 +3632,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
   checkpointID: stage1-2
+  stageId: 1
+  storyId: 2
 --- !u!212 &1711802456832175374
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4968,6 +4974,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
   checkpointID: stage1-1
+  stageId: 1
+  storyId: 1
 --- !u!212 &5492043339946383099
 SpriteRenderer:
   m_ObjectHideFlags: 0

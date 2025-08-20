@@ -1457,7 +1457,7 @@ Transform:
   m_GameObject: {fileID: 2364960726778179173}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -123.3333, y: 5.9934998, z: 0}
+  m_LocalPosition: {x: -132.993, y: 5.9934998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1512,7 +1512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
-  checkpointID: stage2-1
+  checkpointID: stage2-0
   stageId: 2
   storyId: 0
 --- !u!212 &1480468078958026500
@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
-  checkpointID: stage2-1
+  checkpointID: stage2-2
   stageId: 2
   storyId: 2
 --- !u!212 &2410669589623522787
@@ -5582,7 +5582,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
-  padma: {fileID: 0}
   playerTransform: {fileID: 1402998036439914130}
   playerWalkDuration: 10
   cutscene: {fileID: 2794252822732924002}
@@ -7366,7 +7365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
-  checkpointID: stage2-1
+  checkpointID: stage2-3
   stageId: 2
   storyId: 3
 --- !u!212 &720477855453733356

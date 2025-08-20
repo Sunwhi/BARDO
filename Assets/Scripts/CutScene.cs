@@ -85,7 +85,6 @@ public class CutScene : MonoBehaviour
             yield return new WaitForSeconds(duration);
         }
         yield return new WaitForSeconds(4f);
-        Debug.Log("afoisej");
         QuestManager.Instance.ShowQuestUI();
     }
 }

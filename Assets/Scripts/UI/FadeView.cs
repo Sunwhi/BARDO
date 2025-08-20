@@ -26,6 +26,8 @@ public class Fadeview : MonoBehaviour
     
     public IEnumerator FadeIn(float duration = 1f)
     {
+        yield return imgAlpha1();
+        yield return FillWhite();
         canvasGroup.DOFade(0f, duration);
         yield return new WaitForSeconds(duration);
     }

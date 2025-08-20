@@ -28,6 +28,7 @@ public class ContinueManager : Singleton<ContinueManager>
         StartCoroutine(SetPlayerPositionDelayed());
         StartCoroutine(FadeOut());
         StartCoroutine(FadeIn());
+        
     }
 
     private IEnumerator SetPlayerPositionDelayed()
@@ -42,7 +43,6 @@ public class ContinueManager : Singleton<ContinueManager>
         player.rb.linearVelocity = Vector2.zero;
 
         playerObj.transform.position = savedPosition;
-        yield return UIManager.Instance.fadeView.imgAlpha1();
     }
 
     private IEnumerator FadeIn()

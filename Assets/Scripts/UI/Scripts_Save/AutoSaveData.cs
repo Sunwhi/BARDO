@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -68,38 +69,9 @@ public class AutoSaveData : Singleton<AutoSaveData>
     private void SetStageNameIdx()
     {
         sceneName = SceneManager.GetActiveScene().name;
+        int stageIdx = SaveManager.Instance.MySaveData.stageIdx;
 
-        switch (sceneName)
-        {
-            case "MainScene":
-                stageName = "1주차 / 스테이지 1";
-                stageIdx = 1;
-                break;
-            case "Stage2":
-                stageName = "2주차 / 스테이지 2";
-                stageIdx = 2;
-                break;
-            case "Stage3":
-                stageName = "3주차 / 스테이지 3";
-                stageIdx = 3;
-                break;
-            case "Stage4":
-                stageName = "4주차 / 스테이지 4";
-                stageIdx = 4;
-                break;
-            case "Stage5":
-                stageName = "5주차 / 스테이지 5";
-                stageIdx = 5;
-                break;
-            case "Stage6":
-                stageName = "6주차 / 스테이지 6";
-                stageIdx = 6;
-                break;
-            case "Stage7":
-                stageName = "7주차 / 스테이지 7";
-                stageIdx = 7;
-                break;
-        }
+        stageName = stageIdx + "주차 / " + "스테이지 " + stageIdx;
     }
 
     private void SetSaveDate()
@@ -126,22 +98,21 @@ public class AutoSaveData : Singleton<AutoSaveData>
         {
             case "stage1-1":
                 questName = "파드마와의 만남";
-                storyIdx = 1;
                 break;
             case "stage1-2":
                 questName = "미지의 세계로";
-                storyIdx = 2;
                 break;
             case "stage1-3":
                 questName = "다음 스테이지로 가자";
-                storyIdx = 3;
                 break;
             case "stage1-4":
                 questName = "클리어직전";
-                storyIdx = 4;
+                break;
+            case "stage2-0":
+                questName = "파드마와의 재회";
                 break;
             case "stage2-1":
-                questName = "파드마와의 재회";
+                questName = "아이템을 찾아서";
                 break;
         }
     }

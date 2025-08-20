@@ -19,13 +19,13 @@ public class TitleSceneUI : MonoBehaviour
             }
         }
         UIManager.Instance.okToRegisterPanels = false;
+        ContinueManager.Instance.loadedByContinue = false;
     }
 
     public void OnClickNewGameBtn()
     {
         //bug.Log(MySceneManager.Instance == null ? "인스턴스가 null" : "인스턴스 살아있음");
         SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
-        ContinueManager.Instance.loadedByContinue = false;
 
         // 남은 saveslot이 없다면
         if(SaveManager.Instance.FirstEmptySlot() == 0)
