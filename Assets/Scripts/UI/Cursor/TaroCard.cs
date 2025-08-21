@@ -3,48 +3,43 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     // 참조만 인스펙터에서 설정
     [SerializeField] RectTransform overlayRoot;
     [SerializeField] Sprite openedSprite;
-    [SerializeField] Button selectedButton;
+    [SerializeField] Button fadeBtn;
+    [SerializeField] Button selectBtn;
+    [SerializeField] Image img;
 
     RectTransform target;
-    Image img;
     Sprite closedSprite;
+    Vector3 baseScale;
+    GameObject backdrop;
+    bool isExpanded = false;
 
     // 원상 복구용 스냅샷
     Transform origParent;
     int origSibling;
     Vector2 origAnchorMin, origAnchorMax, origPivot, origAnchoredPos;
     Vector3 origScale;
+    Quaternion origRot;
     Vector3 origWorldPos;
 
-    GameObject backdrop;
-    bool isExpanded;
-    Vector3 baseScale;
+    public void OnBtnClicked() => Expand();
 
     void Awake()
     {
         target = transform as RectTransform;
-        img = GetComponent<Image>();
         closedSprite = img ? img.sprite : null;
         baseScale = target.localScale;
 
-        if (selectedButton != null)
+        if (selectBtn != null)
         {
-            selectedButton.gameObject.SetActive(false);
-            selectedButton.onClick.RemoveAllListeners();
-            selectedButton.onClick.AddListener(Collapse);
+            selectBtn.onClick.RemoveAllListeners();
+            selectBtn.onClick.AddListener(Collapse);
         }
     }
-
-    // 버튼 이벤트로 연결 가능
-    public void OnBtnClicked() => Toggle();
-
-    // 카드 자체 클릭으로도 동작
-    public void OnPointerClick(PointerEventData eventData) => Toggle();
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -73,12 +68,6 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (backdrop != null) backdrop.SetActive(false);
     }
 
-    void Toggle()
-    {
-        if (isExpanded) Collapse();
-        else Expand();
-    }
-
     void Expand()
     {
         if (isExpanded || overlayRoot == null) return;
@@ -91,26 +80,21 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         origPivot = target.pivot;
         origAnchoredPos = target.anchoredPosition;
         origScale = target.localScale;
+        origRot = target.localRotation;
         origWorldPos = target.position;
 
         // 상호작용 정리
         target.DOKill(true);
 
-        // 오버레이 루트로 이동(월드 좌표 유지)
-        target.SetParent(overlayRoot, true);
-        target.SetAsLastSibling();
-
         // 백드롭 준비
-        EnsureBackdrop();
-        backdrop.transform.SetAsLastSibling();
-        target.SetAsLastSibling();
-
-        if (selectedButton != null)
+        if (fadeBtn != null)
         {
-            selectedButton.gameObject.SetActive(true);
-            selectedButton.transform.SetAsLastSibling();
+            fadeBtn.gameObject.SetActive(true);
+            fadeBtn.onClick.RemoveAllListeners();
+            fadeBtn.onClick.AddListener(Collapse);
         }
-
+        target.SetParent(overlayRoot, true);
+        
         // 중앙 월드 좌표(overlayRoot 중심)
         Vector3 centerWorld = overlayRoot.TransformPoint(Vector3.zero);
 
@@ -133,14 +117,17 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         target.DOKill(true);
 
-        if (selectedButton != null)
-            selectedButton.gameObject.SetActive(false);
+        // 계층 및 Rect 복원
+        target.SetParent(origParent, true);
+        target.SetSiblingIndex(origSibling);
+        fadeBtn.gameObject.SetActive(false);
+
 
         var seq = DOTween.Sequence().SetUpdate(true).SetLink(gameObject);
 
         // 플립(후면 복원)
         seq.Append(target.DORotate(new Vector3(0f, 90f, 0f), 0.12f).SetEase(Ease.InCubic));
-        seq.AppendCallback(() => { if (img != null && closedSprite != null) img.sprite = closedSprite; });
+        seq.AppendCallback(() => { img.sprite = closedSprite; });
         seq.Append(target.DORotate(Vector3.zero, 0.12f).SetEase(Ease.OutCubic));
 
         // 원위치 이동+축소
@@ -149,44 +136,14 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         seq.OnComplete(() =>
         {
-            // 계층 및 Rect 복원
-            target.SetParent(origParent, true);
-            target.SetSiblingIndex(origSibling);
             target.anchorMin = origAnchorMin;
             target.anchorMax = origAnchorMax;
             target.pivot = origPivot;
             target.anchoredPosition = origAnchoredPos;
             target.localScale = origScale;
-            target.localRotation = Quaternion.identity;
+            target.localRotation = origRot;
 
-            DestroyBackdrop();
             isExpanded = false;
         });
-    }
-
-    void EnsureBackdrop()
-    {
-        if (backdrop != null) { backdrop.SetActive(true); return; }
-
-        backdrop = new GameObject("CardBackdrop", typeof(RectTransform), typeof(Image), typeof(Button));
-        var rt = backdrop.GetComponent<RectTransform>();
-        rt.SetParent(overlayRoot, false);
-        rt.anchorMin = Vector2.zero;
-        rt.anchorMax = Vector2.one;
-        rt.offsetMin = Vector2.zero;
-        rt.offsetMax = Vector2.zero;
-
-        var imgBg = backdrop.GetComponent<Image>();
-        imgBg.color = new Color(0f, 0f, 0f, 0f); // 투명 클릭 차단막
-
-        var btn = backdrop.GetComponent<Button>();
-        btn.transition = Selectable.Transition.None;
-        btn.onClick.AddListener(Collapse);
-    }
-
-    void DestroyBackdrop()
-    {
-        if (backdrop != null) Destroy(backdrop);
-        backdrop = null;
     }
 }

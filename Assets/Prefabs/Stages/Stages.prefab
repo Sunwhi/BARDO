@@ -9234,7 +9234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guide: {fileID: 3635655195956215526}
   stageIdx: 3
-  storyIdx: 1
+  storyIdx: 0
   item: {fileID: 4878381681430790943}
   thread: {fileID: 0}
 --- !u!61 &2274688018920063647
@@ -9795,7 +9795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guide: {fileID: 4052872697544987600}
   stageIdx: 3
-  storyIdx: 3
+  storyIdx: 2
   item: {fileID: 4633247457174256047}
   thread: {fileID: 5013551569625323604}
 --- !u!61 &6229586800618717
@@ -12741,9 +12741,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
-  padma: {fileID: 3605889599941591919}
   playerTransform: {fileID: 9209621424994427585}
   playerWalkDuration: 10
+  cutscene: {fileID: 0}
 --- !u!1 &5985962829547757369
 GameObject:
   m_ObjectHideFlags: 0
@@ -13084,9 +13084,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
-  checkpointID: stage3-1
+  checkpointID: stage3-0
   stageId: 3
-  storyId: 1
+  storyId: 0
 --- !u!212 &943466286613094674
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13573,7 +13573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guide: {fileID: 3919502206385725997}
   stageIdx: 3
-  storyIdx: 2
+  storyIdx: 1
   item: {fileID: 5988667005385366303}
   thread: {fileID: 0}
 --- !u!61 &8154182522092154803

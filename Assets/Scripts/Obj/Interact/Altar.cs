@@ -9,19 +9,21 @@ public class Altar : InteractEnter
     protected override IEnumerator InteractCoroutine()
     {
         yield return base.InteractCoroutine();
+        item.SetActive(true);
+        SaveManager.Instance.SetSaveData(nameof(SaveData.quest1ItemSet), true, storyIdx - 1);
 
         if (stageIdx == 3)
         {
             switch (storyIdx)
             {
-                case 1:
+                case 0:
                     //임시 코드
                     UIManager.Instance.ShowPanelWithParam<ItemDetailPanel>(eItemPanelType.Karmic_Shard);
                     break;
-                case 2:
+                case 1:
                     //애니메이션 재생
                     break;
-                case 3:
+                case 2:
                     thread.SetActive(true); //혼의 실 활성화
                     break;
             }

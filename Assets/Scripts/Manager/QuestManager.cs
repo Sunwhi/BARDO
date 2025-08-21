@@ -4,9 +4,8 @@ public class QuestManager : Singleton<QuestManager>
 {
     QuestPanel questPanel;
 
-    public override void Awake()
+    private void Start()
     {
-        base.Awake();
         Init();
     }
 
