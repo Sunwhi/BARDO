@@ -61,7 +61,7 @@ public class StoryManager : Singleton<StoryManager>
 
         SoundManager.Instance.PlaySFX(eSFX.Stage_Transition);
         yield return new WaitForSeconds(0.5f);
-        UIManager.Instance.ShowPanelWithParam<RoundTransition>(nameof(RoundTransition), new object[] { 1 });
+        UIManager.Instance.ShowPanelWithParam<RoundTransition>(1);
         yield return new WaitForSeconds(1f);
            
         SoundManager.Instance.PlaySFX(eSFX.Opening_Door);
@@ -80,6 +80,11 @@ public class StoryManager : Singleton<StoryManager>
             //yield return UIManager.Instance.fadeView.imgAlpha1();
         }
 
+    }
+
+    public void PlayerWalkCoroutine(float duration = 1f)
+    {
+        StartCoroutine(PlayerWalkLeft(duration));
     }
 
     public IEnumerator PlayerWalkLeft(float duration = 1f)

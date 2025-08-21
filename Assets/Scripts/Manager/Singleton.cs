@@ -8,6 +8,8 @@ public class Singleton<T> : MonoBehaviour where T : Component
 {
 
     //private static bool isManagerDestroyed = false; // 한번 singleton을 상속받은 Manager가 destroy되면 OnDisable()이든 어디든 접근 해서 다시 생성되지 않게.
+    [SerializeField] private bool destroyOnSceneLoad = false;
+    private static bool destroyOnLoad = false;
     private static bool applicationQuit = false;
     private static T instance;
     public static T Instance
@@ -32,6 +34,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
     }
     public virtual void Awake()
     {
+        destroyOnLoad = destroyOnSceneLoad;
         RemoveDuplicates();
     }
 
@@ -43,7 +46,8 @@ public class Singleton<T> : MonoBehaviour where T : Component
             GameObject gameObj = new GameObject();
             gameObj.name = typeof(T).Name;
             instance = gameObj.AddComponent<T>();
-            DontDestroyOnLoad(gameObj);
+            if (!destroyOnLoad)
+                DontDestroyOnLoad(gameObj);
         }
     }
 
@@ -52,7 +56,8 @@ public class Singleton<T> : MonoBehaviour where T : Component
         if(instance == null)
         {
             instance = this as T;
-            DontDestroyOnLoad(gameObject);
+            if (!destroyOnLoad)
+                DontDestroyOnLoad(gameObject);
         }
         else
         {

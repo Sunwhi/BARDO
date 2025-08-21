@@ -25,9 +25,11 @@ public class ItemDetailPanel : UIBase
         { eItemPanelType.Memory_Lamp, ("등명석", "등명석은 어둠 속에서 길을 밝혀주는 빛나는 돌입니다.") },
         { eItemPanelType.Soul_Thread, ("혼의 실", "혼의실은 영혼이 모이는 장소로, 특별한 힘을 지니고 있습니다.") }
     };
+    private Transform stage3PlayerPos;
 
     public override void Opened(object[] param)
     {
+        Time.timeScale = 0f;
         eItemPanelType itemType = param.Length > 0 && param[0] is eItemPanelType type ? type : eItemPanelType.Default;
         itemIconImg.sprite = itemIcons[(int)itemType];
 
@@ -38,12 +40,31 @@ public class ItemDetailPanel : UIBase
             return;
         }
 
+        stage3PlayerPos = param.Length > 1 && param[1] is Transform pos ? pos : null;
+
         itemTitleTxt.text = itemData[itemType].title;
         itemDescTxt.text = itemData[itemType].desc;
     }
 
     public void OnCloseBtn()
     {
+        Time.timeScale = 1f;
+
+        bool isAllItemsAcquired = true;
+        foreach (var item in SaveManager.Instance.MySaveData.quest1ItemAcquired)
+        {
+            if (!item)
+            {
+                isAllItemsAcquired = false;
+                break;
+            }
+        }
+
+        if (isAllItemsAcquired && stage3PlayerPos != null)
+        {
+            GameEventBus.Raise<NextStageEvent>(new(3, stage3PlayerPos.position));
+        }
+
         UIManager.Instance.HidePanel(gameObject.name);
     }
 }
