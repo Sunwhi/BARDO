@@ -11,8 +11,9 @@ public class ContinuePanel : UIBase
         foreach (var slot in slots)
         {
             //TODO : SaveManager 완성되면 거기서 개별 슬롯의 이름 불러오기
-            string fakeName = "슬롯이름";
-            slot.SetSlot(fakeName, OnContinueSlotClicked);
+            //TODO : 만약 SaveSlot이 비어있다면 SetSlot 스킵.
+            SaveData slotData = new();
+            slot.SetSlot(slotData, OnContinueSlotClicked);
         }
     }
 
