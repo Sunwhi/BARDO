@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 45343304}
-  img: {fileID: 0}
+  img: {fileID: 45343305}
 --- !u!225 &45343304
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -162,8 +162,8 @@ CanvasGroup:
   m_GameObject: {fileID: 45343302}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &45343305
 MonoBehaviour:
@@ -2908,7 +2908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1924273415
 RectTransform:
   m_ObjectHideFlags: 0
