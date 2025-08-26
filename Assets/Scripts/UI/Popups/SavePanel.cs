@@ -1,15 +1,8 @@
-using System;
-using System.Runtime.CompilerServices;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using Ink.Parsed;
-using UnityEngine.EventSystems;
+using UnityEngine;
 
-/*
- * 자동저장을 SavePanel UI에 표시한다.
- */
-public class AutoSaveSlotUI : MonoBehaviour
+public class SavePanel : UIBase
 {
     public List<GameObject> Slots = new List<GameObject>();
     private TMP_Text slotText;
@@ -27,7 +20,7 @@ public class AutoSaveSlotUI : MonoBehaviour
     private void OnCheckPointAutoSave(CheckPointEvent ev)
     {
         //Debug.Log("oncheckpointautosave");
-        currentSaveSlot =  SaveManager.Instance.currentSaveSlot; // 현재 저장되고 있는 슬롯 불러오기
+        currentSaveSlot = SaveManager.Instance.currentSaveSlot; // 현재 저장되고 있는 슬롯 불러오기
         foreach (var slot in Slots)
         {
             switch (currentSaveSlot)
@@ -49,12 +42,18 @@ public class AutoSaveSlotUI : MonoBehaviour
                     break;
 
             }
-                
+
             if (slot.name == "Slot" + currentSaveSlot)
             {
                 slotText = slot.GetComponentInChildren<TMP_Text>();
                 slotText.text = "[슬롯" + currentSaveSlot + "]" + SaveManager.Instance.MySaveData.saveName.ToString();
             }
         }
+    }
+
+    public override void OnUICloseBtn()
+    {
+        SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
+        base.OnUICloseBtn();
     }
 }
