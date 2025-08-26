@@ -1,53 +1,18 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SavePanel : UIBase
 {
-    public List<GameObject> Slots = new List<GameObject>();
-    private TMP_Text slotText;
-    private int currentSaveSlot;
+    [SerializeField] private List<SaveSlot> slots = new();
+    
     private void OnEnable()
     {
-        GameEventBus.Subscribe<CheckPointEvent>(OnCheckPointAutoSave);
-    }
-    private void OnDisable()
-    {
-        GameEventBus.Unsubscribe<CheckPointEvent>(OnCheckPointAutoSave);
-    }
-
-    // 자동저장 text 표시
-    private void OnCheckPointAutoSave(CheckPointEvent ev)
-    {
-        //Debug.Log("oncheckpointautosave");
-        currentSaveSlot = SaveManager.Instance.currentSaveSlot; // 현재 저장되고 있는 슬롯 불러오기
-        foreach (var slot in Slots)
+        foreach (var slot in slots)
         {
-            switch (currentSaveSlot)
-            {
-                case 1:
-                    SaveManager.Instance.SaveSlot(ESaveSlot.Slot1);
-                    break;
-                case 2:
-                    SaveManager.Instance.SaveSlot(ESaveSlot.Slot2);
-                    break;
-                case 3:
-                    SaveManager.Instance.SaveSlot(ESaveSlot.Slot3);
-                    break;
-                case 4:
-                    SaveManager.Instance.SaveSlot(ESaveSlot.Slot4);
-                    break;
-                case 5:
-                    SaveManager.Instance.SaveSlot(ESaveSlot.Slot5);
-                    break;
-
-            }
-
-            if (slot.name == "Slot" + currentSaveSlot)
-            {
-                slotText = slot.GetComponentInChildren<TMP_Text>();
-                slotText.text = "[슬롯" + currentSaveSlot + "]" + SaveManager.Instance.MySaveData.saveName.ToString();
-            }
+            //TODO : SaveManager 완성되면 거기서 개별 슬롯의 이름 불러오기
+            string fakeName = "슬롯이름";
+            slot.SetSlot(fakeName, OnSaveSlotSlicked);
         }
     }
 
@@ -56,4 +21,27 @@ public class SavePanel : UIBase
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
         base.OnUICloseBtn();
     }
+
+    private void OnSaveSlotSlicked(int idx)
+    {
+        SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
+
+        ESaveSlot slot = (ESaveSlot)idx;
+        bool hasSaveSlot = SaveManager.Instance.HasSaveSlot(slot);
+
+        if (hasSaveSlot)
+        {
+            UIManager.Show<YesNoPanel>(
+            EYesNoPanelType.Save,
+            new UnityAction(() =>
+            {
+                SaveManager.Instance.SaveSlot(slot);
+            }
+            ));
+        }
+        else
+        {
+            SaveManager.Instance.SaveSlot(slot);
+        }
+    }   
 }

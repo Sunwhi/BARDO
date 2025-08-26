@@ -1,17 +1,17 @@
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class ContinuePanel : UIBase
 {
-    public List<SaveSlot> Slots = new();
+    [SerializeField] private List<SaveSlot> slots = new();
 
     private void Start()
     {
-        foreach (var slot in Slots)
+        foreach (var slot in slots)
         {
             //TODO : SaveManager 완성되면 거기서 개별 슬롯의 이름 불러오기
             string fakeName = "슬롯이름";
-
             slot.SetSlot(fakeName, OnContinueSlotClicked);
         }
     }
@@ -24,6 +24,8 @@ public class ContinuePanel : UIBase
 
     private void OnContinueSlotClicked(int idx)
     {
+        SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
+
         ESaveSlot slot = (ESaveSlot)idx;
         bool hasSaveSlot = false;
 
@@ -43,6 +45,10 @@ public class ContinuePanel : UIBase
                 ContinueGame();
                 SoundManager.Instance.PlayBGM(EBGM.Stage1);
             }));
+        }
+        else
+        {
+            //TODO : 슬롯에 저장된게 없을 때 안내 팝업?
         }
     }
 
