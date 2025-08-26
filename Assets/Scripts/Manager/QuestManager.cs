@@ -25,7 +25,7 @@ public class QuestManager : Singleton<QuestManager>
             SetNewQuest();
         }
 
-        questPanel = UIManager.Instance.ShowPanelWithParam<QuestPanel>();
+        questPanel = UIManager.Show<QuestPanel>();
     }
 
     public void SetNewQuest()

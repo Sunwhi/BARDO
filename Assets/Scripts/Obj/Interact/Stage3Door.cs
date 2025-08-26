@@ -12,7 +12,7 @@ public class Stage3Door : InteractEnter
 
         if (stageIdx == validStoryIndices[0] && stageIdx == validStoryIndices[1])
         {
-            UIManager.Instance.ShowPanelWithParam<CardPanel>();
+            UIManager.Show<CardPanel>();
         }
 
         yield return null;

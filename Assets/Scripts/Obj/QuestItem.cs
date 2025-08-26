@@ -29,15 +29,15 @@ public class QuestItem : MonoBehaviour
             {
                 case eQuestItems.Karmic_Shard:
                     QuestManager.Instance.ClearSubQuest(0);
-                    UIManager.Instance.ShowPanelWithParam<ItemDetailPanel>(eItemPanelType.Karmic_Shard, stage3PlayerPos);
+                    UIManager.Show<ItemDetailPanel>(eItemPanelType.Karmic_Shard, stage3PlayerPos);
                     break;
                 case eQuestItems.Memory_Lamp:
                     QuestManager.Instance.ClearSubQuest(1);
-                    UIManager.Instance.ShowPanelWithParam<ItemDetailPanel>(eItemPanelType.Memory_Lamp, stage3PlayerPos);
+                    UIManager.Show<ItemDetailPanel>(eItemPanelType.Memory_Lamp, stage3PlayerPos);
                     break;
                 case eQuestItems.Soul_Thread:
                     QuestManager.Instance.ClearSubQuest(2);
-                    UIManager.Instance.ShowPanelWithParam<ItemDetailPanel>(eItemPanelType.Soul_Thread, stage3PlayerPos);
+                    UIManager.Show<ItemDetailPanel>(eItemPanelType.Soul_Thread, stage3PlayerPos);
                     break;
             }
         }

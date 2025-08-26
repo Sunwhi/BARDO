@@ -27,12 +27,10 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
 
     public TextMeshProUGUI displaySpeakerText;
     private const string SPEAKER_TAG = "speaker";
+
     private void Start()
     {
-        if(UIManager.Instance != null)
-        {
-            UIManager.Instance.HidePanel("DialoguePanel");
-        }
+        dialoguePanel.SetActive(false);
         ResetPanel();
     }
     private void Update()
@@ -70,12 +68,12 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
 
     private void DialogueStart()
     {
-        UIManager.Instance.ShowPanel("DialoguePanel");
+        dialoguePanel.SetActive(true);
     }
 
     private void DialogueFinished()
     {
-        UIManager.Instance.HidePanel("DialoguePanel");
+        dialoguePanel.SetActive(false);
         // reset anything for next time
         ResetPanel();
     }

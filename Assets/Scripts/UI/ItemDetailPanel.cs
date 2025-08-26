@@ -46,7 +46,7 @@ public class ItemDetailPanel : UIBase
         itemDescTxt.text = itemData[itemType].desc;
     }
 
-    public void OnCloseBtn()
+    public override void OnUICloseBtn()
     {
         Time.timeScale = 1f;
 
@@ -65,6 +65,6 @@ public class ItemDetailPanel : UIBase
             GameEventBus.Raise<NextStageEvent>(new(3, stage3PlayerPos.position));
         }
 
-        UIManager.Instance.HidePanel(gameObject.name);
+        base.OnUICloseBtn();
     }
 }

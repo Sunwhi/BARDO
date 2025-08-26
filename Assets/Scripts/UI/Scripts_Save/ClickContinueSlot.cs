@@ -55,7 +55,7 @@ public class ClickContinueSlot : MonoBehaviour
         }
         if (hasSaveSlot)
         {
-            UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
+            UIManager.Show<YesNoPanel>(
             EYesNoPanelType.Continue,
             new UnityAction(() =>
             {

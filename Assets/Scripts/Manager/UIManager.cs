@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 /*
  * UIManager
  * uiPanels에 게임 내의 모든 panel들을 저장하고,
@@ -9,15 +7,15 @@ using UnityEngine.SceneManagement;
  */
 public class UIManager : Singleton<UIManager>
 {
-
-    // 패널들을 담는 딕셔너리
-    public Dictionary<string, GameObject> uiPanels = new Dictionary<string, GameObject>();
+    private Transform uiParent;
+    private readonly List<UIBase> uiList = new();
+    private readonly Stack<UIBase> activeUI = new();
 
     public Fadeview fadeView;
 
-    // 전 씬의 패널들을 모두 삭제한 뒤 새로운 씬의 패널들을 register하기 위한 변수
-    public bool okToRegisterPanels = false; 
+    private static readonly string uiFolder = "UIs";
 
+    //TODO : 수정.
     private void Update()
     {
         // TitleScene에서 Prototype Scene 넘어갈때 UIManager에 fadeview 넣기
@@ -25,97 +23,124 @@ public class UIManager : Singleton<UIManager>
         {
             fadeView = FindAnyObjectByType<Fadeview>();
         }
-    }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    // 새로운 씬이 로드되면 uiPanel의 모든 오브젝트들을 삭제 (그리고 다른 Panel 클래스의 Start에서 해당 씬의 패널들을 register한다.)
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        uiPanels.Clear();
-        okToRegisterPanels = true;
-    }
-
-    // 파라미터로 받은 패널을 uiPanels의 딕셔너리에 추가한다.
-    public void RegisterPanels(GameObject panel)
-    {
-        uiPanels[panel.name] = panel;
-    }
-
-    // Panel을 나타내는 함수
-    public void ShowPanel(string panelName)
-    {
-        if(uiPanels.TryGetValue(panelName, out var panel))
+        if (activeUI.Count > 0 && Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!panel.activeSelf)    panel.SetActive(true);
-        }
-        else
-        {
-            Debug.LogWarning($"[UIPanel] : {panelName}패널을 찾을 수 없습니다");
+            Hide();
         }
     }
 
-    //사용법 가이드
-    //UIManager.Instance.ShowPanelWithParam("PanelName", 변수1, 변수2, ...);
-    //변수1부터는 원하는 아무 변수를 원하는 개수만큼.
-    //YesNoPanel = EYesNoPanelType, UnityAction yesAction, UnityAction noAction
-    public T ShowPanelWithParam<T>(params object[] param) where T : UIBase
+    public static void SetCanvas(Transform transform)
     {
-        string panelName = typeof(T).Name;
+        Instance.uiParent = transform;
+        Instance.uiList.Clear();
+        Instance.activeUI.Clear();
+    }
 
-        if (uiPanels.TryGetValue(panelName, out var panel))
+    /// <summary> UI를 생성하고 isActiveInCreated에 따라 활성화하는 메서드 </summary>
+    /// <typeparam name="T">UIBase를 상속받은 클래스</typeparam>
+    /// <param name="param">원하는 변수를 원하는 개수만큼!</param>
+    public static T Show<T>(params object[] param) where T : UIBase
+    {
+        string uiName = typeof(T).Name;
+        var ui = Instance.uiList.Find(obj => obj.name == uiName);
+
+        if (ui == null)
         {
-            if (!panel.activeSelf) panel.SetActive(true);
-            UIBase uiBase = panel.GetComponent<UIBase>();
-            if (uiBase != null)
+            ui = ResourceManager.Instance.Instantiate<T>(uiFolder, uiName, Instance.uiParent);
+            if (ui == null)
             {
-                uiBase.opened?.Invoke(param);
+                Debug.LogWarning($"[UIManager] : {uiName}을 찾을 수 없습니다");
+                return null;
             }
-            return (T)uiBase;
+            ui.name = uiName;
+            Instance.uiList.Add(ui);
         }
-        else
+
+        if (Instance.activeUI.TryPeek(out var top))
         {
-            Debug.LogWarning($"[UIPanel] : {panelName}패널을 찾을 수 없습니다");
-            return default;
+            top.gameObject.SetActive(false);
+        }
+
+        Instance.activeUI.Push(ui);
+        ui.gameObject.SetActive(true);
+        ui.opened?.Invoke(param);
+        return (T)ui;
+    }
+
+    /// <summary> Scene에 생성된 UI 반환 </summary>
+    /// <typeparam name="T">UIBase를 상속받은 클래스</typeparam>
+    public static T Get<T>() where T : UIBase
+    {
+        return (T)Instance.uiList.Find(obj => obj.name == typeof(T).ToString());
+    }
+
+    /// <summary>
+    /// UI를 isDestroyAtClosed에 따라 숨기거나 파괴
+    /// </summary>
+    /// <param name="param">원하는 변수를 원하는 개수만큼!</param>
+    public static void Hide(params object[] param)
+    {
+        if (Instance.activeUI.Count == 0)
+        {
+            Debug.LogWarning("[UIManager] : 닫을 UI가 없습니다");
+            return;
+        }
+
+        var ui = Instance.activeUI.Pop();
+        if (ui != null)
+        {
+            ui.closed.Invoke(param);
+
+            if (ui.isDestroyAtClosed)
+            {
+                Instance.uiList.Remove(ui);
+                Destroy(ui.gameObject);
+            }
+            else
+            {
+                ui.gameObject.SetActive(false);
+            }
+
+            if (Instance.activeUI.TryPeek(out var top))
+            {
+                top.gameObject.SetActive(true);
+            }
         }
     }
 
-    // Panel을 숨기는 함수
-    public void HidePanel(string panelName)
-    {
-        if(uiPanels.TryGetValue(panelName, out var panel))
-        {
-            if(panel.activeSelf)    panel.SetActive(false);
-        }
-        else
-        {
-            Debug.LogWarning($"[UIPanel] : {panelName}패널을 찾을 수 없습니다");
-        }
-    }
-    // 게임 내의 모든 패널을 숨기는 함수
     public void HideAllPanels()
     {
-        foreach(var panel in uiPanels.Values)
+        while (activeUI.Count > 0)
         {
-            if (panel.activeSelf) panel.SetActive(false);
+            var ui = activeUI.Pop();
+            if (ui == null) continue;
+
+            ui.closed.Invoke(null);
+            
+            if (ui.isDestroyAtClosed)
+            {
+                uiList.Remove(ui);
+                Destroy(ui.gameObject);
+            }
+            else
+            {
+                ui.gameObject.SetActive(false);
+            }
         }
     }
 
-    public bool IsPanelActive(string panelName)
+    public bool IsPanelActive<T>() where T : UIBase
     {
-        if (uiPanels.TryGetValue(panelName, out var panel))
+        var panel = uiList.Find(obj => obj.name == typeof(T).Name);
+
+        if (panel == null)
         {
-            if (panel.activeSelf) return true;
-            else return false;
+            Debug.LogWarning($"[UIManager] : {typeof(T).Name}을 찾을 수 없습니다");
+            return false;
         }
+
+        if (activeUI.Contains(panel)) return true;
         else return false;
     }
 }
