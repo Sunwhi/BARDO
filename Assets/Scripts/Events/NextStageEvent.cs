@@ -12,6 +12,6 @@ public class NextStageEvent : IGameEvent
 
         SaveManager.Instance.SetSaveData(nameof(SaveData.stageIdx), stageId);
         SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 0);
-        UIManager.Instance.ShowPanelWithParam<RoundTransition>(stageId);
+        UIManager.Show<RoundTransition>(stageId);
     }
 }

@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class UIBase : MonoBehaviour
 {
+    public bool isDestroyAtClosed = false;
+
     public UnityAction<object[]> opened;
     public UnityAction<object[]> closed;
 
@@ -14,4 +16,9 @@ public class UIBase : MonoBehaviour
 
     public virtual void Opened(object[] param) { }
     public virtual void Closed(object[] param) { }
+
+    public virtual void OnUICloseBtn()
+    {
+        UIManager.Hide();
+    }
 }

@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class SavePanelUI : MonoBehaviour
+public class SavePanelUI : UIBase
 {
-    public void OnClickSaveExitBtn()
+    public override void OnUICloseBtn()
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
-        UIManager.Instance.HidePanel("SavePanel");
-        UIManager.Instance.ShowPanel("EscPanel");
+        base.OnUICloseBtn();
     }
 }

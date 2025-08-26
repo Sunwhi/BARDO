@@ -4,21 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-public class TitleSceneUI : MonoBehaviour
+public class TitleCanvas : UICanvas
 {
-    [SerializeField] private List<GameObject> panelsToRegister;
-
-    private void Start()
+    protected override void Start()
     {
-        // uiPanel의 모든 패널들이 Clear되었을 때 register.
-        if (UIManager.Instance.okToRegisterPanels)
-        {
-            foreach (var panel in panelsToRegister)
-            {
-                UIManager.Instance.RegisterPanels(panel);
-            }
-        }
-        UIManager.Instance.okToRegisterPanels = false;
+        base.Start();
         ContinueManager.Instance.loadedByContinue = false;
     }
 
@@ -30,7 +20,7 @@ public class TitleSceneUI : MonoBehaviour
         // 남은 saveslot이 없다면
         if(SaveManager.Instance.FirstEmptySlot() == 0)
         {
-            UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
+            UIManager.Show<YesNoPanel>(
             EYesNoPanelType.New,
             new UnityAction(() =>
             {
@@ -70,20 +60,19 @@ public class TitleSceneUI : MonoBehaviour
         {
             Debug.LogError("DialogueManager.Instance is null!");
         }
-        UIManager.Instance.ShowPanel("ContinuePanel");
+        UIManager.Show<ContinuePanelUI>("ContinuePanel");
     }
 
     public void OnClickOptionBtn()
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
-        UIManager.Instance.ShowPanel("OptionPanel");
-        UIManager.Instance.ShowPanel("EscBGImg");
+        UIManager.Show<OptionPanel>("OptionPanel");
     }
 
     public void OnClickCreditBtn()
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
-        UIManager.Instance.ShowPanel("CreditPanel");
+        //UIManager.Show<CreditPanel>();
     }
 
     public void OnClickGameExitBtn()

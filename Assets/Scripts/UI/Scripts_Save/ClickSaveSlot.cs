@@ -31,18 +31,18 @@ public class ClickSaveSlot : MonoBehaviour
                     SaveManager.Instance.SaveSlot(ESaveSlot.Slot1);
                     SaveManager.Instance.currentSaveSlot = 1;
                     slotName = "[슬롯1]";
-                    changeSlotText();
+                    ChangeSlotText();
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
+                    UIManager.Show<YesNoPanel>(
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
                         SaveManager.Instance.SaveSlot(ESaveSlot.Slot1);
                         SaveManager.Instance.currentSaveSlot = 1;
                         slotName = "[슬롯1]";
-                        changeSlotText();
+                        ChangeSlotText();
                     })
                     );
                 }
@@ -56,18 +56,18 @@ public class ClickSaveSlot : MonoBehaviour
                     SaveManager.Instance.SaveSlot(ESaveSlot.Slot2);
                     SaveManager.Instance.currentSaveSlot = 2;
                     slotName = "[슬롯2]";
-                    changeSlotText();
+                    ChangeSlotText();
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
+                    UIManager.Show<YesNoPanel>(
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
                         SaveManager.Instance.SaveSlot(ESaveSlot.Slot2);
                         SaveManager.Instance.currentSaveSlot = 2;
                         slotName = "[슬롯2]";
-                        changeSlotText();
+                        ChangeSlotText();
                     })
                     );
                 }
@@ -80,18 +80,18 @@ public class ClickSaveSlot : MonoBehaviour
                     SaveManager.Instance.SaveSlot(ESaveSlot.Slot3);
                     SaveManager.Instance.currentSaveSlot = 3;
                     slotName = "[슬롯3]";
-                    changeSlotText();
+                    ChangeSlotText();
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
+                    UIManager.Show<YesNoPanel>(
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
                         SaveManager.Instance.SaveSlot(ESaveSlot.Slot3);
                         SaveManager.Instance.currentSaveSlot = 3;
                         slotName = "[슬롯3]";
-                        changeSlotText();
+                        ChangeSlotText();
                     })
                     );
                 }
@@ -104,18 +104,18 @@ public class ClickSaveSlot : MonoBehaviour
                     SaveManager.Instance.SaveSlot(ESaveSlot.Slot4);
                     SaveManager.Instance.currentSaveSlot = 4;
                     slotName = "[슬롯4]";
-                    changeSlotText();
+                    ChangeSlotText();
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
+                    UIManager.Show<YesNoPanel>(
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
                         SaveManager.Instance.SaveSlot(ESaveSlot.Slot4);
                         SaveManager.Instance.currentSaveSlot = 4;
                         slotName = "[슬롯4]";
-                        changeSlotText();
+                        ChangeSlotText();
                     })
                     );
                 }
@@ -128,18 +128,18 @@ public class ClickSaveSlot : MonoBehaviour
                     SaveManager.Instance.SaveSlot(ESaveSlot.Slot5);
                     SaveManager.Instance.currentSaveSlot = 5;
                     slotName = "[슬롯5]";
-                    changeSlotText();
+                    ChangeSlotText();
                 }
                 else
                 {
-                    UIManager.Instance.ShowPanelWithParam<YesNoPanel>(
+                    UIManager.Show<YesNoPanel>(
                     EYesNoPanelType.Save,
                     new UnityAction(() =>
                     {
                         SaveManager.Instance.SaveSlot(ESaveSlot.Slot5);
                         SaveManager.Instance.currentSaveSlot = 5;
                         slotName = "[슬롯5]";
-                        changeSlotText();
+                        ChangeSlotText();
                     })
                     );
                 }
@@ -148,7 +148,7 @@ public class ClickSaveSlot : MonoBehaviour
         hasSaveSlot = false;
     }
 
-    private void changeSlotText()
+    private void ChangeSlotText()
     {
         slotText.text = slotName + SaveManager.Instance.MySaveData.saveName.ToString();
     }

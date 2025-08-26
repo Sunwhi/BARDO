@@ -61,7 +61,7 @@ public class StoryManager : Singleton<StoryManager>
 
         SoundManager.Instance.PlaySFX(eSFX.Stage_Transition);
         yield return new WaitForSeconds(0.5f);
-        UIManager.Instance.ShowPanelWithParam<RoundTransition>(1);
+        UIManager.Show<RoundTransition>(1);          
         yield return new WaitForSeconds(1f);
            
         SoundManager.Instance.PlaySFX(eSFX.Opening_Door);

@@ -44,22 +44,28 @@ public class YesNoPanel : UIBase
 
         if (param.Length > 1 && param[1] is UnityAction yesAction)
         {
-            YesBtn.onClick.AddListener(() => { yesAction.Invoke(); UIManager.Instance.HidePanel(name); SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click); });
+            YesBtn.onClick.AddListener(() => { 
+                yesAction.Invoke();
+                BaseAction();
+            });
         }
 
         if (param.Length > 2 && param[2] is UnityAction noAction)
         {
-            NoBtn.onClick.AddListener(() => { noAction.Invoke(); UIManager.Instance.HidePanel(name); SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click); });
+            NoBtn.onClick.AddListener(() => { 
+                noAction.Invoke();
+                BaseAction();
+            });
         }
         else
         {
-            NoBtn.onClick.AddListener(NoAction);
+            NoBtn.onClick.AddListener(BaseAction);
         }
     }
 
-    public void NoAction()
+    private void BaseAction()
     {
         SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
-        UIManager.Instance.HidePanel(name);
+        UIManager.Hide();
     }
 }

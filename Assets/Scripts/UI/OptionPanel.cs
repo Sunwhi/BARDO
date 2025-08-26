@@ -1,19 +1,10 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VolumeControl : MonoBehaviour
+public class OptionPanel : UIBase
 {
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
-
-    private void Start()
-    {
-
-    }
-    private void Update()
-    {
-    }
 
     public void SetBgmVolume()
     {
@@ -24,5 +15,11 @@ public class VolumeControl : MonoBehaviour
     {
         float sfxVolume = sfxSlider.value;
         SoundManager.Instance.SetSFXVolume(sfxVolume);
+    }
+
+    public override void OnUICloseBtn()
+    {
+        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        base.OnUICloseBtn();
     }
 }

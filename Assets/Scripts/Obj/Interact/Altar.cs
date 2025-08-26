@@ -18,7 +18,7 @@ public class Altar : InteractEnter
             {
                 case 0:
                     //임시 코드
-                    UIManager.Instance.ShowPanelWithParam<ItemDetailPanel>(eItemPanelType.Karmic_Shard);
+                    UIManager.Show<ItemDetailPanel>(eItemPanelType.Karmic_Shard);
                     break;
                 case 1:
                     //애니메이션 재생
