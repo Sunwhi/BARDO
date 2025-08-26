@@ -33,13 +33,13 @@ public class DialogueNext : MonoBehaviour, IPointerEnterHandler
     {
         if (!dialogueKnotName.Equals(""))
         {
-            SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
+            SoundManager.Instance.PlaySFX(ESFX.UI_Button_Txt);
             DialogueEventManager.Instance.inputEvents.StartDialogue();
         }
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(gameObject.name != "DialoguePanel")
-            SoundManager.Instance.PlaySFX(eSFX.UI_Button_Hover);
+            SoundManager.Instance.PlaySFX(ESFX.UI_Button_Hover);
     }
 }

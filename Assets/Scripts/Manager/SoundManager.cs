@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-public enum eBGM
+public enum EBGM
 {
     Title,
     Stage1,
@@ -9,7 +9,7 @@ public enum eBGM
     Stage3,
 }
 
-public enum eSFX
+public enum ESFX
 {
     Background_Wind,
     Opening_Door,
@@ -40,7 +40,38 @@ public class SoundManager : Singleton<SoundManager>
     [Header("Audio Mixer")]
     public AudioMixer audioMixer;
 
-    public void PlayBGM(eBGM bgmType)
+    private const string bgmVolumeParam = "BGM";
+    private const string sfxVolumeParam = "SFX";
+
+    public float GetBGMVolume() => PlayerPrefs.GetFloat(bgmVolumeParam);
+    public float GetSFXVolume() => PlayerPrefs.GetFloat(sfxVolumeParam);
+
+    public override void Awake()
+    {
+        base.Awake();
+
+        if (PlayerPrefs.HasKey(bgmVolumeParam))
+        {
+            float bgmVolume = GetBGMVolume();
+            SetBGMVolume(bgmVolume);
+        }
+        else
+        {
+            SetBGMVolume(0.5f); // 기본값 설정
+        }
+
+        if (PlayerPrefs.HasKey(sfxVolumeParam))
+        {
+            float sfxVolume = GetSFXVolume();
+            SetSFXVolume(sfxVolume);
+        }
+        else
+        {
+            SetSFXVolume(0.5f); // 기본값 설정
+        }
+    }
+
+    public void PlayBGM(EBGM bgmType)
     {
         int index = (int)bgmType;
         if (index >= 0 && index < bgmClips.Length)
@@ -50,7 +81,7 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-    public void PlaySFX(eSFX sfxType)
+    public void PlaySFX(ESFX sfxType)
     {
         int index = (int)sfxType;
         if (index >= 0 && index < sfxClips.Length)
@@ -65,7 +96,7 @@ public class SoundManager : Singleton<SoundManager>
         sfxSource.loop = false;
     }
 
-    public void PlayAmbientSound(eSFX sfxType)
+    public void PlayAmbientSound(ESFX sfxType)
     {
         int index = (int)sfxType;
         if (index >= 0 && index < sfxClips.Length)
@@ -78,10 +109,12 @@ public class SoundManager : Singleton<SoundManager>
     public void SetBGMVolume(float volume)
     {
         audioMixer.SetFloat("BGM", Mathf.Log10(Mathf.Clamp01(volume)) * 20);
+        PlayerPrefs.SetFloat(bgmVolumeParam, volume);
     }
 
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("SFX", Mathf.Log10(Mathf.Clamp01(volume)) * 20);
+        PlayerPrefs.SetFloat(sfxVolumeParam, volume);
     }
 }
