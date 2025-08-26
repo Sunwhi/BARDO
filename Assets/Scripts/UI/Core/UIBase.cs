@@ -1,8 +1,17 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum eUIPosition
+{
+    Default,
+    Popup,
+    Override,
+    Transition
+}
+
 public class UIBase : MonoBehaviour
 {
+    public eUIPosition uiPosition = eUIPosition.Default;
     public bool isDestroyAtClosed = false;
 
     public UnityAction<object[]> opened;

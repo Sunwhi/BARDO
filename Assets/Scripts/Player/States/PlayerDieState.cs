@@ -9,7 +9,7 @@ public class PlayerDieState : PlayerState
         Player.animator.SetTrigger(Player.AnimationData.DieParamHash);
         Player.controller.MoveInput = Vector2.zero;
 
-        SoundManager.Instance.PlaySFX(eSFX.Character_Death);
+        SoundManager.Instance.PlaySFX(ESFX.Character_Death);
     }
 
     public override void Update()

@@ -1,40 +1,34 @@
-using UnityEngine;
+using System;
 using System.Collections.Generic;
-/*
- * UIManager
- * uiPanels에 게임 내의 모든 panel들을 저장하고,
- * ShowPanel, HidePanel, HideAllPanels를 통해 panel들을 관리한다.
- */
+using UnityEngine;
+
 public class UIManager : Singleton<UIManager>
 {
-    private Transform uiParent;
-    private readonly List<UIBase> uiList = new();
-    private readonly Stack<UIBase> activeUI = new();
-
     public Fadeview fadeView;
-
+    
+    private Transform[] uiParents;
     private static readonly string uiFolder = "UIs";
 
-    //TODO : 수정.
+    private readonly Dictionary<Type, UIBase> uiCache = new();
+    public Dictionary<eUIPosition, Stack<UIBase>> ActiveStacks { get; private set; } = new()
+    {
+        { eUIPosition.Popup,    new Stack<UIBase>() },
+        { eUIPosition.Override, new Stack<UIBase>() },
+    };
+    private UIBase activeTransition;
+
     private void Update()
     {
-        // TitleScene에서 Prototype Scene 넘어갈때 UIManager에 fadeview 넣기
-        if (fadeView == null)
-        {
-            fadeView = FindAnyObjectByType<Fadeview>();
-        }
-
-        if (activeUI.Count > 0 && Input.GetKeyDown(KeyCode.Escape))
-        {
+        if (ActiveStacks[eUIPosition.Popup].Count > 0 && Input.GetKeyDown(KeyCode.Escape))
             Hide();
-        }
     }
 
-    public static void SetCanvas(Transform transform)
+    public static void SetCanvas(Transform[] t)
     {
-        Instance.uiParent = transform;
-        Instance.uiList.Clear();
-        Instance.activeUI.Clear();
+        Instance.uiParents = t;
+        Instance.uiCache.Clear();
+        foreach (var st in Instance.ActiveStacks.Values) st.Clear();
+        Instance.activeTransition = null;
     }
 
     /// <summary> UI를 생성하고 isActiveInCreated에 따라 활성화하는 메서드 </summary>
@@ -42,27 +36,52 @@ public class UIManager : Singleton<UIManager>
     /// <param name="param">원하는 변수를 원하는 개수만큼!</param>
     public static T Show<T>(params object[] param) where T : UIBase
     {
-        string uiName = typeof(T).Name;
-        var ui = Instance.uiList.Find(obj => obj.name == uiName);
+        var t = typeof(T);
 
-        if (ui == null)
+        if (Instance.uiCache.TryGetValue(t, out var ui) || ui == null)
         {
-            ui = ResourceManager.Instance.Instantiate<T>(uiFolder, uiName, Instance.uiParent);
-            if (ui == null)
+            var prefab = ResourceManager.Instance.LoadAsset<T>(uiFolder, t.Name);
+            if (prefab == null)
             {
-                Debug.LogWarning($"[UIManager] : {uiName}을 찾을 수 없습니다");
+                Debug.LogError($"[UIManager] {t.Name} 프리팹을 찾을 수 없습니다.");
                 return null;
             }
-            ui.name = uiName;
-            Instance.uiList.Add(ui);
+
+            ui = Instantiate(prefab, Instance.uiParents[(int)prefab.uiPosition]);
+            ui.name = t.Name;
+            Instance.uiCache[t] = ui;
         }
 
-        if (Instance.activeUI.TryPeek(out var top))
+        switch (ui.uiPosition)
         {
-            top.gameObject.SetActive(false);
+            case eUIPosition.Default:
+                break;
+            case eUIPosition.Popup:
+                if (Instance.ActiveStacks[eUIPosition.Popup].TryPeek(out var curPop))
+                {
+                    curPop.gameObject.SetActive(false);
+                }
+                Instance.ActiveStacks[eUIPosition.Popup].Push(ui);
+                break;
+            case eUIPosition.Override:
+                if (Instance.ActiveStacks[eUIPosition.Override].TryPeek(out var curOv))
+                {
+                    curOv.gameObject.SetActive(false);
+                }
+                Instance.ActiveStacks[eUIPosition.Override].Push(ui);
+                break;
+            case eUIPosition.Transition:
+                if (Instance.activeTransition)
+                {
+                    Instance.activeTransition.gameObject.SetActive(false);
+                    Instance.activeTransition = ui;
+                }
+                break;
+            default:
+                Debug.LogWarning("[UIManager] : 정의되지 않은 UI Position입니다");
+                return null;
         }
 
-        Instance.activeUI.Push(ui);
         ui.gameObject.SetActive(true);
         ui.opened?.Invoke(param);
         return (T)ui;
@@ -72,7 +91,9 @@ public class UIManager : Singleton<UIManager>
     /// <typeparam name="T">UIBase를 상속받은 클래스</typeparam>
     public static T Get<T>() where T : UIBase
     {
-        return (T)Instance.uiList.Find(obj => obj.name == typeof(T).ToString());
+        var t = typeof(T);
+        if (Instance.uiCache.TryGetValue(t, out var ui) && ui) return (T)ui;
+        return null;
     }
 
     /// <summary>
@@ -81,66 +102,76 @@ public class UIManager : Singleton<UIManager>
     /// <param name="param">원하는 변수를 원하는 개수만큼!</param>
     public static void Hide(params object[] param)
     {
-        if (Instance.activeUI.Count == 0)
-        {
-            Debug.LogWarning("[UIManager] : 닫을 UI가 없습니다");
+        if (Instance.activeTransition && Instance.activeTransition.gameObject.activeSelf)
             return;
-        }
 
-        var ui = Instance.activeUI.Pop();
-        if (ui != null)
-        {
-            ui.closed.Invoke(param);
+        if (TryPopAndClose(Instance.ActiveStacks[eUIPosition.Override], Instance, param))
+            return;
 
-            if (ui.isDestroyAtClosed)
-            {
-                Instance.uiList.Remove(ui);
-                Destroy(ui.gameObject);
-            }
-            else
-            {
-                ui.gameObject.SetActive(false);
-            }
-
-            if (Instance.activeUI.TryPeek(out var top))
-            {
-                top.gameObject.SetActive(true);
-            }
-        }
+        if (!TryPopAndClose(Instance.ActiveStacks[eUIPosition.Popup], Instance, param))
+            Debug.LogWarning("[UIManager] : 닫을 UI가 없습니다");
     }
 
     public void HideAllPanels()
     {
-        while (activeUI.Count > 0)
-        {
-            var ui = activeUI.Pop();
-            if (ui == null) continue;
-
-            ui.closed.Invoke(null);
-            
-            if (ui.isDestroyAtClosed)
-            {
-                uiList.Remove(ui);
-                Destroy(ui.gameObject);
-            }
-            else
-            {
-                ui.gameObject.SetActive(false);
-            }
-        }
+        CloseAllInStack(ActiveStacks[eUIPosition.Override]);
+        CloseAllInStack(ActiveStacks[eUIPosition.Popup]);
     }
 
-    public bool IsPanelActive<T>() where T : UIBase
+    public bool IsActive<T>() where T : UIBase
     {
-        var panel = uiList.Find(obj => obj.name == typeof(T).Name);
-
-        if (panel == null)
+        if (!uiCache.TryGetValue(typeof(T), out var panel) || !panel)
         {
             Debug.LogWarning($"[UIManager] : {typeof(T).Name}을 찾을 수 없습니다");
             return false;
         }
 
-        if (activeUI.Contains(panel)) return true;
-        else return false;
+        if (activeTransition == panel) return true;
+        if (ActiveStacks[eUIPosition.Popup].Contains(panel)) return true;
+        if (ActiveStacks[eUIPosition.Override].Contains(panel)) return true;
+        return false;
+    }
+
+    private static bool TryPopAndClose(Stack<UIBase> stack, UIManager inst, object[] param)
+    {
+        if (!stack.TryPeek(out _)) return false;
+        var ui = stack.Pop();
+        if (ui)
+        {
+            ui.closed?.Invoke(param);
+            if (ui.isDestroyAtClosed)
+            {
+                inst.uiCache.Remove(ui.GetType());
+                Destroy(ui.gameObject);
+            }
+            else
+            {
+                ui.gameObject.SetActive(false);
+            }
+        }
+
+        if (stack.TryPeek(out var next) && next) next.gameObject.SetActive(true);
+        return true;
+    }
+
+    private void CloseAllInStack(Stack<UIBase> stack)
+    {
+        while (stack.TryPeek(out _))
+        {
+            var ui = stack.Pop();
+            if (!ui) continue;
+
+            ui.closed?.Invoke(null);
+
+            if (ui.isDestroyAtClosed)
+            {
+                uiCache.Remove(ui.GetType());
+                Destroy(ui.gameObject);
+            }
+            else
+            {
+                ui.gameObject.SetActive(false);
+            }
+        }
     }
 }

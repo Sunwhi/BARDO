@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionPanel : UIBase
+public class SettingPanel : UIBase
 {
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
@@ -19,7 +19,7 @@ public class OptionPanel : UIBase
 
     public override void OnUICloseBtn()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
         base.OnUICloseBtn();
     }
 }

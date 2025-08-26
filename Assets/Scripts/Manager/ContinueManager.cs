@@ -22,7 +22,7 @@ public class ContinueManager : Singleton<ContinueManager>
 
     private void ContinueGame(ClickContinueEvent ev)
     {
-        SoundManager.Instance.PlayBGM(eBGM.Stage1);
+        SoundManager.Instance.PlayBGM(EBGM.Stage1);
 
         loadedByContinue = true;
         StartCoroutine(SetPlayerPositionDelayed());

@@ -81,7 +81,7 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
     }
     public void OnSelect(BaseEventData eventData)
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Hover);
+        SoundManager.Instance.PlaySFX(ESFX.UI_Button_Hover);
 
         //Debug.Log(gameObject.name);
         selectedChoiceBtn = gameObject.name;
@@ -93,7 +93,7 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
         // 문장 끝날때까지 선택지 못 누름
         if (DialogueManager.Instance.canContinueToNextLine)
         {
-            SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
+            SoundManager.Instance.PlaySFX(ESFX.UI_Button_Txt);
             DialogueEventManager.Instance.inputEvents.StartDialogue();
         }
     }

@@ -141,7 +141,7 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
 
             if (letterCount % 2 == 0 && typingSpeed != 0.005f)
             {
-                SoundManager.Instance.PlaySFX(eSFX.UI_Txt_Scroll);
+                SoundManager.Instance.PlaySFX(ESFX.UI_Txt_Scroll);
             }
 
             yield return new WaitForSeconds(typingSpeed);
@@ -203,7 +203,7 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
 
     IEnumerator typingSfx()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Txt);
+        SoundManager.Instance.PlaySFX(ESFX.UI_Button_Txt);
         yield return new WaitForSeconds(1f);
     }
     public void OnPointerClick(PointerEventData eventData)
