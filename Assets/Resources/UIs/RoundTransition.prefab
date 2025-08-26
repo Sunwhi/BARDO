@@ -249,6 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8707db477d74d6d4d92ae57700b98fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPosition: 3
+  isDestroyAtClosed: 0
   weekTxt: {fileID: 1849542632828740024}
   roundTxt: {fileID: 6064828051541624174}
 --- !u!1 &8379812454559414911

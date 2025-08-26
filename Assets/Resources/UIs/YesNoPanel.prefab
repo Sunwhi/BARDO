@@ -312,6 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d639e549380fd854f8818f5ec22d7d38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPosition: 2
+  isDestroyAtClosed: 0
   titleTxt: {fileID: 5129348753595113509}
   contentTxt: {fileID: 6507105535690955179}
   YesBtn: {fileID: 2973758497788321703}
