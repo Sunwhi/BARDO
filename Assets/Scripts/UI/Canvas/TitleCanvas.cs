@@ -62,13 +62,13 @@ public class TitleCanvas : UICanvas
     public void OnClickOptionBtn()
     {
         SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
-        UIManager.Show<SettingPanel>("OptionPanel");
+        UIManager.Show<SettingPanel>();
     }
 
     public void OnClickCreditBtn()
     {
         SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
-        //UIManager.Show<CreditPanel>();
+        UIManager.Show<CreditPanel>();
     }
 
     public void OnClickGameExitBtn()

@@ -874,7 +874,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7406132460769472522, guid: cda096b4430240f4ea4bde30627fd072, type: 3}
+  m_Sprite: {fileID: 7406132460769472522, guid: 1942cab40ca545e4bb551a8d639bea66, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -896,6 +896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067dc813723b8984aa5d1c80fbb245b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPosition: 1
+  isDestroyAtClosed: 0
 --- !u!1 &7119931349811443974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,6 +1257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067dc813723b8984aa5d1c80fbb245b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPosition: 0
+  isDestroyAtClosed: 0
 --- !u!1 &9054468622428297490
 GameObject:
   m_ObjectHideFlags: 0

@@ -255,6 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf53f4cf50c191544a0167482dd15d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPosition: 1
+  isDestroyAtClosed: 0
   thread: {fileID: 0}
   cards: []
 --- !u!1 &1209760757217787164

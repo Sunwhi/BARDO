@@ -6,6 +6,12 @@ public class SettingPanel : UIBase
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
 
+    private void OnEnable()
+    {
+        bgmSlider.value = SoundManager.Instance.GetBGMVolume();
+        sfxSlider.value = SoundManager.Instance.GetSFXVolume();
+    }
+
     public void SetBgmVolume()
     {
         float bgmVolume = bgmSlider.value;
