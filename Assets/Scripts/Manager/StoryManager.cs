@@ -59,16 +59,16 @@ public class StoryManager : Singleton<StoryManager>
         {
             player.playerInput.enabled = false;
 
-        SoundManager.Instance.PlaySFX(eSFX.Stage_Transition);
+        SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
         yield return new WaitForSeconds(0.5f);
         UIManager.Show<RoundTransition>(1);          
         yield return new WaitForSeconds(1f);
            
-        SoundManager.Instance.PlaySFX(eSFX.Opening_Door);
+        SoundManager.Instance.PlaySFX(ESFX.Opening_Door);
         //yield return UIManager.Instance.fadeView.FadeIn();
 
-        SoundManager.Instance.PlayBGM(eBGM.Stage1);
-        SoundManager.Instance.PlayAmbientSound(eSFX.Background_Wind);
+        SoundManager.Instance.PlayBGM(EBGM.Stage1);
+        SoundManager.Instance.PlayAmbientSound(ESFX.Background_Wind);
 
         yield return PlayerWalkLeft();
 

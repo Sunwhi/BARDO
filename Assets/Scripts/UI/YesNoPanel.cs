@@ -65,7 +65,7 @@ public class YesNoPanel : UIBase
 
     private void BaseAction()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
+        SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
         UIManager.Hide();
     }
 }

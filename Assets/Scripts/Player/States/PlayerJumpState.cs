@@ -7,7 +7,7 @@ public class PlayerJumpState : PlayerState
     public override void Enter()
     {
         Player.controller.Jump();
-        SoundManager.Instance.PlaySFX(eSFX.Character_Jump);
+        SoundManager.Instance.PlaySFX(ESFX.Character_Jump);
         Player.animator.SetBool(Player.AnimationData.JumpParamHash, true);
     }
 

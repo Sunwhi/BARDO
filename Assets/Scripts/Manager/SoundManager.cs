@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-public enum eBGM
+public enum EBGM
 {
     Title,
     Stage1,
@@ -9,7 +9,7 @@ public enum eBGM
     Stage3,
 }
 
-public enum eSFX
+public enum ESFX
 {
     Background_Wind,
     Opening_Door,
@@ -40,7 +40,7 @@ public class SoundManager : Singleton<SoundManager>
     [Header("Audio Mixer")]
     public AudioMixer audioMixer;
 
-    public void PlayBGM(eBGM bgmType)
+    public void PlayBGM(EBGM bgmType)
     {
         int index = (int)bgmType;
         if (index >= 0 && index < bgmClips.Length)
@@ -50,7 +50,7 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-    public void PlaySFX(eSFX sfxType)
+    public void PlaySFX(ESFX sfxType)
     {
         int index = (int)sfxType;
         if (index >= 0 && index < sfxClips.Length)
@@ -65,7 +65,7 @@ public class SoundManager : Singleton<SoundManager>
         sfxSource.loop = false;
     }
 
-    public void PlayAmbientSound(eSFX sfxType)
+    public void PlayAmbientSound(ESFX sfxType)
     {
         int index = (int)sfxType;
         if (index >= 0 && index < sfxClips.Length)

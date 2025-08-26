@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UIElements;
 
 public class TitleCanvas : UICanvas
 {
@@ -15,7 +12,7 @@ public class TitleCanvas : UICanvas
     public void OnClickNewGameBtn()
     {
         //bug.Log(MySceneManager.Instance == null ? "인스턴스가 null" : "인스턴스 살아있음");
-        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
+        SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
 
         // 남은 saveslot이 없다면
         if(SaveManager.Instance.FirstEmptySlot() == 0)
@@ -27,7 +24,7 @@ public class TitleCanvas : UICanvas
                 SaveManager.Instance.CreateSaveData();
                 SaveManager.Instance.currentSaveSlot = SaveManager.Instance.OldestSaveSlot();
                 //Debug.Log(SaveManager.Instance.OldestSaveSlot());
-                MySceneManager.Instance.LoadScene(SceneType.MainScene);
+                MySceneManager.Instance.LoadScene(ESceneType.MainScene);
             })
             );
         }
@@ -35,19 +32,18 @@ public class TitleCanvas : UICanvas
         {
             SaveManager.Instance.CreateSaveData();
             SaveManager.Instance.currentSaveSlot = SaveManager.Instance.FirstEmptySlot(); // 자동 저장할 슬롯 지정, 비어있는 가장 첫번째 슬롯
-            MySceneManager.Instance.LoadScene(SceneType.MainScene);
+            MySceneManager.Instance.LoadScene(ESceneType.MainScene);
         }
     }
 
     public void OnClickContinueBtn()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
+        SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
 
         if (SoundManager.Instance == null)
         {
             Debug.LogError("SoundManager.Instance is null! 씬에 SoundManager가 없거나 아직 초기화되지 않았습니다.");
         }
-        //SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
         if (UIManager.Instance == null)
         {
             Debug.LogError("UIManager.Instance is null!");
@@ -60,24 +56,24 @@ public class TitleCanvas : UICanvas
         {
             Debug.LogError("DialogueManager.Instance is null!");
         }
-        UIManager.Show<ContinuePanelUI>("ContinuePanel");
+        UIManager.Show<ContinuePanel>();
     }
 
     public void OnClickOptionBtn()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
+        SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
         UIManager.Show<SettingPanel>("OptionPanel");
     }
 
     public void OnClickCreditBtn()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
+        SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
         //UIManager.Show<CreditPanel>();
     }
 
     public void OnClickGameExitBtn()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Mouse_Click);
+        SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
         #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
         #else
@@ -87,7 +83,7 @@ public class TitleCanvas : UICanvas
 
     public void OnClickExitPanelBtn()
     {
-        SoundManager.Instance.PlaySFX(eSFX.UI_Button_Select_Settings);
+        SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
         UIManager.Instance.HideAllPanels();
     }
 }

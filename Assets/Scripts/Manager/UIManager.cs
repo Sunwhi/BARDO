@@ -1,12 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using UnityEngine;
-/*
- * UIManager
- * uiPanels에 게임 내의 모든 panel들을 저장하고,
- * ShowPanel, HidePanel, HideAllPanels를 통해 panel들을 관리한다.
- */
+
 public class UIManager : Singleton<UIManager>
 {
     public Fadeview fadeView;
@@ -121,7 +116,7 @@ public class UIManager : Singleton<UIManager>
         CloseAllInStack(ActiveStacks[eUIPosition.Popup]);
     }
 
-    public bool IsPanelActive<T>() where T : UIBase
+    public bool IsActive<T>() where T : UIBase
     {
         if (!uiCache.TryGetValue(typeof(T), out var panel) || !panel)
         {

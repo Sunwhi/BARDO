@@ -8,7 +8,7 @@ public class PlayerMoveState : PlayerState
     {
         Player.animator.SetBool(Player.AnimationData.MoveParamHash, true);
 
-        SoundManager.Instance.PlaySFX(eSFX.Character_Walk);
+        SoundManager.Instance.PlaySFX(ESFX.Character_Walk);
         SoundManager.Instance.sfxSource.loop = true;
     }
 
@@ -28,7 +28,7 @@ public class PlayerMoveState : PlayerState
 
     public override void FixedUpdate()
     {
-        Player.controller.Move(); // ¿Ãµø
+        Player.controller.Move(); // Ïù¥Îèô
     }
 
     public override void Exit()
