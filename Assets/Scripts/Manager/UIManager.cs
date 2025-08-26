@@ -40,12 +40,14 @@ public class UIManager : Singleton<UIManager>
 
         if (Instance.uiCache.TryGetValue(t, out var ui) || ui == null)
         {
-            ui = ResourceManager.Instance.Instantiate<T>(uiFolder, t.Name, Instance.uiParents[(int)ui.uiPosition]);
-            if (ui == null)
+            var prefab = ResourceManager.Instance.LoadAsset<T>(uiFolder, t.Name);
+            if (prefab == null)
             {
-                Debug.LogWarning($"[UIManager] : {t.Name}을 찾을 수 없습니다");
+                Debug.LogError($"[UIManager] {t.Name} 프리팹을 찾을 수 없습니다.");
                 return null;
             }
+
+            ui = Instantiate(prefab, Instance.uiParents[(int)prefab.uiPosition]);
             ui.name = t.Name;
             Instance.uiCache[t] = ui;
         }
