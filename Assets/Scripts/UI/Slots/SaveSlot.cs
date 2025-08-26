@@ -28,12 +28,20 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-            
+        slotImg.sprite = slotImgSprites[1];
+        slotLineImg.sprite = slotLineSprites[1];
+        slotNameTxt.color = Color.black;
+        slotDetailTxt.color = Color.black;
+        slotDateTxt.color = Color.black;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        throw new NotImplementedException();
+        slotImg.sprite = slotImgSprites[0];
+        slotLineImg.sprite = slotLineSprites[0];
+        slotNameTxt.color = Color.white;
+        slotDetailTxt.color = Color.white;
+        slotDateTxt.color = Color.white;
     }
 
     public void SetSlot(SaveData data, Action<int> onSlotClicked)
