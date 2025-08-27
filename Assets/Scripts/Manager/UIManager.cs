@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -74,8 +75,8 @@ public class UIManager : Singleton<UIManager>
                 if (Instance.activeTransition)
                 {
                     Instance.activeTransition.gameObject.SetActive(false);
-                    Instance.activeTransition = ui;
                 }
+                Instance.activeTransition = ui;
                 break;
             default:
                 Debug.LogWarning("[UIManager] : 정의되지 않은 UI Position입니다");
@@ -110,6 +111,23 @@ public class UIManager : Singleton<UIManager>
 
         if (!TryPopAndClose(Instance.ActiveStacks[eUIPosition.Popup], Instance, param))
             Debug.LogWarning("[UIManager] : 닫을 UI가 없습니다");
+    }
+
+    public static void HideTransition(params object[] param)
+    {
+        var ui = Instance.activeTransition;
+        ui.closed?.Invoke(param);
+        if (ui.isDestroyAtClosed)
+        {
+            Instance.uiCache.Remove(ui.GetType());
+            Destroy(ui.gameObject);
+        }
+        else
+        {
+            ui.gameObject.SetActive(false);
+        }
+
+        Instance.HideAllPanels();
     }
 
     public void HideAllPanels()

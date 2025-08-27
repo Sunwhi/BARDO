@@ -28,6 +28,6 @@ public class RoundTransition : UIBase
     public void OnTransitionEnd()
     {
         Time.timeScale = 1f;
-        UIManager.Hide();
+        UIManager.HideTransition();
     }
 }
