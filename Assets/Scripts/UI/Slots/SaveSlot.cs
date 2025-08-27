@@ -51,6 +51,7 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         slotNameTxt.text = $"[{data.saveName}] {data.stageIdx}주차";
         //TODO : slotDetailTxt
+
         slotDateTxt.text = new DateTime(data.lastSaveTime).ToString("yyyy/MM/dd (ddd) HH:mm");
 
         slotBtn.enabled = true; 

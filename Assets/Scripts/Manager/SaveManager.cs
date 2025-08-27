@@ -19,26 +19,22 @@ public enum ESaveSlot
 public class SaveManager : Singleton<SaveManager>
 {
     private SaveData saveData;
-    public SaveData MySaveData { get { return saveData; } }
+    public SaveData MySaveData { get { return saveSlots[currentSaveSlot]; } }
+    public SaveData[] saveSlots = new SaveData[5];
+
     private readonly Dictionary<string, FieldInfo> fieldCache = new();
 
     private bool isAutoDirty;
     private string directory;
 
-    private string[] paths = new string[5]; // 슬롯들의 경로 path
+    private string[] slotPaths = new string[5]; // 슬롯들의 경로 path
 
-    // int lastSavedSlot = -1; // 가장 최근에 저장된 슬롯
     public int currentSaveSlot = 0; // 현재 자동 저장되고 있는 슬롯
 
 
     private void Start()
     {
         Init();
-        paths[0] = GetSlotPath(ESaveSlot.Slot1);
-        paths[1] = GetSlotPath(ESaveSlot.Slot2);
-        paths[2] = GetSlotPath(ESaveSlot.Slot3);
-        paths[3] = GetSlotPath(ESaveSlot.Slot4);
-        paths[4] = GetSlotPath(ESaveSlot.Slot5);
     }
 
     #region Unity Life Cycles
@@ -60,8 +56,16 @@ public class SaveManager : Singleton<SaveManager>
             }
         }
 
+        // slotPaths, saveSlots 초기화
+        for(int i=0; i<5; i++)
+        {
+            slotPaths[i] = GetSlotPath(IntToESaveSlot(i));
+
+            LoadSlot(IntToESaveSlot((i)));
+            saveSlots[i] = saveData;
+        }
+
         isAutoDirty = false;
-        //Debug.Log($"[SaveManager] Save directory path: {directory}");
     }
 
     private void OnApplicationQuit()
@@ -159,12 +163,29 @@ public class SaveManager : Singleton<SaveManager>
         }
 
         isAutoDirty = true;
-        //EventManager.Instance.InvokeSaveDataChanged(field);
     }
 
     #endregion
 
     #region Sub Methods
+
+    private ESaveSlot IntToESaveSlot(int slotNum)
+    {
+        switch(slotNum)
+        {
+            case 1:
+                return ESaveSlot.Slot1;
+            case 2:
+                return ESaveSlot.Slot2;
+            case 3:
+                return ESaveSlot.Slot3;
+            case 4:
+                return ESaveSlot.Slot4;
+            case 5:
+                return ESaveSlot.Slot5;
+        }
+        return 0;
+    }
     private string GetSlotPath(ESaveSlot slot)
     {
         return Path.Combine(directory, $"{slot}.json");
@@ -173,11 +194,11 @@ public class SaveManager : Singleton<SaveManager>
     // 비어있는 Slot들 중에 가장 첫번째 Slot index를 반환, autosave에 사용
     public int FirstEmptySlot()
     {
-        if (!File.Exists(paths[0])) return 1;
-        if (!File.Exists(paths[1])) return 2;
-        if (!File.Exists(paths[2])) return 3;
-        if (!File.Exists(paths[3])) return 4;
-        if (!File.Exists(paths[4])) return 5;
+        if (!File.Exists(slotPaths[0])) return 1;
+        if (!File.Exists(slotPaths[1])) return 2;
+        if (!File.Exists(slotPaths[2])) return 3;
+        if (!File.Exists(slotPaths[3])) return 4;
+        if (!File.Exists(slotPaths[4])) return 5;
 
         return 0;
     }

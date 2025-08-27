@@ -1,7 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
-using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -36,10 +33,6 @@ public class AutoSaveData : Singleton<AutoSaveData>
     {
         GameEventBus.Unsubscribe<CheckPointEvent>(OnCheckPointSave);
     }
-    private void Update()
-    {
-        //Debug.Log(SaveManager.Instance.MySaveData.saveName.ToString());
-    }
 
     // CheckPointTrigger마다 새로운 SaveData 생성
     private void OnCheckPointSave(CheckPointEvent ev)
@@ -59,7 +52,6 @@ public class AutoSaveData : Singleton<AutoSaveData>
     {
         saveName = " " + stageName + " - " + questName + " - " + saveDate;
         SaveManager.Instance.SetSaveData("saveName", this.saveName); // saveName 저장
-        //SaveManager.Instance.SetSaveData("lastSaveTime", DateTime.Now.Ticks); 시간은 자동으로 저장
         //SaveManager.Instance.SetSaveData("stageIdx", stageIdx);  // stageIdx 저장
         //SaveManager.Instance.SetSaveData("storyIdx", storyIdx);  // storyIdx 저장
 
