@@ -1,29 +1,17 @@
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /*
  * checkpoint마다 자동으로 SaveData에 데이터 저장
  */
 public class AutoSaveData : Singleton<AutoSaveData>
 {
-    private string objName; // 현재 오브젝트의 슬롯 넘버
-    private string slotName;  // saveName에 들어갈 슬롯 넘버 스트링
-
-    private string sceneName;
-    private string stageName;
-    private int stageIdx;
-
-    private string saveDate;
-
-    private int storyIdx;
-
-    private string questName;
+    private string checkPointName;
     /*
      * 슬롯이름형식:[슬롯네이밍]스테이지넘버-퀘스트명칭-저장시간
      * [슬롯1]7일차/스테이지1-파드마와의만남-2025.07.11.금17:42
      */
-    private string saveName;    // 최종적으로 저장될 전체 이름 
+    private string saveName;    // 플레이어가 입력하는 슬롯이름 
 
     private void OnEnable()
     {
@@ -37,74 +25,33 @@ public class AutoSaveData : Singleton<AutoSaveData>
     // CheckPointTrigger마다 새로운 SaveData 생성
     private void OnCheckPointSave(CheckPointEvent ev)
     {
-        //SaveManager.Instance.CreateSaveData();
-        SetQuestName(ev.checkpointID);
-
-        SetStageNameIdx();
-        SetSaveDate();
-
-        SaveCurentData();
-        Debug.Log(saveName);
-    }
-
-    
-    private void SaveCurentData()
-    {
-        saveName = " " + stageName + " - " + questName + " - " + saveDate;
-        SaveManager.Instance.SetSaveData("saveName", this.saveName); // saveName 저장
-        //SaveManager.Instance.SetSaveData("stageIdx", stageIdx);  // stageIdx 저장
-        //SaveManager.Instance.SetSaveData("storyIdx", storyIdx);  // storyIdx 저장
-
+        SetCheckpointName(ev.checkpointID);
+        SaveManager.Instance.SetSaveData(nameof(SaveData.checkPointName), this.checkPointName);
         SaveManager.Instance.SaveSlot(ESaveSlot.Auto);
+        SaveManager.Instance.SaveSlot((ESaveSlot)SaveManager.Instance.currentSaveSlot); // 자동 저장
     }
 
-    private void SetStageNameIdx()
-    {
-        sceneName = SceneManager.GetActiveScene().name;
-        int stageIdx = SaveManager.Instance.MySaveData.stageIdx;
-
-        stageName = stageIdx + "주차 / " + "스테이지 " + stageIdx;
-    }
-
-    private void SetSaveDate()
-    {
-        long ticks = DateTime.Now.Ticks;
-
-        // ticks → DateTime
-        DateTime dateTime = new DateTime(ticks);
-
-        // 요일을 한글로 변환
-        string[] koreanDays = { "일", "월", "화", "수", "목", "금", "토" };
-        string dayOfWeek = koreanDays[(int)dateTime.DayOfWeek];
-
-        // 최종 문자열 조합
-        string formatted = dateTime.ToString($"yyyy.MM.dd.{dayOfWeek}HH:mm");
-
-        saveDate = formatted;
-        //Debug.Log(formatted);  // 예: 2025.07.29.화16:23
-    }
-
-    private void SetQuestName(string checkpointID)
+    private void SetCheckpointName(string checkpointID)
     {
         switch (checkpointID)
         {
             case "stage1-1":
-                questName = "파드마와의 만남";
+                checkPointName = "파드마와의 만남";
                 break;
             case "stage1-2":
-                questName = "미지의 세계로";
+                checkPointName = "미지의 세계로";
                 break;
             case "stage1-3":
-                questName = "다음 스테이지로 가자";
+                checkPointName = "다음 스테이지로 가자";
                 break;
             case "stage1-4":
-                questName = "클리어직전";
+                checkPointName = "클리어직전";
                 break;
             case "stage2-0":
-                questName = "파드마와의 재회";
+                checkPointName = "파드마와의 재회";
                 break;
             case "stage2-1":
-                questName = "아이템을 찾아서";
+                checkPointName = "아이템을 찾아서";
                 break;
         }
     }

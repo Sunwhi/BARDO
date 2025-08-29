@@ -14,6 +14,7 @@ public class SaveData
 {
     public string slotNumber = "[슬롯0]";
     public string saveName = "New Save";
+    public string checkPointName = "empty";
     public long lastSaveTime = 0;
     
     public int stageIdx = 0; //0 : 시작. 1~ : N주차.

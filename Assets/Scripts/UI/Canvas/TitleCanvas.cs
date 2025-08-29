@@ -11,7 +11,6 @@ public class TitleCanvas : UICanvas
 
     public void OnClickNewGameBtn()
     {
-        //bug.Log(MySceneManager.Instance == null ? "인스턴스가 null" : "인스턴스 살아있음");
         SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
 
         // 남은 saveslot이 없다면
@@ -23,8 +22,8 @@ public class TitleCanvas : UICanvas
             {
                 SaveManager.Instance.CreateSaveData();
                 SaveManager.Instance.currentSaveSlot = SaveManager.Instance.OldestSaveSlot();
-                //Debug.Log(SaveManager.Instance.OldestSaveSlot());
                 MySceneManager.Instance.LoadScene(ESceneType.MainScene);
+                //SaveManager.Instance.saveSlots[SaveManager.Instance.currentSaveSlot] = 
             })
             );
         }

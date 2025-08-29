@@ -35,6 +35,12 @@ public class SaveManager : Singleton<SaveManager>
     private void Start()
     {
         Init();
+        string json;
+        for (int i=0; i<5; i++)
+        {
+            json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
+            Debug.Log(json);
+        }
     }
 
     #region Unity Life Cycles
@@ -59,9 +65,9 @@ public class SaveManager : Singleton<SaveManager>
         // slotPaths, saveSlots 초기화
         for(int i=0; i<5; i++)
         {
-            slotPaths[i] = GetSlotPath(IntToESaveSlot(i));
+            slotPaths[i] = GetSlotPath(IntToESaveSlot(i+1));
 
-            LoadSlot(IntToESaveSlot((i)));
+            LoadSlot(IntToESaveSlot((i+1)));
             saveSlots[i] = saveData;
         }
 
@@ -169,7 +175,7 @@ public class SaveManager : Singleton<SaveManager>
 
     #region Sub Methods
 
-    private ESaveSlot IntToESaveSlot(int slotNum)
+    public ESaveSlot IntToESaveSlot(int slotNum)
     {
         switch(slotNum)
         {

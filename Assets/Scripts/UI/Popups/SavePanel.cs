@@ -8,12 +8,14 @@ public class SavePanel : UIBase
     
     private void OnEnable()
     {
+        int slotNum = 0;
         foreach (var slot in slots)
         {
             //TODO : SaveManager 완성되면 거기서 개별 슬롯의 이름 불러오기
-            //TODO : 만약 SaveSlot이 비어있다면 SetSlot 스킵.
             SaveData slotData = new();
-            slot.SetSlot(slotData, OnSaveSlotSlicked);
+            slotData = SaveManager.Instance.saveSlots[slotNum++];
+            //TODO : 만약 SaveSlot이 비어있다면 SetSlot 스킵.
+            if(slotData.lastSaveTime != 0) slot.SetSlot(slotData, OnSaveSlotSlicked);
         }
     }
 
