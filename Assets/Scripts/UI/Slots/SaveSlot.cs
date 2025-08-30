@@ -46,6 +46,7 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void SetSlot(SaveData data, Action<int> onSlotClicked)
     {
+        Debug.Log("setslot");
         disableSlot.SetActive(false);
         enableSlot.SetActive(true);
 
@@ -59,4 +60,5 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         slotBtn.onClick.RemoveAllListeners();
         slotBtn.onClick.AddListener(() => onSlotClicked?.Invoke(slotIdx));
     }
+
 }

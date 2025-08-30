@@ -8,6 +8,8 @@ public class SavePanel : UIBase
     
     private void OnEnable()
     {
+        SaveManager.Instance.OnSaveSlotUpdated += UpdateSaveSlot;
+
         int slotNum = 0;
         foreach (var slot in slots)
         {
@@ -15,8 +17,22 @@ public class SavePanel : UIBase
             SaveData slotData = new();
             slotData = SaveManager.Instance.saveSlots[slotNum++];
             //TODO : 만약 SaveSlot이 비어있다면 SetSlot 스킵.
-            if(slotData.lastSaveTime != 0) slot.SetSlot(slotData, OnSaveSlotSlicked);
+            if (slotData.dataSaved) 
+            {
+                Debug.Log(slot.name);
+                slot.SetSlot(slotData, OnSaveSlotSlicked);
+            }
         }
+    }
+    private void OnDisable()
+    {
+        SaveManager.Instance.OnSaveSlotUpdated -= UpdateSaveSlot;
+    }
+    private void UpdateSaveSlot(ESaveSlot slotName)
+    {
+        SaveData slotData = new();
+        slotData = SaveManager.Instance.saveSlots[(int)slotName];
+        slots[(int)slotName].SetSlot(slotData, OnSaveSlotSlicked);
     }
 
     public override void OnUICloseBtn()
@@ -24,7 +40,6 @@ public class SavePanel : UIBase
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
         base.OnUICloseBtn();
     }
-
     private void OnSaveSlotSlicked(int idx)
     {
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);

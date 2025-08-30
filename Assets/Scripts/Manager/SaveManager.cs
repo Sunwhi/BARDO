@@ -31,16 +31,11 @@ public class SaveManager : Singleton<SaveManager>
 
     public int currentSaveSlot = 0; // 현재 자동 저장되고 있는 슬롯
 
+    public event Action<ESaveSlot> OnSaveSlotUpdated; // SaveSlot에 새로운 데이터 업데이트
 
     private void Start()
     {
         Init();
-        string json;
-        for (int i=0; i<5; i++)
-        {
-            json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
-            Debug.Log(json);
-        }
     }
 
     #region Unity Life Cycles
@@ -104,6 +99,8 @@ public class SaveManager : Singleton<SaveManager>
         string path = GetSlotPath(slot);
         string json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
         File.WriteAllText(path, json);
+
+        OnSaveSlotUpdated?.Invoke(slot);
     }
 
     public void LoadSlot(ESaveSlot slot)

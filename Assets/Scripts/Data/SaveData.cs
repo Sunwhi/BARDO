@@ -16,6 +16,7 @@ public class SaveData
     public string saveName = "New Save";
     public string checkPointName = "empty";
     public long lastSaveTime = 0;
+    public bool dataSaved = false;
     
     public int stageIdx = 0; //0 : 시작. 1~ : N주차.
     public int storyIdx = 0; //Stage 내부 Idx

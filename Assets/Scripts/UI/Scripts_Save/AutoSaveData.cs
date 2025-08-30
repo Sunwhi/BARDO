@@ -27,6 +27,7 @@ public class AutoSaveData : Singleton<AutoSaveData>
     {
         SetCheckpointName(ev.checkpointID);
         SaveManager.Instance.SetSaveData(nameof(SaveData.checkPointName), this.checkPointName);
+        SaveManager.Instance.SetSaveData(nameof(SaveData.dataSaved), true);
         SaveManager.Instance.SaveSlot(ESaveSlot.Auto);
         SaveManager.Instance.SaveSlot((ESaveSlot)SaveManager.Instance.currentSaveSlot); // 자동 저장
     }
