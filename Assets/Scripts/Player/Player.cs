@@ -28,8 +28,7 @@ public class Player : MonoBehaviour
     private readonly float rayLength = 0.1f;
 
     private MovingPlatform curPlatform;
-    private bool onPlatform = false;
-
+    
     private void Awake()
     {
         animationData.Initialize();
@@ -100,7 +99,6 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out MovingPlatform platform))
         {
-            onPlatform = true;
             curPlatform = platform;
         }
     }
@@ -110,7 +108,6 @@ public class Player : MonoBehaviour
         if (curPlatform != null 
             && collision.collider.GetComponent<MovingPlatform>() == curPlatform)
         {
-            onPlatform = false;
             curPlatform = null;
         }
     }

@@ -61,4 +61,31 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         slotBtn.onClick.AddListener(() => onSlotClicked?.Invoke(slotIdx));
     }
 
+
+    private void SetCheckpointName(string checkpointID)
+    {
+        string checkPointName;
+
+        switch (checkpointID)
+        {
+            case "stage1-1":
+                checkPointName = "파드마와의 만남";
+                break;
+            case "stage1-2":
+                checkPointName = "미지의 세계로";
+                break;
+            case "stage1-3":
+                checkPointName = "다음 스테이지로 가자";
+                break;
+            case "stage1-4":
+                checkPointName = "클리어직전";
+                break;
+            case "stage2-0":
+                checkPointName = "파드마와의 재회";
+                break;
+            case "stage2-1":
+                checkPointName = "아이템을 찾아서";
+                break;
+        }
+    }
 }

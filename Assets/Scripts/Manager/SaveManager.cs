@@ -1,37 +1,35 @@
-using UnityEngine;
 using Newtonsoft.Json;
-using System.IO;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
-using System;
+using UnityEngine;
 
 public enum ESaveSlot
 {
-    Auto = 0,
-    Slot1 = 1,
-    Slot2 = 2,
-    Slot3 = 3,
-    Slot4 = 4,
-    Slot5 = 5
+    Default = -1,
+    Slot1,
+    Slot2,
+    Slot3,
+    Slot4,
+    Slot5,
 }
 
 public class SaveManager : Singleton<SaveManager>
 {
-    private SaveData saveData;
-    public SaveData MySaveData { get { return saveSlots[currentSaveSlot]; } }
-    public SaveData[] saveSlots = new SaveData[5];
+    public event Action<ESaveSlot> OnSaveSlotUpdated; // SaveSlot에 새로운 데이터 업데이트
+
+    public SaveData MySaveData { get { return SaveSlots[curSaveIdx]; } private set { SaveSlots[curSaveIdx] = value; } }
+    private int curSaveIdx = 0; // 현재 자동 저장되고 있는 슬롯 : 0~4.
+    public SaveData[] SaveSlots { get; private set; } = new SaveData[5];
 
     private readonly Dictionary<string, FieldInfo> fieldCache = new();
 
-    private bool isAutoDirty;
     private string directory;
-
     private string[] slotPaths = new string[5]; // 슬롯들의 경로 path
 
-    public int currentSaveSlot = 0; // 현재 자동 저장되고 있는 슬롯
-
-    public event Action<ESaveSlot> OnSaveSlotUpdated; // SaveSlot에 새로운 데이터 업데이트
+    private bool isAutoDirty;
 
     private void Start()
     {
@@ -44,7 +42,6 @@ public class SaveManager : Singleton<SaveManager>
     {
         // Save 디렉토리 생성
         directory = Path.Combine(Application.persistentDataPath, "Save");
-
         if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 
         // SaveData 필드를 fieldCache 딕셔너리에 캐싱
@@ -57,13 +54,14 @@ public class SaveManager : Singleton<SaveManager>
             }
         }
 
-        // slotPaths, saveSlots 초기화
-        for(int i=0; i<5; i++)
-        {
-            slotPaths[i] = GetSlotPath(IntToESaveSlot(i+1));
+        curSaveIdx = 0;
 
-            LoadSlot(IntToESaveSlot((i+1)));
-            saveSlots[i] = saveData;
+        // slotPaths, saveSlots 초기화
+        for (int i = 0; i < 5; i++)
+        {
+            ESaveSlot slot = (ESaveSlot)i;
+            slotPaths[i] = GetSlotPath(slot);
+            LoadSlot(slot);
         }
 
         isAutoDirty = false;
@@ -73,9 +71,9 @@ public class SaveManager : Singleton<SaveManager>
     {
         try
         {
-            SaveSlot(0); // 자동저장 슬롯
+            SaveSlot((ESaveSlot)curSaveIdx); // 자동저장 슬롯
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             Debug.LogError($"[SaveManager] 종료 저장 실패: {e.Message}");
         }
@@ -83,21 +81,16 @@ public class SaveManager : Singleton<SaveManager>
     #endregion
 
     #region Main Methods
-    public void CreateSaveData()
+    public void SaveSlot(ESaveSlot slot = ESaveSlot.Default)
     {
-        saveData = new(); // 새로운 SaveData 인스턴스 생성, 빈 저장 데이터 생성
+        if (!isAutoDirty) return;
+        if (slot == ESaveSlot.Default) slot = (ESaveSlot)curSaveIdx;
 
-        string path = GetSlotPath(0); // 자동저장 슬롯
-        string json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
-        File.WriteAllText(path, json);
-    }
+        int idx = (int)slot;
 
-    public void SaveSlot(ESaveSlot slot)
-    {
-        if (slot == 0 && !isAutoDirty) return;
         SetSaveData(nameof(SaveData.lastSaveTime), DateTime.Now.Ticks);
-        string path = GetSlotPath(slot);
-        string json = JsonConvert.SerializeObject(saveData, Formatting.Indented);
+        string path = slotPaths[idx];
+        string json = JsonConvert.SerializeObject(SaveSlots[idx], Formatting.Indented);
         File.WriteAllText(path, json);
 
         OnSaveSlotUpdated?.Invoke(slot);
@@ -105,23 +98,21 @@ public class SaveManager : Singleton<SaveManager>
 
     public void LoadSlot(ESaveSlot slot)
     {
-        string path = GetSlotPath(slot);
+        string path = slotPaths[(int)slot];
         if (!File.Exists(path))
         {
-            Debug.LogWarning($"파일 없음: {path}");
-            saveData = new SaveData();
+            SaveSlots[(int)slot] = new SaveData();
             return;
         }
 
         try
         {
             string json = File.ReadAllText(path);
-            saveData = JsonConvert.DeserializeObject<SaveData>(json);
+            SaveSlots[(int)slot] = JsonConvert.DeserializeObject<SaveData>(json);
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
-            Debug.LogError($"로딩 실패: {e.Message}");
-            saveData = new SaveData();
+            Debug.LogError($"[SavManager] {slot} 로딩 실패: \n{e.Message}");
         }
     }
 
@@ -137,11 +128,11 @@ public class SaveManager : Singleton<SaveManager>
             return;
         }
 
-        var fieldValue = fieldInfo.GetValue(saveData);
+        var fieldValue = fieldInfo.GetValue(MySaveData);
 
         if (indexOrKey == null)
         {
-            fieldInfo.SetValue(saveData, value);
+            fieldInfo.SetValue(MySaveData, value);
         }
         else if (fieldValue is IList list && indexOrKey is int idx)
         {
@@ -166,80 +157,63 @@ public class SaveManager : Singleton<SaveManager>
         }
 
         isAutoDirty = true;
-    }
 
-    #endregion
-
-    #region Sub Methods
-
-    public ESaveSlot IntToESaveSlot(int slotNum)
-    {
-        switch(slotNum)
-        {
-            case 1:
-                return ESaveSlot.Slot1;
-            case 2:
-                return ESaveSlot.Slot2;
-            case 3:
-                return ESaveSlot.Slot3;
-            case 4:
-                return ESaveSlot.Slot4;
-            case 5:
-                return ESaveSlot.Slot5;
-        }
-        return 0;
-    }
-    private string GetSlotPath(ESaveSlot slot)
-    {
-        return Path.Combine(directory, $"{slot}.json");
-    }
-
-    // 비어있는 Slot들 중에 가장 첫번째 Slot index를 반환, autosave에 사용
-    public int FirstEmptySlot()
-    {
-        if (!File.Exists(slotPaths[0])) return 1;
-        if (!File.Exists(slotPaths[1])) return 2;
-        if (!File.Exists(slotPaths[2])) return 3;
-        if (!File.Exists(slotPaths[3])) return 4;
-        if (!File.Exists(slotPaths[4])) return 5;
-
-        return 0;
+        if (!MySaveData.dataSaved) MySaveData.dataSaved = true;
     }
 
     public bool HasSaveSlot(ESaveSlot slot)
     {
-        if (File.Exists(GetSlotPath(slot))) return true;
+        if (File.Exists(GetSlotPath(slot)) && SaveSlots[(int)slot].dataSaved) return true;
+        return false;
+    }
+
+    // 비어있는 Slot들 중에 가장 첫번째 Slot index를 반환, autosave에 사용
+    public bool FindEmptySlot()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (File.Exists(slotPaths[i])) continue;
+            curSaveIdx = i;
+            return true;
+        }
+
         return false;
     }
 
     // 가장 오래전에 저장된 슬롯을 반환
-    public int OldestSaveSlot()
+    public void OldestSaveSlot()
     {
         int returnSlot = 0;
-
         long[] oldestSaveSlot = new long[5];
 
-        LoadSlot(ESaveSlot.Slot1);
-        oldestSaveSlot[0] = saveData.lastSaveTime;
-        LoadSlot(ESaveSlot.Slot2);
-        oldestSaveSlot[1] = saveData.lastSaveTime;
-        LoadSlot(ESaveSlot.Slot3);
-        oldestSaveSlot[2] = saveData.lastSaveTime;
-        LoadSlot(ESaveSlot.Slot4);
-        oldestSaveSlot[3] = saveData.lastSaveTime;
-        LoadSlot(ESaveSlot.Slot5);
-        oldestSaveSlot[4] = saveData.lastSaveTime;
+        oldestSaveSlot[0] = SaveSlots[0].lastSaveTime;
+        oldestSaveSlot[1] = SaveSlots[1].lastSaveTime;
+        oldestSaveSlot[2] = SaveSlots[2].lastSaveTime;
+        oldestSaveSlot[3] = SaveSlots[3].lastSaveTime;
+        oldestSaveSlot[4] = SaveSlots[4].lastSaveTime;
 
         long temp = oldestSaveSlot[0];
-        for(int i=0; i<5; i++)
+        for (int i = 1; i < 5; i++)
         {
             if (oldestSaveSlot[i] <= temp)
             {
                 temp = oldestSaveSlot[i];
-                returnSlot = i+1;
+                returnSlot = i;
             }
         }
-        return returnSlot;
+        curSaveIdx = returnSlot;
+    }
+
+    public void SetSaveSlotIdx(int idx)
+    {
+        curSaveIdx = idx;
+    }
+    #endregion
+
+    #region Sub Methods
+    private string GetSlotPath(ESaveSlot slot)
+    {
+        return Path.Combine(directory, $"{slot}.json");
     }
     #endregion
 }

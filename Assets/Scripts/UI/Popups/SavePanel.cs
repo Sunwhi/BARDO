@@ -15,7 +15,7 @@ public class SavePanel : UIBase
         {
             //TODO : SaveManager 완성되면 거기서 개별 슬롯의 이름 불러오기
             SaveData slotData = new();
-            slotData = SaveManager.Instance.saveSlots[slotNum++];
+            slotData = SaveManager.Instance.SaveSlots[slotNum++];
             //TODO : 만약 SaveSlot이 비어있다면 SetSlot 스킵.
             if (slotData.dataSaved) 
             {
@@ -31,7 +31,7 @@ public class SavePanel : UIBase
     private void UpdateSaveSlot(ESaveSlot slotName)
     {
         SaveData slotData = new();
-        slotData = SaveManager.Instance.saveSlots[(int)slotName];
+        slotData = SaveManager.Instance.SaveSlots[(int)slotName];
         slots[(int)slotName].SetSlot(slotData, OnSaveSlotSlicked);
     }
 

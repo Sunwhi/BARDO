@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class TitleCanvas : UICanvas
 {
@@ -14,23 +15,19 @@ public class TitleCanvas : UICanvas
         SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
 
         // 남은 saveslot이 없다면
-        if(SaveManager.Instance.FirstEmptySlot() == 0)
+        if(!SaveManager.Instance.FindEmptySlot())
         {
             UIManager.Show<YesNoPanel>(
             EYesNoPanelType.New,
             new UnityAction(() =>
             {
-                SaveManager.Instance.CreateSaveData();
-                SaveManager.Instance.currentSaveSlot = SaveManager.Instance.OldestSaveSlot();
+                SaveManager.Instance.OldestSaveSlot();
                 MySceneManager.Instance.LoadScene(ESceneType.MainScene);
-                //SaveManager.Instance.saveSlots[SaveManager.Instance.currentSaveSlot] = 
             })
             );
         }
         else
         {
-            SaveManager.Instance.CreateSaveData();
-            SaveManager.Instance.currentSaveSlot = SaveManager.Instance.FirstEmptySlot(); // 자동 저장할 슬롯 지정, 비어있는 가장 첫번째 슬롯
             MySceneManager.Instance.LoadScene(ESceneType.MainScene);
         }
     }

@@ -13,7 +13,7 @@ public class ContinuePanel : UIBase
         {
             //TODO : SaveManager 완성되면 거기서 개별 슬롯의 이름 불러오기
             SaveData slotData = new();
-            slotData = SaveManager.Instance.saveSlots[slotNum++];
+            slotData = SaveManager.Instance.SaveSlots[slotNum++];
 
             //TODO : 만약 SaveSlot이 비어있다면 SetSlot 스킵.
             if (slotData.lastSaveTime != 0) slot.SetSlot(slotData, OnContinueSlotClicked);
@@ -45,7 +45,7 @@ public class ContinuePanel : UIBase
             EYesNoPanelType.Continue,
             new UnityAction(() =>
             {
-                SaveManager.Instance.currentSaveSlot = idx;
+                SaveManager.Instance.SetSaveSlotIdx(idx);
                 ContinueGame();
                 SoundManager.Instance.PlayBGM(EBGM.Stage1);
             }));

@@ -63,7 +63,7 @@ public class TriggerManager : Singleton<TriggerManager>
             case TriggerType.Dialogue:
                 break;
             case TriggerType.Checkpoint:
-                GameEventBus.Raise(new CheckPointEvent(triggerID));
+                SaveManager.Instance.SaveSlot(); // 자동 저장
                 break;
         }
     }
