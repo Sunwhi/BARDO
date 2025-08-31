@@ -10,7 +10,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
+public class DialoguePanelUI : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private GameObject dialoguePanel;
@@ -80,7 +80,6 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
 
     private void DisplayDialogue(string dialogueLine, List<Ink.Runtime.Choice> dialogueChoices)
     {
-        //ActiveNextBtn();
         if(displayLineCoroutine != null)
         {
             StopCoroutine(displayLineCoroutine);
@@ -131,8 +130,6 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
             if (skipDialogue)//UIInputManager.Instance.GetSubmitPressed()
             {
                 skipDialogue = false;
-                //dialogueText.text = line;
-                //break;
                 typingSpeed = 0.005f; // 타이핑 빨라짐.
             }
             dialogueText.text += letter;
@@ -149,8 +146,8 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
 
         typingSpeed = 0.04f;
 
-        // 대화창 다 나오면 0.5초 이후에 next버튼 뜬다.
-        yield return new WaitForSeconds(0.5f);
+        // 대화창 다 나오면 0.5초 이후에 next버튼 뜬다. -> 테스트 위해 임시로 빠르게 설정(0.5 -> 0.01)
+        yield return new WaitForSeconds(0.01f);
         DialogueManager.Instance.canContinueToNextLine = true;
 
         // 대화줄이 다 뜨면 next버튼 다시 활성화
@@ -199,19 +196,5 @@ public class DialoguePanelUI : MonoBehaviour, IPointerClickHandler
     private void ResetPanel()
     {
         dialogueText.text = "";
-    }
-
-    IEnumerator typingSfx()
-    {
-        SoundManager.Instance.PlaySFX(ESFX.UI_Button_Txt);
-        yield return new WaitForSeconds(1f);
-    }
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        // 대화창 나오는중에만 true로 바뀔수잇게
-        /*if (!DialogueManager.Instance.canContinueToNextLine)
-        {
-            DialogueManager.Instance.panelClickForSkip = true;
-        }*/
     }
 }
