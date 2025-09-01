@@ -16,36 +16,31 @@ public class SavePanel : UIBase
             //TODO : SaveManager 완성되면 거기서 개별 슬롯의 이름 불러오기
             SaveData slotData = new();
             slotData = SaveManager.Instance.SaveSlots[slotNum++];
-            //TODO : 만약 SaveSlot이 비어있다면 SetSlot 스킵.
-            if (slotData.dataSaved) 
-            {
-                Debug.Log(slot.name);
-                slot.SetSlot(slotData, OnSaveSlotSlicked);
-            }
+            //TODO : 만약 SaveSlot이 비어있다면 SetSlot 스킵. -> button event 연결 위해 취소
+            slot.SetSlot(slotData, OnSaveSlotClicked);
         }
     }
     private void OnDisable()
     {
         SaveManager.Instance.OnSaveSlotUpdated -= UpdateSaveSlot;
     }
+
     private void UpdateSaveSlot(ESaveSlot slotName)
     {
         SaveData slotData = new();
         slotData = SaveManager.Instance.SaveSlots[(int)slotName];
-        slots[(int)slotName].SetSlot(slotData, OnSaveSlotSlicked);
+
+        slots[(int)slotName].SetSlot(slotData, OnSaveSlotClicked);
     }
 
-    public override void OnUICloseBtn()
+    private void OnSaveSlotClicked(int idx)
     {
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
-        base.OnUICloseBtn();
-    }
-    private void OnSaveSlotSlicked(int idx)
-    {
-        SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
-
         ESaveSlot slot = (ESaveSlot)idx;
         bool hasSaveSlot = SaveManager.Instance.HasSaveSlot(slot);
+
+        // 현재 저장슬롯 데이터를 복사해서 선택한 슬롯의 데이터에 붙여넣는다.
+        SaveManager.Instance.copySaveData(idx);
 
         if (hasSaveSlot)
         {
@@ -54,12 +49,21 @@ public class SavePanel : UIBase
             new UnityAction(() =>
             {
                 SaveManager.Instance.SaveSlot(slot);
+                UpdateSaveSlot(slot);
             }
             ));
         }
         else
         {
             SaveManager.Instance.SaveSlot(slot);
+            UpdateSaveSlot(slot);
         }
-    }   
+    }
+
+    public override void OnUICloseBtn()
+    {
+        SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
+        base.OnUICloseBtn();
+    }
+
 }

@@ -93,6 +93,7 @@ public class SaveManager : Singleton<SaveManager>
         string json = JsonConvert.SerializeObject(SaveSlots[idx], Formatting.Indented);
         File.WriteAllText(path, json);
 
+        curSaveIdx = (int)slot;
         OnSaveSlotUpdated?.Invoke(slot);
     }
 
@@ -207,6 +208,12 @@ public class SaveManager : Singleton<SaveManager>
     public void SetSaveSlotIdx(int idx)
     {
         curSaveIdx = idx;
+    }
+
+    public void copySaveData(int idx)
+    {
+        string json = JsonUtility.ToJson(MySaveData);
+        SaveSlots[idx] = JsonUtility.FromJson<SaveData>(json);
     }
     #endregion
 

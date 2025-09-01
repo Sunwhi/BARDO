@@ -596,11 +596,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5023047809917862977, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: m_Name
-      value: Slot1 (2)
+      value: Slot3
       objectReference: {fileID: 0}
     - target: {fileID: 6412627850818649717, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: slotIdx
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8595799528122694488, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: m_Pivot.x
@@ -713,11 +713,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5023047809917862977, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: m_Name
-      value: Slot1 (1)
+      value: Slot2
       objectReference: {fileID: 0}
     - target: {fileID: 6412627850818649717, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: slotIdx
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8595799528122694488, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: m_Pivot.x
@@ -830,11 +830,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5023047809917862977, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: m_Name
-      value: Slot1 (4)
+      value: Slot5
       objectReference: {fileID: 0}
     - target: {fileID: 6412627850818649717, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: slotIdx
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8595799528122694488, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: m_Pivot.x
@@ -949,6 +949,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slot1
       objectReference: {fileID: 0}
+    - target: {fileID: 6412627850818649717, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
+      propertyPath: slotIdx
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8595799528122694488, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1060,11 +1064,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5023047809917862977, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: m_Name
-      value: Slot1 (3)
+      value: Slot4
       objectReference: {fileID: 0}
     - target: {fileID: 6412627850818649717, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: slotIdx
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8595799528122694488, guid: 5c0b201facf11004b8f91de97407ab8e, type: 3}
       propertyPath: m_Pivot.x
