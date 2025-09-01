@@ -38,8 +38,9 @@ public class UIManager : Singleton<UIManager>
     public static T Show<T>(params object[] param) where T : UIBase
     {
         var t = typeof(T);
-
-        if (Instance.uiCache.TryGetValue(t, out var ui) || ui == null)
+        
+        Instance.uiCache.TryGetValue(t, out var ui);
+        if (ui == null)
         {
             var prefab = ResourceManager.Instance.LoadAsset<T>(uiFolder, t.Name);
             if (prefab == null)
