@@ -1068,7 +1068,7 @@ Transform:
   m_GameObject: {fileID: 835177742}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 201.666, y: -291.11, z: -10}
+  m_LocalPosition: {x: 201.6673, y: -288.67, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1099,7 +1099,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 15
+    OrthographicSize: 14.58
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -2017,10 +2017,6 @@ PrefabInstance:
     - target: {fileID: 3176486281749844234, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
       propertyPath: m_Name
       value: Stages
-      objectReference: {fileID: 0}
-    - target: {fileID: 8010824331462036728, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 350.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

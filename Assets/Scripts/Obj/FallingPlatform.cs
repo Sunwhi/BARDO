@@ -51,7 +51,7 @@ public class BreakObs : MonoBehaviour
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0f);
         transform.position = initPos;
 
-        spriteRenderer.DOColor(Color.black, fadeInDuration)
+        spriteRenderer.DOColor(Color.white, fadeInDuration)
             .OnComplete(Respawn);
     }
 
