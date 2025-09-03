@@ -25,14 +25,22 @@ public class PlayerViewport : MonoBehaviour
         Vector3 playerPos = transform.position;
         bool outNow = !camBounds.Contains(playerPos);
 
-        if (outNow && !isOutOfView)
+        if (outNow)
         {
-            isOutOfView = true;
+            if (!isOutOfView)
+            {
+                isOutOfView = true;
 
-            var direction = GetExitDirection(camBounds, playerPos);
-            GameEventBus.Raise(new ViewportExitEvent(transform.position, direction));
+                var direction = GetExitDirection(camBounds, playerPos);
+                GameEventBus.Raise(new ViewportExitEvent(transform.position, direction));
+            }
+            else
+            {
+                var direction = GetExitDirection(camBounds, playerPos);
+                GameEventBus.Raise(new ViewportExitEvent(transform.position, direction));
+            }
         }
-        else if (!outNow && isOutOfView)
+        else if (isOutOfView)
         {
             isOutOfView = false;
         }
