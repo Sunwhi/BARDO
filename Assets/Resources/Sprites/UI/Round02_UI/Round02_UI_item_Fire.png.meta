@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 101589d643e37ae4baf777450100a11a
+guid: 3f9b5a60506b24f4bb89760553672dd5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5993069910591806651
-    second: UI_Save_Slot_Box_0
+      213: -7947889626538157698
+    second: Round02_UI_item_Fire_0
+  - first:
+      213: 4920203873612262679
+    second: Round02_UI_item_Fire_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Save_Slot_Box_0
+      name: Round02_UI_item_Fire_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 2459
-        height: 1405
+        y: 226
+        width: 217
+        height: 424
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +144,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bbc18eeb459ab2350800000000000000
-      internalID: 5993069910591806651
+      spriteID: e795e209e7c63b190800000000000000
+      internalID: -7947889626538157698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Round02_UI_item_Fire_1
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 0
+        width: 171
+        height: 374
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71de82dca53184440800000000000000
+      internalID: 4920203873612262679
       vertices: []
       indices: 
       edges: []
@@ -160,8 +185,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      UI_Save_Slot_Box_0: 5993069910591806651
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

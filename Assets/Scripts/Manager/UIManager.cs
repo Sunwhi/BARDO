@@ -11,19 +11,17 @@ public class UIManager : Singleton<UIManager>
     private static readonly string uiFolder = "UIs";
 
     private readonly Dictionary<Type, UIBase> uiCache = new();
-    public Dictionary<eUIPosition, Stack<UIBase>> ActiveStacks { get; private set; } = new()
-    {
-        { eUIPosition.Popup,    new Stack<UIBase>() },
-        { eUIPosition.Override, new Stack<UIBase>() },
-    };
+    public Stack<UIBase> ActiveStacks { get; private set; } = new();
     private UIBase activeTransition;
+
+    public static bool EscDelay { get; private set; } = false;
 
     private void Update()
     {
-        if (ActiveStacks[eUIPosition.Popup].Count > 0 && Input.GetKeyDown(KeyCode.Escape))
+        if (ActiveStacks.Count > 0 && Input.GetKeyUp(KeyCode.Escape))
         {
             Hide();
-            GameEventBus.Raise<PauseGameEvent>(new PauseGameEvent(GameState.resume));
+            if (ActiveStacks.Count == 0) StartCoroutine(EscDelayed());
         }
     }
 
@@ -31,7 +29,7 @@ public class UIManager : Singleton<UIManager>
     {
         Instance.uiParents = t;
         Instance.uiCache.Clear();
-        foreach (var st in Instance.ActiveStacks.Values) st.Clear();
+        Instance.ActiveStacks.Clear();
         Instance.activeTransition = null;
     }
 
@@ -41,8 +39,9 @@ public class UIManager : Singleton<UIManager>
     public static T Show<T>(params object[] param) where T : UIBase
     {
         var t = typeof(T);
-
-        if (Instance.uiCache.TryGetValue(t, out var ui) || ui == null)
+        
+        Instance.uiCache.TryGetValue(t, out var ui);
+        if (ui == null)
         {
             var prefab = ResourceManager.Instance.LoadAsset<T>(uiFolder, t.Name);
             if (prefab == null)
@@ -61,18 +60,12 @@ public class UIManager : Singleton<UIManager>
             case eUIPosition.Default:
                 break;
             case eUIPosition.Popup:
-                if (Instance.ActiveStacks[eUIPosition.Popup].TryPeek(out var curPop))
-                {
-                    curPop.gameObject.SetActive(false);
-                }
-                Instance.ActiveStacks[eUIPosition.Popup].Push(ui);
-                break;
             case eUIPosition.Override:
-                if (Instance.ActiveStacks[eUIPosition.Override].TryPeek(out var curOv))
+                if (Instance.ActiveStacks.TryPeek(out var top))
                 {
-                    curOv.gameObject.SetActive(false);
+                    top.gameObject.SetActive(false);
                 }
-                Instance.ActiveStacks[eUIPosition.Override].Push(ui);
+                Instance.ActiveStacks.Push(ui);
                 break;
             case eUIPosition.Transition:
                 if (Instance.activeTransition)
@@ -109,11 +102,7 @@ public class UIManager : Singleton<UIManager>
         if (Instance.activeTransition && Instance.activeTransition.gameObject.activeSelf)
             return;
 
-        if (TryPopAndClose(Instance.ActiveStacks[eUIPosition.Override], Instance, param))
-            return;
-
-        if (!TryPopAndClose(Instance.ActiveStacks[eUIPosition.Popup], Instance, param))
-            Debug.LogWarning("[UIManager] : 닫을 UI가 없습니다");
+        TryPopAndClose(Instance.ActiveStacks, Instance, param);
     }
 
     public static void HideTransition(params object[] param)
@@ -135,8 +124,7 @@ public class UIManager : Singleton<UIManager>
 
     public void HideAllPanels()
     {
-        CloseAllInStack(ActiveStacks[eUIPosition.Override]);
-        CloseAllInStack(ActiveStacks[eUIPosition.Popup]);
+        CloseAllInStack(ActiveStacks);
     }
 
     public bool IsActive<T>() where T : UIBase
@@ -148,8 +136,7 @@ public class UIManager : Singleton<UIManager>
         }
 
         if (activeTransition == panel) return true;
-        if (ActiveStacks[eUIPosition.Popup].Contains(panel)) return true;
-        if (ActiveStacks[eUIPosition.Override].Contains(panel)) return true;
+        if (ActiveStacks.Contains(panel)) return true;
         return false;
     }
 
@@ -194,5 +181,12 @@ public class UIManager : Singleton<UIManager>
                 ui.gameObject.SetActive(false);
             }
         }
+    }
+
+    private static IEnumerator EscDelayed()
+    {
+        EscDelay = true;
+        yield return new WaitForSeconds(0.2f);
+        EscDelay = false;
     }
 }

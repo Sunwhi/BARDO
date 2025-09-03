@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 101589d643e37ae4baf777450100a11a
+guid: f4b46c32d2f7b6741b8fde7c278cab32
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5993069910591806651
-    second: UI_Save_Slot_Box_0
+      213: 7755025498681999836
+    second: Round02_UI_item_Thread_0
+  - first:
+      213: 2779350941252770809
+    second: Round02_UI_item_Thread_1
+  - first:
+      213: 1623708701094387370
+    second: Round02_UI_item_Thread_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +132,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Save_Slot_Box_0
+      name: Round02_UI_item_Thread_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 2459
-        height: 1405
+        y: 70
+        width: 291
+        height: 482
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +147,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bbc18eeb459ab2350800000000000000
-      internalID: 5993069910591806651
+      spriteID: cd189096a926f9b60800000000000000
+      internalID: 7755025498681999836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Round02_UI_item_Thread_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 385
+        width: 86
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fbd48794fc329620800000000000000
+      internalID: 2779350941252770809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Round02_UI_item_Thread_2
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 0
+        width: 122
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aae117bf572988610800000000000000
+      internalID: 1623708701094387370
       vertices: []
       indices: 
       edges: []
@@ -160,8 +210,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      UI_Save_Slot_Box_0: 5993069910591806651
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

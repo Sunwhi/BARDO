@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 101589d643e37ae4baf777450100a11a
+guid: b8891381f5b8e714dbf245e84842f41c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5993069910591806651
-    second: UI_Save_Slot_Box_0
+      213: 6899946168623942766
+    second: 2_cut_Sky_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Save_Slot_Box_0
+      name: 2_cut_Sky_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2459
-        height: 1405
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bbc18eeb459ab2350800000000000000
-      internalID: 5993069910591806651
+      spriteID: e6cc52e9b7881cf50800000000000000
+      internalID: 6899946168623942766
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI_Save_Slot_Box_0: 5993069910591806651
+      2_cut_Sky_0: 6899946168623942766
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

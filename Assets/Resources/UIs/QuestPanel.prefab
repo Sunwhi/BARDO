@@ -257,10 +257,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6183395091620493843}
         m_TargetAssemblyTypeName: QuestPanel, Assembly-CSharp
         m_MethodName: SetSlide
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -318,6 +318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237c8a89cfa783f45a54410a687ed793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPosition: 0
+  isDestroyAtClosed: 0
   questParent: {fileID: 4447038154806609508}
   titleTxt: {fileID: 2907196112511189228}
   contentParent: {fileID: 2492347237692741022}
