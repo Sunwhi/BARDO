@@ -57,6 +57,7 @@ public class SavePanel : UIBase
         }
         else
         {
+            SaveSlotName(); // 슬롯이름 저장 패널을 띄운다.
             SaveManager.Instance.SaveSlot(slot);
             UpdateSaveSlot(slot);
         }
