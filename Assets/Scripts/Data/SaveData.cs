@@ -12,8 +12,8 @@ public enum EEnding
 [Serializable]
 public class SaveData
 {
-    public string slotNumber = "[슬롯0]";
-    public string saveName = "New Save";
+    public string saveName = "[슬롯0]";
+    public string stageName = "New Save";
     public string checkPointName = "empty";
     public long lastSaveTime = 0;
     public bool dataSaved = false;
