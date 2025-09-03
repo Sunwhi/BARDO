@@ -16,7 +16,7 @@ public class ContinuePanel : UIBase
             slotData = SaveManager.Instance.SaveSlots[slotNum++];
 
             //TODO : 만약 SaveSlot이 비어있다면 SetSlot 스킵.
-            if (slotData.lastSaveTime != 0) slot.SetSlot(slotData, OnContinueSlotClicked);
+            if (slotData.dataSaved) slot.SetSlot(slotData, OnContinueSlotClicked);
         }
     }
 

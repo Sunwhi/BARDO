@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -48,6 +49,7 @@ public class SavePanel : UIBase
             EYesNoPanelType.Save,
             new UnityAction(() =>
             {
+                SetSaveSlotName(); // 슬롯이름 저장 패널을 띄운다.
                 SaveManager.Instance.SaveSlot(slot);
                 UpdateSaveSlot(slot);
             }
@@ -55,6 +57,7 @@ public class SavePanel : UIBase
         }
         else
         {
+            SetSaveSlotName(); // 슬롯이름 저장 패널을 띄운다.
             SaveManager.Instance.SaveSlot(slot);
             UpdateSaveSlot(slot);
         }
@@ -64,6 +67,17 @@ public class SavePanel : UIBase
     {
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
         base.OnUICloseBtn();
+    }
+
+    // 슬롯이름 저장 패널을 띄운다
+    private void SetSaveSlotName()
+    {
+        UIManager.Show<SaveSlotNamePanel>(
+            new UnityAction<string>((inputText) =>
+            {
+                SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), inputText);
+            }
+            ));
     }
 
 }

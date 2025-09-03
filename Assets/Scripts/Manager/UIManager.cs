@@ -21,6 +21,7 @@ public class UIManager : Singleton<UIManager>
         if (ActiveStacks.Count > 0 && Input.GetKeyUp(KeyCode.Escape))
         {
             Hide();
+            GameEventBus.Raise<PauseGameEvent>(new PauseGameEvent(GameState.resume));
             if (ActiveStacks.Count == 0) StartCoroutine(EscDelayed());
         }
     }

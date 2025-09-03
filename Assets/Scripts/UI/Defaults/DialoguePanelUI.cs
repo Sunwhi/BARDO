@@ -185,6 +185,18 @@ public class DialoguePanelUI : MonoBehaviour
             choiceButtonIndex--;
         }
     }
+    private bool OnGamePaused(PauseGameEvent ev)
+    {
+        if(ev.State == GameState.pause)
+        {
+            return true;
+        }
+        else if(ev.State == GameState.resume)
+        {
+            return false;
+        }
+        return true;
+    }
     private void ActiveNextBtn()
     {
         nextButton.SetActive(true);

@@ -19,6 +19,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public bool haveChoices = false;
 
+    public bool dialoguePaused = false;
+
     private int currentChoiceIndex = -1;
 
     private const string SPEAKER_TAG = "speaker";
@@ -44,6 +46,7 @@ public class DialogueManager : Singleton<DialogueManager>
             DialogueEventManager.Instance.dialogueEvents.onEnterDialogue += EnterDialogue;
             DialogueEventManager.Instance.inputEvents.onStartDialogue += StartDialogue;
             DialogueEventManager.Instance.dialogueEvents.onUpdateChoiceIndex += UpdateChoiceIndex;
+            GameEventBus.Subscribe<PauseGameEvent>(OnPauseGame);
         }
     }
     private void OnDisable()
@@ -54,7 +57,7 @@ public class DialogueManager : Singleton<DialogueManager>
             DialogueEventManager.Instance.dialogueEvents.onEnterDialogue -= EnterDialogue;
             DialogueEventManager.Instance.inputEvents.onStartDialogue -= StartDialogue;
             DialogueEventManager.Instance.dialogueEvents.onUpdateChoiceIndex -= UpdateChoiceIndex;
-
+            GameEventBus.Unsubscribe<PauseGameEvent>(OnPauseGame);
         }
     }
 
@@ -192,5 +195,11 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         if (story.currentChoices.Count != 0) return true;
         else return false;
+    }
+
+    private void OnPauseGame(PauseGameEvent ev)
+    {
+        if (ev.State == GameState.pause) dialoguePaused = true;
+        else if(ev.State == GameState.resume) dialoguePaused = false;
     }
 }

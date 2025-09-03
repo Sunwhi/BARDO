@@ -65,19 +65,15 @@ public class StoryManager : Singleton<StoryManager>
         yield return new WaitForSeconds(1f);
            
         SoundManager.Instance.PlaySFX(ESFX.Opening_Door);
-        //yield return UIManager.Instance.fadeView.FadeIn();
 
         SoundManager.Instance.PlayBGM(EBGM.Stage1);
         SoundManager.Instance.PlayAmbientSound(ESFX.Background_Wind);
 
         yield return PlayerWalkLeft();
 
-            //padma.ShowPadma(); // 파드마 페이드 인
-
         yield return new WaitForSeconds(2f);
         yield return S1_DialogueStart();
 
-            //yield return UIManager.Instance.fadeView.imgAlpha1();
         }
 
     }
