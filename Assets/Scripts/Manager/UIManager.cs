@@ -21,7 +21,10 @@ public class UIManager : Singleton<UIManager>
     private void Update()
     {
         if (ActiveStacks[eUIPosition.Popup].Count > 0 && Input.GetKeyDown(KeyCode.Escape))
+        {
             Hide();
+            GameEventBus.Raise<PauseGameEvent>(new PauseGameEvent(GameState.resume));
+        }
     }
 
     public static void SetCanvas(Transform[] t)

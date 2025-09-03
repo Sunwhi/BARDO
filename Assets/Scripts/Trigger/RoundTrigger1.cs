@@ -17,6 +17,7 @@ public class RoundTrigger1 : TriggerBase
     private IEnumerator TriggerEffect()
     {
         Debug.Log(" 1 : " + ContinueManager.Instance.loadedByContinue);
+        //UIManager.Show<RoundTransition>(2);
 
         //TODO : Player & Padma Cutscene
         cutscene.SetActive(true);

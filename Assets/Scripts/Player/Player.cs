@@ -47,6 +47,15 @@ public class Player : MonoBehaviour
         fsm.FixedUpdate();
     }
 
+    private void OnEnable()
+    {
+        GameEventBus.Subscribe<PauseGameEvent>(OnPauseGame);
+    }
+    private void OnDisable()
+    {
+        GameEventBus.Unsubscribe<PauseGameEvent>(OnPauseGame);
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         controller.MoveInput = context.ReadValue<Vector2>();
@@ -92,6 +101,24 @@ public class Player : MonoBehaviour
         else
         {
             isGrounded = false;
+        }
+    }
+
+    // 게임 pause할때 player 못 움직이게 막는다.
+    private void OnPauseGame(PauseGameEvent ev)
+    {
+        if(ev.State == GameState.pause)
+        {
+            playerInput.currentActionMap.Disable();
+            Debug.Log($"Action map '{playerInput.currentActionMap.name}' has been disabled.");
+
+        }
+        else if(ev.State == GameState.resume)
+        {
+            Debug.Log("move");
+            playerInput.currentActionMap.Enable();
+            Debug.Log($"Action map '{playerInput.currentActionMap.name}' has been enabled.");
+
         }
     }
 

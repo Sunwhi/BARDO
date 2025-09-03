@@ -49,7 +49,7 @@ public class SavePanel : UIBase
             EYesNoPanelType.Save,
             new UnityAction(() =>
             {
-                SaveSlotName(); // 슬롯이름 저장 패널을 띄운다.
+                SetSaveSlotName(); // 슬롯이름 저장 패널을 띄운다.
                 SaveManager.Instance.SaveSlot(slot);
                 UpdateSaveSlot(slot);
             }
@@ -57,7 +57,7 @@ public class SavePanel : UIBase
         }
         else
         {
-            SaveSlotName(); // 슬롯이름 저장 패널을 띄운다.
+            SetSaveSlotName(); // 슬롯이름 저장 패널을 띄운다.
             SaveManager.Instance.SaveSlot(slot);
             UpdateSaveSlot(slot);
         }
@@ -70,7 +70,7 @@ public class SavePanel : UIBase
     }
 
     // 슬롯이름 저장 패널을 띄운다
-    private void SaveSlotName()
+    private void SetSaveSlotName()
     {
         UIManager.Show<SaveSlotNamePanel>(
             new UnityAction<string>((inputText) =>

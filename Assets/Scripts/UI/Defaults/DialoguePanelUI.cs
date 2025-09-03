@@ -54,6 +54,7 @@ public class DialoguePanelUI : MonoBehaviour
         DialogueEventManager.Instance.dialogueEvents.onDialogueStarted += DialogueStart;
         DialogueEventManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
         DialogueEventManager.Instance.dialogueEvents.onDisplayDialogue += DisplayDialogue;
+        //GameEventBus.Subscribe<PauseGameEvent>(OnGamePaused);
     }
 
     private void OnDisable()
@@ -184,6 +185,18 @@ public class DialoguePanelUI : MonoBehaviour
 
             choiceButtonIndex--;
         }
+    }
+    private bool OnGamePaused(PauseGameEvent ev)
+    {
+        if(ev.State == GameState.pause)
+        {
+            return true;
+        }
+        else if(ev.State == GameState.resume)
+        {
+            return false;
+        }
+        return true;
     }
     private void ActiveNextBtn()
     {
