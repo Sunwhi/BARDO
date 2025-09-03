@@ -31,7 +31,7 @@ public class DialogueNext : MonoBehaviour, IPointerEnterHandler
     
     private void PressedDialogueNext()
     {
-        if (!dialogueKnotName.Equals(""))
+        if (!dialogueKnotName.Equals("") && !DialogueManager.Instance.dialoguePaused)
         {
             SoundManager.Instance.PlaySFX(ESFX.UI_Button_Txt);
             DialogueEventManager.Instance.inputEvents.StartDialogue();

@@ -107,15 +107,14 @@ public class Player : MonoBehaviour
     // 게임 pause할때 player 못 움직이게 막는다.
     private void OnPauseGame(PauseGameEvent ev)
     {
-        if(ev.State == GameState.pause)
+        if(ev.State == GameState.pause && playerInput.currentActionMap != null)
         {
             playerInput.currentActionMap.Disable();
             Debug.Log($"Action map '{playerInput.currentActionMap.name}' has been disabled.");
 
         }
-        else if(ev.State == GameState.resume)
+        else if(ev.State == GameState.resume && playerInput.currentActionMap != null)
         {
-            Debug.Log("move");
             playerInput.currentActionMap.Enable();
             Debug.Log($"Action map '{playerInput.currentActionMap.name}' has been enabled.");
 

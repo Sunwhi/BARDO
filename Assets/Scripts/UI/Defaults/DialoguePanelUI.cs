@@ -54,7 +54,6 @@ public class DialoguePanelUI : MonoBehaviour
         DialogueEventManager.Instance.dialogueEvents.onDialogueStarted += DialogueStart;
         DialogueEventManager.Instance.dialogueEvents.onDialogueFinished += DialogueFinished;
         DialogueEventManager.Instance.dialogueEvents.onDisplayDialogue += DisplayDialogue;
-        //GameEventBus.Subscribe<PauseGameEvent>(OnGamePaused);
     }
 
     private void OnDisable()
