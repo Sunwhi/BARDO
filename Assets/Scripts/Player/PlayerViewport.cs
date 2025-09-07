@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerViewport : MonoBehaviour
@@ -7,7 +8,7 @@ public class PlayerViewport : MonoBehaviour
     private readonly float checkInterval = 0.2f;
     private float timer = 0f;
 
-    private bool isOutOfView = false;
+    private bool viewportDelay = false;
 
     private void Awake()
     {
@@ -22,27 +23,13 @@ public class PlayerViewport : MonoBehaviour
         timer = 0f;
 
         Bounds camBounds = GetCamBounds();
+        camBounds.Expand(new Vector3(0.6f, 0, 0));
         Vector3 playerPos = transform.position;
         bool outNow = !camBounds.Contains(playerPos);
 
-        if (outNow)
+        if (outNow && !viewportDelay)
         {
-            if (!isOutOfView)
-            {
-                isOutOfView = true;
-
-                var direction = GetExitDirection(camBounds, playerPos);
-                GameEventBus.Raise(new ViewportExitEvent(transform.position, direction));
-            }
-            else
-            {
-                var direction = GetExitDirection(camBounds, playerPos);
-                GameEventBus.Raise(new ViewportExitEvent(transform.position, direction));
-            }
-        }
-        else if (isOutOfView)
-        {
-            isOutOfView = false;
+            StartCoroutine(AfterTransition(camBounds, playerPos));
         }
     }
 
@@ -61,4 +48,24 @@ public class PlayerViewport : MonoBehaviour
         if (pos.x > bounds.max.x) return ViewportExitDirection.Right;
         return ViewportExitDirection.Left;
     }
-}
+
+    private IEnumerator AfterTransition(Bounds camBounds, Vector3 playerPos)
+    {
+        viewportDelay = true;
+        bool outNow = true;
+
+        while (outNow)
+        {
+            var direction = GetExitDirection(camBounds, playerPos);
+            GameEventBus.Raise(new ViewportExitEvent(transform.position, direction));
+            yield return new WaitForSeconds(0.5f);
+
+            camBounds = GetCamBounds();
+            camBounds.Expand(new Vector3(0.6f, 0, 0));
+            playerPos = transform.position;
+            outNow = !camBounds.Contains(playerPos);
+        }
+
+        viewportDelay = false;
+    }
+}   
