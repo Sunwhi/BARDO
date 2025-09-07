@@ -14,7 +14,7 @@ public class UIManager : Singleton<UIManager>
     public Stack<UIBase> ActiveStacks { get; private set; } = new();
     private UIBase activeTransition;
 
-    public static bool EscDelay { get; private set; } = false;
+    public static bool EscDelay = false;
 
     private void Update()
     {
