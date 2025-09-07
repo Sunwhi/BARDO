@@ -161,7 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 468612162507173124}
   - component: {fileID: 848427965174683618}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 4714484337752715879}
   - component: {fileID: 6499586743773236269}
   - component: {fileID: 2414160864078211934}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Stage01_Ground06_1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -707,7 +707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5166305566449158764}
   - component: {fileID: 6834713185302138717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -787,7 +787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7780737861331811606}
   - component: {fileID: 1796555313164478415}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -946,7 +946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8699582396648350667}
   - component: {fileID: 6416666295247459497}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1165,7 +1165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2520578130923221659}
   - component: {fileID: 1879764129978804266}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1612,7 +1612,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2341645374381171561}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2164,7 +2164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3098748642886314219}
   - component: {fileID: 1166085749296506793}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2875,7 +2875,7 @@ GameObject:
   - component: {fileID: 2528299173097142635}
   - component: {fileID: 6747049750779643005}
   - component: {fileID: 3209248659564477308}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: ParentTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3683,7 +3683,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2919791392440065226}
   - component: {fileID: 8348097688754546450}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4217,7 +4217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2412116977492426198}
   - component: {fileID: 7625133232573297591}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5088,7 +5088,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3182535842388470053}
   - component: {fileID: 5347181630389190854}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5162,7 +5162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4958751360226875916}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MovingPlatform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -5196,7 +5196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4843297840175793290}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5332,7 +5332,7 @@ GameObject:
   - component: {fileID: 1707181859507424883}
   - component: {fileID: 3338802894087901751}
   - component: {fileID: 4831947541221197172}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Stage01_Ground06_2_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5491,7 +5491,7 @@ GameObject:
   - component: {fileID: 465227631577493376}
   - component: {fileID: 5782588007053035442}
   - component: {fileID: 725119855097805063}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Stage01_Ground06_3_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5736,7 +5736,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5558804039982349512}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MovingPlatform (2)
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -6009,7 +6009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1753278531470090167}
   - component: {fileID: 3203257962082330611}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6086,7 +6086,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7689898650812134884}
   - component: {fileID: 4322617127781678884}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7128,7 +7128,7 @@ GameObject:
   - component: {fileID: 491968249178682296}
   - component: {fileID: 3694005660288816036}
   - component: {fileID: 1410673053524040530}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: ParentTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7292,7 +7292,7 @@ GameObject:
   - component: {fileID: 2113095590791131123}
   - component: {fileID: 1193971716680886752}
   - component: {fileID: 5241894761021386320}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Stage01_Ground06_8_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7448,7 +7448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 515613706517942659}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7480,7 +7480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8782246527987084416}
   - component: {fileID: 2433663044903298612}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8169,7 +8169,7 @@ GameObject:
   - component: {fileID: 1848364667979272595}
   - component: {fileID: 5213539007363441423}
   - component: {fileID: 6930546199338286995}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Stage01_Ground06_9_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8761,7 +8761,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8417624824976175809}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MovingPlatform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -8919,7 +8919,7 @@ GameObject:
   - component: {fileID: 7667118933495798765}
   - component: {fileID: 5198245675337252508}
   - component: {fileID: 2862674529997949816}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: ParentTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9015,7 +9015,7 @@ GameObject:
   - component: {fileID: 6665312280369680401}
   - component: {fileID: 2666559754459096476}
   - component: {fileID: 6606366029590245082}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Stage01_Ground06_4_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9167,7 +9167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6123902025871320063}
   - component: {fileID: 5036164402093904907}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9242,7 +9242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7542045054856882286}
   - component: {fileID: 2455620550912925631}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9317,7 +9317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7099523872116452174}
   - component: {fileID: 8229031355785357468}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9805,7 +9805,7 @@ GameObject:
   - component: {fileID: 6329561974269325021}
   - component: {fileID: 1265639759646616987}
   - component: {fileID: 3501661803504170067}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Stage01_Ground05_2_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9960,7 +9960,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3395417829385015932}
   - component: {fileID: 5605125434251881174}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10123,7 +10123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6996246445646093887}
   - component: {fileID: 4580736486953339882}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10289,7 +10289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5722638965122405673}
   - component: {fileID: 3830364797144512980}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11308,7 +11308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3309963767324276113}
   - component: {fileID: 6572979239091590843}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11518,7 +11518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5329554270706374844}
   - component: {fileID: 6253669609797741889}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11722,7 +11722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6647180399855880081}
   - component: {fileID: 1656029829897321151}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11931,7 +11931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1435693438373441904}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12104,7 +12104,7 @@ GameObject:
   - component: {fileID: 1700465382677346593}
   - component: {fileID: 676323733165170874}
   - component: {fileID: 4692491571414327499}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Stage01_Ground06_5_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12259,7 +12259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8530998192275218210}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12324,7 +12324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1798927419129254032}
   - component: {fileID: 1836992916911314559}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12398,7 +12398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1890655087627079854}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12785,7 +12785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4207688169425713996}
   - component: {fileID: 4059385427472488411}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13165,7 +13165,7 @@ GameObject:
   - component: {fileID: 6646313189557638357}
   - component: {fileID: 7021869175780580771}
   - component: {fileID: 3060488279637625984}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: ParentTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13702,7 +13702,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3541537149950336541}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14810,7 +14810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1199069633381372396}
   - component: {fileID: 261870852305153943}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14885,7 +14885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6475767657171460361}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15004,7 +15004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 700412352804805418}
   - component: {fileID: 3353112577628163175}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15082,7 +15082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7147144902040685497}
   - component: {fileID: 853786620881643394}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15159,7 +15159,7 @@ GameObject:
   - component: {fileID: 7665719171356565997}
   - component: {fileID: 8441696698413733030}
   - component: {fileID: 2902184950206328441}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Stage01_Ground06_11_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15688,7 +15688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2240243609712811969}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15720,7 +15720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4472690602728666064}
   - component: {fileID: 5312124866834392628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stage02_Ground02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15808,7 +15808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4945158792207589282}
   - component: {fileID: 2145523994667374870}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15884,7 +15884,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5206295438834064518}
   - component: {fileID: 4765407904222245488}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16357,7 +16357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5605904574823121201}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MovingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -16392,7 +16392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8294709350386603867}
   - component: {fileID: 1633957382234730932}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16468,7 +16468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8893239869795469267}
   - component: {fileID: 7716425736078677384}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16543,7 +16543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3599208468414360393}
   - component: {fileID: 1224529595750823390}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16715,7 +16715,7 @@ GameObject:
   - component: {fileID: 4156035834522179583}
   - component: {fileID: 4272847392425569595}
   - component: {fileID: 5486320660859811590}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: ParentTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16811,7 +16811,7 @@ GameObject:
   - component: {fileID: 6855741738650338573}
   - component: {fileID: 4095468710542594010}
   - component: {fileID: 909910967124652352}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Stage01_Ground06_7_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17364,7 +17364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6732911678741468115}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MovingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -17398,7 +17398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2563950808841454409}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18110,7 +18110,7 @@ GameObject:
   - component: {fileID: 6928652907231674764}
   - component: {fileID: 5618217120343117076}
   - component: {fileID: 955516626490147978}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Stage01_Ground06_10_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18266,7 +18266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7511444036398380364}
   - component: {fileID: 318750510594271605}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18345,7 +18345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7916640090190571040}
   - component: {fileID: 1129957641965808356}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18419,7 +18419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2037114340715228752}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19122,7 +19122,7 @@ GameObject:
   - component: {fileID: 6542400964299283085}
   - component: {fileID: 6394159570840214062}
   - component: {fileID: 102428653535706051}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Stage01_Ground06_6_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19500,7 +19500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6397259292751587463}
   - component: {fileID: 2258698146943767271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19710,7 +19710,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7060904065404802147}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19742,7 +19742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3630688882267596434}
   - component: {fileID: 3868904454583043063}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Wall (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

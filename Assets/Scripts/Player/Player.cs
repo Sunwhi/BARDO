@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     public bool isGrounded = true;
     private readonly float rayLength = 0.1f;
 
-    private MovingPlatform curPlatform;
+    public MovingPlatform curPlatform { get; private set; }
     
     private void Awake()
     {
@@ -123,34 +123,23 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent(out MovingPlatform platform))
+        if (1 << collision.gameObject.layer == platformLayer)
         {
-            curPlatform = platform;
+            Vector2 dirBA = collision.GetContact(0).normal;
+            bool fromBelow = dirBA.y > 0f;
+            if (!fromBelow) return;
+
+            MovingPlatform platform = collision.collider.GetComponentInParent<MovingPlatform>();
+            if (platform != null)
+                curPlatform = platform;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (curPlatform != null 
-            && collision.collider.GetComponent<MovingPlatform>() == curPlatform)
+        if (curPlatform != null)
         {
             curPlatform = null;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (((1 << collision.gameObject.layer) & disableLayer) != 0)
-        {
-            controller.InputEnabled = false;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (((1 << collision.gameObject.layer) & disableLayer) != 0)
-        {
-            controller.InputEnabled = true;
         }
     }
 }

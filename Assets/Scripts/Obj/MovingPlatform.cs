@@ -47,8 +47,11 @@ public class MovingPlatform : MonoBehaviour
     Coroutine SettleCoroutine;
     private IEnumerator WaitUntilSettled(Collider2D collision)
     {
-        yield return new WaitUntil(() => StoryManager.Instance.Player.isGrounded);
+        Player p = StoryManager.Instance.Player;
+
+        yield return new WaitUntil(() => p.curPlatform != null && p.isGrounded);
         collision.transform.SetParent(platform);
+        SettleCoroutine = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -64,7 +67,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StopCoroutine(SettleCoroutine);
+            if (SettleCoroutine != null) StopCoroutine(SettleCoroutine);
             SettleCoroutine = null;
             collision.transform.SetParent(null);
         }
