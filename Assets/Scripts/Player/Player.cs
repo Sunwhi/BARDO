@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,7 +30,9 @@ public class Player : MonoBehaviour
     private readonly float rayLength = 0.1f;
 
     public MovingPlatform curPlatform { get; private set; }
-    
+
+    private Coroutine groundCheckCoroutine;
+
     private void Awake()
     {
         animationData.Initialize();
@@ -36,10 +40,15 @@ public class Player : MonoBehaviour
         fsm = new PlayerStateMachine(this);
     }
 
+    private void OnEnable()
+    {
+        GameEventBus.Subscribe<PauseGameEvent>(OnPauseGame);
+        groundCheckCoroutine = StartCoroutine(CheckGroundRay());
+    }
+
     private void Update()
     {
         fsm.Update();
-        CheckGroundRay();
     }
 
     private void FixedUpdate()
@@ -47,13 +56,14 @@ public class Player : MonoBehaviour
         fsm.FixedUpdate();
     }
 
-    private void OnEnable()
-    {
-        GameEventBus.Subscribe<PauseGameEvent>(OnPauseGame);
-    }
     private void OnDisable()
     {
         GameEventBus.Unsubscribe<PauseGameEvent>(OnPauseGame);
+        if (groundCheckCoroutine != null)
+        {
+            StopCoroutine(groundCheckCoroutine);
+            groundCheckCoroutine = null;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -79,28 +89,34 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void CheckGroundRay()
+    private IEnumerator CheckGroundRay()
     {
-        Vector2 center = col.bounds.center;
-        Vector2 extents = col.bounds.extents;
+        float repeatTime = 0.1f;
+        WaitForSeconds groundDelay = new WaitForSeconds(repeatTime);
+        Vector2 center, extents, leftOrigin, rightOrigin, rayDir = Vector2.down;
+        float bottomY;
+        RaycastHit2D leftHit, rightHit;
+        LayerMask combinedMask = groundLayer | platformLayer;
 
-        float bottomY = center.y - extents.y;
-        Vector2 leftOrigin = new(center.x - extents.x, bottomY);
-        Vector2 rightOrigin = new(center.x + extents.x, bottomY);
-        Vector2 rayDir = Vector2.down;
-
-        RaycastHit2D leftHit = Physics2D.Raycast(leftOrigin, rayDir, rayLength, groundLayer | platformLayer);
-        Debug.DrawRay(leftOrigin, rayDir * rayLength, Color.red);
-        RaycastHit2D rightHit = Physics2D.Raycast(rightOrigin, rayDir, rayLength, groundLayer | platformLayer);
-        Debug.DrawRay(rightOrigin, rayDir * rayLength, Color.red);
-
-        if (leftHit.collider != null || rightHit.collider != null)
+        while (true)
         {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
+            center = col.bounds.center;
+            extents = col.bounds.extents;
+            bottomY = center.y - extents.y;
+
+            leftOrigin = new(center.x - extents.x, bottomY);
+            rightOrigin = new(center.x + extents.x, bottomY);
+
+            leftHit = Physics2D.Raycast(leftOrigin, rayDir, rayLength, combinedMask);
+            rightHit = Physics2D.Raycast(rightOrigin, rayDir, rayLength, combinedMask);
+
+#if UNITY_EDITOR
+            Debug.DrawRay(leftOrigin, rayDir * rayLength, Color.red, repeatTime);
+            Debug.DrawRay(rightOrigin, rayDir * rayLength, Color.red, repeatTime);
+#endif
+
+            isGrounded = (leftHit.collider != null) | (rightHit.collider != null);
+            yield return groundDelay;
         }
     }
 
