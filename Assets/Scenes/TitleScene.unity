@@ -161,7 +161,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45343302}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -594,6 +594,7 @@ MonoBehaviour:
   destroyOnSceneLoad: 0
   stage1InkJson: {fileID: 4900000, guid: 62eb69f293dab714d9b9a824189bc1e2, type: 3}
   haveChoices: 0
+  dialoguePaused: 0
   speaker: 
   panelClickForSkip: 0
 --- !u!1 &243620542
