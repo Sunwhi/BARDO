@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEventBus.Subscribe<PauseGameEvent>(OnPauseGame);
         groundCheckCoroutine = StartCoroutine(CheckGroundRay());
     }
 
@@ -58,7 +57,6 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
-        GameEventBus.Unsubscribe<PauseGameEvent>(OnPauseGame);
         if (groundCheckCoroutine != null)
         {
             StopCoroutine(groundCheckCoroutine);
@@ -117,23 +115,6 @@ public class Player : MonoBehaviour
 
             isGrounded = (leftHit.collider != null) | (rightHit.collider != null);
             yield return groundDelay;
-        }
-    }
-
-    // 게임 pause할때 player 못 움직이게 막는다.
-    private void OnPauseGame(PauseGameEvent ev)
-    {
-        if(ev.State == GameState.pause && playerInput.currentActionMap != null)
-        {
-            playerInput.currentActionMap.Disable();
-            Debug.Log($"Action map '{playerInput.currentActionMap.name}' has been disabled.");
-
-        }
-        else if(ev.State == GameState.resume && playerInput.currentActionMap != null)
-        {
-            playerInput.currentActionMap.Enable();
-            Debug.Log($"Action map '{playerInput.currentActionMap.name}' has been enabled.");
-
         }
     }
 
