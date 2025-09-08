@@ -1,8 +1,5 @@
-using Ink.Parsed;
-using Ink.Runtime;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 
@@ -45,7 +42,7 @@ public class StoryManager : Singleton<StoryManager>
             player = GameObject.FindWithTag("Player").GetComponent<Player>();
             padma = GameObject.FindWithTag("Padma").GetComponent<Padma>();
             Tuto_Move_On = GameObject.Find("Tuto_Move_On");
-            dialogueKnotName = "Start";
+            dialogueKnotName = "Stage1";
             playerController = new PlayerController(player);
 
             StartCoroutine(MainSceneStart());
@@ -93,6 +90,16 @@ public class StoryManager : Singleton<StoryManager>
     #region Stage1
     private IEnumerator S1_DialogueStart()
     {
+        if (!dialogueKnotName.Equals(""))
+        {
+            // dialogue 이벤트 호출
+            DialogueEventManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
+        }
+        yield return 1;
+    }
+    private IEnumerator S1_1DialogueStart()
+    {
+        
         if (!dialogueKnotName.Equals(""))
         {
             // dialogue 이벤트 호출

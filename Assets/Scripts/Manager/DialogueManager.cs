@@ -13,7 +13,6 @@ public class DialogueManager : Singleton<DialogueManager>
 {
     [Header("Ink Story")]
     [SerializeField] public TextAsset stage1InkJson;
-    //public TextMeshProUGUI displaySpeakerText;
 
     public Story story;
 
@@ -163,7 +162,7 @@ public class DialogueManager : Singleton<DialogueManager>
         story.ResetState();
     }
 
-    // ink dialogue내 tag들을 처리한다.
+    // ink dialogue내 tag들을 처리한다. speaker 관련
     private void HandleTags(List<string> currentTags)
     {
         foreach(string tag in currentTags)
