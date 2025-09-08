@@ -25,7 +25,7 @@ public class PlayerIdleState : PlayerState
 
     public override void FixedUpdate()
     {
-        // Áö¸é °íÁ¤, ÀÌµ¿ ¾øÀ½
+        // ì§€ë©´ ê³ ì •, ì´ë™ ì—†ìŒ
     }
 
     public override void Exit()

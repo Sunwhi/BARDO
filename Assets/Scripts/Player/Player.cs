@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,8 +29,10 @@ public class Player : MonoBehaviour
     public bool isGrounded = true;
     private readonly float rayLength = 0.1f;
 
-    private MovingPlatform curPlatform;
-    
+    public MovingPlatform curPlatform { get; private set; }
+
+    private Coroutine groundCheckCoroutine;
+
     private void Awake()
     {
         animationData.Initialize();
@@ -36,10 +40,14 @@ public class Player : MonoBehaviour
         fsm = new PlayerStateMachine(this);
     }
 
+    private void OnEnable()
+    {
+        groundCheckCoroutine = StartCoroutine(CheckGroundRay());
+    }
+
     private void Update()
     {
         fsm.Update();
-        CheckGroundRay();
     }
 
     private void FixedUpdate()
@@ -47,13 +55,13 @@ public class Player : MonoBehaviour
         fsm.FixedUpdate();
     }
 
-    private void OnEnable()
-    {
-        GameEventBus.Subscribe<PauseGameEvent>(OnPauseGame);
-    }
     private void OnDisable()
     {
-        GameEventBus.Unsubscribe<PauseGameEvent>(OnPauseGame);
+        if (groundCheckCoroutine != null)
+        {
+            StopCoroutine(groundCheckCoroutine);
+            groundCheckCoroutine = null;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -79,78 +87,56 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void CheckGroundRay()
+    private IEnumerator CheckGroundRay()
     {
-        Vector2 center = col.bounds.center;
-        Vector2 extents = col.bounds.extents;
+        float repeatTime = 0.1f;
+        WaitForSeconds groundDelay = new WaitForSeconds(repeatTime);
+        Vector2 center, extents, leftOrigin, rightOrigin, rayDir = Vector2.down;
+        float bottomY;
+        RaycastHit2D leftHit, rightHit;
+        LayerMask combinedMask = groundLayer | platformLayer;
 
-        float bottomY = center.y - extents.y;
-        Vector2 leftOrigin = new(center.x - extents.x, bottomY);
-        Vector2 rightOrigin = new(center.x + extents.x, bottomY);
-        Vector2 rayDir = Vector2.down;
-
-        RaycastHit2D leftHit = Physics2D.Raycast(leftOrigin, rayDir, rayLength, groundLayer | platformLayer);
-        Debug.DrawRay(leftOrigin, rayDir * rayLength, Color.red);
-        RaycastHit2D rightHit = Physics2D.Raycast(rightOrigin, rayDir, rayLength, groundLayer | platformLayer);
-        Debug.DrawRay(rightOrigin, rayDir * rayLength, Color.red);
-
-        if (leftHit.collider != null || rightHit.collider != null)
+        while (true)
         {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-    }
+            center = col.bounds.center;
+            extents = col.bounds.extents;
+            bottomY = center.y - extents.y;
 
-    // 게임 pause할때 player 못 움직이게 막는다.
-    private void OnPauseGame(PauseGameEvent ev)
-    {
-        if(ev.State == GameState.pause && playerInput.currentActionMap != null)
-        {
-            playerInput.currentActionMap.Disable();
-            Debug.Log($"Action map '{playerInput.currentActionMap.name}' has been disabled.");
+            leftOrigin = new(center.x - extents.x, bottomY);
+            rightOrigin = new(center.x + extents.x, bottomY);
 
-        }
-        else if(ev.State == GameState.resume && playerInput.currentActionMap != null)
-        {
-            playerInput.currentActionMap.Enable();
-            Debug.Log($"Action map '{playerInput.currentActionMap.name}' has been enabled.");
+            leftHit = Physics2D.Raycast(leftOrigin, rayDir, rayLength, combinedMask);
+            rightHit = Physics2D.Raycast(rightOrigin, rayDir, rayLength, combinedMask);
 
+#if UNITY_EDITOR
+            Debug.DrawRay(leftOrigin, rayDir * rayLength, Color.red, repeatTime);
+            Debug.DrawRay(rightOrigin, rayDir * rayLength, Color.red, repeatTime);
+#endif
+
+            isGrounded = (leftHit.collider != null) | (rightHit.collider != null);
+            yield return groundDelay;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent(out MovingPlatform platform))
+        if (1 << collision.gameObject.layer == platformLayer)
         {
-            curPlatform = platform;
+            Vector2 dirBA = collision.GetContact(0).normal;
+            bool fromBelow = dirBA.y > 0f;
+            if (!fromBelow) return;
+
+            MovingPlatform platform = collision.collider.GetComponentInParent<MovingPlatform>();
+            if (platform != null)
+                curPlatform = platform;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (curPlatform != null 
-            && collision.collider.GetComponent<MovingPlatform>() == curPlatform)
+        if (curPlatform != null)
         {
             curPlatform = null;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (((1 << collision.gameObject.layer) & disableLayer) != 0)
-        {
-            controller.InputEnabled = false;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (((1 << collision.gameObject.layer) & disableLayer) != 0)
-        {
-            controller.InputEnabled = true;
         }
     }
 }

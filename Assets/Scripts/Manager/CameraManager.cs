@@ -20,6 +20,8 @@ public class CameraManager : Singleton<CameraManager>
 
     [SerializeField] private int animLayer = 0;
 
+    public CamState curCamState { get; private set; }
+
     public void GoFront()
     {
         if (Time.time < ignoreUntil) return;
@@ -46,6 +48,7 @@ public class CameraManager : Singleton<CameraManager>
 
     private void OnEnable()
     {
+        curCamState = CamState.v1;
         GameEventBus.Subscribe<ViewportExitEvent>(OnViewportExit);
     }
 
@@ -56,8 +59,16 @@ public class CameraManager : Singleton<CameraManager>
 
     private void OnViewportExit(ViewportExitEvent e)
     {
-        if (e.direction == ViewportExitDirection.Left) GoBack();
-        else if (e.direction == ViewportExitDirection.Right) GoFront();
+        if (e.direction == ViewportExitDirection.Left)
+        {
+            GoBack();
+            curCamState--;
+        }
+        else if (e.direction == ViewportExitDirection.Right)
+        {
+            GoFront();
+            curCamState++;
+        }
     }
 
     // 기본 무시 시간 사용
@@ -76,8 +87,8 @@ public class CameraManager : Singleton<CameraManager>
     {
         // 입력 무시 시작
         SetIgnore(ignoreSeconds);
-
         ResetAll(cameraAnimator);
+        curCamState = target;
 
         var prevBlend = brain.DefaultBlend;
         brain.DefaultBlend = new CinemachineBlendDefinition(

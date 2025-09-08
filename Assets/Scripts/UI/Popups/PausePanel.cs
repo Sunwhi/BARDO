@@ -1,7 +1,18 @@
+using UnityEngine;
 using UnityEngine.Events;
 
 public class PausePanel : UIBase
 {
+    public override void Opened(object[] param)
+    {
+        Time.timeScale = 0f;
+    }
+
+    public override void Closed(object[] param)
+    {
+        Time.timeScale = 1f;
+    }
+
     public void OnContinueClicked()
     {
         SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);

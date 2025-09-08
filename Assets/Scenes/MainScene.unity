@@ -590,7 +590,7 @@ Transform:
   m_GameObject: {fileID: 247641074}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 254.79, y: -303.1, z: -10}
+  m_LocalPosition: {x: 230.6693, y: -303.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -708,7 +708,7 @@ Transform:
   m_GameObject: {fileID: 324866181}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 308.315, y: -303.1, z: -10}
+  m_LocalPosition: {x: 284.00232, y: -303.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1068,7 +1068,7 @@ Transform:
   m_GameObject: {fileID: 835177742}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 201.6673, y: -288.67, z: -10}
+  m_LocalPosition: {x: 189.3933, y: -292.13, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1099,7 +1099,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 14.58
+    OrthographicSize: 8.1
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1570,10 +1570,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Padma
       objectReference: {fileID: 0}
-    - target: {fileID: 8892060046050771983, guid: f3388ed21268d044eaf6d8cc84c19d05, type: 3}
-      propertyPath: m_TagString
-      value: Padma
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1670,7 +1666,7 @@ Transform:
   m_GameObject: {fileID: 1879933545}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 361.84, y: -303.1, z: -10}
+  m_LocalPosition: {x: 337.3353, y: -303.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1883,7 +1879,7 @@ Transform:
   m_GameObject: {fileID: 7268525989960367559}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35, y: -303.3247, z: -10}
+  m_LocalPosition: {x: 35.9, y: -302.9, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1904,11 +1900,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2949588377892445914, guid: 40e3d07c6a6e1e147a0ec159308b6782, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 35
+      value: 35.9
       objectReference: {fileID: 0}
     - target: {fileID: 2949588377892445914, guid: 40e3d07c6a6e1e147a0ec159308b6782, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -303.3247
+      value: -302.9
       objectReference: {fileID: 0}
     - target: {fileID: 2949588377892445914, guid: 40e3d07c6a6e1e147a0ec159308b6782, type: 3}
       propertyPath: m_LocalPosition.z

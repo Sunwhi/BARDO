@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    [SerializeField, Range(0, 7)] private int activeStage;
+    [SerializeField] private CamState activeStage;
     [SerializeField] private float speed = 4; //1일 때 1회 왕복
 
     [SerializeField] private Transform startPoint;
@@ -12,24 +12,19 @@ public class MovingPlatform : MonoBehaviour
 
     Coroutine moveCoroutine;
 
-    private void Start()
-    {
-        moveCoroutine = StartCoroutine(MoveCoroutine());
-    }
-
     private void Update()
     {
         //TODO : Stage 정보 체크 가능할 때 활성화.
 
-        //if (SaveManager.Instance.MySaveData.stageIdx == activeStage)
-        //{
-        //    moveCoroutine ??= StartCoroutine(MoveCoroutine());
-        //}
-        //else if (moveCoroutine != null)
-        //{
-        //    StopCoroutine(moveCoroutine);
-        //    moveCoroutine = null;
-        //}
+        if (activeStage == CameraManager.Instance.curCamState)
+        {
+            moveCoroutine ??= StartCoroutine(MoveCoroutine());
+        }
+        else if (moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+            moveCoroutine = null;
+        }
     }
 
     private IEnumerator MoveCoroutine()
@@ -49,18 +44,31 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    Coroutine SettleCoroutine;
+    private IEnumerator WaitUntilSettled(Collider2D collision)
+    {
+        Player p = StoryManager.Instance.Player;
+
+        yield return new WaitUntil(() => p.curPlatform != null && p.isGrounded);
+        collision.transform.SetParent(platform);
+        SettleCoroutine = null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.transform.SetParent(platform);
+            if (SettleCoroutine != null) StopCoroutine(SettleCoroutine);
+            SettleCoroutine = StartCoroutine(WaitUntilSettled(collision));
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            if (SettleCoroutine != null) StopCoroutine(SettleCoroutine);
+            SettleCoroutine = null;
             collision.transform.SetParent(null);
         }
     }

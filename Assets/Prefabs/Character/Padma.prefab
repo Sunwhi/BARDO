@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5880673303684112218}
   m_Layer: 0
   m_Name: Padma
-  m_TagString: Untagged
+  m_TagString: Padma
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,4 +124,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   padmaSprite: {fileID: 8444303469410840406}
-  targetPos: {x: -35, y: 0.43}

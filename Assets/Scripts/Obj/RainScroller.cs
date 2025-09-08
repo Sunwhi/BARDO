@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class RainScroller : MonoBehaviour
 {
-    public Material rainMaterial;      // ºñ ÅØ½ºÃ³°¡ µé¾î°£ ¸ÓÆ¼¸®¾ó
-    public float scrollSpeed = -0.1f;  // À§ -> ¾Æ·¡·Î Èå¸§
+    public Material rainMaterial;      // ë¹„ í…ìŠ¤ì²˜ê°€ ë“¤ì–´ê°„ ë¨¸í‹°ë¦¬ì–¼
+    public float scrollSpeed = -0.1f;  // ìœ„ -> ì•„ë˜ë¡œ íë¦„
 
     private Vector2 offset = Vector2.zero;
 
     void Update()
     {
-        offset.y += scrollSpeed * Time.deltaTime;
+        offset.y += scrollSpeed * Time.unscaledDeltaTime;
         rainMaterial.mainTextureOffset = offset;
     }
 }
