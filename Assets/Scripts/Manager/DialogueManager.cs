@@ -196,6 +196,11 @@ public class DialogueManager : Singleton<DialogueManager>
         else return false;
     }
 
+    public void ChangeDialogueStory(TextAsset inkJson)
+    {
+        story = new Ink.Runtime.Story(inkJson.text);
+    }
+
     private void OnPauseGame(PauseGameEvent ev)
     {
         if (ev.State == GameState.pause) dialoguePaused = true;
