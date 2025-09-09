@@ -10,7 +10,7 @@ public class StoryManager : Singleton<StoryManager>
     public Player Player => player;
     public Padma Padma => padma;   
     
-    [SerializeField] private GameObject Tuto_Move_On;
+    [SerializeField] GameObject Tuto_Move_On;
     [SerializeField] private string dialogueKnotName;
     [SerializeField] TextAsset stage1_1InkJson;
     [SerializeField] TextAsset stage2InkJson;
@@ -46,10 +46,9 @@ public class StoryManager : Singleton<StoryManager>
         {
             player = GameObject.FindWithTag("Player").GetComponent<Player>();
             padma = GameObject.FindWithTag("Padma").GetComponent<Padma>();
-            Tuto_Move_On = GameObject.Find("Tuto_Move_On");
             dialogueKnotName = "Stage1";
             playerController = new PlayerController(player);
-
+            Tuto_Move_On.SetActive(false);
             StartCoroutine(MainSceneStart());
         }
     }
@@ -85,6 +84,7 @@ public class StoryManager : Singleton<StoryManager>
             yield return new WaitUntil(() => isDialogueDone);
             isDialogueDone = false;
 
+            QuestManager.Instance.ShowQuestUI();
         }
 
     }

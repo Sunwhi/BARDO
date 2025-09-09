@@ -44,17 +44,17 @@ public class YesNoPanel : UIBase
 
         if (param.Length > 1 && param[1] is UnityAction yesAction)
         {
-            YesBtn.onClick.AddListener(() => { 
-                yesAction.Invoke();
+            YesBtn.onClick.AddListener(() => {
                 BaseAction();
+                yesAction.Invoke();
             });
         }
 
         if (param.Length > 2 && param[2] is UnityAction noAction)
         {
-            NoBtn.onClick.AddListener(() => { 
-                noAction.Invoke();
+            NoBtn.onClick.AddListener(() => {
                 BaseAction();
+                noAction.Invoke();
             });
         }
         else
