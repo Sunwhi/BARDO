@@ -1,10 +1,12 @@
 using UnityEngine;
 using Ink.Runtime;
-using System.Collections;
-using UnityEditor.Build.Content;
-using UnityEngine.Rendering.Universal;
 using System.Collections.Generic;
-using TMPro;
+
+public enum Speaker
+{
+    Bardo,
+    Padma
+}
 /*
  * DialogueManager
  * Dialogue Event를 listen하고 맞는 ink dialogue를 실행한다.
@@ -23,7 +25,8 @@ public class DialogueManager : Singleton<DialogueManager>
     private int currentChoiceIndex = -1;
 
     private const string SPEAKER_TAG = "speaker";
-    public string speaker;
+
+    public Speaker speaker;
 
     public bool dialoguePlaying { get; private set; } = false;    // dialogue가 playing중인가?
 
@@ -178,7 +181,8 @@ public class DialogueManager : Singleton<DialogueManager>
             switch(tagKey)
             {
                 case SPEAKER_TAG:
-                    speaker = tagValue;
+                    if (tagValue == "Bardo" || tagValue == "b") speaker = Speaker.Bardo;
+                    else if (tagValue == "Padma" || tagValue == "p") speaker = Speaker.Padma;
                     break;
             }
         }

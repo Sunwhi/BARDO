@@ -21,7 +21,8 @@ public class CutScene : MonoBehaviour
     }
     private void Update()
     {
-        speaker = DialogueManager.Instance.speaker;
+        if (DialogueManager.Instance.speaker == Speaker.Bardo) speaker = "Bardo";
+        else if (DialogueManager.Instance.speaker == Speaker.Padma) speaker = "Padma";
     }
     private IEnumerator PlayCutscene()
     {
