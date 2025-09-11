@@ -46,13 +46,13 @@ public class SavePanel : UIBase
         if (hasSaveSlot)
         {
             UIManager.Show<YesNoPanel>(
-            EYesNoPanelType.Save,
-            new UnityAction(() =>
-            {
-                SetSaveSlotName(); // 슬롯이름 저장 패널을 띄운다.
-                SaveManager.Instance.SaveSlot(slot);
-                UpdateSaveSlot(slot);
-            }
+                EYesNoPanelType.Save,
+                new UnityAction(() =>
+                {
+                    SetSaveSlotName(); // 슬롯이름 저장 패널을 띄운다.
+                    SaveManager.Instance.SaveSlot(slot);
+                    UpdateSaveSlot(slot);
+                }
             ));
         }
         else

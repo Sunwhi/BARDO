@@ -1,10 +1,20 @@
 using UnityEngine;
 using Ink.Runtime;
-using System.Collections;
-using UnityEditor.Build.Content;
-using UnityEngine.Rendering.Universal;
 using System.Collections.Generic;
-using TMPro;
+
+public enum Speaker
+{
+    Bardo,
+    Padma
+}
+public enum Closeup
+{
+    None,
+    Bardo,
+    Padma,
+    Double,
+    PadmaFly
+}
 /*
  * DialogueManager
  * Dialogue Event를 listen하고 맞는 ink dialogue를 실행한다.
@@ -13,7 +23,6 @@ public class DialogueManager : Singleton<DialogueManager>
 {
     [Header("Ink Story")]
     [SerializeField] public TextAsset stage1InkJson;
-    //public TextMeshProUGUI displaySpeakerText;
 
     public Story story;
 
@@ -24,7 +33,10 @@ public class DialogueManager : Singleton<DialogueManager>
     private int currentChoiceIndex = -1;
 
     private const string SPEAKER_TAG = "speaker";
-    public string speaker;
+    private const string CLOSEUP_TAG = "closeup"; 
+    public Speaker speaker;
+    public Closeup closeup;
+
 
     public bool dialoguePlaying { get; private set; } = false;    // dialogue가 playing중인가?
 
@@ -163,7 +175,7 @@ public class DialogueManager : Singleton<DialogueManager>
         story.ResetState();
     }
 
-    // ink dialogue내 tag들을 처리한다.
+    // ink dialogue내 tag들을 처리한다. speaker 관련
     private void HandleTags(List<string> currentTags)
     {
         foreach(string tag in currentTags)
@@ -179,7 +191,13 @@ public class DialogueManager : Singleton<DialogueManager>
             switch(tagKey)
             {
                 case SPEAKER_TAG:
-                    speaker = tagValue;
+                    if (tagValue == "Bardo" || tagValue == "b") speaker = Speaker.Bardo;
+                    else if (tagValue == "Padma" || tagValue == "p") speaker = Speaker.Padma;
+                    break;
+                case CLOSEUP_TAG:
+                    if (tagValue == "b") closeup = Closeup.Bardo;
+                    else if (tagValue == "p") closeup = Closeup.Padma;
+                    else if (tagValue == "b_p") closeup = Closeup.Double;
                     break;
             }
         }
@@ -195,6 +213,11 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         if (story.currentChoices.Count != 0) return true;
         else return false;
+    }
+
+    public void ChangeDialogueStory(TextAsset inkJson)
+    {
+        story = new Story(inkJson.text);
     }
 
     private void OnPauseGame(PauseGameEvent ev)

@@ -85,7 +85,9 @@ public class DialoguePanelUI : MonoBehaviour
             StopCoroutine(displayLineCoroutine);
         }
 
-        displaySpeakerText.text = DialogueManager.Instance.speaker;
+        // speaker text 지정
+        if (DialogueManager.Instance.speaker == Speaker.Bardo) displaySpeakerText.text = "Bardo";
+        else if (DialogueManager.Instance.speaker == Speaker.Padma) displaySpeakerText.text = "Padma";
 
         // 선택지 dialogue에서는 next 버튼 비활성화
         if (dialogueChoices.Count > 0)
