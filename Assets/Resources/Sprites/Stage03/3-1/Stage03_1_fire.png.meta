@@ -67,9 +67,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -326,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -335,7 +335,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Stage03_1_fire_0: 8553128060616470843
+      Stage03_1_fire_1: 2633128891027314227
+      Stage03_1_fire_2: 4904091784908876661
+      Stage03_1_fire_3: 8576660575417063581
+      Stage03_1_fire_4: 4107826086140964372
+      Stage03_1_fire_5: -6148431121649942576
+      Stage03_1_fire_6: 6024405985710800442
+      Stage03_1_fire_7: 6916908608990864994
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
