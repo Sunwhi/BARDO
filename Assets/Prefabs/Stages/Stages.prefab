@@ -10277,8 +10277,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4613fa2847dae4a9e705a7e0e4e301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneImage: {fileID: 5480731421961955638}
-  duration: 0.04
+  destroyOnSceneLoad: 0
+  fadeView: {fileID: 0}
+  cutsceneAnimator: {fileID: 0}
+  cutsceneObj: {fileID: 0}
 --- !u!1 &4677577065545806414
 GameObject:
   m_ObjectHideFlags: 0

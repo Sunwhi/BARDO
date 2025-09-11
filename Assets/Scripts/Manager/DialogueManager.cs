@@ -7,6 +7,14 @@ public enum Speaker
     Bardo,
     Padma
 }
+public enum Closeup
+{
+    None,
+    Bardo,
+    Padma,
+    Double,
+    PadmaFly
+}
 /*
  * DialogueManager
  * Dialogue Event를 listen하고 맞는 ink dialogue를 실행한다.
@@ -25,8 +33,10 @@ public class DialogueManager : Singleton<DialogueManager>
     private int currentChoiceIndex = -1;
 
     private const string SPEAKER_TAG = "speaker";
-
+    private const string CLOSEUP_TAG = "closeup"; 
     public Speaker speaker;
+    public Closeup closeup;
+
 
     public bool dialoguePlaying { get; private set; } = false;    // dialogue가 playing중인가?
 
@@ -184,6 +194,11 @@ public class DialogueManager : Singleton<DialogueManager>
                     if (tagValue == "Bardo" || tagValue == "b") speaker = Speaker.Bardo;
                     else if (tagValue == "Padma" || tagValue == "p") speaker = Speaker.Padma;
                     break;
+                case CLOSEUP_TAG:
+                    if (tagValue == "b") closeup = Closeup.Bardo;
+                    else if (tagValue == "p") closeup = Closeup.Padma;
+                    else if (tagValue == "b_p") closeup = Closeup.Double;
+                    break;
             }
         }
     
@@ -202,7 +217,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void ChangeDialogueStory(TextAsset inkJson)
     {
-        story = new Ink.Runtime.Story(inkJson.text);
+        story = new Story(inkJson.text);
     }
 
     private void OnPauseGame(PauseGameEvent ev)
