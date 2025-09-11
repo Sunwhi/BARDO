@@ -1450,8 +1450,9 @@ MonoBehaviour:
   player: {fileID: 2807780823127625904}
   padma: {fileID: 1723892500}
   Tuto_Move_On: {fileID: 4538969352667303159}
-  dialogueKnotName: Start
-  stage2InkJson: {fileID: 4900000, guid: c3023f155c780dc4581a2d4674d30931, type: 3}
+  dialogueKnotName: Stage1
+  stage1_1InkJson: {fileID: 4900000, guid: fb40df34ebcae794cabaa86dc0e5cf04, type: 3}
+  stage2InkJson: {fileID: 4900000, guid: e1105ca041e2be64592d6953d05a6318, type: 3}
 --- !u!1 &1170529631
 GameObject:
   m_ObjectHideFlags: 0
