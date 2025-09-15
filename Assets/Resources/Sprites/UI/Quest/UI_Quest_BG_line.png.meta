@@ -126,15 +126,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_Quest_BG_line_0
+      name: UI_Quest_BG_line_top
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 215
         width: 52
-        height: 352
+        height: 137
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -147,11 +147,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UI_Quest_BG_line_triangle
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 139
+        width: 52
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9e5d4ccfb12c384fb9ba6d93f5ca01a
+      internalID: -1006372466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Quest_BG_line_bottom
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 52
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8af0eb624e3e6874b9a558ae526339ea
+      internalID: -1155455714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c7b824f33204d1c4e8998a2dc1805319
     internalID: 0
     vertices: []
     indices: 
@@ -160,7 +204,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_Quest_BG_line_bottom: -1155455714
+      UI_Quest_BG_line_top: 3580919803924168745
+      UI_Quest_BG_line_triangle: -1006372466
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
