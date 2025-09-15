@@ -1919,7 +1919,6 @@ GameObject:
   - component: {fileID: 2253545101395796393}
   - component: {fileID: 4580780784451775531}
   - component: {fileID: 6150980897740314210}
-  - component: {fileID: 2928652141501830928}
   m_Layer: 0
   m_Name: Rain_Back
   m_TagString: Untagged
@@ -2029,20 +2028,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: -50
   m_SortAtRoot: 0
---- !u!114 &2928652141501830928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679828814241782242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: ca0a89348074edc4eb9b88d479585097, type: 2}
-  scrollSpeed: 0.2
 --- !u!1 &693339378895660058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2332,7 +2317,6 @@ GameObject:
   - component: {fileID: 3723083396679134457}
   - component: {fileID: 9048670449779007533}
   - component: {fileID: 7134504807381115887}
-  - component: {fileID: 1377658722838790281}
   m_Layer: 0
   m_Name: Rain_Front
   m_TagString: Untagged
@@ -2442,20 +2426,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_SortAtRoot: 0
---- !u!114 &1377658722838790281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788726229093389102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: 4f7688350ce689243aa9fcaac94a52df, type: 2}
-  scrollSpeed: 0.5
 --- !u!1 &788757098522094250
 GameObject:
   m_ObjectHideFlags: 0
@@ -4690,7 +4660,6 @@ GameObject:
   - component: {fileID: 8798285985713868753}
   - component: {fileID: 5927123109947178088}
   - component: {fileID: 6336187893116462}
-  - component: {fileID: 7816030628796707881}
   m_Layer: 0
   m_Name: Rain_Front
   m_TagString: Untagged
@@ -4800,20 +4769,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_SortAtRoot: 0
---- !u!114 &7816030628796707881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1508582599422803544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: de391bb3c74c22b49ad2093faa35edb3, type: 2}
-  scrollSpeed: 0.5
 --- !u!1 &1560469200171260521
 GameObject:
   m_ObjectHideFlags: 0
@@ -7748,7 +7703,6 @@ GameObject:
   - component: {fileID: 4395690658633228224}
   - component: {fileID: 4932355183000873320}
   - component: {fileID: 4963166789591767717}
-  - component: {fileID: 8321417978709648190}
   m_Layer: 0
   m_Name: Rain_Front
   m_TagString: Untagged
@@ -7858,20 +7812,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_SortAtRoot: 0
---- !u!114 &8321417978709648190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2966282523529551120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: 4f7688350ce689243aa9fcaac94a52df, type: 2}
-  scrollSpeed: 0.5
 --- !u!1 &2979333333349049504
 GameObject:
   m_ObjectHideFlags: 0
@@ -8063,6 +8003,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4526868126308607974}
   - {fileID: 8819785199086668004}
   - {fileID: 3925460047516619277}
   - {fileID: 8010824331462036728}
@@ -8348,7 +8289,6 @@ GameObject:
   - component: {fileID: 8273361473424375969}
   - component: {fileID: 7537669437441727530}
   - component: {fileID: 3476230723626080770}
-  - component: {fileID: 7985330703191469835}
   m_Layer: 0
   m_Name: Rain_Back
   m_TagString: Untagged
@@ -8458,20 +8398,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: -50
   m_SortAtRoot: 0
---- !u!114 &7985330703191469835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3461008964103796934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: 69907de766ae0bd47b7f8ed8853b4bff, type: 2}
-  scrollSpeed: 0.2
 --- !u!1 &3479109556717470189
 GameObject:
   m_ObjectHideFlags: 0
@@ -8921,7 +8847,6 @@ GameObject:
   - component: {fileID: 2739734666246000302}
   - component: {fileID: 346961724180436108}
   - component: {fileID: 2096219599133779564}
-  - component: {fileID: 34682893390649759}
   m_Layer: 0
   m_Name: Rain_Back
   m_TagString: Untagged
@@ -9031,20 +8956,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: -50
   m_SortAtRoot: 0
---- !u!114 &34682893390649759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3584216363682951728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: 69907de766ae0bd47b7f8ed8853b4bff, type: 2}
-  scrollSpeed: 0.2
 --- !u!1 &3612957178490412965
 GameObject:
   m_ObjectHideFlags: 0
@@ -9193,7 +9104,6 @@ GameObject:
   - component: {fileID: 5084240265868691849}
   - component: {fileID: 1040564117536572724}
   - component: {fileID: 1097524989085465158}
-  - component: {fileID: 3092276540864379373}
   m_Layer: 0
   m_Name: Rain_Front
   m_TagString: Untagged
@@ -9303,20 +9213,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_SortAtRoot: 0
---- !u!114 &3092276540864379373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3618995160787821821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: 4f7688350ce689243aa9fcaac94a52df, type: 2}
-  scrollSpeed: 0.5
 --- !u!1 &3635655195956215526
 GameObject:
   m_ObjectHideFlags: 0
@@ -9664,7 +9560,6 @@ GameObject:
   - component: {fileID: 5943954191908522144}
   - component: {fileID: 7960041105193706400}
   - component: {fileID: 3676313338440621704}
-  - component: {fileID: 1122808254740934489}
   m_Layer: 0
   m_Name: Rain_Back
   m_TagString: Untagged
@@ -9774,20 +9669,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: -50
   m_SortAtRoot: 0
---- !u!114 &1122808254740934489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3667760670170629949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: 69907de766ae0bd47b7f8ed8853b4bff, type: 2}
-  scrollSpeed: 0.2
 --- !u!1 &3675044423860800438
 GameObject:
   m_ObjectHideFlags: 0
@@ -12694,7 +12575,6 @@ GameObject:
   - component: {fileID: 668767253842882946}
   - component: {fileID: 4561828838526990616}
   - component: {fileID: 34808678780854307}
-  - component: {fileID: 6641483639862884554}
   m_Layer: 0
   m_Name: Rain_Front
   m_TagString: Untagged
@@ -12804,20 +12684,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_SortAtRoot: 0
---- !u!114 &6641483639862884554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4882344274206845933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: 4f7688350ce689243aa9fcaac94a52df, type: 2}
-  scrollSpeed: 0.5
 --- !u!1 &4885915019812365355
 GameObject:
   m_ObjectHideFlags: 0
@@ -14553,7 +14419,6 @@ GameObject:
   - component: {fileID: 4261773777571150480}
   - component: {fileID: 935415353122144146}
   - component: {fileID: 6707797959881487612}
-  - component: {fileID: 3018723997010830842}
   m_Layer: 0
   m_Name: Rain_Back
   m_TagString: Untagged
@@ -14663,20 +14528,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: -50
   m_SortAtRoot: 0
---- !u!114 &3018723997010830842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5632137803242180338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: 69907de766ae0bd47b7f8ed8853b4bff, type: 2}
-  scrollSpeed: 0.2
 --- !u!1 &5641545137355565779
 GameObject:
   m_ObjectHideFlags: 0
@@ -15049,6 +14900,97 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5855330735163729351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4526868126308607974}
+  - component: {fileID: 6244836253500749875}
+  - component: {fileID: 4740322138354288790}
+  - component: {fileID: 2288012400142201292}
+  - component: {fileID: 6477335039767379444}
+  m_Layer: 0
+  m_Name: RainScroller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4526868126308607974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855330735163729351}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2568156051693538789}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6244836253500749875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855330735163729351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rainMaterial: {fileID: 2100000, guid: 69907de766ae0bd47b7f8ed8853b4bff, type: 2}
+  scrollSpeed: 0.2
+--- !u!114 &4740322138354288790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855330735163729351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rainMaterial: {fileID: 2100000, guid: 4f7688350ce689243aa9fcaac94a52df, type: 2}
+  scrollSpeed: 0.5
+--- !u!114 &2288012400142201292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855330735163729351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rainMaterial: {fileID: 2100000, guid: ca0a89348074edc4eb9b88d479585097, type: 2}
+  scrollSpeed: 0.2
+--- !u!114 &6477335039767379444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855330735163729351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rainMaterial: {fileID: 2100000, guid: de391bb3c74c22b49ad2093faa35edb3, type: 2}
+  scrollSpeed: 0.5
 --- !u!1 &5886089081462162187
 GameObject:
   m_ObjectHideFlags: 0
@@ -15137,7 +15079,6 @@ GameObject:
   - component: {fileID: 6527141638788235478}
   - component: {fileID: 2435927422384397762}
   - component: {fileID: 6284818590817613812}
-  - component: {fileID: 8021501924317982053}
   m_Layer: 0
   m_Name: Rain_Back
   m_TagString: Untagged
@@ -15247,20 +15188,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: -50
   m_SortAtRoot: 0
---- !u!114 &8021501924317982053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5898776770519896683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: 69907de766ae0bd47b7f8ed8853b4bff, type: 2}
-  scrollSpeed: 0.2
 --- !u!1 &5915484539619981120
 GameObject:
   m_ObjectHideFlags: 0
@@ -16522,7 +16449,6 @@ GameObject:
   - component: {fileID: 906459628324311963}
   - component: {fileID: 1596784521759674079}
   - component: {fileID: 6181700779643428146}
-  - component: {fileID: 4019236592488429427}
   m_Layer: 0
   m_Name: Rain_Front
   m_TagString: Untagged
@@ -16632,20 +16558,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_SortAtRoot: 0
---- !u!114 &4019236592488429427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6210010424348154169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: 4f7688350ce689243aa9fcaac94a52df, type: 2}
-  scrollSpeed: 0.5
 --- !u!1 &6222421370431277541
 GameObject:
   m_ObjectHideFlags: 0
@@ -18307,7 +18219,6 @@ GameObject:
   - component: {fileID: 572665512656144820}
   - component: {fileID: 7972096947947610250}
   - component: {fileID: 4225531924285330732}
-  - component: {fileID: 5538959062742518794}
   m_Layer: 0
   m_Name: Rain_Front
   m_TagString: Untagged
@@ -18417,20 +18328,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_SortAtRoot: 0
---- !u!114 &5538959062742518794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7138481046360061447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: 4f7688350ce689243aa9fcaac94a52df, type: 2}
-  scrollSpeed: 0.5
 --- !u!1 &7194663427191645471
 GameObject:
   m_ObjectHideFlags: 0
@@ -22662,7 +22559,6 @@ GameObject:
   - component: {fileID: 5249161331306682676}
   - component: {fileID: 4700518793703034824}
   - component: {fileID: 3477605647827114284}
-  - component: {fileID: 5062457957716490367}
   m_Layer: 0
   m_Name: Rain_Back
   m_TagString: Untagged
@@ -22772,17 +22668,3 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: -50
   m_SortAtRoot: 0
---- !u!114 &5062457957716490367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9152497570637623035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc23ac4230af0b46adf20bc53f93602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rainMaterial: {fileID: 2100000, guid: 69907de766ae0bd47b7f8ed8853b4bff, type: 2}
-  scrollSpeed: 0.2
