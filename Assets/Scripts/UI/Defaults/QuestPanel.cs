@@ -17,6 +17,8 @@ public class QuestPanel : UIBase
 
     private QuestData currentQuestData;
     Sequence seq = null;
+    private const float slideDuration = 1f;
+    private const float fadeDuration = 0.25f;
 
     private void OnEnable()
     {
@@ -41,9 +43,9 @@ public class QuestPanel : UIBase
         seq = DOTween.Sequence();
         if (isOpen)
         {
-            seq.Append(questBtnImg.DOFade(fadeTo, 0.25f).SetEase(Ease.InOutSine));
+            seq.Append(questBtnImg.DOFade(fadeTo, fadeDuration).SetEase(Ease.InOutSine));
             seq.Append(questParent
-                .DOSizeDelta(new Vector2(targetW, questParent.sizeDelta.y), 1f)
+                .DOSizeDelta(new Vector2(targetW, questParent.sizeDelta.y), slideDuration)
                 .SetEase(Ease.InOutBack));
             questListBtn.enabled = true;
         }
@@ -51,9 +53,9 @@ public class QuestPanel : UIBase
         {
             questListBtn.enabled = false;
             seq.Append(questParent
-                .DOSizeDelta(new Vector2(targetW, questParent.sizeDelta.y), 1f)
+                .DOSizeDelta(new Vector2(targetW, questParent.sizeDelta.y), slideDuration)
                 .SetEase(Ease.InOutBack));
-            seq.Append(questBtnImg.DOFade(fadeTo, 0.5f).SetEase(Ease.InOutSine));
+            seq.Append(questBtnImg.DOFade(fadeTo, fadeDuration).SetEase(Ease.InOutSine));
         }
 
         seq.OnComplete(() =>
