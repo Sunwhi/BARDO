@@ -41,7 +41,7 @@ public class QuestPanel : UIBase
         seq = DOTween.Sequence();
         if (isOpen)
         {
-            seq.Append(questBtnImg.DOFade(fadeTo, 0.5f).SetEase(Ease.InOutSine));
+            seq.Append(questBtnImg.DOFade(fadeTo, 0.25f).SetEase(Ease.InOutSine));
             seq.Append(questParent
                 .DOSizeDelta(new Vector2(targetW, questParent.sizeDelta.y), 1f)
                 .SetEase(Ease.InOutBack));
