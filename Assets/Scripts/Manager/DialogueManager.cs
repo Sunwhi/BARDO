@@ -23,6 +23,7 @@ public class DialogueManager : Singleton<DialogueManager>
 {
     [Header("Ink Story")]
     [SerializeField] public TextAsset stage1InkJson;
+    public DialoguePanelUI dialoguePanelUI;
 
     public Story story;
 
@@ -30,12 +31,15 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public bool dialoguePaused = false;
 
+    public bool displayDialogue = true;
+
     private int currentChoiceIndex = -1;
 
-    private const string SPEAKER_TAG = "speaker";
-    private const string CLOSEUP_TAG = "closeup"; 
     public Speaker speaker;
     public Closeup closeup;
+    private const string SPEAKER_TAG = "speaker";
+    private const string CLOSEUP_TAG = "closeup"; 
+
 
 
     public bool dialoguePlaying { get; private set; } = false;    // dialogue가 playing중인가?

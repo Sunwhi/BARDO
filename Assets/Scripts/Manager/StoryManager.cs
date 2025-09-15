@@ -165,8 +165,6 @@ public class StoryManager : Singleton<StoryManager>
             DialogueEventManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
         }
 
-        //UIManager.Show<CutScene>();
-
     }
     #endregion
     #region Stage3

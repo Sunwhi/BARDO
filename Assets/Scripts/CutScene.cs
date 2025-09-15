@@ -10,13 +10,13 @@ public class CutScene : UIBase
     private void Update()
     {
         Closeup currentCloseup = DialogueManager.Instance.closeup;
-
         switch(currentCloseup)
         {
             case Closeup.None:
                 break;
             case Closeup.Double:
                 cutsceneAnimator.Play("CutDoubleAnim");
+                Debug.Log("asdg");
                 break;
             case Closeup.Bardo:
                 cutsceneAnimator.Play("CutBardoAnim");

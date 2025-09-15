@@ -23,11 +23,20 @@ public class RoundTransition : UIBase
         int round = param.Length > 0 && param[0] is int ? (int)param[0] : 1;
         weekTxt.text = weekFormat + round;
         roundTxt.text = roundFormat.ContainsKey(round) ? roundFormat[round] : "Round " + round;
+        DialogueManager.Instance.displayDialogue = false;
     }
-
+    public override void Closed(object[] param)
+    {
+        DialogueManager.Instance.displayDialogue = true;
+        //DialogueManager.Instance.dialoguePanelUI.OnOffDialoguePanel(1);
+        if(param.Length > 0 && param[0] is CutScene)
+        {
+            UIManager.Show<CutScene>();
+        }
+    }
     public void OnTransitionEnd()
     {
         Time.timeScale = 1f;
-        UIManager.HideTransition();
+        UIManager.HideTransition(new CutScene());
     }
 }

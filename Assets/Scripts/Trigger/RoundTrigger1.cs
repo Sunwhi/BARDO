@@ -17,7 +17,7 @@ public class RoundTrigger1 : TriggerBase
         UIManager.Show<RoundTransition>(2);
 
         //TODO : Player & Padma Cutscene
-        UIManager.Show<CutScene>();
+        //UIManager.Show<CutScene>();
 
         StoryManager.Instance.Player.playerInput.enabled = false;
         StoryManager.Instance.Player.transform.position = playerTransform.position;

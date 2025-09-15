@@ -20,6 +20,7 @@ public class DialoguePanelUI : MonoBehaviour
     [SerializeField] private float typingSpeed = 0.04f;
     private Coroutine displayLineCoroutine;
     private bool skipDialogue = false;
+
     // 대화 출력이 완료되고 next버튼 활성화 전까지 OnSubmit이 여러번 출력되어 skipDialogue가 다음줄까지 true가 되는 버그를 방지하기 위해,
     // 한번 OnSubmit으로 대화창 스킵하면, next버튼 활성화 되기 전까지 다시 OnSubmit이 호출 안되게 함.
     // 즉, 한번 OnSubmit 누르면 next 버튼 활성화 전까지 OnSubmit이 호출이 안되고, 다시 skipDialogue가 true되지 않게 함.
@@ -68,7 +69,10 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void DialogueStart()
     {
-        dialoguePanel.SetActive(true);
+        if(DialogueManager.Instance.displayDialogue)
+        {
+            dialoguePanel.SetActive(true);
+        }
     }
 
     private void DialogueFinished()
@@ -187,6 +191,12 @@ public class DialoguePanelUI : MonoBehaviour
             choiceButtonIndex--;
         }
     }
+    public void OnOffDialoguePanel(int i)
+    {
+        if(i == 0) dialoguePanel.SetActive(false);  
+        else if (i==1) dialoguePanel.SetActive(true);
+    }
+
     private bool OnGamePaused(PauseGameEvent ev)
     {
         if(ev.State == GameState.pause)
