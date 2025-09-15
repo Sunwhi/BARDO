@@ -2,26 +2,21 @@ using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestPanel : UIBase
 {
+    [SerializeField] private Image questBtnImg;
+    
     [SerializeField] private RectTransform questParent;
     [SerializeField] private TextMeshProUGUI titleTxt;
     [SerializeField] private RectTransform contentParent;
     [SerializeField] private GameObject subQuestTxtPrefab;
     private List<TextMeshProUGUI> subQuestTxts = new();
-
-    private float questBoxSize = 0f;
-    private bool isSlided = false;
-    private Tween slideTween;
+    [SerializeField] private Button questListBtn;
 
     private QuestData currentQuestData;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        questBoxSize = contentParent.rect.width - 100f;
-    }
+    Sequence seq = null;
 
     private void OnEnable()
     {
@@ -36,20 +31,35 @@ public class QuestPanel : UIBase
         GameEventBus.Unsubscribe<DataChangeEvent<QuestData>>(OnQuestDataChanged);
     }
 
-    public void SetSlide(bool alwaysOpen = false)
+    public void SetSlide(bool isOpen)
     {
-        if (alwaysOpen) isSlided = false;
-        else if (slideTween != null 
-            && slideTween.IsActive() 
-            && slideTween.IsPlaying())
-            return;
+        if (seq != null) return;
 
-        float moveX = isSlided ? questBoxSize : -questBoxSize;
-        slideTween = questParent.DOMoveX(questParent.position.x + moveX, 1f)
-            .SetEase(Ease.InOutBack)
-            .OnComplete(() => slideTween = null);
+        float targetW = isOpen ? 500f : 0f;
+        float fadeTo = isOpen ? 0f : 1f;
 
-        isSlided = !isSlided;
+        seq = DOTween.Sequence();
+        if (isOpen)
+        {
+            seq.Append(questBtnImg.DOFade(fadeTo, 0.5f).SetEase(Ease.InOutSine));
+            seq.Append(questParent
+                .DOSizeDelta(new Vector2(targetW, questParent.sizeDelta.y), 1f)
+                .SetEase(Ease.InOutBack));
+            questListBtn.enabled = true;
+        }
+        else
+        {
+            questListBtn.enabled = false;
+            seq.Append(questParent
+                .DOSizeDelta(new Vector2(targetW, questParent.sizeDelta.y), 1f)
+                .SetEase(Ease.InOutBack));
+            seq.Append(questBtnImg.DOFade(fadeTo, 0.5f).SetEase(Ease.InOutSine));
+        }
+
+        seq.OnComplete(() =>
+        {
+            seq = null;
+        }).OnKill(() => seq = null);
     }
 
     public void CompleteSubQuest(int id)
