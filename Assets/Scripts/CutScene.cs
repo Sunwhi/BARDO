@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,17 +7,23 @@ using UnityEngine.UI;
 public class CutScene : UIBase
 {
     [SerializeField] private Animator cutsceneAnimator;
+    private Closeup previousCloseup;
 
     private void Update()
     {
         Closeup currentCloseup = DialogueManager.Instance.closeup;
-        switch(currentCloseup)
+
+        if (currentCloseup == previousCloseup) 
+        {
+            return; 
+        }
+
+        switch (currentCloseup)
         {
             case Closeup.None:
                 break;
             case Closeup.Double:
                 cutsceneAnimator.Play("CutDoubleAnim");
-                Debug.Log("asdg");
                 break;
             case Closeup.Bardo:
                 cutsceneAnimator.Play("CutBardoAnim");
@@ -28,7 +35,13 @@ public class CutScene : UIBase
                 cutsceneAnimator.Play("CutPadmaFlyAnim");
                 break;
         }
+        previousCloseup = currentCloseup;
     }
-
+    public void CutsceneFinished()
+    {
+        Debug.Log("finish");
+        StoryManager.Instance.Player.playerInput.enabled = true;
+        Destroy(this.gameObject);
+    }
 
 }

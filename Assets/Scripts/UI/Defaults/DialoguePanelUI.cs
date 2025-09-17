@@ -69,10 +69,7 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void DialogueStart()
     {
-        if(DialogueManager.Instance.displayDialogue)
-        {
-            dialoguePanel.SetActive(true);
-        }
+        dialoguePanel.SetActive(true);  
     }
 
     private void DialogueFinished()
@@ -92,6 +89,7 @@ public class DialoguePanelUI : MonoBehaviour
         // speaker text 지정
         if (DialogueManager.Instance.speaker == Speaker.Bardo) displaySpeakerText.text = "Bardo";
         else if (DialogueManager.Instance.speaker == Speaker.Padma) displaySpeakerText.text = "Padma";
+        else if (DialogueManager.Instance.speaker == Speaker.Unknown) displaySpeakerText.text = "?";
 
         // 선택지 dialogue에서는 next 버튼 비활성화
         if (dialogueChoices.Count > 0)

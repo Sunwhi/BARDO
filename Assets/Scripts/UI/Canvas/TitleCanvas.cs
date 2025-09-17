@@ -48,10 +48,10 @@ public class TitleCanvas : UICanvas
         {
             Debug.LogError("SaveManager.Instance is null!");
         }
-        if (DialogueManager.Instance == null)
+        /*if (DialogueManager.Instance == null)
         {
             Debug.LogError("DialogueManager.Instance is null!");
-        }
+        }*/
         UIManager.Show<ContinuePanel>();
     }
 

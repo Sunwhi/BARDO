@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,12 +16,18 @@ public class StoryManager : Singleton<StoryManager>
     [SerializeField] TextAsset stage1_1InkJson;
     [SerializeField] TextAsset stage2InkJson;
 
-    public PlayerController playerController { get; set; }
+    [SerializeField] private Transform dialogueParent;
+    [SerializeField] private Transform transition;
+    [SerializeField] private Transform defaultCanvas;
 
-    private enum StoryState { None, Stage1, Stage1_1 };
+    public PlayerController playerController { get; set; }
+    public bool roundTransitionDone = false; // roundTransition 끝난 후에 dialogue같은 패널 뜨도록 설정
+    public bool cutsceneDone = false;
+
+    private enum StoryState { None, Stage1, Stage1_1, Stage2 };
     private StoryState currentStoryState = StoryState.None;
     private bool isDialogueDone = false;
-    private bool isStageDone = false;
+
     public override void Awake()
     {
         base.Awake();
@@ -88,7 +95,27 @@ public class StoryManager : Singleton<StoryManager>
         }
 
     }
+    private void OnDialogueFinished()
+    {
+        switch (currentStoryState)
+        {
+            case StoryState.Stage1:
+                UnityEngine.Debug.Log("stage1 finished");
+                isDialogueDone = true;
+                break;
+            case StoryState.Stage1_1:
+                UnityEngine.Debug.Log("stage1-1 finished");
+                Tuto_Move_On.SetActive(true);
+                player.playerInput.enabled = true;
+                isDialogueDone = true;
+                break;
+            case StoryState.Stage2:
+                DialogueToDefault();
+                break;
+        }
 
+        currentStoryState = StoryState.None;
+    }
     public void PlayerWalkCoroutine(float duration = 1f)
     {
         StartCoroutine(PlayerWalkLeft(duration));
@@ -99,6 +126,23 @@ public class StoryManager : Singleton<StoryManager>
         player.ForceMove(new Vector2(1, 0));
         yield return new WaitForSeconds(duration);
         player.ForceMove(Vector2.zero);
+    }
+
+    // DialogueParent를 Transition의 자식으로 이동시킨다.  
+    private void DialogueToTransition()
+    {
+        if(dialogueParent != null && transition != null)
+        {
+            UnityEngine.Debug.Log("dialogueToTransition");
+            dialogueParent.SetParent(transition, false);
+        }
+    }
+    private void DialogueToDefault()
+    {
+        if (dialogueParent != null && defaultCanvas != null)
+        {
+            dialogueParent.SetParent(defaultCanvas, false);
+        }
     }
 
     #region Stage1
@@ -134,30 +178,16 @@ public class StoryManager : Singleton<StoryManager>
             padma.Hide();
         });
         yield return 1;
-    }
-    // 파드마와의 대화가 끝나면
-    private void OnDialogueFinished()
-    {
-        if(currentStoryState == StoryState.Stage1)
-        {
-            Debug.Log("stage1 finished");
-            isDialogueDone = true;
-        }
-        else if(currentStoryState == StoryState.Stage1_1)
-        {
-            Debug.Log("stage1-1 finished");
-            Tuto_Move_On.SetActive(true);
-            player.playerInput.enabled = true;
-            isDialogueDone = true;
-        }
-
-        currentStoryState = StoryState.None;
-    }
+    }    
     #endregion
 
     #region Stage2
     public void S2_EnterStage()
     {
+        currentStoryState = StoryState.Stage2;
+
+        DialogueToTransition();
+
         DialogueManager.Instance.ChangeDialogueStory(stage2InkJson);
         dialogueKnotName = "Stage2";
         if (!dialogueKnotName.Equals(""))
