@@ -2,37 +2,48 @@
   {
     "QuestID": 1,
     "QuestTitle": "도망치는 새를 따라가기",
-    "SubQuestID": 1,
-    "SubQuestName": "방향키를 눌러 좌우로 이동"
-  },
-  {
-    "QuestID": 1,
-    "QuestTitle": "도망치는 새를 따라가기",
-    "SubQuestID": 2,
-    "SubQuestName": "스페이스 바를 눌러 점프"
-  },
-  {
-    "QuestID": 1,
-    "QuestTitle": "도망치는 새를 따라가기",
-    "SubQuestID": 3,
-    "SubQuestName": "다음 스테이지로 이동"
-  },
-  {
-    "QuestID": 2,
-    "QuestTitle": "잃어버린 기억을 찾아",
-    "SubQuestID": 1,
-    "SubQuestName": "업경대 획득"
+    "SubQuests": [
+      {
+        "SubQuestID": 1,
+        "SubQuestName": "방향키를 눌러 좌우로 이동",
+        "isCompleted": false
+      },
+      {
+        "SubQuestID": 2,
+        "SubQuestName": "스페이스 바를 눌러 점프",
+        "isCompleted": false
+      },
+      {
+        "SubQuestID": 3,
+        "SubQuestName": "다음 스테이지로 이동",
+        "isCompleted": false
+      }
+    ]
   },
   {
     "QuestID": 2,
-    "QuestTitle": "잃어버린 기억을 찾아",
-    "SubQuestID": 2,
-    "SubQuestName": "등명석 획득"
-  },
-  {
-    "QuestID": 2,
-    "QuestTitle": "잃어버린 기억을 찾아",
-    "SubQuestID": 3,
-    "SubQuestName": "혼의 실 획득"
+    "QuestTitle": "진실을 찾아서",
+    "SubQuests": [
+      {
+        "SubQuestID": 1,
+        "SubQuestName": "도망가는 새와 대화",
+        "isCompleted": true
+      },
+      {
+        "SubQuestID": 2,
+        "SubQuestName": "진실의 거울 찾기",
+        "isCompleted": false
+      },
+      {
+        "SubQuestID": 3,
+        "SubQuestName": "기억의 등불 찾기",
+        "isCompleted": false
+      },
+      {
+        "SubQuestID": 4,
+        "SubQuestName": "혼의 실 찾기",
+        "isCompleted": false
+      }
+    ]
   }
 ]

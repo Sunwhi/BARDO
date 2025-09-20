@@ -18,6 +18,7 @@ public class RoundTrigger1 : TriggerBase
 
     protected override void OnTriggered()
     {
+        QuestManager.Instance.ClearSubQuest(2);
         StartCoroutine(TriggerEffect());   
     }
     private void roundTransitionDone(TransitionEvents ev)

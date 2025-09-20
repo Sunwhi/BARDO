@@ -35,6 +35,7 @@ public class StoryManager : Singleton<StoryManager>
     }
     private void OnEnable()
     {
+        UnityEngine.Debug.Log("jdsaoifj");
         DialogueEventManager.Instance.dialogueEvents.onDialogueFinished += OnDialogueFinished;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -55,7 +56,8 @@ public class StoryManager : Singleton<StoryManager>
             padma = GameObject.FindWithTag("Padma").GetComponent<Padma>();
             dialogueKnotName = "Stage1";
             playerController = new PlayerController(player);
-            Tuto_Move_On.SetActive(false);
+
+            if (!SaveManager.Instance.MySaveData.stage1PadmaActive) Destroy(Padma.gameObject);
             StartCoroutine(MainSceneStart());
         }
     }
@@ -66,6 +68,8 @@ public class StoryManager : Singleton<StoryManager>
         if (!ContinueManager.Instance.loadedByContinue)
         {
             player.playerInput.enabled = false;
+
+            Tuto_Move_On.SetActive(false);
 
             SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
             yield return new WaitForSeconds(0.5f);
@@ -100,11 +104,11 @@ public class StoryManager : Singleton<StoryManager>
         switch (currentStoryState)
         {
             case StoryState.Stage1:
-                UnityEngine.Debug.Log("stage1 finished");
+                //UnityEngine.Debug.Log("stage1 finished");
                 isDialogueDone = true;
                 break;
             case StoryState.Stage1_1:
-                UnityEngine.Debug.Log("stage1-1 finished");
+                //UnityEngine.Debug.Log("stage1-1 finished");
                 Tuto_Move_On.SetActive(true);
                 player.playerInput.enabled = true;
                 isDialogueDone = true;
@@ -170,20 +174,27 @@ public class StoryManager : Singleton<StoryManager>
     }
     private IEnumerator PadmaFly()
     {
-        padma.FlyRight(15f, 4f, () =>
+        bool endFly = false;
+        padma.FlyRight(15f, 3f, () =>
         {
+            UnityEngine.Debug.Log("aojsefdkl");
             // FlyRightPadma의 DoMove가 Complete되면 아래 실행
             padma.transform.position = new Vector3(210, -285, 0);
             padma.FlipX();
             padma.Hide();
+            UnityEngine.Debug.Log("abdsfd");
+            SaveManager.Instance.SetSaveData(nameof(SaveData.stage1PadmaActive), false);
+            endFly = true;
         });
-        yield return 1;
+        yield return new WaitUntil(() => endFly);
     }    
     #endregion
 
     #region Stage2
     public void S2_EnterStage()
     {
+        QuestManager.Instance.SetNewQuest();
+
         currentStoryState = StoryState.Stage2;
 
         DialogueToTransition();
@@ -194,7 +205,12 @@ public class StoryManager : Singleton<StoryManager>
         {
             DialogueEventManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
         }
-
+    }
+    public void S2_CutsceneFin()
+    {
+        Player.playerInput.enabled = true;
+        QuestManager.Instance.ShowQuestUI();
+        //GameEventBus.Raise(new DataChangeEvent<QuestData>("isCompleted"));
     }
     #endregion
     #region Stage3

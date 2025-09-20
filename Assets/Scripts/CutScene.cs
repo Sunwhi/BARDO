@@ -13,7 +13,7 @@ public class CutScene : UIBase
     {
         Closeup currentCloseup = DialogueManager.Instance.closeup;
 
-        if (currentCloseup == previousCloseup) 
+        if (previousCloseup == Closeup.PadmaFly && currentCloseup == previousCloseup) 
         {
             return; 
         }
@@ -39,8 +39,7 @@ public class CutScene : UIBase
     }
     public void CutsceneFinished()
     {
-        Debug.Log("finish");
-        StoryManager.Instance.Player.playerInput.enabled = true;
+        StoryManager.Instance.S2_CutsceneFin();
         Destroy(this.gameObject);
     }
 

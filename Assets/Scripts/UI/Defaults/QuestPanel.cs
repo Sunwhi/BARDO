@@ -65,6 +65,8 @@ public class QuestPanel : UIBase
 
     private void SetQuestData()
     {
+        currentQuestData = SaveManager.Instance.MySaveData.currentQuest;
+
         if (currentQuestData == null)
         {
             titleTxt.text = "No Active Quest";

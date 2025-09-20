@@ -22,6 +22,10 @@ public class SaveData
     public int storyIdx = 0; //Stage 내부 Idx
     public SerializableVector3 savedPosition = new SerializableVector3(0,0,0);
 
+    public bool stage1PadmaActive = true;
+    public bool tutoDirectionComplete = false;
+    public bool tutoJumpComplete = false;
+
     public bool isQuestActive = false;
     public QuestData currentQuest = null;
     public bool[] quest1ItemAcquired = new bool[3]; //0: Karma Shard, 1: Memory Lamp, 2: Soul Thread
