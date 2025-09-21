@@ -6,11 +6,23 @@ public class Altar : InteractEnter
     [SerializeField] private GameObject item;
     [SerializeField] private Stage3_1Thread thread;
 
+    private void Start()
+    {
+        if (SaveManager.Instance.MySaveData.quest1Completed)
+        {
+            gameObject.SetActive(false);
+        }
+        else if (SaveManager.Instance.MySaveData.quest1ItemSet[storyIdx])
+        {
+            gameObject.SetActive(true);
+        }
+    }
+
     protected override IEnumerator InteractCoroutine()
     {
         yield return base.InteractCoroutine();
         item.SetActive(true);
-        SaveManager.Instance.SetSaveData(nameof(SaveData.quest1ItemSet), true, storyIdx - 1);
+        SaveManager.Instance.SetSaveData(nameof(SaveData.quest1ItemSet), true, storyIdx);
 
         if (stageIdx == 3)
         {
