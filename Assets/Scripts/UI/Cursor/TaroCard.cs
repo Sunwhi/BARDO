@@ -11,6 +11,7 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] Button fadeBtn;
     [SerializeField] Button selectBtn;
     [SerializeField] Image img;
+    [SerializeField] SelectCard cardType;
 
     RectTransform target;
     Sprite closedSprite;
@@ -23,7 +24,7 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     int origSibling;
     Vector2 origAnchorMin, origAnchorMax, origPivot, origAnchoredPos;
     Vector3 origScale;
-    Quaternion origRot;
+    Vector3 origRot;
     Vector3 origWorldPos;
 
     public void OnBtnClicked() => Expand();
@@ -37,7 +38,7 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (selectBtn != null)
         {
             selectBtn.onClick.RemoveAllListeners();
-            selectBtn.onClick.AddListener(Collapse);
+            selectBtn.onClick.AddListener(OnSelected);
         }
     }
 
@@ -80,7 +81,7 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         origPivot = target.pivot;
         origAnchoredPos = target.anchoredPosition;
         origScale = target.localScale;
-        origRot = target.localRotation;
+        origRot = target.localRotation.eulerAngles;
         origWorldPos = target.position;
 
         // 상호작용 정리
@@ -133,6 +134,7 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         // 원위치 이동+축소
         seq.Join(target.DOMove(origWorldPos, 0.25f).SetEase(Ease.OutCubic));
         seq.Join(target.DOScale(origScale, 0.25f).SetEase(Ease.OutCubic));
+        seq.Append(target.DORotate(origRot, 0.12f).SetEase(Ease.InCubic));
 
         seq.OnComplete(() =>
         {
@@ -141,9 +143,28 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             target.pivot = origPivot;
             target.anchoredPosition = origAnchoredPos;
             target.localScale = origScale;
-            target.localRotation = origRot;
+            target.localRotation = Quaternion.Euler(origRot);
 
             isExpanded = false;
         });
+    }
+
+    private void OnSelected()
+    {
+        SaveManager.Instance.SetSaveData(nameof(SaveData.selectedCard), cardType);
+
+        switch (cardType)
+        {
+            case SelectCard.BlackLantern:
+                break;
+            case SelectCard.Kiln:
+                break;
+            case SelectCard.Shoes:
+                break;
+            case SelectCard.DimLantern:
+                break;
+        }
+
+        Collapse();
     }
 }

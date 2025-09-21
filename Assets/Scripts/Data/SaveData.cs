@@ -1,5 +1,14 @@
 using System;
 
+public enum SelectCard
+{
+    Default,
+    BlackLantern,
+    Kiln,
+    Shoes,
+    DimLantern
+}
+
 public enum EEnding
 {
     Infernal,
@@ -28,9 +37,12 @@ public class SaveData
 
     public bool isQuestActive = false;
     public QuestData currentQuest = null;
+
     public bool[] quest1ItemAcquired = new bool[3]; //0: Karma Shard, 1: Memory Lamp, 2: Soul Thread
     public bool[] quest1ItemSet = new bool[3]; //0: Karma Shard, 1: Memory Lamp, 2: Soul Thread
     public bool quest1Completed = false;
+
+    public SelectCard selectedCard = SelectCard.Default;
 
     //Endings
     public bool firstJudgement = true; //true = 선. false = 악.

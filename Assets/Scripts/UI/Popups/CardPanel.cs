@@ -7,8 +7,7 @@ public class CardPanel : UIBase
 
     public override void Opened(object[] param)
     {
-        thread.SetActive(false);
+        if (thread != null)
+            thread.SetActive(false);
     }
-
-
 }
