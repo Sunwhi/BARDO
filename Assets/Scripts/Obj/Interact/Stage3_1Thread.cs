@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class Stage3_1Thread : MonoBehaviour
 {
-    [SerializeField] Animator anim;
+    public Animator anim;
 
     private void Start()
     {
         if (SaveManager.Instance.MySaveData.quest1Completed)
         {
+            anim.SetBool("isMade", false);
             anim.SetBool("isMade", true);
         }
     }
