@@ -98,7 +98,7 @@ public class QuestPanel : UIBase
             TextMeshProUGUI newTmp = Instantiate(subQuestTxtPrefab, contentParent)
                 .GetComponent<TextMeshProUGUI>();
             subQuestTxts.Add(newTmp);
-            subQuestTxts[i].text = $"({subQuest.SubQuestID}) {subQuest.SubQuestName}";
+            subQuestTxts[i].text = $"{subQuest.SubQuestName}";
         }
     }
 }
