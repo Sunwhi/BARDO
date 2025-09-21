@@ -28,25 +28,25 @@
 ... #speaker:Bardo
 이곳의 규칙이야.#speaker:Padma
 #closeup:b
-규칙? 이곳이 어딘데?#s:b
+규칙? 이곳이 어딘데?#speaker:b
 #closeup:b_p
-...#s:p
-...#s:b
+...#speaker:p
+...#speaker:b
 #closeup:b_p
 아무것도 모르겠어서, 너무 답답해서 그래.
 기억나는 건 내가 춤을 췄던 것, 마지막으로 너가 보였던 것
 그리고 어떤 붉은 머리 여자가 나를 바라봤던 것 뿐이야.
 #closeup:p
-...#s:p
+...#speaker:p
 붉은 머리 여자...?
 #closeup:b
-길고 불타듯 새빨간 머리색이었어#s:b
+길고 불타듯 새빨간 머리색이었어#speaker:b
 ...
 그리고...
 ...
 정말 아름다웠어
 #closeup:p
-...#s:p
+...#speaker:p
 그랬구나
 ...
 내가 직접적으로 알려줄 수 있는 건 없어.
@@ -69,9 +69,10 @@
 잃어버린 기억을 일부 되찾아줄거야.
 마지막은 '혼의 실'이야.
 너의 운명대로 이끌어줄거야.
-#closeup:p
 ...
 행운을 빌어.
+#closeup:pf
+
 
 
 -> END

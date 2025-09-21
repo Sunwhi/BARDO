@@ -77,6 +77,8 @@ public class QuestPanel : UIBase
 
     private void SetQuestData()
     {
+        currentQuestData = SaveManager.Instance.MySaveData.currentQuest;
+
         if (currentQuestData == null)
         {
             titleTxt.text = "No Active Quest";
@@ -96,7 +98,7 @@ public class QuestPanel : UIBase
             TextMeshProUGUI newTmp = Instantiate(subQuestTxtPrefab, contentParent)
                 .GetComponent<TextMeshProUGUI>();
             subQuestTxts.Add(newTmp);
-            subQuestTxts[i].text = $"({subQuest.SubQuestID}) {subQuest.SubQuestName}";
+            subQuestTxts[i].text = $"{subQuest.SubQuestName}";
         }
     }
 }

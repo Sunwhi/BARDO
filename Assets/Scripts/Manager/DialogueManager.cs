@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public enum Speaker
 {
     Bardo,
-    Padma
+    Padma,
+    Unknown
 }
 public enum Closeup
 {
@@ -23,6 +24,7 @@ public class DialogueManager : Singleton<DialogueManager>
 {
     [Header("Ink Story")]
     [SerializeField] public TextAsset stage1InkJson;
+    //public DialoguePanelUI dialoguePanelUI;
 
     public Story story;
 
@@ -32,10 +34,11 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private int currentChoiceIndex = -1;
 
-    private const string SPEAKER_TAG = "speaker";
-    private const string CLOSEUP_TAG = "closeup"; 
     public Speaker speaker;
     public Closeup closeup;
+    private const string SPEAKER_TAG = "speaker";
+    private const string CLOSEUP_TAG = "closeup"; 
+
 
 
     public bool dialoguePlaying { get; private set; } = false;    // dialogue가 playing중인가?
@@ -193,11 +196,13 @@ public class DialogueManager : Singleton<DialogueManager>
                 case SPEAKER_TAG:
                     if (tagValue == "Bardo" || tagValue == "b") speaker = Speaker.Bardo;
                     else if (tagValue == "Padma" || tagValue == "p") speaker = Speaker.Padma;
+                    else if (tagValue == "?") speaker = Speaker.Unknown;
                     break;
                 case CLOSEUP_TAG:
                     if (tagValue == "b") closeup = Closeup.Bardo;
                     else if (tagValue == "p") closeup = Closeup.Padma;
                     else if (tagValue == "b_p") closeup = Closeup.Double;
+                    else if (tagValue == "pf") closeup = Closeup.PadmaFly;
                     break;
             }
         }

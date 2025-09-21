@@ -26,9 +26,12 @@ public class Tutorial : MonoBehaviour
         switch(ev.tutorialId)
         {
             case "Move_On":
-                directionSprite.DOFade(1f, 3f);
+                if (!SaveManager.Instance.MySaveData.tutoDirectionComplete)
+                    directionSprite.DOFade(1f, 3f);
                 break;
             case "Move_Off":
+                QuestManager.Instance.ClearSubQuest(0);
+                SaveManager.Instance.SetSaveData(nameof(SaveData.tutoDirectionComplete), true);
                 directionSprite.DOFade(0f, 2f);
                 break;  
         }

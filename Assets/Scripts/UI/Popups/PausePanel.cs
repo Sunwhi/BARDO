@@ -34,6 +34,7 @@ public class PausePanel : UIBase
         EYesNoPanelType.Quit,
         new UnityAction(() =>
         {
+            SaveManager.Instance.SaveSlot();
             MySceneManager.Instance.LoadScene(ESceneType.Title);
             SoundManager.Instance.PlayBGM(EBGM.Title);
         })

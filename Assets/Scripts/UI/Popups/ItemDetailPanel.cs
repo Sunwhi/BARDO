@@ -21,9 +21,9 @@ public class ItemDetailPanel : UIBase
 
     private readonly Dictionary<eItemPanelType, (string title, string desc)> itemData = new()
     {
-        { eItemPanelType.Karmic_Shard, ("업경대", "업경대는 영혼의 힘을 모아 업경을 강화하는 데 사용됩니다.") },
-        { eItemPanelType.Memory_Lamp, ("등명석", "등명석은 어둠 속에서 길을 밝혀주는 빛나는 돌입니다.") },
-        { eItemPanelType.Soul_Thread, ("혼의 실", "혼의실은 영혼이 모이는 장소로, 특별한 힘을 지니고 있습니다.") }
+        { eItemPanelType.Karmic_Shard, ("진실의 거울", "진실을 담아 보여줍니다. 그런데 그 진실은 당신이 원하는 형태가 아닐 수 있습니다.") },
+        { eItemPanelType.Memory_Lamp, ("기억의 등불", "잃어버린 기억에 불을 붙여줍니다. 하지만 뜨거워 다칠 수 있습니다.") },
+        { eItemPanelType.Soul_Thread, ("혼의 실", "당신의 운명으로 이끌어줍니다. 엉켜있다면 풀어야합니다.") }
     };
     private Transform stage3PlayerPos;
 

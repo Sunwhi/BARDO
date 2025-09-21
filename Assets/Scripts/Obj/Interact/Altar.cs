@@ -4,7 +4,7 @@ using UnityEngine;
 public class Altar : InteractEnter
 {
     [SerializeField] private GameObject item;
-    [SerializeField] private GameObject thread;
+    [SerializeField] private Stage3_1Thread thread;
 
     protected override IEnumerator InteractCoroutine()
     {
@@ -24,7 +24,7 @@ public class Altar : InteractEnter
                     //애니메이션 재생
                     break;
                 case 2:
-                    thread.SetActive(true); //혼의 실 활성화
+                    thread.anim.SetBool("isMade", false);
                     break;
             }
         }

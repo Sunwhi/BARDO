@@ -19,12 +19,16 @@ public class RoundTransition : UIBase
 
     public override void Opened(object[] param)
     {
+        StoryManager.Instance.roundTransitionDone = false;
         Time.timeScale = 0f;
         int round = param.Length > 0 && param[0] is int ? (int)param[0] : 1;
         weekTxt.text = weekFormat + round;
         roundTxt.text = roundFormat.ContainsKey(round) ? roundFormat[round] : "Round " + round;
     }
-
+    public override void Closed(object[] param)
+    {
+        GameEventBus.Raise(new TransitionEvents());
+    }
     public void OnTransitionEnd()
     {
         Time.timeScale = 1f;
