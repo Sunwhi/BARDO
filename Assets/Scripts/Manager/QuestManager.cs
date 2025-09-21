@@ -41,6 +41,8 @@ public class QuestManager : Singleton<QuestManager>
             if (curQuest != null)
             {
                 SaveManager.Instance.SetSaveData(nameof(SaveData.currentQuest), curQuest);
+                GameEventBus.Raise<DataChangeEvent<QuestData>>
+                    (new DataChangeEvent<QuestData>(nameof(SaveData.currentQuest), curQuest));
             }
             else
             {
