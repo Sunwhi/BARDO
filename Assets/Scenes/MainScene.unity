@@ -2212,10 +2212,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2504318680007765961, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2568156051693538789, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 100
@@ -2259,14 +2255,6 @@ PrefabInstance:
     - target: {fileID: 3176486281749844234, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
       propertyPath: m_Name
       value: Stages
-      objectReference: {fileID: 0}
-    - target: {fileID: 3635655195956215526, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8968603260048206670, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
