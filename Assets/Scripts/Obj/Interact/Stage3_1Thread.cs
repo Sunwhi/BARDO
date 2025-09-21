@@ -1,9 +1,8 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Stage3_1Thread : MonoBehaviour
 {
-    Animator anim;
+    [SerializeField] Animator anim;
 
     private void Start()
     {
