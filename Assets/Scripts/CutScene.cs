@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,12 +7,18 @@ using UnityEngine.UI;
 public class CutScene : UIBase
 {
     [SerializeField] private Animator cutsceneAnimator;
+    private Closeup previousCloseup;
 
     private void Update()
     {
         Closeup currentCloseup = DialogueManager.Instance.closeup;
 
-        switch(currentCloseup)
+        if (previousCloseup == Closeup.PadmaFly && currentCloseup == previousCloseup) 
+        {
+            return; 
+        }
+
+        switch (currentCloseup)
         {
             case Closeup.None:
                 break;
@@ -28,7 +35,12 @@ public class CutScene : UIBase
                 cutsceneAnimator.Play("CutPadmaFlyAnim");
                 break;
         }
+        previousCloseup = currentCloseup;
     }
-
+    public void CutsceneFinished()
+    {
+        StoryManager.Instance.S2_CutsceneFin();
+        Destroy(this.gameObject);
+    }
 
 }

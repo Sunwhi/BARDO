@@ -25,9 +25,12 @@ public class Tutorial_Spacebar : MonoBehaviour
         switch (ev.tutorialId)
         {
             case "Jump_On":
-                spaceBar.DOFade(1f, 2f);
+                if(!SaveManager.Instance.MySaveData.tutoJumpComplete)
+                    spaceBar.DOFade(1f, 2f);
                 break;
             case "Jump_Off":
+                QuestManager.Instance.ClearSubQuest(1);
+                SaveManager.Instance.SetSaveData(nameof(SaveData.tutoJumpComplete), true);
                 spaceBar.DOFade(0f, 2f);
                 break;
         }

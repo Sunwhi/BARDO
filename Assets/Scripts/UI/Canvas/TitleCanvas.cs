@@ -8,12 +8,12 @@ public class TitleCanvas : UICanvas
     {
         base.Start();
         ContinueManager.Instance.loadedByContinue = false;
+        Time.timeScale = 1f;
     }
 
     public void OnClickNewGameBtn()
     {
         SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
-
         // 남은 saveslot이 없다면
         if(!SaveManager.Instance.FindEmptySlot())
         {
@@ -48,10 +48,10 @@ public class TitleCanvas : UICanvas
         {
             Debug.LogError("SaveManager.Instance is null!");
         }
-        if (DialogueManager.Instance == null)
+        /*if (DialogueManager.Instance == null)
         {
             Debug.LogError("DialogueManager.Instance is null!");
-        }
+        }*/
         UIManager.Show<ContinuePanel>();
     }
 
