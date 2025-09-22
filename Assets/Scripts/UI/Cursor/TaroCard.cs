@@ -8,6 +8,7 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     // 참조만 인스펙터에서 설정
     [SerializeField] RectTransform overlayRoot;
     [SerializeField] Sprite openedSprite;
+    [SerializeField] Button selfBtn;
     [SerializeField] Button fadeBtn;
     [SerializeField] Button selectBtn;
     [SerializeField] Image img;
@@ -23,9 +24,11 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     Transform origParent;
     int origSibling;
     Vector2 origAnchorMin, origAnchorMax, origPivot, origAnchoredPos;
-    Vector3 origScale;
+    //Vector3 origScale;
     Vector3 origRot;
     Vector3 origWorldPos;
+
+    bool isActivable = true;
 
     public void OnBtnClicked() => Expand();
 
@@ -40,6 +43,17 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             selectBtn.onClick.RemoveAllListeners();
             selectBtn.onClick.AddListener(OnSelected);
         }
+
+        // 스냅샷
+        origParent = target.parent;
+        origSibling = target.GetSiblingIndex();
+        origAnchorMin = target.anchorMin;
+        origAnchorMax = target.anchorMax;
+        origPivot = target.pivot;
+        origAnchoredPos = target.anchoredPosition;
+        //origScale = target.localScale;
+        origRot = target.localRotation.eulerAngles;
+        origWorldPos = target.position;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -72,20 +86,12 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void Expand()
     {
         if (isExpanded || overlayRoot == null) return;
+        if (!isActivable) return;
+        isActivable = false;
+        selfBtn.enabled = false;
 
-        // 스냅샷
-        origParent = target.parent;
-        origSibling = target.GetSiblingIndex();
-        origAnchorMin = target.anchorMin;
-        origAnchorMax = target.anchorMax;
-        origPivot = target.pivot;
-        origAnchoredPos = target.anchoredPosition;
-        origScale = target.localScale;
-        origRot = target.localRotation.eulerAngles;
-        origWorldPos = target.position;
-
-        // 상호작용 정리
-        target.DOKill(true);
+        target.DOKill(false);
+        Vector3 worldScale = target.lossyScale;
 
         // 백드롭 준비
         if (fadeBtn != null)
@@ -95,26 +101,28 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             fadeBtn.onClick.AddListener(Collapse);
         }
         target.SetParent(overlayRoot, true);
-        
+
         // 중앙 월드 좌표(overlayRoot 중심)
         Vector3 centerWorld = overlayRoot.TransformPoint(Vector3.zero);
 
         // 이동+확대
         var seq = DOTween.Sequence().SetUpdate(true).SetLink(gameObject);
         seq.Join(target.DOMove(centerWorld, 0.25f).SetEase(Ease.OutCubic));
-        seq.Join(target.DOScale(baseScale * 1.35f, 0.25f).SetEase(Ease.OutCubic));
+        //seq.Join(target.DOScale(endScale, 0.25f).SetEase(Ease.OutCubic));
 
         // 플립(전면 교체)
         seq.Append(target.DORotate(new Vector3(0f, 90f, 0f), 0.12f).SetEase(Ease.InCubic));
         seq.AppendCallback(() => { if (img != null && openedSprite != null) img.sprite = openedSprite; });
         seq.Append(target.DORotate(Vector3.zero, 0.12f).SetEase(Ease.OutCubic));
 
-        seq.OnComplete(() => { isExpanded = true; });
+        seq.OnComplete(() => { isExpanded = true; isActivable = true; });
     }
 
     void Collapse()
     {
         if (!isExpanded) return;
+        if (!isActivable) return;
+        isActivable = false;
 
         target.DOKill(true);
 
@@ -133,7 +141,7 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         // 원위치 이동+축소
         seq.Join(target.DOMove(origWorldPos, 0.25f).SetEase(Ease.OutCubic));
-        seq.Join(target.DOScale(origScale, 0.25f).SetEase(Ease.OutCubic));
+        //seq.Join(target.DOScale(origScale, 0.25f).SetEase(Ease.OutCubic));
         seq.Append(target.DORotate(origRot, 0.12f).SetEase(Ease.InCubic));
 
         seq.OnComplete(() =>
@@ -142,10 +150,12 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             target.anchorMax = origAnchorMax;
             target.pivot = origPivot;
             target.anchoredPosition = origAnchoredPos;
-            target.localScale = origScale;
+            //target.localScale = origScale;
             target.localRotation = Quaternion.Euler(origRot);
 
             isExpanded = false;
+            isActivable = true;
+            selfBtn.enabled = true;
         });
     }
 

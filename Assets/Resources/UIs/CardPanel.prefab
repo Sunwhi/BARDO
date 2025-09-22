@@ -91,9 +91,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overlayRoot: {fileID: 5367777928663243455}
   openedSprite: {fileID: 21300000, guid: 181c792b5b755c149859ab45ce1f9dc2, type: 3}
+  selfBtn: {fileID: 2411460503237480092}
   fadeBtn: {fileID: 1894705006081606264}
   selectBtn: {fileID: 612819154806761475}
   img: {fileID: 8332833404728484269}
+  cardType: 0
 --- !u!114 &2411460503237480092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +121,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -350,9 +352,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overlayRoot: {fileID: 5367777928663243455}
   openedSprite: {fileID: 21300000, guid: 89d6f6760b449da438eed0d969f21193, type: 3}
+  selfBtn: {fileID: 1656110981186438005}
   fadeBtn: {fileID: 1894705006081606264}
   selectBtn: {fileID: 612819154806761475}
   img: {fileID: 9107965189469423144}
+  cardType: 0
 --- !u!114 &1656110981186438005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +382,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -668,9 +672,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overlayRoot: {fileID: 5367777928663243455}
   openedSprite: {fileID: 21300000, guid: 2390a844c10704d458549c5719f58745, type: 3}
+  selfBtn: {fileID: 5576947688877872510}
   fadeBtn: {fileID: 1894705006081606264}
   selectBtn: {fileID: 612819154806761475}
   img: {fileID: 47793788318634333}
+  cardType: 0
 --- !u!114 &5576947688877872510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,7 +702,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -830,9 +836,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overlayRoot: {fileID: 5367777928663243455}
   openedSprite: {fileID: 21300000, guid: 4e408ba7f83c72a4b90fdf07acd7769a, type: 3}
+  selfBtn: {fileID: 7700951445639440132}
   fadeBtn: {fileID: 1894705006081606264}
   selectBtn: {fileID: 612819154806761475}
   img: {fileID: 8840811974594015549}
+  cardType: 0
 --- !u!114 &7700951445639440132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,7 +866,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
