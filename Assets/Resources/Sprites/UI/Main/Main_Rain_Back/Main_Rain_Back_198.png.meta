@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: 3c6388ed98b6d094db79ef577db0dd85
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5622413544535361013
+    second: Main_Rain_Back_198_0
+  - first:
+      213: -8707235200605130643
+    second: Main_Rain_Back_198_1
+  - first:
+      213: -2742443217415227566
+    second: Main_Rain_Back_198_2
+  - first:
+      213: 8642665718142606190
+    second: Main_Rain_Back_198_3
+  - first:
+      213: -4957920940846881597
+    second: Main_Rain_Back_198_4
+  - first:
+      213: 8426250605986495117
+    second: Main_Rain_Back_198_5
+  - first:
+      213: -916838889787158349
+    second: Main_Rain_Back_198_6
+  - first:
+      213: -1203187349615609734
+    second: Main_Rain_Back_198_7
+  - first:
+      213: -822773065190825136
+    second: Main_Rain_Back_198_8
+  - first:
+      213: -8128060956198476996
+    second: Main_Rain_Back_198_9
+  - first:
+      213: -3308482891277817297
+    second: Main_Rain_Back_198_10
+  - first:
+      213: 3156652951352634386
+    second: Main_Rain_Back_198_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Main_Rain_Back_198_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 0
+        width: 11
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0aff998bac29f1b0800000000000000
+      internalID: -5622413544535361013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_Rain_Back_198_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 0
+        width: 603
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d60772cc7bfa92780800000000000000
+      internalID: -8707235200605130643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_Rain_Back_198_2
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 0
+        width: 9
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25739418c62e0f9d0800000000000000
+      internalID: -2742443217415227566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_Rain_Back_198_3
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 0
+        width: 89
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6b165a0eaae0f770800000000000000
+      internalID: 8642665718142606190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_Rain_Back_198_4
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 0
+        width: 485
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c4e9582c2de13bb0800000000000000
+      internalID: -4957920940846881597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_Rain_Back_198_5
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 208
+        width: 11
+        height: 421
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8abe3e284e00f470800000000000000
+      internalID: 8426250605986495117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_Rain_Back_198_6
+      rect:
+        serializedVersion: 2
+        x: 1265
+        y: 0
+        width: 17
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b019f923ebb643f0800000000000000
+      internalID: -916838889787158349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_Rain_Back_198_7
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 0
+        width: 60
+        height: 503
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a78fae3fa7b6d4fe0800000000000000
+      internalID: -1203187349615609734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_Rain_Back_198_8
+      rect:
+        serializedVersion: 2
+        x: 1593
+        y: 0
+        width: 209
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 053aa86a14ce494f0800000000000000
+      internalID: -822773065190825136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_Rain_Back_198_9
+      rect:
+        serializedVersion: 2
+        x: 1598
+        y: 0
+        width: 6
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c336119ef93533f80800000000000000
+      internalID: -8128060956198476996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_Rain_Back_198_10
+      rect:
+        serializedVersion: 2
+        x: 1794
+        y: 0
+        width: 63
+        height: 880
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2aade7e658e512d0800000000000000
+      internalID: -3308482891277817297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Main_Rain_Back_198_11
+      rect:
+        serializedVersion: 2
+        x: 1898
+        y: 0
+        width: 7
+        height: 369
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21cef84722faecb20800000000000000
+      internalID: 3156652951352634386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Main_Rain_Back_198_0: -5622413544535361013
+      Main_Rain_Back_198_1: -8707235200605130643
+      Main_Rain_Back_198_10: -3308482891277817297
+      Main_Rain_Back_198_11: 3156652951352634386
+      Main_Rain_Back_198_2: -2742443217415227566
+      Main_Rain_Back_198_3: 8642665718142606190
+      Main_Rain_Back_198_4: -4957920940846881597
+      Main_Rain_Back_198_5: 8426250605986495117
+      Main_Rain_Back_198_6: -916838889787158349
+      Main_Rain_Back_198_7: -1203187349615609734
+      Main_Rain_Back_198_8: -822773065190825136
+      Main_Rain_Back_198_9: -8128060956198476996
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
