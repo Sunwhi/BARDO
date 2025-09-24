@@ -1464,7 +1464,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 9b17858494ad3da4e915b7bbf1f70ee7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1872,6 +1872,7 @@ Transform:
   - {fileID: 5568481397963170808}
   - {fileID: 428671037721444780}
   - {fileID: 8112003943593929752}
+  - {fileID: 4412226822426489511}
   m_Father: {fileID: 22544230881040736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619122460462804092
@@ -3160,7 +3161,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 1a4a8aff15413ad4c8cc5393bbfda04b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3408,7 +3409,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: a396df6c63f1a6841be7769a0bfdb109, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5574,7 +5575,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: b5731a13b874940469c2813139d9f965, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -15234,7 +15235,6 @@ Transform:
   m_Children:
   - {fileID: 935876470019605922}
   - {fileID: 6619486152856962068}
-  - {fileID: 4412226822426489511}
   m_Father: {fileID: 22544230881040736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5891651009176410169
@@ -19712,7 +19712,6 @@ GameObject:
   - component: {fileID: 1940437791809719747}
   - component: {fileID: 2499356211330659235}
   - component: {fileID: 3927183959516913435}
-  - component: {fileID: 7188866801007649480}
   m_Layer: 6
   m_Name: Stage02_Ground15
   m_TagString: Untagged
@@ -19729,11 +19728,11 @@ Transform:
   m_GameObject: {fileID: 7665449158809831650}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 55, y: 7.29, z: 0}
+  m_LocalPosition: {x: 55.000023, y: 7.2900023, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 636958427315158904}
+  m_Father: {fileID: 2341645374381171561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6919558358887140112
 SpriteRenderer:
@@ -19778,7 +19777,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 36d89c059c66a674891641ee477d5c2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -19880,24 +19879,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!114 &7188866801007649480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7665449158809831650}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8f2cbd94e10c304fb6338fa518046bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 6919558358887140112}
-  col: {fileID: 1940437791809719747}
-  rb: {fileID: 3927183959516913435}
-  fallDelay: 0.5
-  respawnDelay: 5
-  fadeInDuration: 1
 --- !u!1 &7667713348774775398
 GameObject:
   m_ObjectHideFlags: 0
@@ -19923,7 +19904,7 @@ Transform:
   m_GameObject: {fileID: 7667713348774775398}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 76, y: 0, z: 0}
+  m_LocalPosition: {x: 75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21590,7 +21571,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 61327a4b0b637274ea6fcb4f60aaf0ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
