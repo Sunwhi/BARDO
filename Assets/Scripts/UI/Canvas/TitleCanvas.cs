@@ -21,13 +21,18 @@ public class TitleCanvas : UICanvas
             EYesNoPanelType.New,
             new UnityAction(() =>
             {
+                // 가장 오래된 슬롯을 덮어쓸 대상으로 지정
                 SaveManager.Instance.OldestSaveSlot();
+                // 해당 슬롯의 데이터를 새 게임용으로 초기화
+                SaveManager.Instance.InitCurSlotAsNewGame();
                 MySceneManager.Instance.LoadScene(ESceneType.MainScene);
             })
             );
         }
         else
         {
+            // 찾은 빈 솔롯에 새 게임 데이터를 초기화
+            SaveManager.Instance.InitCurSlotAsNewGame();
             MySceneManager.Instance.LoadScene(ESceneType.MainScene);
         }
     }

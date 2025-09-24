@@ -35,7 +35,6 @@ public class StoryManager : Singleton<StoryManager>
     }
     private void OnEnable()
     {
-        UnityEngine.Debug.Log("jdsaoifj");
         DialogueEventManager.Instance.dialogueEvents.onDialogueFinished += OnDialogueFinished;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -137,7 +136,6 @@ public class StoryManager : Singleton<StoryManager>
     {
         if(dialogueParent != null && transition != null)
         {
-            UnityEngine.Debug.Log("dialogueToTransition");
             dialogueParent.SetParent(transition, false);
         }
     }
@@ -177,12 +175,10 @@ public class StoryManager : Singleton<StoryManager>
         bool endFly = false;
         padma.FlyRight(15f, 3f, () =>
         {
-            UnityEngine.Debug.Log("aojsefdkl");
             // FlyRightPadma의 DoMove가 Complete되면 아래 실행
             padma.transform.position = new Vector3(210, -285, 0);
             padma.FlipX();
             padma.Hide();
-            UnityEngine.Debug.Log("abdsfd");
             SaveManager.Instance.SetSaveData(nameof(SaveData.stage1PadmaActive), false);
             endFly = true;
         });

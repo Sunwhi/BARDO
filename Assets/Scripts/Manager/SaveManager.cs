@@ -162,6 +162,15 @@ public class SaveManager : Singleton<SaveManager>
         if (!MySaveData.dataSaved) MySaveData.dataSaved = true;
     }
 
+    //현재 선택된 슬롯을 새로운 게임 데이터로 초기화
+    public void InitCurSlotAsNewGame()
+    {
+        SaveSlots[curSaveIdx] = new SaveData();
+        SaveSlots[curSaveIdx].dataSaved = true;
+        OnSaveSlotUpdated?.Invoke((ESaveSlot)curSaveIdx);
+        isAutoDirty = true;
+    }
+
     public bool HasSaveSlot(ESaveSlot slot)
     {
         if (File.Exists(GetSlotPath(slot)) && SaveSlots[(int)slot].dataSaved) return true;
