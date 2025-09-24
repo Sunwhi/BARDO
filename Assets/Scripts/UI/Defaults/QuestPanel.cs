@@ -97,8 +97,14 @@ public class QuestPanel : UIBase
             var subQuest = currentQuestData.SubQuests[i];
             TextMeshProUGUI newTmp = Instantiate(subQuestTxtPrefab, contentParent)
                 .GetComponent<TextMeshProUGUI>();
+
             subQuestTxts.Add(newTmp);
             subQuestTxts[i].text = $"{subQuest.SubQuestName}";
+
+            if (subQuest.isCompleted)
+            {
+                CompleteSubQuest(i);
+            }
         }
     }
 }

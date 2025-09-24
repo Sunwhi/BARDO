@@ -16,8 +16,9 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {(1,3), "다음 스테이지로 가자" },
         {(1,4), "클리어 직전" },
         {(2,0), "파드마와의 재회" },
-        {(2,1), "아이템을 찾아서" },
-        {(2,2), "2,2" },
+        {(2,1), "진실의 거울" },
+        {(2,2), "기억의 등불" },
+        {(2,3), "혼의 실" },
     };
 
     [Header("Components")]
