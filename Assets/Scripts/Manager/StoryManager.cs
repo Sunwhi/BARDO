@@ -9,8 +9,8 @@ public class StoryManager : Singleton<StoryManager>
     [SerializeField] private Player player;
     [SerializeField] private Padma padma;
     public Player Player => player;
-    public Padma Padma => padma;   
-    
+    public Padma Padma => padma;
+
     [SerializeField] GameObject Tuto_Move_On;
     [SerializeField] private string dialogueKnotName;
     [SerializeField] TextAsset stage1_1InkJson;
@@ -70,6 +70,10 @@ public class StoryManager : Singleton<StoryManager>
 
             Tuto_Move_On.SetActive(false);
 
+            //이 코루틴 끝나기 전에 메인화면 나갔을 시, padmaActive false 그리고 SetQuestData.
+            //이어하기 시 파드마 없고 quest는 뜬다.
+            SaveManager.Instance.SetSaveData(nameof(SaveData.stage1PadmaActive), false); // 다음 이어하기부터 padmaAcive되지 않는다.
+
             SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
             yield return new WaitForSeconds(0.5f);
             UIManager.Show<RoundTransition>(1);          
@@ -83,6 +87,9 @@ public class StoryManager : Singleton<StoryManager>
             yield return PlayerWalkLeft();
 
             yield return new WaitForSeconds(2f);
+
+            QuestManager.Instance.SetQuestData();
+
 
             S1_DialogueStart();
             yield return new WaitUntil(() => isDialogueDone);
@@ -103,11 +110,9 @@ public class StoryManager : Singleton<StoryManager>
         switch (currentStoryState)
         {
             case StoryState.Stage1:
-                //UnityEngine.Debug.Log("stage1 finished");
                 isDialogueDone = true;
                 break;
             case StoryState.Stage1_1:
-                //UnityEngine.Debug.Log("stage1-1 finished");
                 Tuto_Move_On.SetActive(true);
                 player.playerInput.enabled = true;
                 isDialogueDone = true;
@@ -173,13 +178,12 @@ public class StoryManager : Singleton<StoryManager>
     private IEnumerator PadmaFly()
     {
         bool endFly = false;
-        padma.FlyRight(15f, 3f, () =>
+        padma.FlyRight(15f, 4f, () =>
         {
             // FlyRightPadma의 DoMove가 Complete되면 아래 실행
             padma.transform.position = new Vector3(210, -285, 0);
             padma.FlipX();
             padma.Hide();
-            SaveManager.Instance.SetSaveData(nameof(SaveData.stage1PadmaActive), false);
             endFly = true;
         });
         yield return new WaitUntil(() => endFly);
@@ -206,7 +210,6 @@ public class StoryManager : Singleton<StoryManager>
     {
         Player.playerInput.enabled = true;
         QuestManager.Instance.ShowQuestUI();
-        //GameEventBus.Raise(new DataChangeEvent<QuestData>("isCompleted"));
     }
     #endregion
     #region Stage3

@@ -15,6 +15,10 @@ public class ContinueManager : Singleton<ContinueManager>
     [SerializeField]
     private Dictionary<(int stageIdx, int storyId), CamState> curCamState = new()
     {
+        {(1,1), CamState.v1 },
+        {(1,2), CamState.v1 },
+        {(1,3), CamState.v1 },
+        {(1,4), CamState.v1 },
         {(2,0), CamState.v2_0 },
         {(2,1), CamState.v2_1 },
         {(2,2), CamState.v2_3 },

@@ -19,15 +19,17 @@ public class QuestManager : Singleton<QuestManager>
 
     public void ShowQuestUI()
     {
+        SetQuestData();
+        questPanel = UIManager.Show<QuestPanel>();
+    }
+    public void SetQuestData()
+    {
         if (!SaveManager.Instance.MySaveData.isQuestActive)
         {
             SaveManager.Instance.SetSaveData(nameof(SaveData.isQuestActive), true);
             SetNewQuest();
         }
-
-        questPanel = UIManager.Show<QuestPanel>();
     }
-
     public void SetNewQuest()
     {
         if (SaveManager.Instance.MySaveData.currentQuest == null)
