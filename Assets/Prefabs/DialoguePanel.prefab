@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.85882354}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -597,7 +597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 240
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_SizeDelta.y
@@ -633,7 +633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 675
+      value: 654.19995
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -654,10 +654,6 @@ PrefabInstance:
     - target: {fileID: 4659989710596027258, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_Name
       value: DialogueChoiceBtn2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4659989710596027258, guid: c8fef975372dc074abeec59eafe14442, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -703,7 +699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 240
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_SizeDelta.y
@@ -739,7 +735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 675
+      value: 654.19995
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -760,10 +756,6 @@ PrefabInstance:
     - target: {fileID: 4659989710596027258, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_Name
       value: DialogueChoiceBtn1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4659989710596027258, guid: c8fef975372dc074abeec59eafe14442, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -809,7 +801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 240
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_SizeDelta.y
@@ -845,7 +837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 675
+      value: 654.19995
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -911,7 +903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 240
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_SizeDelta.y
@@ -947,7 +939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 675
+      value: 654.2
       objectReference: {fileID: 0}
     - target: {fileID: 3657661225964672533, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -968,10 +960,6 @@ PrefabInstance:
     - target: {fileID: 4659989710596027258, guid: c8fef975372dc074abeec59eafe14442, type: 3}
       propertyPath: m_Name
       value: DialogueChoiceBtn0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4659989710596027258, guid: c8fef975372dc074abeec59eafe14442, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
