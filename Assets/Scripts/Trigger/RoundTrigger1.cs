@@ -4,7 +4,6 @@ using UnityEngine;
 public class RoundTrigger1 : TriggerBase
 {
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private float playerWalkDuration = 3f;
 
 
     private void OnEnable()

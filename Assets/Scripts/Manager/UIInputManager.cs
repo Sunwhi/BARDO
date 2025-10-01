@@ -2,19 +2,18 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 //
-// Dialogue °ü·ÃÇØ¼­, PlayerInputÀÌ¿ëÇÏ¿© ±¸Çö
+// Dialogue ê´€ë ¨í•´ì„œ, PlayerInputì´ìš©í•˜ì—¬ êµ¬í˜„
 //
 [RequireComponent(typeof(PlayerInput))]
 public class UIInputManager : Singleton<UIInputManager>
 {
     public bool submitPressed = false;
 
-    // spacebar ´©¸£¸é ½ÇÇà, Dialogue¿¡¼­ 
+    // spacebar ëˆ„ë¥´ë©´ ì‹¤í–‰, Dialogueì—ì„œ 
     public void OnSubmit(InputAction.CallbackContext context)
     {
         if (DialogueManager.Instance.dialoguePlaying)
         {
-            //Debug.Log("OnSubmit");
             if (context.performed)
             {
                 submitPressed = true;
@@ -29,8 +28,6 @@ public class UIInputManager : Singleton<UIInputManager>
     public bool GetSubmitPressed()
     {
         bool result = submitPressed;
-        //submitPressed = false;
-        //Debug.Log("result " + result);
         return result;
     }
 }

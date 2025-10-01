@@ -24,7 +24,6 @@ public class DialogueManager : Singleton<DialogueManager>
 {
     [Header("Ink Story")]
     [SerializeField] public TextAsset stage1InkJson;
-    //public DialoguePanelUI dialoguePanelUI;
 
     public Story story;
 
@@ -39,9 +38,7 @@ public class DialogueManager : Singleton<DialogueManager>
     private const string SPEAKER_TAG = "speaker";
     private const string CLOSEUP_TAG = "closeup"; 
 
-
-
-    public bool dialoguePlaying { get; private set; } = false;    // dialogue가 playing중인가?
+    public bool dialoguePlaying { get; private set; } = false; 
 
     // Dialogue 다음 라인으로 넘어갈 수 있는가? 타이핑 도중 next로 넘어가지 못하게
     public bool canContinueToNextLine { get; set; } = false;
@@ -50,7 +47,7 @@ public class DialogueManager : Singleton<DialogueManager>
     public override void Awake()
     {
         base.Awake();
-        story = new Story(stage1InkJson.text);
+        StartNewStory();
     }
 
     private void OnEnable()
@@ -76,6 +73,10 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
+    public void StartNewStory()
+    {
+        story = new Story(stage1InkJson.text);
+    }
     private void UpdateChoiceIndex(int choiceIndex)
     {
         this.currentChoiceIndex = choiceIndex;
@@ -164,8 +165,6 @@ public class DialogueManager : Singleton<DialogueManager>
     }
     private void ExitDialogue()
     {
-        Debug.Log("Exiting Dialogue");
-
         dialoguePlaying = false;
 
         // inform other parts of our system that we've finished dialogue
@@ -208,10 +207,7 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     
     }
-    private bool IsLineBlank(string dialogueLine)
-    {
-        return dialogueLine.Trim().Equals("") || dialogueLine.Trim().Equals("\n");
-    }
+
 
     // 현재 문장이 선택지가 있는 문장인가?
     public bool ContainChoices()
@@ -225,6 +221,10 @@ public class DialogueManager : Singleton<DialogueManager>
         story = new Story(inkJson.text);
     }
 
+    private bool IsLineBlank(string dialogueLine)
+    {
+        return dialogueLine.Trim().Equals("") || dialogueLine.Trim().Equals("\n");
+    }
     private void OnPauseGame(PauseGameEvent ev)
     {
         if (ev.State == GameState.pause) dialoguePaused = true;

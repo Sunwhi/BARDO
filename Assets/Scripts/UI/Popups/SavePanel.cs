@@ -75,7 +75,8 @@ public class SavePanel : UIBase
         UIManager.Show<SaveSlotNamePanel>(
             new UnityAction<string>((inputText) =>
             {
-                SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), inputText);
+                if (inputText == null) SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), "New Save");
+                else  SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), inputText);
             }
             ));
     }
