@@ -35,6 +35,8 @@ public class TitleCanvas : UICanvas
             SaveManager.Instance.InitCurSlotAsNewGame();
             MySceneManager.Instance.LoadScene(ESceneType.MainScene);
         }
+
+        DialogueManager.Instance.StartNewStory();
     }
 
     public void OnClickContinueBtn()

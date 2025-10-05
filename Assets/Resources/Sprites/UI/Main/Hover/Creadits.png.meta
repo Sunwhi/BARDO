@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b13ba36f8c7c8024ba84c027f8aaaddb
+guid: 84e4bc51ca675894da7e502dafa43f37
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4103486534397163469
-    second: Textbar_dark_0
+      213: -4877119281803370750
+    second: Creadits_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Textbar_dark_0
+      name: Creadits_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 3432
-        height: 428
+        width: 405
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dc77757034382f830800000000000000
-      internalID: 4103486534397163469
+      spriteID: 20fd6e07addf05cb0800000000000000
+      internalID: -4877119281803370750
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Textbar_dark_0: 4103486534397163469
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
