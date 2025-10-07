@@ -38,13 +38,15 @@ public class TimelineController : MonoBehaviour
             menuDirector?.Play();
             isMenuShown = true;
         }
-
+#if UNITY_EDITOR
+        // 스페이스 누르면 스킵
         if (!isMenuShown && Input.GetKeyDown(KeyCode.Space))
         {
             menuDirector?.Play();
             isMenuShown = true;
         }
     }
+#endif
 
     private void OnMenuDirectorFin(PlayableDirector director)
     {

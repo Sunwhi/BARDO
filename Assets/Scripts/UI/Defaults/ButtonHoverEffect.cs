@@ -17,8 +17,11 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        SoundManager.Instance.PlaySFX(ESFX.UI_Button_Hover);
-        if(hoverStateObject != null && menuDirFin) hoverStateObject.SetActive(true);
+        if (hoverStateObject != null && menuDirFin)
+        {
+            SoundManager.Instance.PlaySFX(ESFX.UI_Button_Hover);
+            hoverStateObject.SetActive(true); 
+        }
     }
     public void OnPointerExit(PointerEventData eventData) 
     {
