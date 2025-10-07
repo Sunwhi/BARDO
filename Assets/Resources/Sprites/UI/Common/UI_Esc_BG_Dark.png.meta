@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a12058038e0b30e49b6b9691d4cbb0b6
+guid: 48cf8e49bccc38348bc0db8ce3b1e7ed
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5255451371596793261
-    second: Stage_02_cut_Padma_B_087_0
+      213: 3211438775543335464
+    second: UI_Esc_BG_Dark_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Stage_02_cut_Padma_B_087_0
+      name: UI_Esc_BG_Dark_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 4096
+        height: 2160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: da5cd5a8d2d1fe840800000000000000
-      internalID: 5255451371596793261
+      spriteID: 82a0d2a2d82519c20800000000000000
+      internalID: 3211438775543335464
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Stage_02_cut_Padma_B_087_0: 5255451371596793261
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
