@@ -8,8 +8,7 @@ public class RoundCollByStage : MonoBehaviour
     [SerializeField] private int activeStory = 0;
 
     [SerializeField] private bool isStageEffectActive = false;
-    [SerializeField] private float playerWalkDuration = 2f; 
-
+    
     private void OnEnable()
     {
         GameEventBus.Subscribe<NextStageEvent>(OnNextStage);
@@ -35,11 +34,20 @@ public class RoundCollByStage : MonoBehaviour
     {
         if (isStageEffectActive)
         {
-            CameraManager.Instance.JumpAndCut(CamState.v3_1);
+            switch (activeStage)
+            {
+                case 3:
+                    switch (activeStory)
+                    {
+                        case 0:
+                            CameraManager.Instance.JumpAndCut(CamState.v3_1);
+                            break;
+                    }
+                    break;
+            }
+            
             Vector3 pos = e.playerTransform;
-
             StoryManager.Instance.Player.transform.position = pos;
-            StoryManager.Instance.PlayerWalkCoroutine(playerWalkDuration);
         }
     }
 }
