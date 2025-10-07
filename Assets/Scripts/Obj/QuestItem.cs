@@ -24,6 +24,7 @@ public class QuestItem : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             SaveManager.Instance.SetSaveData(nameof(SaveData.quest1ItemAcquired), true, (int)itemType);
+            SaveManager.Instance.SaveSlot();
 
             switch (itemType)
             {
