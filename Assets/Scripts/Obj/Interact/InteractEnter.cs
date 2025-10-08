@@ -27,6 +27,8 @@ public class InteractEnter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!collision.CompareTag("Player")) return;
+
         if (SaveManager.Instance.MySaveData.stageIdx == stageIdx
             && SaveManager.Instance.MySaveData.storyIdx == storyIdx)
         {
@@ -37,6 +39,8 @@ public class InteractEnter : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (!collision.CompareTag("Player")) return;
+
         guide.DOFade(0f, 0.5f).SetUpdate(true);
         if (interactCoroutine != null)
         {
