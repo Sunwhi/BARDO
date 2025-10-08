@@ -1784,7 +1784,7 @@ MonoBehaviour:
   startThread_short: {fileID: 8860111078702168721}
   startThread_long: {fileID: 2204325035909860501}
   loop1_Thread: {fileID: 1808365602791235705}
-  loop2_Thread: {fileID: 0}
+  loop2_Thread: {fileID: 5285507822050888789}
   last_Thread: {fileID: 2373094947111070963}
   itemsToDisable:
   - {fileID: 4878381681430790943}
@@ -18617,8 +18617,8 @@ Transform:
   m_GameObject: {fileID: 6742120567291454314}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.082, y: 0.41, z: 0}
-  m_LocalScale: {x: 41.1, y: 41.1, z: 1}
+  m_LocalPosition: {x: 52.1198, y: 0.41, z: 0}
+  m_LocalScale: {x: 63, y: 63, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1907299935419908004}
@@ -18654,7 +18654,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 994976986037dfb47a3c5e826bb9ecd0, type: 2}
+  - {fileID: 2100000, guid: 54dfd2efb646aec40964445b92f93061, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18706,11 +18706,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6742120567291454314}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 65a6a2fa53386664b97ef0aae06abdbf, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 56a83a1372524e140b5bbc1f03da2227, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 40f42035448e7404daf61ac99eb42557, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 053df7439a652ee42ae1e148ec278ec4, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
