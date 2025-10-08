@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.Video;
 
-public class VideoAutoPlay : MonoBehaviour
+public class PlayVideo : MonoBehaviour
 {
     public VideoPlayer vp;
 
-    void Start()
+    public void OnVideoAction()
     {
         vp.waitForFirstFrame = true;
         vp.Prepare();

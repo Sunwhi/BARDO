@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Overlays;
 using UnityEngine;
 
 public class Altar : InteractEnter
@@ -39,7 +38,7 @@ public class Altar : InteractEnter
                     break;
                 case 2:
                     SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 3);
-                    thread.anim.SetBool("isMade", false);
+                    //TODO : Thread video 재생.
                     break;
             }
         }

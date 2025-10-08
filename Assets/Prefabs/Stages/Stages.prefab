@@ -697,7 +697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5779669827516109348
 Transform:
   m_ObjectHideFlags: 0
@@ -1793,7 +1793,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 004940ccd09dd214fb19a1d9b7ca571a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 5946395397974478077}
+  startThread_short: {fileID: 8860111078702168721}
+  startThread_long: {fileID: 2204325035909860501}
+  loop1_Thread: {fileID: 1808365602791235705}
+  loop2_Thread: {fileID: 0}
+  loop3_Thread: {fileID: 0}
+  itemsToDisable:
+  - {fileID: 4878381681430790943}
+  - {fileID: 5988667005385366303}
+  - {fileID: 4633247457174256047}
 --- !u!1 &583878360085609747
 GameObject:
   m_ObjectHideFlags: 0
@@ -12887,7 +12895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8463745201317634785
 Transform:
   m_ObjectHideFlags: 0
@@ -16206,7 +16214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4955404349739933916
 Transform:
   m_ObjectHideFlags: 0
@@ -17448,7 +17456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4840738508091289943
 Transform:
   m_ObjectHideFlags: 0
@@ -17569,7 +17577,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 1
+  m_Looping: 0
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
