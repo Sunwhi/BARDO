@@ -8,10 +8,7 @@ public class NextStageEvent : IGameEvent
     public NextStageEvent(int id, Vector3 transform = default)
     {
         stageId = id;
-        playerTransform = transform;
-
-        SaveManager.Instance.SetSaveData(nameof(SaveData.stageIdx), stageId);
-        SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 0);
+        if (transform != default) playerTransform = transform;
         UIManager.Show<RoundTransition>(stageId);
     }
 }
