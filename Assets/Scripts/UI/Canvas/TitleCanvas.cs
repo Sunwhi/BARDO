@@ -121,7 +121,6 @@ public class TitleCanvas : UICanvas
     }
     private void HandleMenuDirFin()
     {
-        Debug.Log("asdf");
         menuDirectorFin = true;
     }
 }
