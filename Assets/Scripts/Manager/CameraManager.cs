@@ -5,7 +5,10 @@ using UnityEngine;
 
 public enum CamState
 {
-    v1, v2_0, v2_1, v2_2, v2_3, v3_1, v3_2, v3_3,
+    v1, 
+    v2_0, v2_1, v2_2, v2_3, 
+    v3_1, v3_2, v3_3, 
+    v4_0, v4_1, v4_2, v4_3
 }
 
 public class CameraManager : Singleton<CameraManager>
