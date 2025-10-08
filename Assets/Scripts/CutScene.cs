@@ -15,6 +15,7 @@ public class CutScene : UIBase
 
         if (previousCloseup == Closeup.PadmaFly && currentCloseup == previousCloseup) 
         {
+            CutsceneFinished();
             return; 
         }
 
