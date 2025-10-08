@@ -7,12 +7,11 @@ public class SaveSlotNamePanel : UIBase
 {
     [SerializeField] Button YesBtn;
     [SerializeField] Button NoBtn;
-    [SerializeField] TMP_InputField inputField;
+    public TMP_InputField inputField;
 
     //param guide
-    // param[0] : EYesNoPanelType (type of panel to open)
-    // param[1] : UnityAction (action to perform on Yes button click, optional)
-    // param[2] : UnityAction (action to perform on No button click, optional, defaults to NoAction if not provided)
+    // param[0] : UnityAction (action to perform on Yes button click, optional)
+    // param[1] : UnityAction (action to perform on No button click, optional, defaults to NoAction if not provided)
     public override void Opened(object[] param)
     {
         YesBtn.onClick.RemoveAllListeners();
@@ -26,17 +25,12 @@ public class SaveSlotNamePanel : UIBase
             });
         }
 
-        if (param.Length > 1 && param[1] is UnityAction<string> noAction)
+        if (param.Length > 1 && param[1] is int slotIdx)
         {
-            NoBtn.onClick.AddListener(() => {
-                noAction.Invoke(inputField.text);
-                BaseAction();
-            });
+            inputField.text = SaveManager.Instance.SaveSlots[slotIdx].saveName; //기존 슬롯의 이름을 기본 inputField text로 설정
         }
-        else
-        {
-            NoBtn.onClick.AddListener(BaseAction);
-        }
+
+        NoBtn.onClick.AddListener(BaseAction);
     }
 
     private void BaseAction()

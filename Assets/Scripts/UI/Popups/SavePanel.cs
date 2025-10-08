@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class SavePanel : UIBase
 {
     [SerializeField] private List<SaveSlot> slots = new();
+    [SerializeField] SaveSlotNamePanel saveSlotNamePanel;
     
     private void OnEnable()
     {
@@ -33,15 +34,13 @@ public class SavePanel : UIBase
 
         slots[(int)slotName].SetSlot(slotData, OnSaveSlotClicked);
     }
-
+    
+    // saveslot 클릭되었을 때 실행됨
     private void OnSaveSlotClicked(int idx)
     {
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
         ESaveSlot slot = (ESaveSlot)idx;
         bool hasSaveSlot = SaveManager.Instance.HasSaveSlot(slot);
-
-        // 현재 저장슬롯 데이터를 복사해서 선택한 슬롯의 데이터에 붙여넣는다.
-        SaveManager.Instance.copySaveData(idx);
 
         if (hasSaveSlot)
         {
@@ -49,7 +48,7 @@ public class SavePanel : UIBase
                 EYesNoPanelType.Save,
                 new UnityAction(() =>
                 {
-                    SetSaveSlotName(); // 슬롯이름 저장 패널을 띄운다.
+                    SetSaveSlotName(idx); // 슬롯이름 저장 패널을 띄운다.
                     SaveManager.Instance.SaveSlot(slot);
                     UpdateSaveSlot(slot);
                 }
@@ -57,7 +56,7 @@ public class SavePanel : UIBase
         }
         else
         {
-            SetSaveSlotName(); // 슬롯이름 저장 패널을 띄운다.
+            SetSaveSlotName(idx); // 슬롯이름 저장 패널을 띄운다.
             SaveManager.Instance.SaveSlot(slot);
             UpdateSaveSlot(slot);
         }
@@ -70,15 +69,19 @@ public class SavePanel : UIBase
     }
 
     // 슬롯이름 저장 패널을 띄운다
-    private void SetSaveSlotName()
+    private void SetSaveSlotName(int idx)
     {
         UIManager.Show<SaveSlotNamePanel>(
             new UnityAction<string>((inputText) =>
             {
+                // 현재 저장슬롯 데이터를 복사해서 선택한 슬롯의 데이터에 붙여넣는다.
+                SaveManager.Instance.copySaveData(idx);
+
                 if (inputText == null) SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), "New Save");
-                else  SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), inputText);
-            }
-            ));
+                else SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), inputText);
+            }),
+            idx
+            );
     }
 
 }
