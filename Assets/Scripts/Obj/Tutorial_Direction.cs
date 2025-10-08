@@ -1,15 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using System.Collections.Generic;
 
-public class Tutorial : MonoBehaviour
+public class Tutorial_Direction : MonoBehaviour
 {
-    private SpriteRenderer directionSprite;
+    [SerializeField] Image upImg;
+    [SerializeField] Image downImg;
+    [SerializeField] Image leftImg;
+    [SerializeField] Image rightImg;
 
-    private void Start()
+    private bool imgShown = false;
+    private Color originalColor;
+
+    private void Awake()
     {
-        directionSprite = GetComponent<SpriteRenderer>();
+        originalColor = Color.white;
     }
     private void OnEnable()
     {
@@ -21,18 +26,53 @@ public class Tutorial : MonoBehaviour
         GameEventBus.Unsubscribe<TutorialEvent>(Show);
     }
 
+    private void Update()
+    {
+        if (imgShown)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            {
+                // 어두운 색으로 변경 (Color32 사용)
+                leftImg.color = new Color32(200, 200, 200, 255);
+            }
+            else if(Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
+            {
+                leftImg.color = originalColor;
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                // 저장해둔 원래 색상으로 복원
+                rightImg.color = new Color32(200, 200, 200, 255);
+            }
+            else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D))
+            {
+                rightImg.color = originalColor;
+            }
+        }
+    }
     private void Show(TutorialEvent ev)
     {
         switch(ev.tutorialId)
         {
             case "Move_On":
                 if (!SaveManager.Instance.MySaveData.tutoDirectionComplete)
-                    directionSprite.DOFade(1f, 3f);
+                {
+                    upImg.DOFade(1f, 3f);
+                    downImg.DOFade(1f, 3f);
+                    leftImg.DOFade(1f, 3f);
+                    rightImg.DOFade(1f, 3f);
+                    imgShown = true;
+                }
                 break;
             case "Move_Off":
                 QuestManager.Instance.ClearSubQuest(0);
                 SaveManager.Instance.SetSaveData(nameof(SaveData.tutoDirectionComplete), true);
-                directionSprite.DOFade(0f, 2f);
+                upImg.DOFade(0f, 3f);
+                downImg.DOFade(0f, 3f);
+                leftImg.DOFade(0f, 3f);
+                rightImg.DOFade(0f, 3f);
+                imgShown = false;
                 break;  
         }
     }

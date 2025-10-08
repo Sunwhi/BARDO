@@ -282,7 +282,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7406132460769472522, guid: 1942cab40ca545e4bb551a8d639bea66, type: 3}
+  m_Sprite: {fileID: 3211438775543335464, guid: 48cf8e49bccc38348bc0db8ce3b1e7ed, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -306,12 +306,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiPosition: 1
   isDestroyAtClosed: 0
+  isHidableByEsc: 1
   slots:
   - {fileID: 806821854664074252}
   - {fileID: 6325147119210515167}
   - {fileID: 5958515484178682175}
   - {fileID: 3429984310756004202}
   - {fileID: 8358003889514177426}
+  saveSlotNamePanel: {fileID: 8071069383224916532, guid: 971f7305623370843bdc1d9b4d32a44f, type: 3}
 --- !u!1 &3718019970279982566
 GameObject:
   m_ObjectHideFlags: 0

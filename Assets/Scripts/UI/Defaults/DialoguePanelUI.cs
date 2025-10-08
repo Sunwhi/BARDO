@@ -195,18 +195,6 @@ public class DialoguePanelUI : MonoBehaviour
         else if (i==1) dialoguePanel.SetActive(true);
     }
 
-    private bool OnGamePaused(PauseGameEvent ev)
-    {
-        if(ev.State == GameState.pause)
-        {
-            return true;
-        }
-        else if(ev.State == GameState.resume)
-        {
-            return false;
-        }
-        return true;
-    }
     private void ActiveNextBtn()
     {
         nextButton.SetActive(true);

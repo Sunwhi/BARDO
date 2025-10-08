@@ -12,8 +12,5 @@ public class DialogueEventManager : Singleton<DialogueEventManager>
         dialogueEvents = gameObject.AddComponent<DialogueEvents>();
         inputEvents = gameObject.AddComponent<InputEvents>();
     }
-    private void OnDestroy()
-    {
-        //isManagerDestroyed = true;
-    }
+
 }

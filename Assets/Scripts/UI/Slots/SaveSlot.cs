@@ -12,13 +12,11 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Dictionary<(int stageIdx, int storyId), string> checkpointNames = new()
     {
         {(1,1), "파드마와의 만남" },
-        {(1,2), "미지의 세계로" },
-        {(1,3), "다음 스테이지로 가자" },
-        {(1,4), "클리어 직전" },
         {(2,0), "파드마와의 재회" },
         {(2,1), "진실의 거울" },
         {(2,2), "기억의 등불" },
         {(2,3), "혼의 실" },
+        {(3,1), "스테이지 시작" }
     };
 
     [Header("Components")]
@@ -65,7 +63,7 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             disableSlot.SetActive(false);
             enableSlot.SetActive(true);
 
-            slotNameTxt.text = $"[{data.saveName}] {data.stageIdx}주차/스테이지{data.stageIdx}";
+            slotNameTxt.text = $"[{data.saveName}] {data.stageIdx}주차";
             slotDetailTxt.text = GetCheckpointName(data.stageIdx, data.storyIdx);
 
             slotDateTxt.text = new DateTime(data.lastSaveTime).ToString("yyyy/MM/dd (ddd) HH:mm");
@@ -78,6 +76,6 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public string GetCheckpointName(int stageIdx, int storyId)
     {
-        return checkpointNames.TryGetValue((stageIdx, storyId), out var name) ? name : "Unknwon";
+        return checkpointNames.TryGetValue((stageIdx, storyId), out var name) ? name : "Unknown";
     }
 }
