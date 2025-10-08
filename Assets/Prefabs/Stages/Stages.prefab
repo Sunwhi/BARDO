@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1103273932891880196}
+  - component: {fileID: 7180182024137069322}
   m_Layer: 0
   m_Name: guide
   m_TagString: Untagged
@@ -25,13 +26,25 @@ Transform:
   m_GameObject: {fileID: 40418846280716035}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 16, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4793563158503343300}
   m_Father: {fileID: 2760746408870470360}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!225 &7180182024137069322
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40418846280716035}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &48435790743403715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1993,8 +2006,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
   checkpointID: stage1-4
-  stageId: 1
-  storyId: 4
 --- !u!212 &2325572251531791414
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3727,7 +3738,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: -7124724934001615262, guid: 10b7b7f1b5b6c9d44b9191f39d490101, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6732,13 +6743,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7055446297307365823}
+  - component: {fileID: 3122920499534551203}
   m_Layer: 0
   m_Name: guide (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7055446297307365823
 Transform:
   m_ObjectHideFlags: 0
@@ -6748,13 +6760,25 @@ Transform:
   m_GameObject: {fileID: 2504318680007765961}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7359910197463307798}
   m_Father: {fileID: 8416390733170720832}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!225 &3122920499534551203
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504318680007765961}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2524065793019699827
 GameObject:
   m_ObjectHideFlags: 0
@@ -6978,8 +7002,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
   checkpointID: stage2-1
-  stageId: 2
-  storyId: 0
 --- !u!212 &4024752958652258940
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7119,8 +7141,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
   checkpointID: stage1-3
-  stageId: 1
-  storyId: 3
 --- !u!212 &7962612507061542439
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9365,13 +9385,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2410773313958385347}
+  - component: {fileID: 6536002761320766132}
   m_Layer: 0
   m_Name: guide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2410773313958385347
 Transform:
   m_ObjectHideFlags: 0
@@ -9381,13 +9402,25 @@ Transform:
   m_GameObject: {fileID: 3635655195956215526}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5227261953284369564}
   m_Father: {fileID: 7550313159034028786}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!225 &6536002761320766132
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635655195956215526}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &3643767758261781347
 GameObject:
   m_ObjectHideFlags: 0
@@ -11206,7 +11239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ddf7d767d2798448c428b9aab9c990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guide: {fileID: 3635655195956215526}
+  guide: {fileID: 6536002761320766132}
   stageIdx: 3
   storyIdx: 0
   item: {fileID: 4878381681430790943}
@@ -11653,7 +11686,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fd62fe4c6e2252548be97fc67d5e591c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11965,7 +11998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ddf7d767d2798448c428b9aab9c990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guide: {fileID: 8968603260048206670}
+  guide: {fileID: 189062468261822221}
   stageIdx: 3
   storyIdx: 2
   item: {fileID: 4633247457174256047}
@@ -15174,8 +15207,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
   checkpointID: stage1-1
-  stageId: 1
-  storyId: 1
 --- !u!212 &3466699707074299129
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16039,7 +16070,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 15.557877, y: -0.58636475}
+  m_Offset: {x: 15.663376, y: -0.58636475}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -16049,7 +16080,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.0834045, y: 9.631836}
+  m_Size: {x: 5.620392, y: 9.631836}
   m_EdgeRadius: 0
 --- !u!114 &2690941577846476876
 MonoBehaviour:
@@ -16063,7 +16094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86d4488dd3d77f4b9389a5351bf35cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guide: {fileID: 0}
+  guide: {fileID: 7180182024137069322}
   stageIdx: 3
   storyIdx: 3
 --- !u!1 &5985962829547757369
@@ -16320,8 +16351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
   checkpointID: stage3-0
-  stageId: 3
-  storyId: 0
 --- !u!212 &943466286613094674
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16942,7 +16971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ddf7d767d2798448c428b9aab9c990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guide: {fileID: 2504318680007765961}
+  guide: {fileID: 3122920499534551203}
   stageIdx: 3
   storyIdx: 1
   item: {fileID: 5988667005385366303}
@@ -20069,8 +20098,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneTimeTrigger: 1
   checkpointID: stage1-2
-  stageId: 1
-  storyId: 2
 --- !u!212 &6987062820917823605
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22471,13 +22498,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1030820239382213837}
+  - component: {fileID: 189062468261822221}
   m_Layer: 0
   m_Name: guide (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1030820239382213837
 Transform:
   m_ObjectHideFlags: 0
@@ -22487,13 +22515,25 @@ Transform:
   m_GameObject: {fileID: 8968603260048206670}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8814389299132341574}
   m_Father: {fileID: 8446452318346094535}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!225 &189062468261822221
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8968603260048206670}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &9017104374372415107
 GameObject:
   m_ObjectHideFlags: 0
