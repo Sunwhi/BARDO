@@ -9,7 +9,7 @@ public class Stage3Door : InteractEnter
     {
         yield return base.InteractCoroutine();
 
-        if (stageIdx == SaveManager.Instance.MySaveData.stageIdx && stageIdx == SaveManager.Instance.MySaveData.storyIdx)
+        if (stageIdx == SaveManager.Instance.MySaveData.stageIdx && storyIdx == SaveManager.Instance.MySaveData.storyIdx)
         {
             UIManager.Show<CardPanel>(stage4PlayerPos.position);
         }
