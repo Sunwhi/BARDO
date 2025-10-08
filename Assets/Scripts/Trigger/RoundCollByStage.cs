@@ -47,7 +47,9 @@ public class RoundCollByStage : MonoBehaviour
             }
             
             Vector3 pos = e.playerTransform;
-            StoryManager.Instance.Player.transform.position = pos;
+            Player p = StoryManager.Instance.Player;
+            p.controller.ResetInput();
+            p.transform.position = pos;
         }
     }
 }
