@@ -259,8 +259,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiPosition: 1
   isDestroyAtClosed: 0
-  thread: {fileID: 0}
-  cards: []
+  isHidableByEsc: 0
+  cards:
+  - {fileID: 4458225984157860910}
+  - {fileID: 8371495702017166341}
+  - {fileID: 7963320470267185164}
+  - {fileID: 3340864212709888743}
 --- !u!1 &1209760757217787164
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +584,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1856857452038698174}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7739871952252291203
 GameObject:
   m_ObjectHideFlags: 0

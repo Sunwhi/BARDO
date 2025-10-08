@@ -17,6 +17,9 @@ public class RoundTrigger1 : TriggerBase
 
     protected override void OnTriggered()
     {
+        SaveData curData = SaveManager.Instance.MySaveData;
+        if (curData.stageIdx > 1) return; //1스테이지에서 넘어올 때만 round trigger 1 발동.
+
         QuestManager.Instance.ClearSubQuest(2);
         StartCoroutine(TriggerEffect());   
     }

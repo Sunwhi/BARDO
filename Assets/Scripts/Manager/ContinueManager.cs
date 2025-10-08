@@ -13,17 +13,14 @@ public class ContinueManager : Singleton<ContinueManager>
     public bool loadedByContinue;
 
     [SerializeField]
-    private Dictionary<(int stageIdx, int storyId), CamState> curCamState = new()
+    private Dictionary<int, CamState> curCamState = new()
     {
-        {(1,1), CamState.v1 },
-        {(1,2), CamState.v1 },
-        {(1,3), CamState.v1 },
-        {(1,4), CamState.v1 },
-        {(2,0), CamState.v2_0 },
-        {(2,1), CamState.v2_1 },
-        {(2,2), CamState.v2_3 },
-        {(2,3), CamState.v2_2 },
+        {1, CamState.v1 },
+        {2, CamState.v2_1 },
+        {3, CamState.v3_1 },
+        {4, CamState.v4_1 },
     };
+
     private void OnEnable()
     {
         GameEventBus.Subscribe<ClickContinueEvent>(ContinueGame);
@@ -60,12 +57,13 @@ public class ContinueManager : Singleton<ContinueManager>
     private IEnumerator SetCamera(SaveData saveData)
     {
         yield return null;
-        CameraManager.Instance.JumpAndCut(GetCameraState(saveData.stageIdx,saveData.storyIdx));
+        CameraManager.Instance.JumpAndCut(GetCameraState(saveData.stageIdx));
     }
-    private CamState GetCameraState(int stageIdx, int storyId)
+    private CamState GetCameraState(int stageIdx)
     {
-        return curCamState.TryGetValue((stageIdx, storyId), out var name) ? name : CamState.v2_0;
+        return curCamState.TryGetValue(stageIdx, out var name) ? name : CamState.v1;
     }
+
     private IEnumerator FadeIn()
     {
         yield return null;

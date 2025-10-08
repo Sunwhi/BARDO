@@ -16,7 +16,7 @@ public class PausePanel : UIBase
     public void OnContinueClicked()
     {
         SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
-        UIManager.Hide();
+        UIManager.Hide(false);
         GameEventBus.Raise<PauseGameEvent>(new PauseGameEvent(GameState.resume));
     }
 

@@ -3,18 +3,15 @@ using UnityEngine;
 
 public class Stage3Door : InteractEnter
 {
-    //{stage , story}
-    private readonly int[] validStoryIndices = { 3, 4 };
+    [SerializeField] private Transform stage4PlayerPos;
 
     protected override IEnumerator InteractCoroutine()
     {
         yield return base.InteractCoroutine();
 
-        if (stageIdx == validStoryIndices[0] && stageIdx == validStoryIndices[1])
+        if (stageIdx == SaveManager.Instance.MySaveData.stageIdx && storyIdx == SaveManager.Instance.MySaveData.storyIdx)
         {
-            UIManager.Show<CardPanel>();
+            UIManager.Show<CardPanel>(stage4PlayerPos.position);
         }
-
-        yield return null;
     }
 }

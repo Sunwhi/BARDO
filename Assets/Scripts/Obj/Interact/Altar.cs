@@ -8,14 +8,17 @@ public class Altar : InteractEnter
 
     private void Start()
     {
-        if (SaveManager.Instance.MySaveData.quest1Completed)
+        SaveData data = SaveManager.Instance.MySaveData;
+        if (data.stageIdx != 3 || data.stageIdx == 3 && data.storyIdx > 2)
         {
-            gameObject.SetActive(false);
+            item.SetActive(false);
+            return;
         }
-        else if (SaveManager.Instance.MySaveData.quest1ItemSet[storyIdx])
-        {
-            gameObject.SetActive(true);
-        }
+
+        if (data.quest1ItemSet[storyIdx] && !SaveManager.Instance.MySaveData.threadEnabled)
+            item.SetActive(true);
+        else
+            item.SetActive(false);
     }
 
     protected override IEnumerator InteractCoroutine()
@@ -29,14 +32,16 @@ public class Altar : InteractEnter
             switch (storyIdx)
             {
                 case 0:
-                    //임시 코드
+                    SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 1);
                     UIManager.Show<ItemDetailPanel>(eItemPanelType.Karmic_Shard);
                     break;
                 case 1:
-                    //애니메이션 재생
+                    SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 2);
+                    //TODO : 애니메이션 재생.
                     break;
                 case 2:
-                    thread.anim.SetBool("isMade", false);
+                    SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 3);
+                    thread.PlayThreadVideo();
                     break;
             }
         }

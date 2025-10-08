@@ -32,6 +32,8 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnBtnClicked() => Expand();
 
+    private Vector3 stage4PlayerPos;
+
     void Awake()
     {
         target = transform as RectTransform;
@@ -54,6 +56,11 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         //origScale = target.localScale;
         origRot = target.localRotation.eulerAngles;
         origWorldPos = target.position;
+    }
+
+    public void NoticeNextPlayerPos(Vector3 pos)
+    {
+        stage4PlayerPos = pos;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -162,6 +169,7 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void OnSelected()
     {
         SaveManager.Instance.SetSaveData(nameof(SaveData.selectedCard), cardType);
+        SaveManager.Instance.SaveSlot();
 
         switch (cardType)
         {
@@ -176,5 +184,7 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
 
         Collapse();
+        UIManager.Hide(true);
+        GameEventBus.Raise<NextStageEvent>(new(4, stage4PlayerPos));
     }
 }

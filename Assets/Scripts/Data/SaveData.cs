@@ -41,7 +41,7 @@ public class SaveData
     public bool[] quest1ItemAcquired = new bool[3]; //0: Karma Shard, 1: Memory Lamp, 2: Soul Thread
     public bool[] quest1ItemSet = new bool[3]; //0: Karma Shard, 1: Memory Lamp, 2: Soul Thread
     public bool quest1Completed = false;
-
+    public bool threadEnabled = false;
     public SelectCard selectedCard = SelectCard.Default;
 
     //Endings
