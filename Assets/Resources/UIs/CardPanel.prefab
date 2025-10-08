@@ -260,8 +260,11 @@ MonoBehaviour:
   uiPosition: 1
   isDestroyAtClosed: 0
   isHidableByEsc: 0
-  thread: {fileID: 0}
-  cards: []
+  cards:
+  - {fileID: 4458225984157860910}
+  - {fileID: 8371495702017166341}
+  - {fileID: 7963320470267185164}
+  - {fileID: 3340864212709888743}
 --- !u!1 &1209760757217787164
 GameObject:
   m_ObjectHideFlags: 0
