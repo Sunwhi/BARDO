@@ -144,7 +144,10 @@ public class UIManager : Singleton<UIManager>
     private static bool TryPopAndClose(Stack<UIBase> stack, UIManager inst, bool isCommand, object[] param)
     {
         if (!stack.TryPeek(out _)) return false;
-        if ((stack.Peek() && !stack.Peek().isHidableByEsc) || !isCommand) return false;
+        if ((stack.Peek() && !stack.Peek().isHidableByEsc))
+        {
+            if (!isCommand) return false;
+        }
 
         var ui = stack.Pop();
         if (ui)
