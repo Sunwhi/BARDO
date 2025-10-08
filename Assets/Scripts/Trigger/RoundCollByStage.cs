@@ -37,12 +37,10 @@ public class RoundCollByStage : MonoBehaviour
             switch (activeStage)
             {
                 case 3:
-                    switch (activeStory)
-                    {
-                        case 0:
-                            CameraManager.Instance.JumpAndCut(CamState.v3_1);
-                            break;
-                    }
+                    CameraManager.Instance.JumpAndCut(CamState.v3_1);
+                    break;
+                case 4:
+                    CameraManager.Instance.JumpAndCut(CamState.v4_0);
                     break;
             }
             

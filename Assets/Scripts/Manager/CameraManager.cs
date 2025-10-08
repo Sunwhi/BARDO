@@ -34,6 +34,10 @@ public class CameraManager : Singleton<CameraManager>
         { Animator.StringToHash("Stage3-1"), CamState.v3_1 },
         { Animator.StringToHash("Stage3-2"), CamState.v3_2 },
         { Animator.StringToHash("Stage3-3"), CamState.v3_3 },
+        { Animator.StringToHash("Satge4-0"), CamState.v4_0 },
+        { Animator.StringToHash("Satge4-1"), CamState.v4_1 },
+        { Animator.StringToHash("Satge4-2"), CamState.v4_2 },
+        { Animator.StringToHash("Satge4-3"), CamState.v4_3 },
     };
 
     // 점프용: CamState → Animator shortNameHash
@@ -47,6 +51,10 @@ public class CameraManager : Singleton<CameraManager>
         { CamState.v3_1, Animator.StringToHash("Stage3-1") },
         { CamState.v3_2, Animator.StringToHash("Stage3-2") },
         { CamState.v3_3, Animator.StringToHash("Stage3-3") },
+        { CamState.v4_0, Animator.StringToHash("Stage4-0") },
+        { CamState.v4_1, Animator.StringToHash("Stage4-1") },
+        { CamState.v4_2, Animator.StringToHash("Stage4-2") },
+        { CamState.v4_3, Animator.StringToHash("Stage4-3") },
     };
 
     private float ignoreUntil;
