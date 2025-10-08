@@ -8,14 +8,17 @@ public class Altar : InteractEnter
 
     private void Start()
     {
-        if (SaveManager.Instance.MySaveData.quest1Completed)
+        SaveData data = SaveManager.Instance.MySaveData;
+        if (data.stageIdx != 3 || data.stageIdx == 3 && data.storyIdx > 2)
         {
-            gameObject.SetActive(false);
+            item.SetActive(false);
+            return;
         }
-        else if (SaveManager.Instance.MySaveData.quest1ItemSet[storyIdx])
-        {
-            gameObject.SetActive(true);
-        }
+
+        if (data.quest1ItemSet[storyIdx] && !SaveManager.Instance.MySaveData.threadEnabled)
+            item.SetActive(true);
+        else
+            item.SetActive(false);
     }
 
     protected override IEnumerator InteractCoroutine()
@@ -38,7 +41,7 @@ public class Altar : InteractEnter
                     break;
                 case 2:
                     SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 3);
-                    //TODO : Thread video 재생.
+                    thread.PlayThreadVideo();
                     break;
             }
         }
