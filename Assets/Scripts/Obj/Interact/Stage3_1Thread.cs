@@ -9,7 +9,7 @@ public class Stage3_1Thread : MonoBehaviour
     [SerializeField] VideoPlayer startThread_long;
     [SerializeField] VideoPlayer loop1_Thread;
     [SerializeField] VideoPlayer loop2_Thread;
-    [SerializeField] VideoPlayer loop3_Thread;
+    [SerializeField] VideoPlayer last_Thread;
 
     [Header("item off")]
     float disableAtSeconds = 0.7f;
@@ -19,10 +19,10 @@ public class Stage3_1Thread : MonoBehaviour
     {
         startThread_short.gameObject.SetActive(false);
         startThread_long.gameObject.SetActive(false);
+        last_Thread.gameObject.SetActive(false);
 
         loop1_Thread.gameObject.SetActive(SaveManager.Instance.MySaveData.threadEnabled);
         loop2_Thread.gameObject.SetActive(SaveManager.Instance.MySaveData.threadEnabled);
-        loop3_Thread.gameObject.SetActive(SaveManager.Instance.MySaveData.threadEnabled);
     }
 
     public void PlayThreadVideo()
@@ -45,11 +45,9 @@ public class Stage3_1Thread : MonoBehaviour
     {
         loop1_Thread.gameObject.SetActive(true);
         loop2_Thread.gameObject.SetActive(true);
-        loop3_Thread.gameObject.SetActive(true);
 
         loop1_Thread.Play();
         loop2_Thread.Play();
-        loop3_Thread.Play();
 
         startThread_long.gameObject.SetActive(false);
     }
@@ -61,13 +59,20 @@ public class Stage3_1Thread : MonoBehaviour
             if (itemsToDisable[i]) itemsToDisable[i].SetActive(false);
     }
 
-    public void StopThreadVideo()
+    public void LastThreadVideo()
     {
-        loop1_Thread.gameObject.SetActive(false);
-        loop2_Thread.gameObject.SetActive(false);
-        loop3_Thread.gameObject.SetActive(false);
+        last_Thread.gameObject.SetActive(true);
+        last_Thread.Play();
+        last_Thread.loopPointReached += _ => StopThreadVideo();
 
         SaveManager.Instance.SetSaveData(nameof(SaveData.threadEnabled), false);
         SaveManager.Instance.SaveSlot();
+    }
+
+    private void StopThreadVideo()
+    {
+        loop1_Thread.gameObject.SetActive(false);
+        loop2_Thread.gameObject.SetActive(false);
+        last_Thread.gameObject.SetActive(false);
     }
 }
