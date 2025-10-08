@@ -24,8 +24,8 @@ public class RoundCollByStage : MonoBehaviour
         SaveData saveData = SaveManager.Instance.MySaveData;
 
         yield return new WaitUntil(() =>
-        (saveData.stageIdx == activeStage && saveData.storyIdx >= activeStory)
-        || saveData.stageIdx > activeStage);
+        (SaveManager.Instance.MySaveData.stageIdx == activeStage && SaveManager.Instance.MySaveData.storyIdx >= activeStory)
+        || SaveManager.Instance.MySaveData.stageIdx > activeStage);
 
         gameObject.SetActive(false);
     }
