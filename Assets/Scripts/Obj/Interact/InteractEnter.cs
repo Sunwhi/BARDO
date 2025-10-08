@@ -1,9 +1,10 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
 public class InteractEnter : MonoBehaviour
 {
-    [SerializeField] private GameObject guide;
+    [SerializeField] private CanvasGroup guide;
 
     [Header("interact 가능한 시점")]
     [SerializeField] protected int stageIdx;
@@ -11,14 +12,17 @@ public class InteractEnter : MonoBehaviour
 
     Coroutine interactCoroutine;
 
+    private void Awake()
+    {
+        guide.alpha = 0;
+    }
+
     protected virtual IEnumerator InteractCoroutine()
     {
         SaveData saveData = SaveManager.Instance.MySaveData;
         yield return new WaitUntil(() =>
     Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter));
-
-        guide.SetActive(false);
-        SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), saveData.storyIdx + 1);
+        guide.DOFade(0f, 0.5f).SetUpdate(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,14 +30,14 @@ public class InteractEnter : MonoBehaviour
         if (SaveManager.Instance.MySaveData.stageIdx == stageIdx
             && SaveManager.Instance.MySaveData.storyIdx == storyIdx)
         {
-            guide.SetActive(true);
+            guide.DOFade(1f, 0.5f).SetUpdate(true);
             interactCoroutine ??= StartCoroutine(InteractCoroutine());
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        guide.SetActive(false);
+        guide.DOFade(0f, 0.5f).SetUpdate(true);
         if (interactCoroutine != null)
         {
             StopCoroutine(interactCoroutine);
