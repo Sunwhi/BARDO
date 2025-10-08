@@ -5,7 +5,10 @@ using UnityEngine;
 
 public enum CamState
 {
-    v1, v2_0, v2_1, v2_2, v2_3, v3_1, v3_2, v3_3,
+    v1, 
+    v2_0, v2_1, v2_2, v2_3, 
+    v3_1, v3_2, v3_3, 
+    v4_0, v4_1, v4_2, v4_3
 }
 
 public class CameraManager : Singleton<CameraManager>
@@ -14,27 +17,31 @@ public class CameraManager : Singleton<CameraManager>
     [SerializeField] private Animator cameraAnimator;
     [SerializeField] private CinemachineBrain brain;
 
-    [Header("Input Ignore")]
-    [SerializeField] private float ignoreDuringSwitch = 0.5f; // 전환 중 무시 시간(초)
-    private float ignoreUntil; // Time.time 기준
-
+    [Header("Switch Control")]
+    [SerializeField] private float ignoreDuringSwitch = 0.5f;
     [SerializeField] private int animLayer = 0;
 
-    public CamState curCamState { get; private set; }
+    public CamState curCamState { get; private set; } = CamState.v1;
 
-    public void GoFront()
+    // Animator shortNameHash ↔ CamState
+    private static readonly Dictionary<int, CamState> HashToState = new()
     {
-        if (Time.time < ignoreUntil) return;
-        cameraAnimator.SetTrigger("GoFront");
-    }
+        { Animator.StringToHash("Stage1"),   CamState.v1   },
+        { Animator.StringToHash("Stage2-0"), CamState.v2_0 },
+        { Animator.StringToHash("Stage2-1"), CamState.v2_1 },
+        { Animator.StringToHash("Stage2-2"), CamState.v2_2 },
+        { Animator.StringToHash("Stage2-3"), CamState.v2_3 },
+        { Animator.StringToHash("Stage3-1"), CamState.v3_1 },
+        { Animator.StringToHash("Stage3-2"), CamState.v3_2 },
+        { Animator.StringToHash("Stage3-3"), CamState.v3_3 },
+        { Animator.StringToHash("Satge4-0"), CamState.v4_0 },
+        { Animator.StringToHash("Satge4-1"), CamState.v4_1 },
+        { Animator.StringToHash("Satge4-2"), CamState.v4_2 },
+        { Animator.StringToHash("Satge4-3"), CamState.v4_3 },
+    };
 
-    public void GoBack()
-    {
-        if (Time.time < ignoreUntil) return;
-        cameraAnimator.SetTrigger("GoBack");
-    }
-
-    private readonly Dictionary<CamState, int> stateHash = new()
+    // 점프용: CamState → Animator shortNameHash
+    private static readonly Dictionary<CamState, int> StateToHash = new()
     {
         { CamState.v1,   Animator.StringToHash("Stage1") },
         { CamState.v2_0, Animator.StringToHash("Stage2-0") },
@@ -44,11 +51,16 @@ public class CameraManager : Singleton<CameraManager>
         { CamState.v3_1, Animator.StringToHash("Stage3-1") },
         { CamState.v3_2, Animator.StringToHash("Stage3-2") },
         { CamState.v3_3, Animator.StringToHash("Stage3-3") },
+        { CamState.v4_0, Animator.StringToHash("Stage4-0") },
+        { CamState.v4_1, Animator.StringToHash("Stage4-1") },
+        { CamState.v4_2, Animator.StringToHash("Stage4-2") },
+        { CamState.v4_3, Animator.StringToHash("Stage4-3") },
     };
+
+    private float ignoreUntil;
 
     private void OnEnable()
     {
-        curCamState = CamState.v1;
         GameEventBus.Subscribe<ViewportExitEvent>(OnViewportExit);
     }
 
@@ -57,61 +69,57 @@ public class CameraManager : Singleton<CameraManager>
         GameEventBus.Unsubscribe<ViewportExitEvent>(OnViewportExit);
     }
 
+    public void GoFront()
+    {
+        if (Time.time < ignoreUntil) return;
+        cameraAnimator.SetTrigger("GoFront");
+        SetIgnore(ignoreDuringSwitch);
+    }
+
+    public void GoBack()
+    {
+        if (Time.time < ignoreUntil) return;
+        cameraAnimator.SetTrigger("GoBack");
+        SetIgnore(ignoreDuringSwitch);
+    }
+
     private void OnViewportExit(ViewportExitEvent e)
     {
-        if (e.direction == ViewportExitDirection.Left)
-        {
-            GoBack();
-            curCamState--;
-        }
-        else if (e.direction == ViewportExitDirection.Right)
-        {
-            GoFront();
-            curCamState++;
-        }
+        if (Time.time < ignoreUntil) return;
+        if (e.direction == ViewportExitDirection.Left) GoBack();
+        else if (e.direction == ViewportExitDirection.Right) GoFront();
     }
 
-    // 기본 무시 시간 사용
-    public void JumpAndCut(CamState target)
-    {
-        StartCoroutine(JumpRoutine(target, ignoreDuringSwitch));
-    }
-
-    // 호출부에서 무시 시간을 지정하고 싶을 때
-    public void JumpAndCut(CamState target, float ignoreSeconds)
-    {
-        StartCoroutine(JumpRoutine(target, ignoreSeconds));
-    }
+    public void JumpAndCut(CamState target) => StartCoroutine(JumpRoutine(target, ignoreDuringSwitch));
+    public void JumpAndCut(CamState target, float ignoreSeconds) => StartCoroutine(JumpRoutine(target, ignoreSeconds));
 
     private IEnumerator JumpRoutine(CamState target, float ignoreSeconds)
     {
-        // 입력 무시 시작
         SetIgnore(ignoreSeconds);
         ResetAll(cameraAnimator);
-        curCamState = target;
 
         var prevBlend = brain.DefaultBlend;
-        brain.DefaultBlend = new CinemachineBlendDefinition(
-            CinemachineBlendDefinition.Styles.Cut, 0f);
+        brain.DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Styles.Cut, 0f);
 
-        cameraAnimator.Play(stateHash[target], animLayer, 0f);
+        cameraAnimator.Play(StateToHash[target], animLayer, 0f);
         cameraAnimator.Update(0f);
 
-        yield return null; // Brain 반영
+        yield return null;
 
         brain.DefaultBlend = prevBlend;
-        // 입력 무시는 SetIgnore로 설정된 시간까지 자동 유지
+        // curCamState 동기화는 StateMachineBehaviour에서 수행
     }
 
     private void SetIgnore(float seconds)
     {
         if (seconds <= 0f) return;
-        float until = Time.time + seconds;
+        var until = Time.time + seconds;
         if (until > ignoreUntil) ignoreUntil = until;
     }
 
     private static void ResetAll(Animator a)
     {
+        if (a == null) return;
         for (int i = 0; i < a.parameterCount; i++)
         {
             var p = a.GetParameter(i);
@@ -125,5 +133,12 @@ public class CameraManager : Singleton<CameraManager>
                     break;
             }
         }
+    }
+
+    // 해시 기반 동기화. StateMachineBehaviour가 호출.
+    public void SyncStateByHash(int shortNameHash)
+    {
+        if (HashToState.TryGetValue(shortNameHash, out var s))
+            curCamState = s;
     }
 }

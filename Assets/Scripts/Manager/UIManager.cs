@@ -20,7 +20,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (ActiveStacks.Count > 0 && Input.GetKeyUp(KeyCode.Escape))
         {
-            Hide();
+            Hide(false);
             GameEventBus.Raise<PauseGameEvent>(new PauseGameEvent(GameState.resume));
             if (ActiveStacks.Count == 0) StartCoroutine(EscDelayed());
         }
@@ -98,12 +98,12 @@ public class UIManager : Singleton<UIManager>
     /// UI를 isDestroyAtClosed에 따라 숨기거나 파괴
     /// </summary>
     /// <param name="param">원하는 변수를 원하는 개수만큼!</param>
-    public static void Hide(params object[] param)
+    public static void Hide(bool isCommandHide, params object[] param)
     {
         if (Instance.activeTransition && Instance.activeTransition.gameObject.activeSelf)
             return;
 
-        TryPopAndClose(Instance.ActiveStacks, Instance, param);
+        TryPopAndClose(Instance.ActiveStacks, Instance, isCommandHide, param);
     }
 
     public static void HideTransition(params object[] param)
@@ -141,9 +141,14 @@ public class UIManager : Singleton<UIManager>
         return false;
     }
 
-    private static bool TryPopAndClose(Stack<UIBase> stack, UIManager inst, object[] param)
+    private static bool TryPopAndClose(Stack<UIBase> stack, UIManager inst, bool isCommand, object[] param)
     {
         if (!stack.TryPeek(out _)) return false;
+        if ((stack.Peek() && !stack.Peek().isHidableByEsc))
+        {
+            if (!isCommand) return false;
+        }
+
         var ui = stack.Pop();
         if (ui)
         {
