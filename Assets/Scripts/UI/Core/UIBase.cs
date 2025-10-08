@@ -13,6 +13,7 @@ public class UIBase : MonoBehaviour
 {
     public eUIPosition uiPosition = eUIPosition.Default;
     public bool isDestroyAtClosed = false;
+    public bool isHidableByEsc = true;
 
     public UnityAction<object[]> opened;
     public UnityAction<object[]> closed;
@@ -28,6 +29,6 @@ public class UIBase : MonoBehaviour
 
     public virtual void OnUICloseBtn()
     {
-        UIManager.Hide();
+        UIManager.Hide(false);
     }
 }
