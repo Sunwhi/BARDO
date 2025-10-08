@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 4507473033276653339}
   - component: {fileID: 3874405497287245368}
   - component: {fileID: 6047935543887592270}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: edgeColl (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +579,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 640a3158b18f93a44b8ea5151b177130, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2441,7 +2441,7 @@ GameObject:
   - component: {fileID: 2299615705591319232}
   - component: {fileID: 6437533729543458586}
   - component: {fileID: 7386339675765636960}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: edgeColl (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2474,7 +2474,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 640a3158b18f93a44b8ea5151b177130, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3662,7 +3662,7 @@ GameObject:
   - component: {fileID: 3040725496493279231}
   - component: {fileID: 2782120571830502764}
   - component: {fileID: 2712328981409713471}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: edgeColl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3695,7 +3695,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 640a3158b18f93a44b8ea5151b177130, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5043,7 +5043,7 @@ GameObject:
   - component: {fileID: 1081126984545356323}
   - component: {fileID: 4105748052843173519}
   - component: {fileID: 7705416747792338530}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: edgeColl (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5076,7 +5076,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 640a3158b18f93a44b8ea5151b177130, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -10468,7 +10468,7 @@ GameObject:
   - component: {fileID: 3703637955324847560}
   - component: {fileID: 6586206256455811931}
   - component: {fileID: 5981088738045440801}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: edgeColl (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10501,7 +10501,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 640a3158b18f93a44b8ea5151b177130, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -10740,7 +10740,7 @@ GameObject:
   - component: {fileID: 2331698527821221459}
   - component: {fileID: 7117317302071822008}
   - component: {fileID: 8585175238262181402}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: edgeColl (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10773,7 +10773,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 640a3158b18f93a44b8ea5151b177130, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -12006,7 +12006,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 2de30f4062bd61e4fb6e402d2de0a951, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -12116,7 +12116,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 640a3158b18f93a44b8ea5151b177130, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -12807,7 +12807,7 @@ GameObject:
   - component: {fileID: 4068356146110829143}
   - component: {fileID: 4401075308733013488}
   - component: {fileID: 6422261151066036573}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: edgeColl (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12840,7 +12840,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 640a3158b18f93a44b8ea5151b177130, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -13357,7 +13357,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bd0721cf00bb10343bcb607a412f57df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -16694,7 +16694,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 54b084b931186ee4cade468678012b00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -19428,7 +19428,7 @@ GameObject:
   - component: {fileID: 4279952653830800792}
   - component: {fileID: 2420922732288924526}
   - component: {fileID: 885993897519029290}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: edgeColl (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19461,7 +19461,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 640a3158b18f93a44b8ea5151b177130, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -19725,7 +19725,7 @@ GameObject:
   - component: {fileID: 3155344203178532747}
   - component: {fileID: 7519177031297892415}
   - component: {fileID: 8454123729818849779}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: edgeColl (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19758,7 +19758,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 640a3158b18f93a44b8ea5151b177130, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -23137,7 +23137,7 @@ GameObject:
   - component: {fileID: 3418744477716199129}
   - component: {fileID: 75927892398374752}
   - component: {fileID: 5423649141949088607}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: edgeColl (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23170,7 +23170,7 @@ EdgeCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 640a3158b18f93a44b8ea5151b177130, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
