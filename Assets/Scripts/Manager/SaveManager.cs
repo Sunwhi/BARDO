@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public enum ESaveSlot
 {
@@ -219,10 +220,15 @@ public class SaveManager : Singleton<SaveManager>
         curSaveIdx = idx;
     }
 
-    public void copySaveData(int idx)
+    public void CopySaveData(int idx)
     {
         string json = JsonUtility.ToJson(MySaveData);
         SaveSlots[idx] = JsonUtility.FromJson<SaveData>(json);
+    }
+
+    public void SavePlayerPosition(int id, Vector3 playerPos)
+    {
+        SetSaveData("savedPosition", new SerializableVector3(playerPos)); // SaveData에 savedPosition저장
     }
     #endregion
 

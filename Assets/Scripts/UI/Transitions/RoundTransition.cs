@@ -27,14 +27,16 @@ public class RoundTransition : UIBase
         weekTxt.text = weekFormat + round;
         roundTxt.text = roundFormat.ContainsKey(round) ? roundFormat[round] : "Round " + round;
 
+        //GameEventBus.Raise(new TransitionEvents(round));
+
         SaveManager.Instance.SetSaveData(nameof(SaveData.stageIdx), round);
         SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 0);
         SaveManager.Instance.SaveSlot();
     }
-    public override void Closed(object[] param)
+    /*public override void Closed(object[] param)
     {
-        GameEventBus.Raise(new TransitionEvents());
-    }
+        //GameEventBus.Raise(new TransitionEvents());
+    }*/
     public void OnTransitionEnd()
     {
         Time.timeScale = 1f;

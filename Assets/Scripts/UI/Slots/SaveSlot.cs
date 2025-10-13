@@ -8,15 +8,12 @@ using UnityEngine.UI;
 public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private int slotIdx = 0; // 0~4
-    [SerializeField]
-    private Dictionary<(int stageIdx, int storyId), string> checkpointNames = new()
+    [SerializeField] private Dictionary<(int stageIdx, int storyId), string> checkpointNames = new()
     {
-        {(1,1), "파드마와의 만남" },
-        {(2,0), "파드마와의 재회" },
-        {(2,1), "진실의 거울" },
-        {(2,2), "기억의 등불" },
-        {(2,3), "혼의 실" },
-        {(3,1), "스테이지 시작" }
+        {(1,0), "1스테이지 시작" },
+        {(2,0), "2스테이지 시작" },
+        {(3,0), "3스테이지 시작" },
+        {(4,0), "4스테이지 시작" }
     };
 
     [Header("Components")]

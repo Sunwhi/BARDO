@@ -16,7 +16,7 @@ public class ContinueManager : Singleton<ContinueManager>
     private Dictionary<int, CamState> curCamState = new()
     {
         {1, CamState.v1 },
-        {2, CamState.v2_1 },
+        {2, CamState.v2_0 },
         {3, CamState.v3_1 },
         {4, CamState.v4_1 },
     };

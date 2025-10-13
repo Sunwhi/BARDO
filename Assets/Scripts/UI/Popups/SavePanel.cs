@@ -75,7 +75,7 @@ public class SavePanel : UIBase
             new UnityAction<string>((inputText) =>
             {
                 // 현재 저장슬롯 데이터를 복사해서 선택한 슬롯의 데이터에 붙여넣는다.
-                SaveManager.Instance.copySaveData(idx);
+                SaveManager.Instance.CopySaveData(idx);
 
                 if (inputText == null) SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), "New Save");
                 else SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), inputText);
