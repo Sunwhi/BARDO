@@ -45,11 +45,12 @@ public class TriggerManager : Singleton<TriggerManager>
     // 리스폰 위치 반환
     public Vector3 GetRespawnPosition()
     {
-        if (checkpointTable.TryGetValue(lastCheckpointID, out Vector3 pos))
+        /*if (checkpointTable.TryGetValue(lastCheckpointID, out Vector3 pos))
             return pos;
-
+        
         Debug.LogWarning("리스폰 위치가 없습니다. 디폴트 (0,0,0) 반환.");
-        return Vector3.zero;
+        return Vector3.zero;*/
+        return SaveManager.Instance.MySaveData.savedPosition.ToVector3();
     }
 
     // 트리거에 따른 공통 처리 (튜토리얼, 대화 등 확장 가능)

@@ -5038,6 +5038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnSceneLoad: 0
+  playerInput: {fileID: 2031485991}
   submitPressed: 0
 --- !u!114 &2031485991
 MonoBehaviour:

@@ -1,4 +1,3 @@
-using UnityEngine;
 
 // 게임 멈췄을 때 Event
 public enum GameState

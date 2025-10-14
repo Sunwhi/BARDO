@@ -48,17 +48,13 @@ public class SavePanel : UIBase
                 EYesNoPanelType.Save,
                 new UnityAction(() =>
                 {
-                    SetSaveSlotName(idx); // 슬롯이름 저장 패널을 띄운다.
-                    SaveManager.Instance.SaveSlot(slot);
-                    UpdateSaveSlot(slot);
+                    SetSaveSlotName(idx, slot); // 슬롯이름 저장 패널을 띄운다.
                 }
             ));
         }
         else
         {
-            SetSaveSlotName(idx); // 슬롯이름 저장 패널을 띄운다.
-            SaveManager.Instance.SaveSlot(slot);
-            UpdateSaveSlot(slot);
+            SetSaveSlotName(idx, slot); // 슬롯이름 저장 패널을 띄운다.
         }
     }
 
@@ -69,7 +65,7 @@ public class SavePanel : UIBase
     }
 
     // 슬롯이름 저장 패널을 띄운다
-    private void SetSaveSlotName(int idx)
+    private void SetSaveSlotName(int idx, ESaveSlot slot)
     {
         UIManager.Show<SaveSlotNamePanel>(
             new UnityAction<string>((inputText) =>
@@ -77,8 +73,12 @@ public class SavePanel : UIBase
                 // 현재 저장슬롯 데이터를 복사해서 선택한 슬롯의 데이터에 붙여넣는다.
                 SaveManager.Instance.CopySaveData(idx);
 
-                if (inputText == null) SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), "New Save");
-                else SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), inputText);
+                /*if (inputText == null) SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), "New Save");
+                else SaveManager.Instance.SetSaveData(nameof(SaveData.saveName), inputText);*/
+                SaveManager.Instance.SaveSlots[idx].saveName = string.IsNullOrEmpty(inputText) ? "New Save" : inputText;
+
+                UpdateSaveSlot(slot);
+                SaveManager.Instance.SaveSlot(slot, true);
             }),
             idx
             );

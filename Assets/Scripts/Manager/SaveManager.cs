@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public enum ESaveSlot
 {
@@ -82,20 +81,28 @@ public class SaveManager : Singleton<SaveManager>
     #endregion
 
     #region Main Methods
-    public void SaveSlot(ESaveSlot slot = ESaveSlot.Default)
+    public void SaveSlot(ESaveSlot slot = ESaveSlot.Default, bool forceSave = false)
     {
-        if (!isAutoDirty) return;
+        if (!isAutoDirty && !forceSave) return;
         if (slot == ESaveSlot.Default) slot = (ESaveSlot)curSaveIdx;
 
         int idx = (int)slot;
 
-        SetSaveData(nameof(SaveData.lastSaveTime), DateTime.Now.Ticks);
+        //SetSaveData(nameof(SaveData.lastSaveTime), DateTime.Now.Ticks);
+        //SetSaveData는 함수 인자의 slot이 아닌 MySaveData에 저장함.
+        SaveSlots[idx].lastSaveTime = DateTime.Now.Ticks;
+
+        //수동 저장시에는 true로
+        if (!SaveSlots[idx].dataSaved) SaveSlots[idx].dataSaved = true;
+
         string path = slotPaths[idx];
         string json = JsonConvert.SerializeObject(SaveSlots[idx], Formatting.Indented);
         File.WriteAllText(path, json);
 
         curSaveIdx = (int)slot;
         OnSaveSlotUpdated?.Invoke(slot);
+
+        isAutoDirty = false;
     }
 
     public void LoadSlot(ESaveSlot slot)
@@ -222,6 +229,7 @@ public class SaveManager : Singleton<SaveManager>
 
     public void CopySaveData(int idx)
     {
+        Debug.Log("copysavedata" + idx);
         string json = JsonUtility.ToJson(MySaveData);
         SaveSlots[idx] = JsonUtility.FromJson<SaveData>(json);
     }
@@ -229,6 +237,7 @@ public class SaveManager : Singleton<SaveManager>
     public void SavePlayerPosition(int id, Vector3 playerPos)
     {
         SetSaveData("savedPosition", new SerializableVector3(playerPos)); // SaveData에 savedPosition저장
+        SaveSlot();
     }
     #endregion
 

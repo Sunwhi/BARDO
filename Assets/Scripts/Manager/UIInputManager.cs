@@ -1,4 +1,3 @@
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 //
@@ -12,6 +11,8 @@ public class UIInputManager : Singleton<UIInputManager>
     // spacebar 누르면 실행, Dialogue에서 
     public void OnSubmit(InputAction.CallbackContext context)
     {
+        Debug.Log($"OnSubmit called: {context.phase}, performed={context.performed}");
+
         if (DialogueManager.Instance.dialoguePlaying)
         {
             if (context.performed)
