@@ -101,7 +101,9 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             return;
         }
+
         dialoguePlaying = true;
+        dialoguePaused = false;
 
         // inform other parts of our system that we've started diagram
         DialogueEventManager.Instance.dialogueEvents.DialogueStarted();

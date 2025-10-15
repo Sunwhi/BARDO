@@ -6,6 +6,7 @@ public class RoundTransition : UIBase
 {
     [SerializeField] private TextMeshProUGUI weekTxt;
     [SerializeField] private TextMeshProUGUI roundTxt;
+    private int round = 0;
 
     private readonly string weekFormat = "Week ";
     private readonly Dictionary<int, string> roundFormat = new()
@@ -23,17 +24,17 @@ public class RoundTransition : UIBase
     {
         StoryManager.Instance.roundTransitionDone = false;
         Time.timeScale = 0f;
-        int round = param.Length > 0 && param[0] is int ? (int)param[0] : 1;
+        round = param.Length > 0 && param[0] is int ? (int)param[0] : 1;
         weekTxt.text = weekFormat + round;
         roundTxt.text = roundFormat.ContainsKey(round) ? roundFormat[round] : "Round " + round;
-
+            
         SaveManager.Instance.SetSaveData(nameof(SaveData.stageIdx), round);
-        SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 0);
+        SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 1);
         SaveManager.Instance.SaveSlot();
     }
     public override void Closed(object[] param)
     {
-        GameEventBus.Raise(new TransitionEvents());
+        GameEventBus.Raise(new TransitionEvents(round));
     }
     public void OnTransitionEnd()
     {

@@ -15,6 +15,7 @@ public class StoryManager : Singleton<StoryManager>
     [SerializeField] private string dialogueKnotName;
     [SerializeField] TextAsset stage1_1InkJson;
     [SerializeField] TextAsset stage2InkJson;
+    [SerializeField] TextAsset elevatorInkJson;
 
     [SerializeField] private Transform dialogueParent;
     [SerializeField] private Transform transition;
@@ -215,6 +216,13 @@ public class StoryManager : Singleton<StoryManager>
     #region Stage3
     #endregion
     #region Stage4
+    public void S4_EnterStage()
+    {
+        DialogueToTransition();
+        DialogueManager.Instance.ChangeDialogueStory(elevatorInkJson);
+        dialogueKnotName = "elevator";
+        DialogueEventManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
+    }
     #endregion
     #region Stage5
     #endregion
