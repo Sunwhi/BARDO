@@ -28,8 +28,8 @@ public class RoundTransition : UIBase
         weekTxt.text = weekFormat + round;
         roundTxt.text = roundFormat.ContainsKey(round) ? roundFormat[round] : "Round " + round;
             
-        SaveManager.Instance.SetSaveData(nameof(SaveData.stageIdx), round);
-        SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 1);
+        SaveManager.Instance.SetSaveData(nameof(SaveData.stageIdx), round); //round num
+        SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 0); //0이어야 함
         SaveManager.Instance.SaveSlot();
     }
     public override void Closed(object[] param)
