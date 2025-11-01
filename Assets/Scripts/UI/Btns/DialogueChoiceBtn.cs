@@ -2,10 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.InputSystem.Composites;
-using Unity.VisualScripting;
 using System;
-using UnityEditor.Rendering;
 
 public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHandler, IPointerExitHandler
 {

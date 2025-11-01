@@ -45,8 +45,8 @@ public class TimelineController : MonoBehaviour
             menuDirector?.Play();
             isMenuShown = true;
         }
-    }
 #endif
+    }
 
     private void OnMenuDirectorFin(PlayableDirector director)
     {
