@@ -18,7 +18,8 @@ public class RespawnManager : Singleton<RespawnManager>
 
     private void OnViewportExit(ViewportExitEvent e)
     {
-        if (e.direction == ViewportExitDirection.Bottom)
+        if (e.direction == ViewportExitDirection.Bottom 
+            && !StoryManager.Instance.Player.isDownAllowed)
         {
             player.controller.InputEnabled = false;
             StartCoroutine(HandleRespawn());

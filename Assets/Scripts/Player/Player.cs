@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,6 +26,7 @@ public class Player : MonoBehaviour
     public PlayerAnimationData AnimationData => animationData;
 
     public bool isGrounded = true;
+    public bool isDownAllowed = false;
     private readonly float rayLength = 0.1f;
 
     public MovingPlatform curPlatform { get; private set; }
