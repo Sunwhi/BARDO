@@ -88,6 +88,12 @@ public class CameraManager : Singleton<CameraManager>
         if (Time.time < ignoreUntil) return;
         if (e.direction == ViewportExitDirection.Left) GoBack();
         else if (e.direction == ViewportExitDirection.Right) GoFront();
+
+        if (StoryManager.Instance.Player.isDownAllowed)
+        {
+            if (e.direction == ViewportExitDirection.Top) GoBack();
+            else if (e.direction == ViewportExitDirection.Bottom) GoFront();
+        }
     }
 
     public void JumpAndCut(CamState target) => StartCoroutine(JumpRoutine(target, ignoreDuringSwitch));
@@ -107,7 +113,7 @@ public class CameraManager : Singleton<CameraManager>
         yield return null;
 
         brain.DefaultBlend = prevBlend;
-        // curCamState 동기화는 StateMachineBehaviour에서 수행
+        curCamState = target;
     }
 
     private void SetIgnore(float seconds)
