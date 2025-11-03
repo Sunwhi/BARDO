@@ -37,6 +37,7 @@ public class PausePanel : UIBase
             SaveManager.Instance.SaveSlot();
             MySceneManager.Instance.LoadScene(ESceneType.Title);
             SoundManager.Instance.PlayBGM(EBGM.Title);
+            DialogueManager.Instance.SetDialoguePlayingFalse();
         })
         );
     }
@@ -55,6 +56,7 @@ public class PausePanel : UIBase
         EYesNoPanelType.Quit,
         new UnityAction(() =>
         {
+            DialogueManager.Instance.SetDialoguePlayingFalse();
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else

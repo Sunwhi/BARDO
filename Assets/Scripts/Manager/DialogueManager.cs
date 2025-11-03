@@ -222,7 +222,11 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         story = new Story(inkJson.text);
     }
-
+    
+    public void SetDialoguePlayingFalse()
+    {
+        if(dialoguePlaying) dialoguePlaying = false;
+    }
     private bool IsLineBlank(string dialogueLine)
     {
         return dialogueLine.Trim().Equals("") || dialogueLine.Trim().Equals("\n");
