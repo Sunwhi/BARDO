@@ -38,4 +38,9 @@ public class SaveSlotNamePanel : UIBase
         SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
         UIManager.Hide(false);
     }
+
+    public override void OnUICloseBtn()
+    {
+        base.OnUICloseBtn();
+    }
 }

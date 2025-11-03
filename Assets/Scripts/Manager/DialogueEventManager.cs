@@ -1,6 +1,3 @@
-using UnityEditor.Tilemaps;
-using UnityEngine;
-
 public class DialogueEventManager : Singleton<DialogueEventManager>
 {
     public DialogueEvents dialogueEvents;

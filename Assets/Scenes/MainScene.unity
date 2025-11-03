@@ -814,6 +814,21 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!61 &257175830 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4988642903912855225, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+  m_PrefabInstance: {fileID: 4481790089563482052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &257175831 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7508223995373252540, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+  m_PrefabInstance: {fileID: 4481790089563482052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &257175832 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4363374976495570092, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+  m_PrefabInstance: {fileID: 4481790089563482052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &324866181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,7 +1961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoundingShape2D: {fileID: 1639116926}
+  BoundingShape2D: {fileID: 257175832}
   Damping: 0.5
   SlowingDistance: 5
   OversizeWindow:
@@ -1998,7 +2013,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 9
+    OrthographicSize: 21.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -2095,12 +2110,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436543844}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoundingShape2D: {fileID: 0}
+  BoundingShape2D: {fileID: 257175831}
   Damping: 0.5
   SlowingDistance: 5
   OversizeWindow:
@@ -2152,7 +2167,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 10
+    OrthographicSize: 21.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -2356,11 +2371,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1639116926 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 3239304903599447167, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-  m_PrefabInstance: {fileID: 4481790089563482052}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1690678724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,12 +2580,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803781650}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoundingShape2D: {fileID: 0}
+  BoundingShape2D: {fileID: 257175830}
   Damping: 0.5
   SlowingDistance: 5
   OversizeWindow:
@@ -2627,7 +2637,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 10
+    OrthographicSize: 21.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -2834,12 +2844,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043606427}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoundingShape2D: {fileID: 0}
+  BoundingShape2D: {fileID: 4481790089563482055}
   Damping: 0.5
   SlowingDistance: 5
   OversizeWindow:
@@ -2891,7 +2901,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 10
+    OrthographicSize: 21.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -3137,14 +3147,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1014948807396229713, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2411549597701596149, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2568156051693538789, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 100
@@ -3202,6 +3204,11 @@ PolygonCollider2D:
 --- !u!61 &4481790089563482054 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 8490273337468511027, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+  m_PrefabInstance: {fileID: 4481790089563482052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &4481790089563482055 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6094028729002634012, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
   m_PrefabInstance: {fileID: 4481790089563482052}
   m_PrefabAsset: {fileID: 0}
 --- !u!61 &4481790089563482056 stripped
@@ -3334,6 +3341,6 @@ SceneRoots:
   - {fileID: 2100700899}
   - {fileID: 371981169}
   - {fileID: 1615082753}
-  - {fileID: 2807780823127625903}
   - {fileID: 1723892499}
   - {fileID: 4481790089563482052}
+  - {fileID: 2807780823127625903}

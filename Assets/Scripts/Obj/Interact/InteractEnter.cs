@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class InteractEnter : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup guide;
+    [SerializeField] protected CanvasGroup guide;
 
     [Header("interact 가능한 시점")]
     [SerializeField] protected int stageIdx;
     [SerializeField] protected int storyIdx;
 
-    Coroutine interactCoroutine;
+    protected Coroutine interactCoroutine;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class InteractEnter : MonoBehaviour
         guide.DOFade(0f, 0.5f).SetUpdate(true);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player")) return;
 
