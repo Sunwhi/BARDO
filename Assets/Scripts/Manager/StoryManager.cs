@@ -38,6 +38,7 @@ public class StoryManager : Singleton<StoryManager>
     {
         DialogueEventManager.Instance.dialogueEvents.onDialogueFinished += OnDialogueFinished;
         SceneManager.sceneLoaded += OnSceneLoaded;
+        GameEventBus.Subscribe<TransitionEndEvent>(S4_EnterStage);
     }
     private void OnDisable()
     {
@@ -46,6 +47,7 @@ public class StoryManager : Singleton<StoryManager>
             DialogueEventManager.Instance.dialogueEvents.onDialogueFinished -= OnDialogueFinished;
         }
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        GameEventBus.Unsubscribe<TransitionEndEvent>(S4_EnterStage);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -216,12 +218,24 @@ public class StoryManager : Singleton<StoryManager>
     #region Stage3
     #endregion
     #region Stage4
-    public void S4_EnterStage()
+    public void S4_EnterStage(TransitionEndEvent ev)
+    {
+        UnityEngine.Debug.Log("s4enterstage");
+
+        PlayerWalkCoroutine();
+
+        QuestManager.Instance.SetNewQuest();
+        QuestManager.Instance.ShowQuestUI();
+    }
+    public void S4_ElevatorIn()
     {
         DialogueToTransition();
         DialogueManager.Instance.ChangeDialogueStory(elevatorInkJson);
         dialogueKnotName = "elevator";
-        DialogueEventManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
+        if (!dialogueKnotName.Equals(""))
+        {
+            DialogueEventManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
+        }
     }
     #endregion
     #region Stage5

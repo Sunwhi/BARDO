@@ -1,4 +1,3 @@
-using UnityEngine;
 using System.Collections;
 public class ElevatorTrigger : TriggerBase
 {
@@ -10,7 +9,7 @@ public class ElevatorTrigger : TriggerBase
     private IEnumerator TriggerEffect()
     {
         UIManager.Show<ElevatorScene>();
-        StoryManager.Instance.S4_EnterStage();
+        StoryManager.Instance.S4_ElevatorIn();
         yield return null;
     }
 }

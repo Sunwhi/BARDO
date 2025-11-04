@@ -5,7 +5,7 @@ public class ElevatorBGScroller : MonoBehaviour
 {
     [Header("Component References")]
     [SerializeField] private RectTransform imgRectTransform;
-
+    
     public float scrollSpeed = 200f;
 
     private float imgHeight;

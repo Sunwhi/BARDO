@@ -102,7 +102,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (Instance.activeTransition && Instance.activeTransition.gameObject.activeSelf)
             return;
-
+        
         TryPopAndClose(Instance.ActiveStacks, Instance, isCommandHide, param);
     }
 
