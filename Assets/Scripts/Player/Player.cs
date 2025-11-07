@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     public bool isDownAllowed = false;
     private readonly float rayLength = 0.1f;
 
-    public MovingPlatform curPlatform { get; private set; }
+    public Transform curPlatform { get; private set; }
 
     private Coroutine groundCheckCoroutine;
 
@@ -129,9 +129,11 @@ public class Player : MonoBehaviour
             bool fromBelow = dirBA.y > 0f;
             if (!fromBelow) return;
 
-            MovingPlatform platform = collision.collider.GetComponentInParent<MovingPlatform>();
+            Transform platform = collision.collider.transform.parent;
             if (platform != null)
+            {
                 curPlatform = platform;
+            }
         }
     }
 
