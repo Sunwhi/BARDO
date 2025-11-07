@@ -40,7 +40,24 @@ public class BreakObs : MonoBehaviour
 
     private IEnumerator Fall()
     {
-        yield return new WaitForSeconds(fallDelay);
+        float duration = fallDelay;
+        float strength = 0.1f;   // 흔들림 진폭
+        int vibrato = 5;         // 진동 횟수
+        float randomness = 45f;   // 방향 랜덤 정도
+
+        Tween shake = transform.DOShakePosition(
+            duration,
+            strength,
+            vibrato,
+            randomness,
+            false,     // 스냅 안 함
+            true       // 상대 좌표 기준
+        );
+
+        // 흔들기 끝날 때까지 대기
+        yield return shake.WaitForCompletion();
+
+
         rb.bodyType = RigidbodyType2D.Dynamic;
         col.enabled = false;
 
