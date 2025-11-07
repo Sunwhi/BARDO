@@ -36,7 +36,7 @@ public class RoundTransition : UIBase
     {
         Debug.Log("closed");
         GameEventBus.Raise(new TransitionEvents(round));
-        GameEventBus.Raise(new TransitionEndEvent());
+        GameEventBus.Raise(new TransitionEndEvent(round));
     }
     public void OnTransitionEnd()
     {

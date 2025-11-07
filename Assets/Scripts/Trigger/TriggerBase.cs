@@ -11,7 +11,6 @@ public abstract class TriggerBase : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         if (oneTimeTrigger && hasTriggered) return;
-
         hasTriggered = true;
         OnTriggered();
     }

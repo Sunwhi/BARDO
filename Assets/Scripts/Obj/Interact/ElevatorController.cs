@@ -29,13 +29,13 @@ public class ElevatorController : MonoBehaviour
         secondE.transform.position = middlePos;
 
         StoryManager.Instance.Player.isDownAllowed = true;
-        StartCoroutine(UIManager.Instance.fadeView.FadeIn(1f));
+        //StartCoroutine(UIManager.Instance.fadeView.FadeOut(1f));
+        //StartCoroutine(UIManager.Instance.fadeView.FadeIn(1f));
         await firstE.transform
             .DOMove(middlePos, 7f)
             .SetEase(Ease.InOutSine)
             .AsyncWaitForCompletion();
 
-        Debug.Log("before");
 
         if (SaveManager.Instance.MySaveData.stageIdx == 4)
         {
@@ -51,10 +51,10 @@ public class ElevatorController : MonoBehaviour
             await tcs.Task;
         }
 
-        Debug.Log("after");
 
         firstE.gameObject.SetActive(false);
-        StartCoroutine(UIManager.Instance.fadeView.FadeIn(1f));
+        //StartCoroutine(UIManager.Instance.fadeView.FadeOut(1f));
+        //StartCoroutine(UIManager.Instance.fadeView.FadeIn(1f));
         
         Vector3 targetSecond = (secondE == elevator0) ? elevator0Pos : elevator1Pos;
         await secondE.transform
@@ -68,6 +68,12 @@ public class ElevatorController : MonoBehaviour
 
         StoryManager.Instance.Player.isDownAllowed = false;
         StartCoroutine(secondE.DoorInteract(true, secondE == elevator0));
+        
+        // 엘리베이터 퀘스트에서만 subquest 클리어처리.
+        if(SaveManager.Instance.MySaveData.currentQuest.QuestID == 3)
+        {
+            QuestManager.Instance.ClearSubQuest(0);
+        }
     }
 
     private IEnumerator ElevatorSceneStart() 

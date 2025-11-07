@@ -22,5 +22,6 @@ public class ElevatorScene : UIBase
     private void OnSequenceEnd(ElevatorSeqEndEvent evt)
     {
         UIManager.Hide(true);
+        UIManager.Destroy(this.gameObject);
     }
 }
