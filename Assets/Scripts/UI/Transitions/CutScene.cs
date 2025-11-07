@@ -1,4 +1,3 @@
-
 using UnityEngine;  
 
 public class CutScene : UIBase
@@ -10,11 +9,11 @@ public class CutScene : UIBase
     {
         Closeup currentCloseup = DialogueManager.Instance.closeup;
 
-        if (previousCloseup == Closeup.PadmaFly && currentCloseup == previousCloseup) 
+        /*if (previousCloseup == Closeup.PadmaFly && currentCloseup == previousCloseup) 
         {
             CutsceneFinished();
             return; 
-        }
+        }*/
 
         switch (currentCloseup)
         {
@@ -37,6 +36,7 @@ public class CutScene : UIBase
     }
     public void CutsceneFinished()
     {
+        Debug.Log("finished");
         StoryManager.Instance.S2_CutsceneFin();
         Destroy(this.gameObject);
     }

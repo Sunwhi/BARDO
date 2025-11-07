@@ -78,7 +78,6 @@ public class StoryManager : Singleton<StoryManager>
             //이어하기 시 파드마 없고 quest는 뜬다.
             SaveManager.Instance.SetSaveData(nameof(SaveData.stage1PadmaActive), false); // 다음 이어하기부터 padmaAcive되지 않는다.
 
-            SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
             yield return new WaitForSeconds(0.5f);
             UIManager.Show<RoundTransition>(1);          
             yield return new WaitForSeconds(1f);
