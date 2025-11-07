@@ -8,7 +8,7 @@ public class PlayerController
     public bool JumpInput { get; set; }
     public bool InputEnabled { get; set; } = true;
 
-    public float moveSpeed = 5f;
+    public float moveSpeed => player.moveSpeed;
     public float jumpForce = 7f;
 
     public PlayerController(Player player)

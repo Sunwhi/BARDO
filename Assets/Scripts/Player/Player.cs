@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     public PlayerStateMachine fsm { get; private set; }
     public PlayerController controller { get; private set; }
 
+    [Header("Player Speed")]
+    public float moveSpeed = 7f;
+
     [Header("Components")]
     public SpriteRenderer spriteRenderer;
     public PlayerInput playerInput;
