@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +19,9 @@ public class StoryManager : Singleton<StoryManager>
     [SerializeField] private Transform dialogueParent;
     [SerializeField] private Transform transition;
     [SerializeField] private Transform defaultCanvas;
+
+    [Header("Stage1")]
+    [SerializeField] private Transform PlayerStopPos;
 
     public PlayerController playerController { get; set; }
     public bool roundTransitionDone = false; // roundTransition 끝난 후에 dialogue같은 패널 뜨도록 설정
@@ -85,7 +87,7 @@ public class StoryManager : Singleton<StoryManager>
             SoundManager.Instance.PlayBGM(EBGM.Stage1);
             SoundManager.Instance.PlayAmbientSound(ESFX.Background_Wind);
 
-            yield return PlayerWalkLeft();
+            yield return PlayerWalkByPos(PlayerStopPos.position.x);
 
             yield return new WaitForSeconds(2f);
 
@@ -125,15 +127,30 @@ public class StoryManager : Singleton<StoryManager>
 
         currentStoryState = StoryState.None;
     }
-    public void PlayerWalkCoroutine(float duration = 1f)
+
+    public void PlayerWalkTimeCoroutine(float duration = 1f)
     {
-        StartCoroutine(PlayerWalkLeft(duration));
+        StartCoroutine(PlayerWalkRight(duration));
     }
 
-    public IEnumerator PlayerWalkLeft(float duration = 1f)
+    public IEnumerator PlayerWalkRight(float duration = 1f)
     {
         player.ForceMove(new Vector2(1, 0));
         yield return new WaitForSeconds(duration);
+        player.ForceMove(Vector2.zero);
+    }
+
+    public IEnumerator PlayerWalkByPos(float xPos, float eps = 0.1f)
+    {
+        Transform tf = player.transform;
+
+        while (Mathf.Abs(tf.position.x - xPos) > eps)
+        {
+            float dir = Mathf.Sign(xPos - tf.position.x);
+            player.ForceMove(new Vector2(dir, 0f));
+            yield return new WaitForFixedUpdate();
+        }
+
         player.ForceMove(Vector2.zero);
     }
 
