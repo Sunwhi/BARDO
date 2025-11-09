@@ -198,7 +198,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MainMenu
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1fc27c4b04b602c4e9ca9638ce8c6c1d, type: 2}
   m_sharedMaterial: {fileID: -458807391221330038, guid: 1fc27c4b04b602c4e9ca9638ce8c6c1d, type: 2}
@@ -898,6 +898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiPosition: 1
   isDestroyAtClosed: 0
+  isHidableByEsc: 1
 --- !u!1 &7119931349811443974
 GameObject:
   m_ObjectHideFlags: 0

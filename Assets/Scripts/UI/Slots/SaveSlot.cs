@@ -61,7 +61,7 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             disableSlot.SetActive(false);
             enableSlot.SetActive(true);
 
-            slotNameTxt.text = $"[{data.saveName}] {data.stageIdx}주차";
+            slotNameTxt.text = $"<{data.saveName}> {data.stageIdx}주차";
             slotDetailTxt.text = GetCheckpointName(data.stageIdx, data.storyIdx);
 
             slotDateTxt.text = new DateTime(data.lastSaveTime).ToString("yyyy/MM/dd (ddd) HH:mm");

@@ -251,6 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiPosition: 3
   isDestroyAtClosed: 1
+  isHidableByEsc: 1
   weekTxt: {fileID: 1849542632828740024}
   roundTxt: {fileID: 6064828051541624174}
 --- !u!1 &8379812454559414911
@@ -318,10 +319,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WEEK 1
+  m_text: WeeK 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c99effebbcc64d040a543f9a3543bc3f, type: 2}
-  m_sharedMaterial: {fileID: -458807391221330038, guid: c99effebbcc64d040a543f9a3543bc3f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1fc27c4b04b602c4e9ca9638ce8c6c1d, type: 2}
+  m_sharedMaterial: {fileID: -458807391221330038, guid: 1fc27c4b04b602c4e9ca9638ce8c6c1d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b9518b74a3ff5904185c73901df8f183
+guid: e5f975079fa3d65499707f4d1e7f5b20
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7310658367283480596
-    second: UI_X_Glow_rere_0
+      213: 6859059515215942939
+    second: Stage03_select_withText_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_X_Glow_rere_0
+      name: Stage03_select_withText_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 61
-        height: 58
+        width: 769
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4184b203d0da47560800000000000000
-      internalID: 7310658367283480596
+      spriteID: b1595b9c946403f50800000000000000
+      internalID: 6859059515215942939
       vertices: []
       indices: 
       edges: []

@@ -83,10 +83,10 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlaySFX(ESFX sfxType)
     {
-        Debug.Log(sfxType);
+        //Debug.Log(sfxType);
         int index = (int)sfxType;
-        Debug.Log("index : " + index);
-        Debug.Log("sfxClips.Length : " + sfxClips.Length);
+        //Debug.Log("index : " + index);
+        //Debug.Log("sfxClips.Length : " + sfxClips.Length);
         if (index >= 0 && index < sfxClips.Length)
         {
             if(index == 9)  Debug.Log("inside if moon");

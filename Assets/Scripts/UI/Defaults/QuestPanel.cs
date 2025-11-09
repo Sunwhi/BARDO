@@ -37,7 +37,7 @@ public class QuestPanel : UIBase
     {
         if (seq != null) return;
 
-        float targetW = isOpen ? 500f : 0f;
+        float targetW = isOpen ? 437f : 0f;
         float fadeTo = isOpen ? 0f : 1f;
 
         seq = DOTween.Sequence();

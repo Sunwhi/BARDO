@@ -626,6 +626,7 @@ GameObject:
   - component: {fileID: 1087820737970492784}
   - component: {fileID: 3053295259396371962}
   - component: {fileID: 5215137277564423319}
+  - component: {fileID: 5208188936095240859}
   m_Layer: 5
   m_Name: CloseBtn
   m_TagString: Untagged
@@ -746,6 +747,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5208188936095240859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8455550981817749207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06dadc0e069a8e9418c037cb5a8d899c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverStateObject: {fileID: 0}
+  timelineController: {fileID: 0}
+  exitBtn: {fileID: 3053295259396371962}
+  defaultExitSprite: {fileID: -2441685899841601831, guid: d5902f6af0232564da6067a574f9a743, type: 3}
+  glowExitSprite: {fileID: -3424294286161474948, guid: 13ef2d3d85109594697c96dc01fd35f5, type: 3}
 --- !u!1 &8663450374364879687
 GameObject:
   m_ObjectHideFlags: 0
