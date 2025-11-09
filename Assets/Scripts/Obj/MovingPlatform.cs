@@ -49,7 +49,10 @@ public class MovingPlatform : MonoBehaviour
     {
         Player p = StoryManager.Instance.Player;
 
-        yield return new WaitUntil(() => p.curPlatform != null && p.isGrounded);
+        while (!(p.curPlatform == platform))
+        {
+            yield return null;
+        }
         collision.transform.SetParent(platform);
         SettleCoroutine = null;
     }

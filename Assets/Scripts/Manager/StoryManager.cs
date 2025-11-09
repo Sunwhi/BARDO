@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,17 +15,19 @@ public class StoryManager : Singleton<StoryManager>
     [SerializeField] TextAsset stage1_1InkJson;
     [SerializeField] TextAsset stage2InkJson;
     [SerializeField] TextAsset elevatorInkJson;
-    [SerializeField] TextAsset stage4InkJson;
 
     [SerializeField] private Transform dialogueParent;
     [SerializeField] private Transform transition;
     [SerializeField] private Transform defaultCanvas;
 
+    [Header("Stage1")]
+    [SerializeField] private Transform PlayerStopPos;
+
     public PlayerController playerController { get; set; }
     public bool roundTransitionDone = false; // roundTransition 끝난 후에 dialogue같은 패널 뜨도록 설정
     public bool cutsceneDone = false;
 
-    private enum StoryState { None, Stage1, Stage1_1, Stage2, Stage3, Stage4 };
+    private enum StoryState { None, Stage1, Stage1_1, Stage2 };
     private StoryState currentStoryState = StoryState.None;
     private bool isDialogueDone = false;
 
@@ -39,7 +40,6 @@ public class StoryManager : Singleton<StoryManager>
     {
         DialogueEventManager.Instance.dialogueEvents.onDialogueFinished += OnDialogueFinished;
         SceneManager.sceneLoaded += OnSceneLoaded;
-        GameEventBus.Subscribe<TransitionEndEvent>(S4_EnterStage);
     }
     private void OnDisable()
     {
@@ -48,7 +48,6 @@ public class StoryManager : Singleton<StoryManager>
             DialogueEventManager.Instance.dialogueEvents.onDialogueFinished -= OnDialogueFinished;
         }
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        GameEventBus.Unsubscribe<TransitionEndEvent>(S4_EnterStage);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -78,6 +77,7 @@ public class StoryManager : Singleton<StoryManager>
             //이어하기 시 파드마 없고 quest는 뜬다.
             SaveManager.Instance.SetSaveData(nameof(SaveData.stage1PadmaActive), false); // 다음 이어하기부터 padmaAcive되지 않는다.
 
+            SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
             yield return new WaitForSeconds(0.5f);
             UIManager.Show<RoundTransition>(1);          
             yield return new WaitForSeconds(1f);
@@ -87,7 +87,7 @@ public class StoryManager : Singleton<StoryManager>
             SoundManager.Instance.PlayBGM(EBGM.Stage1);
             SoundManager.Instance.PlayAmbientSound(ESFX.Background_Wind);
 
-            yield return PlayerWalkLeft();
+            yield return PlayerWalkByPos(PlayerStopPos.position.x);
 
             yield return new WaitForSeconds(2f);
 
@@ -123,26 +123,34 @@ public class StoryManager : Singleton<StoryManager>
             case StoryState.Stage2:
                 DialogueToDefault();
                 break;
-            case StoryState.Stage4:
-                UnityEngine.Debug.Log("stage4 dialogue end");
-                QuestManager.Instance.ClearSubQuest(0);
-                player.playerInput.enabled = true;
-                break;
         }
 
         currentStoryState = StoryState.None;
     }
-    public void PlayerWalkCoroutine(float duration = 1f, int distance = 1)
+
+    public void PlayerWalkTimeCoroutine(float duration = 1f)
     {
-        player.playerInput.enabled = false;
-        StartCoroutine(PlayerWalkLeft(duration, distance));
-        player.playerInput.enabled = true;
+        StartCoroutine(PlayerWalkRight(duration));
     }
 
-    public IEnumerator PlayerWalkLeft(float duration = 1f, int distance = 1)
+    public IEnumerator PlayerWalkRight(float duration = 1f)
     {
-        player.ForceMove(new Vector2(distance, 0));
+        player.ForceMove(new Vector2(1, 0));
         yield return new WaitForSeconds(duration);
+        player.ForceMove(Vector2.zero);
+    }
+
+    public IEnumerator PlayerWalkByPos(float xPos, float eps = 0.1f)
+    {
+        Transform tf = player.transform;
+
+        while (Mathf.Abs(tf.position.x - xPos) > eps)
+        {
+            float dir = Mathf.Sign(xPos - tf.position.x);
+            player.ForceMove(new Vector2(dir, 0f));
+            yield return new WaitForFixedUpdate();
+        }
+
         player.ForceMove(Vector2.zero);
     }
 
@@ -225,49 +233,12 @@ public class StoryManager : Singleton<StoryManager>
     #region Stage3
     #endregion
     #region Stage4
-    public void S4_EnterStage(TransitionEndEvent ev)
-    {
-        if(ev.stageIdx == 4)
-        {
-            PlayerWalkCoroutine();
-
-            QuestManager.Instance.SetNewQuest();
-            QuestManager.Instance.ShowQuestUI();
-        }
-    }
-    public void S4_ElevatorIn()
+    public void S4_EnterStage()
     {
         DialogueToTransition();
         DialogueManager.Instance.ChangeDialogueStory(elevatorInkJson);
         dialogueKnotName = "elevator";
-        if (!dialogueKnotName.Equals(""))
-        {
-            DialogueEventManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
-        }
-    }
-
-    public IEnumerator S4_1EnterStage()
-    {
-        currentStoryState = StoryState.Stage4;
-
-        yield return StartCoroutine(UIManager.Instance.fadeView.FadeOut(1f));
-        yield return StartCoroutine(UIManager.Instance.fadeView.FadeIn(2f));
-
-        PlayerWalkCoroutine(2,1);
-
-        player.playerInput.enabled = false;
-
-        QuestManager.Instance.SetNewQuest();
-        QuestManager.Instance.ShowQuestUI();
-
-        yield return new WaitForSeconds(3f);
-
-        DialogueManager.Instance.ChangeDialogueStory(stage4InkJson);
-        dialogueKnotName = "stage4";
-        if (!dialogueKnotName.Equals(""))
-        {
-            DialogueEventManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
-        }
+        DialogueEventManager.Instance.dialogueEvents.EnterDialogue(dialogueKnotName);
     }
     #endregion
     #region Stage5

@@ -7,6 +7,9 @@ public class PlayerIdleState : PlayerState
     public override void Enter()
     {
         Player.animator.SetBool(Player.AnimationData.MoveParamHash, false);
+        Vector3 v = Player.rb.linearVelocity;
+        v.x = 0;
+        Player.rb.linearVelocity = v;
     }
 
     public override void Update()
