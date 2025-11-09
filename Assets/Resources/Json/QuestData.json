@@ -45,5 +45,28 @@
         "isCompleted": false
       }
     ]
+  },
+  {
+    "QuestID": 3,
+    "QuestTitle": "이상한 세계",
+    "SubQuests": [
+      {
+        "SubQuestID": 1,
+        "SubQuestName": "도르래를 타고 내려가기",
+        "isCompleted": false
+      }
+    ]
+  },
+  {
+    "QuestID": 4,
+    "QuestTitle": "이상한 세계",
+    "SubQuests": [
+      {
+        "SubQuestID": 1,
+        "SubQuestName": "파드마와 대화하기",
+        "isCompleted": false
+      }
+    ]
   }
+
 ]

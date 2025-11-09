@@ -168,12 +168,15 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void OnSelected()
     {
+        Debug.Log("OnSelected() 호출됨. 현재 cardType: " + cardType.ToString());
+
         SaveManager.Instance.SetSaveData(nameof(SaveData.selectedCard), cardType);
         SaveManager.Instance.SaveSlot();
 
         switch (cardType)
         {
             case SelectCard.BlackLantern:
+                Debug.Log("blacklantern");
                 break;
             case SelectCard.Kiln:
                 break;

@@ -302,12 +302,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiPosition: 1
   isDestroyAtClosed: 0
+  isHidableByEsc: 1
   itemIconImg: {fileID: 3829873386534351831}
   itemIcons:
   - {fileID: 0}
   - {fileID: -618485146246179174, guid: dfbac9c70b1f911448466d38b940a575, type: 3}
-  - {fileID: -7947889626538157698, guid: 3f9b5a60506b24f4bb89760553672dd5, type: 3}
-  - {fileID: 7755025498681999836, guid: f4b46c32d2f7b6741b8fde7c278cab32, type: 3}
+  - {fileID: 21300000, guid: 3f9b5a60506b24f4bb89760553672dd5, type: 3}
+  - {fileID: 21300000, guid: f4b46c32d2f7b6741b8fde7c278cab32, type: 3}
   itemTitleTxt: {fileID: 3836369294416599639}
   itemDescTxt: {fileID: 7072612342569368398}
 --- !u!1 &5003521540848530085
@@ -451,7 +452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7755025498681999836, guid: f4b46c32d2f7b6741b8fde7c278cab32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f4b46c32d2f7b6741b8fde7c278cab32, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

@@ -46,7 +46,7 @@ public class Stage4Elevator : InteractEnter
     {
         base.OnTriggerEnter2D(collision);
 
-        if (SaveManager.Instance.MySaveData.stageIdx > 4)
+        if (SaveManager.Instance.MySaveData.stageIdx >= 4)
         {
             guide.DOFade(1f, 0.5f).SetUpdate(true);
             interactCoroutine ??= StartCoroutine(InteractCoroutine());

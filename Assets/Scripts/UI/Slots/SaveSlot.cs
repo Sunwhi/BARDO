@@ -13,6 +13,7 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {(1,1), "1스테이지 시작" },
         {(2,1), "2스테이지 시작" },
         {(3,1), "3스테이지 시작" },
+        {(3,2), "3스테이지 시작" },
         {(4,1), "4스테이지 시작" }
     };
 

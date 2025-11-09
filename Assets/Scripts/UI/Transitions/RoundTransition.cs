@@ -22,6 +22,8 @@ public class RoundTransition : UIBase
 
     public override void Opened(object[] param)
     {
+        SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
+
         StoryManager.Instance.roundTransitionDone = false;
         Time.timeScale = 0f;
         round = param.Length > 0 && param[0] is int ? (int)param[0] : 1;
@@ -35,6 +37,7 @@ public class RoundTransition : UIBase
     public override void Closed(object[] param)
     {
         GameEventBus.Raise(new TransitionEvents(round));
+        GameEventBus.Raise(new TransitionEndEvent(round));
     }
     public void OnTransitionEnd()
     {

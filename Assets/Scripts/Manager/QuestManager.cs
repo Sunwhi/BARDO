@@ -69,9 +69,4 @@ public class QuestManager : Singleton<QuestManager>
 
         //TODO : SubQuest 모두 완료 시 처리.
     }
-
-    private void InitQuestPanel()
-    {
-
-    }
 }
