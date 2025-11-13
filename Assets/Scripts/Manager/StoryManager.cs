@@ -6,8 +6,7 @@ using UnityEngine.Video;
 
 public class StoryManager : Singleton<StoryManager>
 {
-    [SerializeField] private VideoPlayer videoPlayer;
-    [SerializeField] private GameObject videoDisplayUI;
+    [SerializeField] private VideoController videoController;
 
     [SerializeField] private Player player;
     [SerializeField] private Padma padma;
@@ -43,12 +42,22 @@ public class StoryManager : Singleton<StoryManager>
     }
     private void OnEnable()
     {
-        videoPlayer.loopPointReached += OnVideoFinished;
-        DialogueEventManager.Instance.dialogueEvents.onDialogueFinished += OnDialogueFinished;
+        if(videoController != null)
+        {
+            videoController.OnVideoFinished += HandleVIdeoFinished;
+        }
+        if(DialogueEventManager.Instance != null)
+        {
+            DialogueEventManager.Instance.dialogueEvents.onDialogueFinished += OnDialogueFinished;
+        }
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnDisable()
     {
+        if(videoController != null)
+        {
+            videoController.OnVideoFinished += HandleVIdeoFinished;
+        }
         if(DialogueEventManager.Instance != null)
         {
             DialogueEventManager.Instance.dialogueEvents.onDialogueFinished -= OnDialogueFinished;
@@ -67,8 +76,8 @@ public class StoryManager : Singleton<StoryManager>
 
             if (!SaveManager.Instance.MySaveData.stage1PadmaActive) Destroy(Padma.gameObject);
 
+            videoController.PlayVideo();
 
-            PlayVideo();
             UIManager.Instance.fadeView.FadeOut();
             UIManager.Instance.fadeView.FadeIn();
         }
@@ -219,28 +228,11 @@ public class StoryManager : Singleton<StoryManager>
         yield return new WaitUntil(() => endFly);
     }
 
-    private void OnVideoFinished(VideoPlayer vp)
+    private void HandleVIdeoFinished()
     {
         Debug.Log("video finished");
-        Destroy(videoDisplayUI);
         StartCoroutine(MainSceneStart());
     }
-    private void PlayVideo()
-    {
-        if (videoPlayer != null)
-        {
-            videoPlayer.Play();
-        }
-    }
-
-    private void StopVideo()
-    {
-        if (videoPlayer != null)
-        {
-            videoPlayer.Stop();
-        }
-    }
-   
     #endregion
 
     #region Stage2
