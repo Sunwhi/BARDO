@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class TitleCanvas : UICanvas
 {
     [SerializeField] TimelineController timelineController;
+    [SerializeField] GameObject SkipIntroBtn;
     private bool menuDirectorFin = false;
     private void OnEnable()
     {
@@ -103,6 +104,7 @@ public class TitleCanvas : UICanvas
         if (menuDirectorFin)
         {
             SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
+            SkipIntroBtn.SetActive(false);
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #else
@@ -119,6 +121,17 @@ public class TitleCanvas : UICanvas
             UIManager.Instance.HideAllPanels();
         }
     }
+
+    public void OnClickIntroSkipBtn()
+    {
+        if (!menuDirectorFin)
+        {
+            SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
+            timelineController.SkipIntro();
+            SkipIntroBtn.SetActive(false);
+        }
+    }
+
     private void HandleMenuDirFin()
     {
         menuDirectorFin = true;

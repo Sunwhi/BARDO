@@ -47,12 +47,16 @@ public class TimelineController : MonoBehaviour
         // 스페이스 누르면 스킵
         if (!isMenuShown && Input.GetKeyDown(KeyCode.Space))
         {
-            menuDirector?.Play();
-            isMenuShown = true;
+            SkipIntro();
         }
 #endif
     }
 
+    public void SkipIntro()
+    {
+        menuDirector?.Play();
+        isMenuShown = true;
+    }
     private void OnMenuDirectorFin(PlayableDirector director)
     {
         if(director == menuDirector)
