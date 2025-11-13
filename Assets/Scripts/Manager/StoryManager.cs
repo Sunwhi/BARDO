@@ -1,10 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 
 public class StoryManager : Singleton<StoryManager>
 {
+    [SerializeField] private VideoPlayer videoPlayer;
+    [SerializeField] private GameObject videoDisplayUI;
+
     [SerializeField] private Player player;
     [SerializeField] private Padma padma;
     public Player Player => player;
@@ -39,6 +43,7 @@ public class StoryManager : Singleton<StoryManager>
     }
     private void OnEnable()
     {
+        videoPlayer.loopPointReached += OnVideoFinished;
         DialogueEventManager.Instance.dialogueEvents.onDialogueFinished += OnDialogueFinished;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -61,7 +66,11 @@ public class StoryManager : Singleton<StoryManager>
             playerController = new PlayerController(player);
 
             if (!SaveManager.Instance.MySaveData.stage1PadmaActive) Destroy(Padma.gameObject);
-            StartCoroutine(MainSceneStart());
+
+
+            PlayVideo();
+            UIManager.Instance.fadeView.FadeOut();
+            UIManager.Instance.fadeView.FadeIn();
         }
     }
     
@@ -78,12 +87,12 @@ public class StoryManager : Singleton<StoryManager>
             //이어하기 시 파드마 없고 quest는 뜬다.
             SaveManager.Instance.SetSaveData(nameof(SaveData.stage1PadmaActive), false); // 다음 이어하기부터 padmaAcive되지 않는다.
 
-            SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
             yield return new WaitForSeconds(0.5f);
-            UIManager.Show<RoundTransition>(1);          
+            UIManager.Show<RoundTransition>(1);
+            SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
             yield return new WaitForSeconds(1f);
            
-            SoundManager.Instance.PlaySFX(ESFX.Opening_Door);
+            //SoundManager.Instance.PlaySFX(ESFX.Opening_Door); 인트로 영상 마지막에 문 소리 난다고 해서 뺌.
 
             SoundManager.Instance.PlayBGM(EBGM.Stage1);
             SoundManager.Instance.PlayAmbientSound(ESFX.Background_Wind);
@@ -208,7 +217,30 @@ public class StoryManager : Singleton<StoryManager>
             endFly = true;
         });
         yield return new WaitUntil(() => endFly);
-    }    
+    }
+
+    private void OnVideoFinished(VideoPlayer vp)
+    {
+        Debug.Log("video finished");
+        Destroy(videoDisplayUI);
+        StartCoroutine(MainSceneStart());
+    }
+    private void PlayVideo()
+    {
+        if (videoPlayer != null)
+        {
+            videoPlayer.Play();
+        }
+    }
+
+    private void StopVideo()
+    {
+        if (videoPlayer != null)
+        {
+            videoPlayer.Stop();
+        }
+    }
+   
     #endregion
 
     #region Stage2

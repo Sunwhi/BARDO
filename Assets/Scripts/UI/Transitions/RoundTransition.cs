@@ -22,7 +22,7 @@ public class RoundTransition : UIBase
 
     public override void Opened(object[] param)
     {
-        SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
+        //SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
 
         StoryManager.Instance.roundTransitionDone = false;
         Time.timeScale = 0f;

@@ -8,6 +8,11 @@ public class TimelineController : MonoBehaviour
 {
     [SerializeField] private PlayableDirector menuDirector;
     [SerializeField] private PlayableDirector titleDirector;
+    [SerializeField] private GameObject ContinueBtn;
+    [SerializeField] private GameObject NewBtn;
+    [SerializeField] private GameObject OptionBtn;
+    [SerializeField] private GameObject CreditBtn;
+    [SerializeField] private GameObject ExitBtn;
 
     public event Action OnMenuDirectorFinEvent;
     public double currentTime;
@@ -52,6 +57,12 @@ public class TimelineController : MonoBehaviour
     {
         if(director == menuDirector)
         {
+            ContinueBtn.SetActive(true);
+            NewBtn.SetActive(true);
+            OptionBtn.SetActive(true);
+            CreditBtn.SetActive(true);
+            ExitBtn.SetActive(true);
+
             OnMenuDirectorFinEvent?.Invoke();
         }
     }
