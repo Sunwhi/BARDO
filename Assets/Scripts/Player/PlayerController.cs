@@ -5,10 +5,12 @@ public class PlayerController
     private readonly Player player;
 
     public Vector2 MoveInput { get; set; }
+    public bool RunInput { get; set; }
     public bool JumpInput { get; set; }
     public bool InputEnabled { get; set; } = true;
 
-    public float moveSpeed => player.moveSpeed;
+    public float walkSpeed => player.walkSpeed;
+    public float runSpeed => player.runSpeed;
     public float jumpForce = 7f;
 
     public PlayerController(Player player)
@@ -21,8 +23,8 @@ public class PlayerController
         if (!InputEnabled) return;
 
         Vector2 velocity = player.rb.linearVelocity;
-        velocity.x = MoveInput.x * moveSpeed;
-
+        float speed = RunInput ? runSpeed : walkSpeed;
+        velocity.x = MoveInput.x * speed;
         player.rb.linearVelocity = velocity;
 
         if (MoveInput.x != 0)

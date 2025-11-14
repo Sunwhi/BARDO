@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
     public PlayerController controller { get; private set; }
 
     [Header("Player Speed")]
-    public float moveSpeed = 7f;
+    public float walkSpeed = 4f;
+    public float runSpeed = 7f;
 
     [Header("Components")]
     public SpriteRenderer spriteRenderer;
@@ -75,6 +76,18 @@ public class Player : MonoBehaviour
     public void ForceMove(Vector2 moveInput)
     {
         controller.MoveInput = moveInput;
+    }
+
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            controller.RunInput = true;
+        }
+        else if (context.canceled)
+        {
+            controller.RunInput = false;
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context)
