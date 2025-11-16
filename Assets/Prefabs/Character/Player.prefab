@@ -105,6 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6424e8987b659640b3384ac823e31f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 4
+  runSpeed: 7
   spriteRenderer: {fileID: 9071911145696955274}
   playerInput: {fileID: 6777440786566200407}
   rb: {fileID: 8336786970430924591}
@@ -291,6 +293,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1216607028837369246}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnRun
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c92d2ed1-ae5d-458c-80df-6b9de0ab06ab
+    m_ActionName: 'Player/Run[/Keyboard/shift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
