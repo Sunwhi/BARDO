@@ -42,9 +42,4 @@ public class PlayerStateMachine
         CurrentState = newState;
         CurrentState?.Enter();
     }
-
-    public void OnRunEvent(bool isRun)
-    {
-        Player.animator.SetBool(Player.AnimationData.RunParamHash, isRun);
-    }
 }

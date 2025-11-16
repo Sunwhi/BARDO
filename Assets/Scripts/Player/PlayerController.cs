@@ -10,9 +10,9 @@ public class PlayerController
     public bool InputEnabled { get; set; } = true;
 
 
-    private float MoveSpeed => RunInput ? runSpeed : walkSpeed;
-    public float walkSpeed => player.walkSpeed;
-    public float runSpeed => player.runSpeed;
+    public float MoveSpeed => RunInput ? runSpeed : walkSpeed;
+    private float walkSpeed => player.walkSpeed;
+    private float runSpeed => player.runSpeed;
     public float jumpForce = 7f;
 
     public PlayerController(Player player)
