@@ -88,6 +88,8 @@ public class Player : MonoBehaviour
         {
             controller.RunInput = false;
         }
+
+        fsm.OnRunEvent(controller.RunInput);
     }
 
     public void OnJump(InputAction.CallbackContext context)

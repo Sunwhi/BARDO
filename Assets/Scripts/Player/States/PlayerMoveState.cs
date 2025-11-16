@@ -23,6 +23,7 @@ public class PlayerMoveState : PlayerState
         if (Player.controller.JumpInput)
         {
             fsm.ChangeState(fsm.JumpState);
+            return;
         }
     }
 
