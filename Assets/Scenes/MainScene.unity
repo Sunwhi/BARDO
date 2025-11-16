@@ -824,11 +824,6 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 7508223995373252540, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
   m_PrefabInstance: {fileID: 4481790089563482052}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &257175832 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 4363374976495570092, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-  m_PrefabInstance: {fileID: 4481790089563482052}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &324866181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,12 +1857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c2fd89ed400ef40a8327b24817fe80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyOnSceneLoad: 0
-  stepLength: 0.6
-  speedStableTime: 0.4
-  speedVarEps: 0.3
-  stopEps: 0.05
-  sampleHz: 100
 --- !u!1 &1153402255
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,7 +2002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoundingShape2D: {fileID: 257175832}
+  BoundingShape2D: {fileID: 1831812330}
   Damping: 0.5
   SlowingDistance: 5
   OversizeWindow:
@@ -2065,7 +2054,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 21.5
+    OrthographicSize: 21
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -2707,6 +2696,11 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!61 &1831812330 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8930801255288224251, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+  m_PrefabInstance: {fileID: 4481790089563482052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1879933545
 GameObject:
   m_ObjectHideFlags: 0
@@ -3222,50 +3216,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 425841726331446327, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 582003682031588968, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1214218934366102996, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1555502741689835295, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1652210260390073932, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1790900254250907267, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_Size.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1790900254250907267, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_Offset.y
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1951675264045639950, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 16.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 1951675264045639950, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376318558458356579, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_Size.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2376318558458356579, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_Offset.y
-      value: 1.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2568156051693538789, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 100
@@ -3309,46 +3259,6 @@ PrefabInstance:
     - target: {fileID: 3176486281749844234, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
       propertyPath: m_Name
       value: Stages
-      objectReference: {fileID: 0}
-    - target: {fileID: 4412226822426489511, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4685741090706636085, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 9.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 5558804039982349512, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6073497077733533825, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619486152856962068, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6665041309567084220, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_Size.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6665041309567084220, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_Offset.y
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7503181876476091353, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_Size.x
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7503181876476091353, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_Size.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7503181876476091353, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-      propertyPath: m_Offset.y
-      value: 1.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
