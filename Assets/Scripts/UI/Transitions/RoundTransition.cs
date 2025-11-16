@@ -28,6 +28,7 @@ public class RoundTransition : UIBase
         Time.timeScale = 0f;
         round = param.Length > 0 && param[0] is int ? (int)param[0] : 1;
         weekTxt.text = weekFormat + round;
+        weekTxt.characterSpacing = -10f;
         roundTxt.text = roundFormat.ContainsKey(round) ? roundFormat[round] : "Round " + round;
             
         SaveManager.Instance.SetSaveData(nameof(SaveData.stageIdx), round); //round num

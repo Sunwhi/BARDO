@@ -13,6 +13,7 @@ public class TimelineController : MonoBehaviour
     [SerializeField] private GameObject OptionBtn;
     [SerializeField] private GameObject CreditBtn;
     [SerializeField] private GameObject ExitBtn;
+    [SerializeField] private GameObject IntroSkipBtn;
 
     public event Action OnMenuDirectorFinEvent;
     public double currentTime;
@@ -66,6 +67,7 @@ public class TimelineController : MonoBehaviour
             OptionBtn.SetActive(true);
             CreditBtn.SetActive(true);
             ExitBtn.SetActive(true);
+            IntroSkipBtn.SetActive(false);
 
             OnMenuDirectorFinEvent?.Invoke();
         }

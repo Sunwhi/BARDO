@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Runtime.CompilerServices;
 
 public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -10,30 +11,40 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
     [Header("Components")]
     [SerializeField] private Button choiceBtn;
     [SerializeField] private TextMeshProUGUI choiceText;
+    [SerializeField] private RectTransform choiceRectTransform;
 
     public static event Action onEnterChoiceBtn;
     public static event Action onExitChoiceBtn;
+    public float textLength;
 
     private static string selectedChoiceBtn;
     private static string enteredChoiceBtn;
     private static string exitedChoiceBtn;
+    private float choiceWidth;
+
     ColorBlock cb;
+
     private void Start()
     {
         cb = choiceBtn.colors;
     }
 
-    private int choiceIndex = -1;
-
     private void Update()
     {
-        //Debug.Log("selected : " + selectedChoiceBtn);
-        //Debug.Log("entered : " + enteredChoiceBtn);
+
     }
+
+    private int choiceIndex = -1;
+
     private void OnEnable()
     {
         onEnterChoiceBtn += EnterChoiceBtn;
         onExitChoiceBtn += ExitChoiceBtn;
+
+        /*textLength = choiceText.preferredWidth;
+        choiceWidth = textLength + (1.5f) *(textLength - 100);
+
+        choiceRectTransform.sizeDelta = new Vector2(choiceWidth, choiceRectTransform.sizeDelta.y);*/
     }
     private void OnDisable()
     {
@@ -58,6 +69,7 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
         }
         choiceBtn.colors = cb;
     }
+
     public void SetChoiceText(string choiceTextString)
     {
         choiceText.text = choiceTextString;
@@ -100,5 +112,18 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
     {
         exitedChoiceBtn = gameObject.name;
         onExitChoiceBtn?.Invoke();
+    }
+    public float GetPrefferedWidth()
+    {
+        choiceText.ForceMeshUpdate();
+        float textPrefferedWidth = choiceText.preferredWidth;
+
+        float calculatedWidth = textPrefferedWidth + (0.5f) * (textPrefferedWidth - 100);
+
+        return calculatedWidth;
+    }
+    public void ControlChoiceWidth(float newWidth)
+    {
+        choiceRectTransform.sizeDelta = new Vector2(newWidth, choiceRectTransform.sizeDelta.y);
     }
 }
