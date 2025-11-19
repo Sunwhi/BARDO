@@ -169,6 +169,8 @@ public class DialoguePanelUI : MonoBehaviour
 
     private void SetChoiceBtns(List<Ink.Runtime.Choice> dialogueChoices)
     {
+        //float maxWidth = 0;
+
         // enable and set info for buttons depending on ink choice information
         int choiceButtonIndex = dialogueChoices.Count - 1;
         for (int inkChoiceIndex = 0; inkChoiceIndex < dialogueChoices.Count; inkChoiceIndex++)
@@ -177,7 +179,9 @@ public class DialoguePanelUI : MonoBehaviour
             DialogueChoiceBtn choiceButton = choiceButtons[choiceButtonIndex];
 
             choiceButton.gameObject.SetActive(true);
+
             choiceButton.SetChoiceText(dialogueChoice.text);
+
             choiceButton.SetChoiceIndex(inkChoiceIndex);
 
             if (inkChoiceIndex == 0)
@@ -186,8 +190,24 @@ public class DialoguePanelUI : MonoBehaviour
                 DialogueEventManager.Instance.dialogueEvents.UpdateChoiceIndex(0);
             }
 
+            float currentWidth = choiceButton.GetPrefferedWidth();
+            choiceButton.ControlChoiceWidth(currentWidth);
+            //if(maxWidth < currentWidth) maxWidth = currentWidth;
+
+
             choiceButtonIndex--;
         }
+
+        /*choiceButtonIndex = dialogueChoices.Count - 1;
+        for(int inkChoiceIndex = 0; inkChoiceIndex < dialogueChoices.Count; inkChoiceIndex++)
+        {
+            DialogueChoiceBtn choiceBtn = choiceButtons[choiceButtonIndex];
+
+            choiceBtn.ControlChoiceWidth(maxWidth);
+
+            choiceButtonIndex--;
+        }*/
+        
     }
     public void OnOffDialoguePanel(int i)
     {

@@ -10,5 +10,6 @@ public class NextStageEvent : IGameEvent
         stageId = id;
         if (transform != default) playerTransform = transform;
         UIManager.Show<RoundTransition>(stageId);
+        SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
     }
 }

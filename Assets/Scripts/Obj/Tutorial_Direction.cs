@@ -58,20 +58,23 @@ public class Tutorial_Direction : MonoBehaviour
             case "Move_On":
                 if (!SaveManager.Instance.MySaveData.tutoDirectionComplete)
                 {
-                    upImg.DOFade(1f, 3f);
-                    downImg.DOFade(1f, 3f);
-                    leftImg.DOFade(1f, 3f);
-                    rightImg.DOFade(1f, 3f);
+                    upImg.DOFade(1f, 2f);
+                    downImg.DOFade(1f, 2f);
+                    leftImg.DOFade(1f, 2f);
+                    rightImg.DOFade(1f, 2f);
                     imgShown = true;
                 }
                 break;
             case "Move_Off":
                 QuestManager.Instance.ClearSubQuest(0);
                 SaveManager.Instance.SetSaveData(nameof(SaveData.tutoDirectionComplete), true);
-                upImg.DOFade(0f, 3f);
-                downImg.DOFade(0f, 3f);
-                leftImg.DOFade(0f, 3f);
-                rightImg.DOFade(0f, 3f);
+                upImg.DOFade(0f, 2f);
+                downImg.DOFade(0f, 2f);
+                leftImg.DOFade(0f, 2f);
+                rightImg.DOFade(0f, 2f).OnComplete(() =>
+                {
+                    GameEventBus.Raise(new TutorialEvent("Jump_On"));
+                });
                 imgShown = false;
                 break;  
         }

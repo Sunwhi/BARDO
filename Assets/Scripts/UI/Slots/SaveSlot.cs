@@ -10,11 +10,16 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private int slotIdx = 0; // 0~4
     [SerializeField] private Dictionary<(int stageIdx, int storyId), string> checkpointNames = new()
     {
-        {(1,1), "1스테이지 시작" },
-        {(2,1), "2스테이지 시작" },
-        {(3,1), "3스테이지 시작" },
-        {(3,2), "3스테이지 시작" },
-        {(4,1), "4스테이지 시작" }
+        {(1,0), "1스테이지" },
+        {(2,0), "2스테이지" },
+        {(2,1), "2스테이지" },
+        {(2,2), "2스테이지" },
+        {(2,3), "2스테이지" },
+        {(2,4), "2스테이지" },
+        {(2,5), "2스테이지" },
+        {(3,0), "3스테이지" },
+        {(3,1), "3스테이지" },
+        {(4,0), "4스테이지" }
     };
 
     [Header("Components")]
