@@ -30,6 +30,7 @@ public class SaveData
     public int stageIdx = 0; //0 : 시작. 1~ : N주차.
     public int storyIdx = 1; //Stage 내부 Idx
     public SerializableVector3 savedPosition = new SerializableVector3(0,0,0);
+    public CamState savedCamState = CamState.v1;
 
     public bool stage1PadmaActive = true;
     public bool tutoDirectionComplete = false;

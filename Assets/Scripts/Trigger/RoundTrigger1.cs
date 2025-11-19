@@ -17,6 +17,8 @@ public class RoundTrigger1 : TriggerBase
 
     protected override void OnTriggered()
     {
+        SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
+
         SaveData curData = SaveManager.Instance.MySaveData;
         if (curData.stageIdx > 1) return; //1스테이지에서 넘어올 때만 round trigger 1 발동.
 

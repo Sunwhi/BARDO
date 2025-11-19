@@ -1,10 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 
 public class StoryManager : Singleton<StoryManager>
 {
+    [SerializeField] private VideoController videoController;
+
     [SerializeField] private Player player;
     [SerializeField] private Padma padma;
     public Player Player => player;
@@ -20,6 +23,9 @@ public class StoryManager : Singleton<StoryManager>
     [SerializeField] private Transform dialogueParent;
     [SerializeField] private Transform transition;
     [SerializeField] private Transform defaultCanvas;
+
+    [SerializeField] private GameObject videoPlayer;
+    [SerializeField] private GameObject videoImg;
 
     [Header("Stage1")]
     [SerializeField] private Transform PlayerStopPos;
@@ -39,11 +45,22 @@ public class StoryManager : Singleton<StoryManager>
     }
     private void OnEnable()
     {
-        DialogueEventManager.Instance.dialogueEvents.onDialogueFinished += OnDialogueFinished;
+        if(videoController != null)
+        {
+            videoController.OnVideoFinished += HandleVIdeoFinished;
+        }
+        if(DialogueEventManager.Instance != null)
+        {
+            DialogueEventManager.Instance.dialogueEvents.onDialogueFinished += OnDialogueFinished;
+        }
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnDisable()
     {
+        if(videoController != null)
+        {
+            videoController.OnVideoFinished += HandleVIdeoFinished;
+        }
         if(DialogueEventManager.Instance != null)
         {
             DialogueEventManager.Instance.dialogueEvents.onDialogueFinished -= OnDialogueFinished;
@@ -61,7 +78,15 @@ public class StoryManager : Singleton<StoryManager>
             playerController = new PlayerController(player);
 
             if (!SaveManager.Instance.MySaveData.stage1PadmaActive) Destroy(Padma.gameObject);
-            StartCoroutine(MainSceneStart());
+
+            if (!ContinueManager.Instance.loadedByContinue)
+            {
+                videoPlayer.SetActive(true);
+                videoImg.SetActive(true);
+                videoController.PlayVideo();
+            }
+            UIManager.Instance.fadeView.FadeOut();
+            UIManager.Instance.fadeView.FadeIn();
         }
     }
     
@@ -70,6 +95,7 @@ public class StoryManager : Singleton<StoryManager>
         // 새 게임에서 시작할 시에만 스토리 진행
         if (!ContinueManager.Instance.loadedByContinue)
         {
+
             player.playerInput.enabled = false;
 
             Tuto_Move_On.SetActive(false);
@@ -78,12 +104,12 @@ public class StoryManager : Singleton<StoryManager>
             //이어하기 시 파드마 없고 quest는 뜬다.
             SaveManager.Instance.SetSaveData(nameof(SaveData.stage1PadmaActive), false); // 다음 이어하기부터 padmaAcive되지 않는다.
 
-            SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
             yield return new WaitForSeconds(0.5f);
-            UIManager.Show<RoundTransition>(1);          
+            UIManager.Show<RoundTransition>(1);
+            SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
             yield return new WaitForSeconds(1f);
            
-            SoundManager.Instance.PlaySFX(ESFX.Opening_Door);
+            //SoundManager.Instance.PlaySFX(ESFX.Opening_Door); 인트로 영상 마지막에 문 소리 난다고 해서 뺌.
 
             SoundManager.Instance.PlayBGM(EBGM.Stage1);
             SoundManager.Instance.PlayAmbientSound(ESFX.Background_Wind);
@@ -208,7 +234,13 @@ public class StoryManager : Singleton<StoryManager>
             endFly = true;
         });
         yield return new WaitUntil(() => endFly);
-    }    
+    }
+
+    private void HandleVIdeoFinished()
+    {
+        Debug.Log("video finished");
+        StartCoroutine(MainSceneStart());
+    }
     #endregion
 
     #region Stage2

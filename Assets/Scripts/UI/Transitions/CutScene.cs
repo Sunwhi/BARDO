@@ -9,6 +9,7 @@ public class CutScene : UIBase
     {
         Closeup currentCloseup = DialogueManager.Instance.closeup;
 
+        if (Input.GetKeyDown(KeyCode.F)) CutsceneFinished();
         /*if (previousCloseup == Closeup.PadmaFly && currentCloseup == previousCloseup) 
         {
             CutsceneFinished();

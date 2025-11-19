@@ -546,6 +546,7 @@ GameObject:
   - component: {fileID: 216412112744167831}
   - component: {fileID: 4336652146726242125}
   - component: {fileID: 2685798382203872216}
+  - component: {fileID: 2629035493854524714}
   m_Layer: 5
   m_Name: NoBtn
   m_TagString: Untagged
@@ -654,6 +655,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2629035493854524714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866635106842517403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06dadc0e069a8e9418c037cb5a8d899c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverStateObject: {fileID: 0}
+  timelineController: {fileID: 0}
+  exitBtn: {fileID: 0}
+  defaultExitSprite: {fileID: 0}
+  glowExitSprite: {fileID: 0}
 --- !u!1 &5308652675710433656
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,6 +763,7 @@ GameObject:
   - component: {fileID: 9148987618377620012}
   - component: {fileID: 4191919143880912572}
   - component: {fileID: 2973758497788321703}
+  - component: {fileID: 8966267143997400624}
   m_Layer: 5
   m_Name: YesBtn
   m_TagString: Untagged
@@ -853,6 +872,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8966267143997400624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130652308568117481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06dadc0e069a8e9418c037cb5a8d899c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverStateObject: {fileID: 0}
+  timelineController: {fileID: 0}
+  exitBtn: {fileID: 0}
+  defaultExitSprite: {fileID: 0}
+  glowExitSprite: {fileID: 0}
 --- !u!1 &7322749064470627575
 GameObject:
   m_ObjectHideFlags: 0
