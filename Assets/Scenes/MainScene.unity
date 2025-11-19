@@ -814,16 +814,6 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
---- !u!61 &257175830 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 4988642903912855225, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-  m_PrefabInstance: {fileID: 4481790089563482052}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &257175831 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7508223995373252540, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
-  m_PrefabInstance: {fileID: 4481790089563482052}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &324866181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,6 +1246,16 @@ MonoBehaviour:
   brain: {fileID: 8480977}
   ignoreDuringSwitch: 0.5
   animLayer: 0
+--- !u!61 &508580914 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 9098409178453153173, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+  m_PrefabInstance: {fileID: 4481790089563482052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &508580915 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4062464372509740835, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+  m_PrefabInstance: {fileID: 4481790089563482052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &698111948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2263,7 +2263,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 21
+    OrthographicSize: 21.4
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -2365,7 +2365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoundingShape2D: {fileID: 257175831}
+  BoundingShape2D: {fileID: 508580915}
   Damping: 0.5
   SlowingDistance: 5
   OversizeWindow:
@@ -2417,7 +2417,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 21.5
+    OrthographicSize: 21.4
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -2835,7 +2835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoundingShape2D: {fileID: 257175830}
+  BoundingShape2D: {fileID: 508580914}
   Damping: 0.5
   SlowingDistance: 5
   OversizeWindow:
@@ -2887,7 +2887,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 21.5
+    OrthographicSize: 21.4
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -3187,7 +3187,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 21.5
+    OrthographicSize: 21.4
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -3570,7 +3570,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
 --- !u!61 &4481790089563482055 stripped
 BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 6094028729002634012, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5896030510956562538, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
   m_PrefabInstance: {fileID: 4481790089563482052}
   m_PrefabAsset: {fileID: 0}
 --- !u!61 &4481790089563482056 stripped
