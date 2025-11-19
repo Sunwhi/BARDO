@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler   
 {
     [SerializeField] GameObject hoverStateObject;
+    [SerializeField] GameObject normalStateObject;
     [SerializeField] TimelineController timelineController;
 
     [SerializeField] Image exitBtn;
@@ -34,8 +35,9 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Hover);
 
-        if (hoverStateObject != null && menuDirFin)
+        if (normalStateObject != null && hoverStateObject != null && menuDirFin)
         {
+            //normalStateObject.SetActive(false);
             hoverStateObject.SetActive(true); 
         }
         
@@ -46,8 +48,11 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     }
     public void OnPointerExit(PointerEventData eventData) 
     {
-        if (hoverStateObject != null) hoverStateObject.SetActive(false);
-
+        if (normalStateObject != null && hoverStateObject != null)
+        {
+            //normalStateObject.SetActive(true);
+            hoverStateObject.SetActive(false);
+        }
         if (defaultExitSprite != null)
         {
             exitBtn.sprite = defaultExitSprite;

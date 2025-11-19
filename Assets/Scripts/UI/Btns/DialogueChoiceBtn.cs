@@ -16,7 +16,7 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
     public static event Action onEnterChoiceBtn;
     public static event Action onExitChoiceBtn;
     public float textLength;
-
+    
     private static string selectedChoiceBtn;
     private static string enteredChoiceBtn;
     private static string exitedChoiceBtn;
@@ -40,11 +40,6 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
     {
         onEnterChoiceBtn += EnterChoiceBtn;
         onExitChoiceBtn += ExitChoiceBtn;
-
-        /*textLength = choiceText.preferredWidth;
-        choiceWidth = textLength + (1.5f) *(textLength - 100);
-
-        choiceRectTransform.sizeDelta = new Vector2(choiceWidth, choiceRectTransform.sizeDelta.y);*/
     }
     private void OnDisable()
     {
@@ -117,9 +112,10 @@ public class DialogueChoiceBtn : MonoBehaviour, ISelectHandler, IPointerEnterHan
     {
         choiceText.ForceMeshUpdate();
         float textPrefferedWidth = choiceText.preferredWidth;
+        Debug.Log(textPrefferedWidth);
 
-        float calculatedWidth = textPrefferedWidth + (0.5f) * (textPrefferedWidth - 100);
-
+        float calculatedWidth = textPrefferedWidth + 15 * Mathf.Log(textPrefferedWidth / 10, 2);//1 * (textPrefferedWidth / 4);//textPrefferedWidth + (0.5f) * (textPrefferedWidth - 90);
+        Debug.Log("calculateed" + calculatedWidth);
         return calculatedWidth;
     }
     public void ControlChoiceWidth(float newWidth)

@@ -24,6 +24,9 @@ public class StoryManager : Singleton<StoryManager>
     [SerializeField] private Transform transition;
     [SerializeField] private Transform defaultCanvas;
 
+    [SerializeField] private GameObject videoPlayer;
+    [SerializeField] private GameObject videoImg;
+
     [Header("Stage1")]
     [SerializeField] private Transform PlayerStopPos;
 
@@ -76,8 +79,12 @@ public class StoryManager : Singleton<StoryManager>
 
             if (!SaveManager.Instance.MySaveData.stage1PadmaActive) Destroy(Padma.gameObject);
 
-            videoController.PlayVideo();
-
+            if (!ContinueManager.Instance.loadedByContinue)
+            {
+                videoPlayer.SetActive(true);
+                videoImg.SetActive(true);
+                videoController.PlayVideo();
+            }
             UIManager.Instance.fadeView.FadeOut();
             UIManager.Instance.fadeView.FadeIn();
         }
@@ -88,6 +95,7 @@ public class StoryManager : Singleton<StoryManager>
         // 새 게임에서 시작할 시에만 스토리 진행
         if (!ContinueManager.Instance.loadedByContinue)
         {
+
             player.playerInput.enabled = false;
 
             Tuto_Move_On.SetActive(false);
