@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public enum SelectCard
 {
@@ -44,6 +45,9 @@ public class SaveData
     public bool quest1Completed = false;
     public bool threadEnabled = false;
     public SelectCard selectedCard = SelectCard.Default;
+
+    //Stage4 기믹 저장
+    public List<int> teleportIdxs;
 
     //Endings
     public bool firstJudgement = true; //true = 선. false = 악.
