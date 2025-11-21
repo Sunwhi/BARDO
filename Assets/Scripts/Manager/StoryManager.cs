@@ -81,6 +81,8 @@ public class StoryManager : Singleton<StoryManager>
 
             if (!ContinueManager.Instance.loadedByContinue)
             {
+                SoundManager.Instance.StopBGM();
+
                 videoPlayer.SetActive(true);
                 videoImg.SetActive(true);
                 videoController.PlayVideo();
@@ -95,7 +97,6 @@ public class StoryManager : Singleton<StoryManager>
         // 새 게임에서 시작할 시에만 스토리 진행
         if (!ContinueManager.Instance.loadedByContinue)
         {
-
             player.playerInput.enabled = false;
 
             Tuto_Move_On.SetActive(false);
@@ -109,9 +110,6 @@ public class StoryManager : Singleton<StoryManager>
             SoundManager.Instance.PlaySFX(ESFX.Stage_Transition);
             yield return new WaitForSeconds(1f);
 
-            //SoundManager.Instance.PlaySFX(ESFX.Opening_Door); 인트로 영상 마지막에 문 소리 난다고 해서 뺌.
-            SoundManager.Instance.PlayBGM(EBGM.Stage1);
-
             SoundManager.Instance.PlayAmbientSound(ESFX.Background_Wind);
 
             yield return PlayerWalkByPos(PlayerStopPos.position.x);
@@ -119,7 +117,6 @@ public class StoryManager : Singleton<StoryManager>
             yield return new WaitForSeconds(2f);
 
             QuestManager.Instance.SetQuestData();
-
 
             S1_DialogueStart();
             yield return new WaitUntil(() => isDialogueDone);
@@ -238,7 +235,6 @@ public class StoryManager : Singleton<StoryManager>
 
     private void HandleVIdeoFinished()
     {
-        Debug.Log("video finished");
         StartCoroutine(MainSceneStart());
     }
     #endregion

@@ -70,7 +70,7 @@ public class SoundManager : Singleton<SoundManager>
             SetSFXVolume(0.5f); // 기본값 설정
         }
 
-        //PlayBGM(EBGM.Title);
+        PlayBGM(EBGM.Title);
     }
 
     public void PlayBGM(EBGM bgmType)
@@ -78,6 +78,8 @@ public class SoundManager : Singleton<SoundManager>
         int index = (int)bgmType;
         if (index >= 0 && index < bgmClips.Length)
         {
+            if (bgmSource.clip != null) StopBGM();
+
             bgmSource.clip = bgmClips[index];
             bgmSource.Play();
         }
@@ -85,17 +87,18 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlaySFX(ESFX sfxType)
     {
-        //Debug.Log(sfxType);
         int index = (int)sfxType;
-        //Debug.Log("index : " + index);
-        //Debug.Log("sfxClips.Length : " + sfxClips.Length);
         if (index >= 0 && index < sfxClips.Length)
         {
-            if(index == 9)  Debug.Log("inside if moon");
             sfxSource.PlayOneShot(sfxClips[index]);
         }
     }
 
+    public void StopBGM()
+    {
+        bgmSource.Stop();
+        bgmSource.loop = false;
+    }
     public void StopSFX()
     {
         sfxSource.Stop();

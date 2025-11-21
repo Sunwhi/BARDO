@@ -43,7 +43,7 @@ public class Tutorial_Spacebar : MonoBehaviour
             case "Jump_On":
                 if (!SaveManager.Instance.MySaveData.tutoJumpComplete)
                 {
-                    //SoundManager.Instance.PlayBGM(EBGM.Stage1);
+                    SoundManager.Instance.PlayBGM(EBGM.Stage1);
 
                     spaceImg.DOFade(1f, 2f);
                     imgShown = true;

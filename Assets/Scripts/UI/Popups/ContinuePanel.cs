@@ -47,7 +47,6 @@ public class ContinuePanel : UIBase
             {
                 SaveManager.Instance.SetSaveSlotIdx(idx);
                 ContinueGame();
-                SoundManager.Instance.PlayBGM(EBGM.Stage1);
             }));
         }
         else
