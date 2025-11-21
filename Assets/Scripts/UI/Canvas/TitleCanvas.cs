@@ -6,6 +6,8 @@ public class TitleCanvas : UICanvas
 {
     [SerializeField] TimelineController timelineController;
     [SerializeField] GameObject SkipIntroBtn;
+    [SerializeField] GameObject BGBlurImage;
+
     private bool menuDirectorFin = false;
     private void OnEnable()
     {
@@ -29,6 +31,8 @@ public class TitleCanvas : UICanvas
         if (menuDirectorFin)
         {
             SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
+            BGBlurImage.SetActive(true);
+
             // 남은 saveslot이 없다면
             if (!SaveManager.Instance.FindEmptySlot())
             {
@@ -60,6 +64,7 @@ public class TitleCanvas : UICanvas
         if (menuDirectorFin)
         {
             SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
+            BGBlurImage.SetActive(true);
 
             if (SoundManager.Instance == null)
             {
@@ -86,6 +91,8 @@ public class TitleCanvas : UICanvas
         if (menuDirectorFin)
         {
             SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
+            BGBlurImage.SetActive(true);
+
             UIManager.Show<SettingPanel>();
         }
     }
@@ -95,6 +102,8 @@ public class TitleCanvas : UICanvas
         if (menuDirectorFin)
         {
             SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
+            BGBlurImage.SetActive(true);
+
             UIManager.Show<CreditPanel>();
         }
     }
@@ -118,6 +127,8 @@ public class TitleCanvas : UICanvas
         if(menuDirectorFin)
         {
             SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
+            BGBlurImage.SetActive(false);
+            Debug.Log("falseplease");
             UIManager.Instance.HideAllPanels();
         }
     }

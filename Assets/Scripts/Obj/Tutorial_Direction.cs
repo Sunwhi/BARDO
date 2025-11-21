@@ -58,6 +58,8 @@ public class Tutorial_Direction : MonoBehaviour
             case "Move_On":
                 if (!SaveManager.Instance.MySaveData.tutoDirectionComplete)
                 {
+                    //SoundManager.Instance.PlayBGM(EBGM.Stage1);
+
                     upImg.DOFade(1f, 2f);
                     downImg.DOFade(1f, 2f);
                     leftImg.DOFade(1f, 2f);

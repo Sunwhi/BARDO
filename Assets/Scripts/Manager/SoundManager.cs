@@ -69,6 +69,8 @@ public class SoundManager : Singleton<SoundManager>
         {
             SetSFXVolume(0.5f); // 기본값 설정
         }
+
+        //PlayBGM(EBGM.Title);
     }
 
     public void PlayBGM(EBGM bgmType)
