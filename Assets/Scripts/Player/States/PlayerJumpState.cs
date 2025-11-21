@@ -9,7 +9,7 @@ public class PlayerJumpState : PlayerState
         Player.controller.Jump();
         Player.isGrounded = false;
         SoundManager.Instance.PlaySFX(ESFX.Character_Jump);
-        Player.animator.SetBool(Player.AnimationData.JumpParamHash, true);
+        Player.animator.SetBool(Player.AnimationData.GroundParamHash, false);
     }
 
     public override void Update()
@@ -33,6 +33,6 @@ public class PlayerJumpState : PlayerState
 
     public override void Exit()
     {
-        Player.animator.SetBool(Player.AnimationData.JumpParamHash, false);
+        Player.animator.SetBool(Player.AnimationData.GroundParamHash, true);
     }
 }

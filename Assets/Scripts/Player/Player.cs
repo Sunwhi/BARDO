@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         fsm.FixedUpdate();
+        animator.SetFloat(AnimationData.VelocityYParamHash, rb.linearVelocityY);
     }
 
     private void OnDisable()
@@ -88,6 +89,8 @@ public class Player : MonoBehaviour
         {
             controller.RunInput = false;
         }
+
+        animator.SetFloat(AnimationData.SpeedParamHash, controller.MoveSpeed);
     }
 
     public void OnJump(InputAction.CallbackContext context)
