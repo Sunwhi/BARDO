@@ -1,9 +1,12 @@
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 
+[RequireComponent(typeof(Player))]
 public class PlayerViewport : MonoBehaviour
 {
     [SerializeField] private Camera cam;
+    private CinemachineBrain brain;
 
     private readonly float checkInterval = 0.2f;
     private float timer = 0f;
@@ -14,21 +17,24 @@ public class PlayerViewport : MonoBehaviour
     {
         if (cam == null)
             cam = Camera.main;
+
+        brain = cam.GetComponent<CinemachineBrain>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         timer += Time.deltaTime;
         if (timer < checkInterval) return;
         timer = 0f;
 
         Bounds camBounds = GetCamBounds();
-        camBounds.Expand(new Vector3(0.6f, 0, 0));
+        camBounds.Expand(new Vector3(0.4f, 0.4f, 0));
         Vector3 playerPos = transform.position;
         bool outNow = !camBounds.Contains(playerPos);
 
         if (outNow && !viewportDelay)
         {
+            Debug.Log($"outNow: {outNow} | cambounds: {camBounds} | playerPos: {playerPos}");
             StartCoroutine(AfterTransition(camBounds, playerPos));
         }
     }
@@ -36,9 +42,12 @@ public class PlayerViewport : MonoBehaviour
     private Bounds GetCamBounds()
     {
         float zDistance = Mathf.Abs(cam.transform.position.z - transform.position.z);
+
         Vector3 bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, zDistance));
         Vector3 topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, zDistance));
-        return new Bounds((bottomLeft + topRight) / 2, topRight - bottomLeft);
+
+        Bounds b = new Bounds((bottomLeft + topRight) / 2, topRight - bottomLeft);
+        return b;
     }
 
     private ViewportExitDirection GetExitDirection(Bounds bounds, Vector3 pos)
@@ -64,8 +73,10 @@ public class PlayerViewport : MonoBehaviour
             camBounds.Expand(new Vector3(0.6f, 0, 0));
             playerPos = transform.position;
             outNow = !camBounds.Contains(playerPos);
+
+            Debug.Log($"outNow: {outNow} | cambounds: {camBounds} | playerPos: {playerPos}");
         }
 
         viewportDelay = false;
     }
-}   
+}
