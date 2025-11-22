@@ -45,6 +45,10 @@ public class TitleCanvas : UICanvas
                     // 해당 슬롯의 데이터를 새 게임용으로 초기화
                     SaveManager.Instance.InitCurSlotAsNewGame();
                     MySceneManager.Instance.LoadScene(ESceneType.MainScene);
+                }),
+                new UnityAction(() =>
+                {
+                    BGBlurImage.SetActive(false);
                 })
                 );
             }
@@ -66,23 +70,7 @@ public class TitleCanvas : UICanvas
             SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
             BGBlurImage.SetActive(true);
 
-            if (SoundManager.Instance == null)
-            {
-                Debug.LogError("SoundManager.Instance is null! 씬에 SoundManager가 없거나 아직 초기화되지 않았습니다.");
-            }
-            if (UIManager.Instance == null)
-            {
-                Debug.LogError("UIManager.Instance is null!");
-            }
-            if (SaveManager.Instance == null)
-            {
-                Debug.LogError("SaveManager.Instance is null!");
-            }
-            /*if (DialogueManager.Instance == null)
-            {
-                Debug.LogError("DialogueManager.Instance is null!");
-            }*/
-            UIManager.Show<ContinuePanel>();
+            UIManager.Show<ContinuePanel>(BGBlurImage);
         }
     }
 
@@ -93,7 +81,7 @@ public class TitleCanvas : UICanvas
             SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
             BGBlurImage.SetActive(true);
 
-            UIManager.Show<SettingPanel>();
+            UIManager.Show<SettingPanel>(BGBlurImage);
         }
     }
 
@@ -104,7 +92,7 @@ public class TitleCanvas : UICanvas
             SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
             BGBlurImage.SetActive(true);
 
-            UIManager.Show<CreditPanel>();
+            UIManager.Show<CreditPanel>(BGBlurImage);
         }
     }
 
@@ -128,7 +116,6 @@ public class TitleCanvas : UICanvas
         {
             SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
             BGBlurImage.SetActive(false);
-            Debug.Log("falseplease");
             UIManager.Instance.HideAllPanels();
         }
     }

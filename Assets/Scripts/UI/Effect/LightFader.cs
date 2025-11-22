@@ -4,10 +4,12 @@ using UnityEngine.Rendering.Universal;
 
 public class LightFader : MonoBehaviour
 {
+    [Header("Light Fade")]
     [SerializeField] private Light2D targetLight;
     public float fadeDuration = 1.0f;
     public float maxIntensity = 1.5f;
     public float minIntensity = 0f;
+
 
     private void Start()
     {
@@ -21,14 +23,14 @@ public class LightFader : MonoBehaviour
             // fade in
             yield return StartCoroutine(FadeLight(minIntensity, maxIntensity, fadeDuration));
 
+
             // 0.5초 대기
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
 
             // fade out
             yield return StartCoroutine(FadeLight(maxIntensity, minIntensity, fadeDuration));
-
             // 0.5초 대기
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
         } 
     }
 

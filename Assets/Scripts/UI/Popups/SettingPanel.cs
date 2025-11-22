@@ -5,7 +5,11 @@ public class SettingPanel : UIBase
 {
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
-
+    private GameObject bgBlurImg;
+    private void Awake()
+    {
+        opened = OnPanelOpened;
+    }
     private void OnEnable()
     {
         bgmSlider.value = SoundManager.Instance.GetBGMVolume();
@@ -25,7 +29,20 @@ public class SettingPanel : UIBase
 
     public override void OnUICloseBtn()
     {
+        bgBlurImg.SetActive(false);
+
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
         base.OnUICloseBtn();
+    }
+
+    private void OnPanelOpened(object[] parameters)
+    {
+        if(parameters != null && parameters.Length > 0)
+        {
+            if (parameters[0] is GameObject bgBlur)
+            {
+                bgBlurImg = bgBlur;
+            }
+        }
     }
 }
