@@ -8,7 +8,8 @@ public enum CamState
     v1, 
     v2_0, v2_1, v2_2, v2_3, 
     v3_1, v3_2, v3_3, 
-    v4_0, v4_1, v4_2, v4_3
+    v4_0, v4_1, v4_2, v4_3,
+    DEFAULT
 }
 
 public class CameraManager : Singleton<CameraManager>
@@ -34,10 +35,10 @@ public class CameraManager : Singleton<CameraManager>
         { Animator.StringToHash("Stage3-1"), CamState.v3_1 },
         { Animator.StringToHash("Stage3-2"), CamState.v3_2 },
         { Animator.StringToHash("Stage3-3"), CamState.v3_3 },
-        { Animator.StringToHash("Satge4-0"), CamState.v4_0 },
-        { Animator.StringToHash("Satge4-1"), CamState.v4_1 },
-        { Animator.StringToHash("Satge4-2"), CamState.v4_2 },
-        { Animator.StringToHash("Satge4-3"), CamState.v4_3 },
+        { Animator.StringToHash("Stage4-0"), CamState.v4_0 },
+        { Animator.StringToHash("Stage4-1"), CamState.v4_1 },
+        { Animator.StringToHash("Stage4-2"), CamState.v4_2 },
+        { Animator.StringToHash("Stage4-3"), CamState.v4_3 },
     };
 
     // 점프용: CamState → Animator shortNameHash
@@ -86,6 +87,7 @@ public class CameraManager : Singleton<CameraManager>
     private void OnViewportExit(ViewportExitEvent e)
     {
         if (Time.time < ignoreUntil) return;
+
         if (e.direction == ViewportExitDirection.Left) GoBack();
         else if (e.direction == ViewportExitDirection.Right) GoFront();
 

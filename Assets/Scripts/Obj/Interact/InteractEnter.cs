@@ -12,7 +12,7 @@ public class InteractEnter : MonoBehaviour
 
     protected Coroutine interactCoroutine;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         guide.alpha = 0;
     }

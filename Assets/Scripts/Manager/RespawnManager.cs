@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RespawnManager : Singleton<RespawnManager>
 {
-    [SerializeField] private Player player;
+    private Player player => StoryManager.Instance.Player;
     private readonly float delayBeforeRespawn = 0.5f;
 
     private void OnEnable()
