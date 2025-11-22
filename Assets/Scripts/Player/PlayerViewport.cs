@@ -34,7 +34,6 @@ public class PlayerViewport : MonoBehaviour
 
         if (outNow && !viewportDelay)
         {
-            Debug.Log($"outNow: {outNow} | cambounds: {camBounds} | playerPos: {playerPos}");
             StartCoroutine(AfterTransition(camBounds, playerPos));
         }
     }
@@ -73,8 +72,6 @@ public class PlayerViewport : MonoBehaviour
             camBounds.Expand(new Vector3(0.6f, 0, 0));
             playerPos = transform.position;
             outNow = !camBounds.Contains(playerPos);
-
-            Debug.Log($"outNow: {outNow} | cambounds: {camBounds} | playerPos: {playerPos}");
         }
 
         viewportDelay = false;
