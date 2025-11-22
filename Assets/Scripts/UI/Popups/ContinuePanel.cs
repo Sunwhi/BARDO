@@ -5,7 +5,11 @@ using UnityEngine.Events;
 public class ContinuePanel : UIBase
 {
     [SerializeField] private List<SaveSlot> slots = new();
-
+    private GameObject blurImg;
+    private void Awake()
+    {
+        opened = OnPanelOpened;
+    }
     private void Start()
     {
         int slotNum = 0;
@@ -19,9 +23,20 @@ public class ContinuePanel : UIBase
             if (slotData.dataSaved) slot.SetSlot(slotData, OnContinueSlotClicked);
         }
     }
-
+    private void OnPanelOpened(object[] parameters)
+    {
+        if(parameters != null && parameters.Length > 0)
+        {
+            if (parameters[0] is GameObject blurImg)
+            {
+                this.blurImg = blurImg;
+            }
+        }
+    }
     public override void OnUICloseBtn()
     {
+        blurImg.SetActive(false);
+
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
         base.OnUICloseBtn();
     }
@@ -47,7 +62,12 @@ public class ContinuePanel : UIBase
             {
                 SaveManager.Instance.SetSaveSlotIdx(idx);
                 ContinueGame();
-            }));
+            }),
+            new UnityAction(() =>
+            {
+
+            })
+            );
         }
         else
         {
