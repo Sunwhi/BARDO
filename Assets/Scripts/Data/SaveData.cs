@@ -47,6 +47,7 @@ public class SaveData
     public SelectCard selectedCard = SelectCard.Default;
 
     //Stage4 기믹 저장
+    public bool isElevatorUp = true; //엘리베이터 위치
     public List<int> teleportIdxs;
 
     //Endings

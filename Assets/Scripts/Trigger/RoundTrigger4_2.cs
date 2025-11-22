@@ -8,6 +8,8 @@ public class RoundTrigger4_2 : MonoBehaviour
     //해당 코드는 StoryManager에서 만드는 것 추천.
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        StoryManager.Instance.Player.transform.position = stage4_3.position;
+        Player p = StoryManager.Instance.Player;
+        p.transform.position = stage4_3.position;
+        p.stage4Lock = true;
     }
 }

@@ -10,7 +10,18 @@ public class PlayerController
     public bool InputEnabled { get; set; } = true;
 
 
-    public float MoveSpeed => RunInput ? runSpeed : walkSpeed;
+    private float moveSpeed;
+    public float MoveSpeed {
+        get
+        {
+            if (player.isGrounded) moveSpeed = RunInput ? runSpeed : walkSpeed;
+            return moveSpeed;
+        }
+        private set
+        {
+            moveSpeed = value;
+        }
+    }
     private float walkSpeed => player.walkSpeed;
     private float runSpeed => player.runSpeed;
     public float jumpForce = 7f;
