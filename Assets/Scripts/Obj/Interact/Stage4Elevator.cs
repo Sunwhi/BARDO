@@ -29,7 +29,8 @@ public class Stage4Elevator : InteractEnter
 
     protected override void Awake()
     {
-        
+        leftGuide.alpha = 0;
+        rightGuide.alpha = 0;
     }
 
     private void Start()
