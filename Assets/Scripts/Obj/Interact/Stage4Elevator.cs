@@ -36,6 +36,7 @@ public class Stage4Elevator : InteractEnter
     private void Start()
     {
         isElevatorUp = SaveManager.Instance.MySaveData.isElevatorUp;
+        guide = isElevatorUp ? leftGuide : rightGuide;
 
         // 저장된 상태에 따라 초기 위치 스냅
         Transform target = isElevatorUp ? topPoint : bottomPoint;
@@ -66,6 +67,7 @@ public class Stage4Elevator : InteractEnter
         }
 
         isElevatorUp = !goingDown;
+        guide = isElevatorUp ? leftGuide : rightGuide;
         SaveManager.Instance.SetSaveData(nameof(SaveData.isElevatorUp), isElevatorUp);
 
         // 도착 층의 문 열기
@@ -78,6 +80,8 @@ public class Stage4Elevator : InteractEnter
 
     private IEnumerator MoveElevatorTo(Vector3 targetPos)
     {
+        StoryManager.Instance.Player.isDownAllowed = true;
+
         CamState prevCamState = CameraManager.Instance.curCamState;
         StartCoroutine(UIManager.Instance.fadeView.FadeOut(1f));
 
@@ -89,6 +93,8 @@ public class Stage4Elevator : InteractEnter
         StartCoroutine(UIManager.Instance.fadeView.FadeIn(1f));
 
         yield return t.WaitForCompletion();
+
+        StoryManager.Instance.Player.isDownAllowed = false;
     }
 
     private IEnumerator DoorInteract(bool open, bool isTopLevel)
