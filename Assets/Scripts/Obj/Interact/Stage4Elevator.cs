@@ -21,6 +21,7 @@ public class Stage4Elevator : InteractEnter
     [SerializeField] private Transform exitPointBottom; // 아래층 출구
 
     [Header("Tween Settings")]
+    [SerializeField] private float fadeDuration = 2f;
     [SerializeField] private float moveDuration = 7f;
     [SerializeField] private Ease moveEase = Ease.InOutSine;
 
@@ -74,8 +75,8 @@ public class Stage4Elevator : InteractEnter
         yield return DoorInteract(true, isElevatorUp);
 
         // 플레이어를 출구까지 자동으로 걷게 한다.
-        Transform exit = isElevatorUp ? exitPointTop : exitPointBottom;
-        yield return StoryManager.Instance.PlayerWalkByPos(exit.position.x);
+        //Transform exit = isElevatorUp ? exitPointTop : exitPointBottom;
+        //yield return StoryManager.Instance.PlayerWalkByPos(exit.position.x);
     }
 
     private IEnumerator MoveElevatorTo(Vector3 targetPos)
@@ -83,14 +84,17 @@ public class Stage4Elevator : InteractEnter
         StoryManager.Instance.Player.isDownAllowed = true;
 
         CamState prevCamState = CameraManager.Instance.curCamState;
-        StartCoroutine(UIManager.Instance.fadeView.FadeOut(1f));
 
         Tween t = transform
             .DOMove(targetPos, moveDuration)
             .SetEase(moveEase);
 
+        float delay = 1f;
+        StartCoroutine(UIManager.Instance.fadeView.FadeOut(delay));
+        StartCoroutine(UIManager.Instance.fadeView.FadeOut(fadeDuration - delay));
+
         yield return new WaitUntil(() => prevCamState != CameraManager.Instance.curCamState);
-        StartCoroutine(UIManager.Instance.fadeView.FadeIn(1f));
+        StartCoroutine(UIManager.Instance.fadeView.FadeIn(fadeDuration));
 
         yield return t.WaitForCompletion();
 
