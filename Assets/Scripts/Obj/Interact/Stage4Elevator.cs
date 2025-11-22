@@ -27,6 +27,11 @@ public class Stage4Elevator : InteractEnter
     // SaveData에 bool isElevatorUp 필드를 하나 추가해서 사용한다고 가정.
     private bool isElevatorUp; // true면 위에 있음, false면 아래에 있음
 
+    protected override void Awake()
+    {
+        
+    }
+
     private void Start()
     {
         isElevatorUp = SaveManager.Instance.MySaveData.isElevatorUp;
