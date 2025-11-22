@@ -15,14 +15,8 @@ public class ContinueManager : Singleton<ContinueManager>
     [SerializeField]
     private Dictionary<(int,int), CamState> curCamState = new()
     {
-        {(1, 0), CamState.v1 },
-        {(2, 0), CamState.v2_0 },
-        {(2, 1), CamState.v2_1 },
-        {(2, 2), CamState.v2_1 },
-        {(2, 3), CamState.v2_3 },
-        {(2, 4), CamState.v2_3 },
-        {(2, 5), CamState.v2_2 },
-        {(3, 0), CamState.v3_1 },
+        {(1, 0), CamState.v1 }, {(2, 0), CamState.v2_0 }, {(2, 1), CamState.v2_1 }, {(2, 2), CamState.v2_1 }, {(2, 3), CamState.v2_3 }, {(2, 4), CamState.v2_3 }, {(2, 5), CamState.v2_2 },
+        {(3, 0), CamState.v3_1 }, {(3,1), CamState.v3_1 }, {(3,2), CamState.v3_1 }, {(3,3), CamState.v3_1 },
         {(4, 0), CamState.v4_0 },
     };
 

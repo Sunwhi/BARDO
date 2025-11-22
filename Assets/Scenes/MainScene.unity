@@ -498,6 +498,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ddd2e7896eb6934cbfe8f6d7df3de8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!328 &32416592 stripped
+VideoPlayer:
+  m_CorrespondingSourceObject: {fileID: 8860111078702168721, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+  m_PrefabInstance: {fileID: 4481790089563482052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &32416593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 235710668227826865, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+  m_PrefabInstance: {fileID: 4481790089563482052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &32416594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32416593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ffd7ef9a21eba943839df380f4d60ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vp: {fileID: 32416592}
 --- !u!4 &116023128 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1461804936406104408, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
@@ -4162,6 +4185,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnSceneLoad: 1
+--- !u!328 &1511697142 stripped
+VideoPlayer:
+  m_CorrespondingSourceObject: {fileID: 2204325035909860501, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+  m_PrefabInstance: {fileID: 4481790089563482052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1511697143 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6315035921108638396, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+  m_PrefabInstance: {fileID: 4481790089563482052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1511697144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511697143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ffd7ef9a21eba943839df380f4d60ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vp: {fileID: 1511697142}
 --- !u!1 &1515807011
 GameObject:
   m_ObjectHideFlags: 0
@@ -5747,7 +5793,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129499821}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: c4b794b37beada84d9d3111c10dbc3b8, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: aad06f13a90bfb842a3ac8519ecbf7dc, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -5928,6 +5974,14 @@ PrefabInstance:
       propertyPath: storyIdx
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2204325035909860501, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 0b94f00e3869bc54298cb473924ce804, type: 3}
+    - target: {fileID: 2204325035909860501, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 6488ecf5f2055f041a036c4da592200c, type: 2}
     - target: {fileID: 2568156051693538789, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 100
@@ -5992,6 +6046,38 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5929844215203927474, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 554b60f155022cc45a6ffbe695627560, type: 2}
+    - target: {fileID: 6224143621311371589, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.534996
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224143621311371589, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0019944906
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224143621311371589, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999619
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224143621311371589, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.008727774
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224143621311371589, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224143621311371589, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6224143621311371589, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7072286186208761057, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
       propertyPath: stageIdx
       value: 1
@@ -6020,6 +6106,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8860111078702168721, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: aa5de2f31f493374db9c091ce862cfb8, type: 3}
+    - target: {fileID: 8860111078702168721, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: ff025b2e5f701ca41bdf617f544b3253, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7710828336709307161, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
@@ -6070,7 +6164,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7809883473914096770, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 905541692}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 235710668227826865, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 32416594}
+    - targetCorrespondingSourceObject: {fileID: 6315035921108638396, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1511697144}
   m_SourcePrefab: {fileID: 100100000, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
 --- !u!60 &4481790089563482053 stripped
 PolygonCollider2D:
