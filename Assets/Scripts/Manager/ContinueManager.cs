@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class ContinueManager : Singleton<ContinueManager>
 {
     private Player player;
-    private GameObject playerObj;
     public PlayerController controller;
     private Vector3 savedPosition;
     public bool loadedByContinue;
@@ -43,15 +42,15 @@ public class ContinueManager : Singleton<ContinueManager>
     private IEnumerator SetPlayerPositionDelayed()
     {
         yield return null;
-        playerObj = GameObject.FindWithTag("Player");
-        player = playerObj.GetComponent<Player>();
+        player = StoryManager.Instance.Player;
 
         savedPosition = SaveManager.Instance.MySaveData.savedPosition.ToVector3();
         controller = player.controller;
-        player.GetComponent<PlayerInput>().enabled = true;
+        player.playerInput.enabled = true;
         player.rb.linearVelocity = Vector2.zero;
 
-        playerObj.transform.position = savedPosition;
+        player.transform.position = savedPosition;
+        player.controller.ResetInput();
     }
     private IEnumerator SetCamera(SaveData saveData)
     {

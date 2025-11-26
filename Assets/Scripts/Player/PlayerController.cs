@@ -69,5 +69,7 @@ public class PlayerController
         }
         MoveInput = Vector2.zero;
         JumpInput = false;
+
+        player.fsm.ChangeState(player.fsm.IdleState);
     }
 }

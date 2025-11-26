@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         fsm.FixedUpdate();
+        animator.SetFloat(AnimationData.SpeedParamHash, Mathf.Abs(rb.linearVelocityX));
         animator.SetFloat(AnimationData.VelocityYParamHash, rb.linearVelocityY);
     }
 
@@ -89,8 +90,6 @@ public class Player : MonoBehaviour
         {
             controller.RunInput = false;
         }
-
-        animator.SetFloat(AnimationData.SpeedParamHash, controller.MoveSpeed);
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -133,6 +132,7 @@ public class Player : MonoBehaviour
 #endif
 
             isGrounded = (leftHit.collider != null) | (rightHit.collider != null);
+            animator.SetBool(AnimationData.GroundParamHash, isGrounded);
             yield return groundDelay;
         }
     }
