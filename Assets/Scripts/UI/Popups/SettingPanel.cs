@@ -8,7 +8,9 @@ public class SettingPanel : UIBase
     private GameObject bgBlurImg;
     private void Awake()
     {
-        opened = OnPanelOpened;
+        base.Awake();
+        opened += OnPanelOpened;
+        closed += OnPanelClosed;
     }
     private void OnEnable()
     {
@@ -44,5 +46,10 @@ public class SettingPanel : UIBase
                 bgBlurImg = bgBlur;
             }
         }
+    }
+    private void OnPanelClosed(object[] parameters)
+    {
+        if(bgBlurImg != null)
+            bgBlurImg.SetActive(false);
     }
 }

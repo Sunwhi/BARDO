@@ -6,7 +6,9 @@ public class CreditPanel : UIBase
 
     private void Awake()
     {
-        opened = OnPanelOpened;
+        base.Awake();
+        opened += OnPanelOpened;
+        closed += OnPanelClosed;
     }
     public override void OnUICloseBtn()
     {
@@ -24,5 +26,10 @@ public class CreditPanel : UIBase
                 this.blurImg = blurImg;
             }
         }
+    }
+    private void OnPanelClosed(object[] parameters)
+    {
+        if(blurImg != null) 
+            blurImg?.SetActive(false);
     }
 }
