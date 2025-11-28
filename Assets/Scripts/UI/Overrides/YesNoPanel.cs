@@ -83,6 +83,6 @@ public class YesNoPanel : UIBase
 
     private void OnPanelClosed(object[] parameters)
     {
-        blurImg.SetActive(false);
+        if(blurImg != null) blurImg.SetActive(false);
     }
 }
