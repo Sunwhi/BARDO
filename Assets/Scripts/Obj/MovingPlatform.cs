@@ -10,6 +10,9 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private Transform endPoint;
     [SerializeField] private Transform platform;
 
+    [Header("Move Setting")]
+    [SerializeField] private bool isPauseAtEnd = false;
+
     Coroutine moveCoroutine;
 
     private void Update()
@@ -38,9 +41,16 @@ public class MovingPlatform : MonoBehaviour
             if (Vector3.Distance(platform.position, target) < 0.01f)
             {
                 target = (target == endPoint.position) ? startPoint.position : endPoint.position;
-            }
 
-            yield return null;
+                if (isPauseAtEnd)
+                {
+                    yield return new WaitForSeconds(1f);
+                }
+            }
+            else
+            {
+                yield return null;
+            }
         }
     }
 
