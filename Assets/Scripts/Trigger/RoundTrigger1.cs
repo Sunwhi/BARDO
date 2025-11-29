@@ -36,7 +36,7 @@ public class RoundTrigger1 : TriggerBase
 
         //TODO : Player & Padma Cutscene
         yield return new WaitUntil(() => StoryManager.Instance.roundTransitionDone);
-        UIManager.Show<CutScene>();
+        UIManager.Show<Stage2CutScene>();
         StoryManager.Instance.roundTransitionDone = false;
 
         StoryManager.Instance.Player.playerInput.enabled = false;

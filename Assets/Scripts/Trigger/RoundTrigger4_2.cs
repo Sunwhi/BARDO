@@ -10,5 +10,8 @@ public class RoundTrigger4_2 : MonoBehaviour
     {
         Player p = StoryManager.Instance.Player;
         p.transform.position = stage4_3.position;
+
+        Debug.Log(p.transform.position);
+        Debug.Log(stage4_3.position);
     }
 }
