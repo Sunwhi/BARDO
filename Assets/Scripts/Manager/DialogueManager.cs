@@ -10,8 +10,8 @@ public enum Speaker
 }
 public enum Closeup
 {
-    None,
-    Bardo,
+    None = -1,
+    Bardo = 0,
     Padma,
     Double,
     PadmaFly

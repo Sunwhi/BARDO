@@ -391,9 +391,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -417,10 +417,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -3026,7 +3026,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -3035,7 +3035,123 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      2_cut_Rain_Bardo_0: -4114553872400138189
+      2_cut_Rain_Bardo_1: 3010618047498459166
+      2_cut_Rain_Bardo_10: -4115917964774820470
+      2_cut_Rain_Bardo_100: 3111128711442571491
+      2_cut_Rain_Bardo_101: 5282917041700842281
+      2_cut_Rain_Bardo_102: 4472098259285527029
+      2_cut_Rain_Bardo_103: -1229422006555204340
+      2_cut_Rain_Bardo_104: 3541664614445573364
+      2_cut_Rain_Bardo_105: 8156459961991825914
+      2_cut_Rain_Bardo_106: -5157791869714485002
+      2_cut_Rain_Bardo_107: 7945397649758105619
+      2_cut_Rain_Bardo_108: 2400530472399957227
+      2_cut_Rain_Bardo_109: 6757768834602734108
+      2_cut_Rain_Bardo_11: 1185589441499065771
+      2_cut_Rain_Bardo_110: -8524906529386862757
+      2_cut_Rain_Bardo_111: 3869654523242613760
+      2_cut_Rain_Bardo_112: 5224715843637926271
+      2_cut_Rain_Bardo_113: 6235903228874825680
+      2_cut_Rain_Bardo_114: 4530469944608104987
+      2_cut_Rain_Bardo_115: 2858303487370285362
+      2_cut_Rain_Bardo_12: -7292173258922556398
+      2_cut_Rain_Bardo_13: -821980456003742952
+      2_cut_Rain_Bardo_14: -8766835712493222300
+      2_cut_Rain_Bardo_15: -6523471547529096311
+      2_cut_Rain_Bardo_16: 956181927116687836
+      2_cut_Rain_Bardo_17: 3838050072044541878
+      2_cut_Rain_Bardo_18: 8339506330062803411
+      2_cut_Rain_Bardo_19: -6599155801950015140
+      2_cut_Rain_Bardo_2: 3750142276023640316
+      2_cut_Rain_Bardo_20: -1966985735852349231
+      2_cut_Rain_Bardo_21: -5688568678743564232
+      2_cut_Rain_Bardo_22: -7432053212412432314
+      2_cut_Rain_Bardo_23: 445849285008430300
+      2_cut_Rain_Bardo_24: 1362170531940235293
+      2_cut_Rain_Bardo_25: 5955598252796382598
+      2_cut_Rain_Bardo_26: 156143127221948300
+      2_cut_Rain_Bardo_27: 8316470884939773159
+      2_cut_Rain_Bardo_28: -478628437625720385
+      2_cut_Rain_Bardo_29: -9095380521045750123
+      2_cut_Rain_Bardo_3: 6457933775020866642
+      2_cut_Rain_Bardo_30: -360729982977518906
+      2_cut_Rain_Bardo_31: -5225787155967941039
+      2_cut_Rain_Bardo_32: -5602468156927526443
+      2_cut_Rain_Bardo_33: 2634897887428664620
+      2_cut_Rain_Bardo_34: 5009163570530597264
+      2_cut_Rain_Bardo_35: -5656303075885853071
+      2_cut_Rain_Bardo_36: 4633825106288811053
+      2_cut_Rain_Bardo_37: -4793017837742272394
+      2_cut_Rain_Bardo_38: -3687249091811369219
+      2_cut_Rain_Bardo_39: -800306678027754658
+      2_cut_Rain_Bardo_4: -826704793290096103
+      2_cut_Rain_Bardo_40: -2258033760604590177
+      2_cut_Rain_Bardo_41: -2963550138394309529
+      2_cut_Rain_Bardo_42: 8356441435465511845
+      2_cut_Rain_Bardo_43: 3325247364198215654
+      2_cut_Rain_Bardo_44: 5393404074596696050
+      2_cut_Rain_Bardo_45: -3073537680314715453
+      2_cut_Rain_Bardo_46: 6143322496448612932
+      2_cut_Rain_Bardo_47: -6306018941374046164
+      2_cut_Rain_Bardo_48: 1339098556408321305
+      2_cut_Rain_Bardo_49: -8013424687622849299
+      2_cut_Rain_Bardo_5: -3195827047379843000
+      2_cut_Rain_Bardo_50: 5214048559853409352
+      2_cut_Rain_Bardo_51: -5350511257799895113
+      2_cut_Rain_Bardo_52: -8303518390260943282
+      2_cut_Rain_Bardo_53: 6782783897867727334
+      2_cut_Rain_Bardo_54: -7002469459642208400
+      2_cut_Rain_Bardo_55: 7775397842450450063
+      2_cut_Rain_Bardo_56: 3766436896132350060
+      2_cut_Rain_Bardo_57: 5225430785986085705
+      2_cut_Rain_Bardo_58: -4591914547168009630
+      2_cut_Rain_Bardo_59: 3104736230734741798
+      2_cut_Rain_Bardo_6: -8819463232909334806
+      2_cut_Rain_Bardo_60: 6398905436065693483
+      2_cut_Rain_Bardo_61: -3336735456429174650
+      2_cut_Rain_Bardo_62: -7440806141510651161
+      2_cut_Rain_Bardo_63: 5885861717856871502
+      2_cut_Rain_Bardo_64: 4577980363052308647
+      2_cut_Rain_Bardo_65: -4677783085936832233
+      2_cut_Rain_Bardo_66: -2632426455461864529
+      2_cut_Rain_Bardo_67: 1878112616075404950
+      2_cut_Rain_Bardo_68: 8720946871062430510
+      2_cut_Rain_Bardo_69: -3467279908680600240
+      2_cut_Rain_Bardo_7: 1267051054542534779
+      2_cut_Rain_Bardo_70: 3614079759574041582
+      2_cut_Rain_Bardo_71: 4094763613826499763
+      2_cut_Rain_Bardo_72: -6976694502907912256
+      2_cut_Rain_Bardo_73: 8471326004698962403
+      2_cut_Rain_Bardo_74: 3669721704606332193
+      2_cut_Rain_Bardo_75: -8098571134219709154
+      2_cut_Rain_Bardo_76: -3683673884710434238
+      2_cut_Rain_Bardo_77: -6941219850678475143
+      2_cut_Rain_Bardo_78: 3649458364687801842
+      2_cut_Rain_Bardo_79: 858243267833289615
+      2_cut_Rain_Bardo_8: 3337930138694713007
+      2_cut_Rain_Bardo_80: 6908540025508812483
+      2_cut_Rain_Bardo_81: -1364865727027904836
+      2_cut_Rain_Bardo_82: 4114327578274533237
+      2_cut_Rain_Bardo_83: 3635138088581806574
+      2_cut_Rain_Bardo_84: 3721562848479764022
+      2_cut_Rain_Bardo_85: 1529593935510153524
+      2_cut_Rain_Bardo_86: -5363902029024679898
+      2_cut_Rain_Bardo_87: -4048285690120750431
+      2_cut_Rain_Bardo_88: -5836830461703888891
+      2_cut_Rain_Bardo_89: -3695781554766177414
+      2_cut_Rain_Bardo_9: -7515297630791467947
+      2_cut_Rain_Bardo_90: 2603577131188449091
+      2_cut_Rain_Bardo_91: -3651760024553772201
+      2_cut_Rain_Bardo_92: 8930981965090670561
+      2_cut_Rain_Bardo_93: -7638552977286254789
+      2_cut_Rain_Bardo_94: 1813477522648882340
+      2_cut_Rain_Bardo_95: -3516715934026392241
+      2_cut_Rain_Bardo_96: -6332102353840396749
+      2_cut_Rain_Bardo_97: -1482310476165867930
+      2_cut_Rain_Bardo_98: 3788781588873810315
+      2_cut_Rain_Bardo_99: -5816903489343459208
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -490,9 +490,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -516,10 +516,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -3851,7 +3851,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -3860,7 +3860,156 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      2_cut_Rain_Padma_0: 8092119684454379762
+      2_cut_Rain_Padma_1: 165370492735268497
+      2_cut_Rain_Padma_10: -7858908638933672240
+      2_cut_Rain_Padma_100: 2870206534076577765
+      2_cut_Rain_Padma_101: -6062537326457178003
+      2_cut_Rain_Padma_102: -4322683385217193306
+      2_cut_Rain_Padma_103: -5230636184443775888
+      2_cut_Rain_Padma_104: -3270761104374193818
+      2_cut_Rain_Padma_105: -2011331397645323603
+      2_cut_Rain_Padma_106: -7152615548367707753
+      2_cut_Rain_Padma_107: -1154299614323328918
+      2_cut_Rain_Padma_108: -557277933512626089
+      2_cut_Rain_Padma_109: 7874268279540667192
+      2_cut_Rain_Padma_11: 6279077016154135599
+      2_cut_Rain_Padma_110: 7264419387740852281
+      2_cut_Rain_Padma_111: -6476822537848459713
+      2_cut_Rain_Padma_112: 6321510306092513301
+      2_cut_Rain_Padma_113: -8381419319922958566
+      2_cut_Rain_Padma_114: 3896667020370101011
+      2_cut_Rain_Padma_115: -7915364161772059639
+      2_cut_Rain_Padma_116: -6575747822758276136
+      2_cut_Rain_Padma_117: 3436760487239115500
+      2_cut_Rain_Padma_118: -3522741741090727142
+      2_cut_Rain_Padma_119: -6810362832765012584
+      2_cut_Rain_Padma_12: -8550391033574076793
+      2_cut_Rain_Padma_120: 375242872295187178
+      2_cut_Rain_Padma_121: -420191545113886573
+      2_cut_Rain_Padma_122: 8713976251176760806
+      2_cut_Rain_Padma_123: -6548971781506970951
+      2_cut_Rain_Padma_124: 862883989573796255
+      2_cut_Rain_Padma_125: 3879173571804071286
+      2_cut_Rain_Padma_126: 1042605873501157757
+      2_cut_Rain_Padma_127: -4988179285161562341
+      2_cut_Rain_Padma_128: -5735148181149799442
+      2_cut_Rain_Padma_129: 6610292062542390610
+      2_cut_Rain_Padma_13: 4449317233542922073
+      2_cut_Rain_Padma_130: -5327055975406744997
+      2_cut_Rain_Padma_131: 7254242898824304370
+      2_cut_Rain_Padma_132: -602079802252412536
+      2_cut_Rain_Padma_133: 5667340009140594711
+      2_cut_Rain_Padma_134: -2322342669378553429
+      2_cut_Rain_Padma_135: 7848983730098494458
+      2_cut_Rain_Padma_136: -3821445028973869940
+      2_cut_Rain_Padma_137: -7515593618798966911
+      2_cut_Rain_Padma_138: -6825320338435930172
+      2_cut_Rain_Padma_139: -2404989954434419343
+      2_cut_Rain_Padma_14: -1382759397865941788
+      2_cut_Rain_Padma_140: 5575090933174321824
+      2_cut_Rain_Padma_141: 6858681701712634384
+      2_cut_Rain_Padma_142: -105480882537767541
+      2_cut_Rain_Padma_143: 4542709764784955372
+      2_cut_Rain_Padma_144: -7341170763165513632
+      2_cut_Rain_Padma_145: 1183419610245183705
+      2_cut_Rain_Padma_146: -761120163287807264
+      2_cut_Rain_Padma_147: -7243226861016262103
+      2_cut_Rain_Padma_148: 6765834858222138027
+      2_cut_Rain_Padma_15: 5136720931462447983
+      2_cut_Rain_Padma_16: -4540471193529712490
+      2_cut_Rain_Padma_17: -8935437570347102019
+      2_cut_Rain_Padma_18: 1118468220892535627
+      2_cut_Rain_Padma_19: -583264704558852239
+      2_cut_Rain_Padma_2: -3759265226966256547
+      2_cut_Rain_Padma_20: -7285555980434144387
+      2_cut_Rain_Padma_21: -1888638932565326377
+      2_cut_Rain_Padma_22: -6583086620061881963
+      2_cut_Rain_Padma_23: 8623782329793068043
+      2_cut_Rain_Padma_24: -4159332295071665312
+      2_cut_Rain_Padma_25: -6841799967631394316
+      2_cut_Rain_Padma_26: 5837739150307438993
+      2_cut_Rain_Padma_27: -1204311348004974847
+      2_cut_Rain_Padma_28: 2813456436498726825
+      2_cut_Rain_Padma_29: -5481636098751588770
+      2_cut_Rain_Padma_3: 4041010547300275929
+      2_cut_Rain_Padma_30: -3434731746553868237
+      2_cut_Rain_Padma_31: 5853104706970131958
+      2_cut_Rain_Padma_32: 8067521024520791851
+      2_cut_Rain_Padma_33: -2200959739496676621
+      2_cut_Rain_Padma_34: 9087874491869411393
+      2_cut_Rain_Padma_35: -4083424427666246017
+      2_cut_Rain_Padma_36: 6434175472116555205
+      2_cut_Rain_Padma_37: -3554019837444726747
+      2_cut_Rain_Padma_38: -3737396093564862389
+      2_cut_Rain_Padma_39: -3451978254649560743
+      2_cut_Rain_Padma_4: 4259702261352260272
+      2_cut_Rain_Padma_40: -9197968480003002620
+      2_cut_Rain_Padma_41: -6298260615398610314
+      2_cut_Rain_Padma_42: 3284074499328129266
+      2_cut_Rain_Padma_43: 4533788909797812400
+      2_cut_Rain_Padma_44: -228731209588462853
+      2_cut_Rain_Padma_45: -487720571181329175
+      2_cut_Rain_Padma_46: -8012446922590636934
+      2_cut_Rain_Padma_47: 5989498656121313962
+      2_cut_Rain_Padma_48: -1004370936401142834
+      2_cut_Rain_Padma_49: -6850605883684977637
+      2_cut_Rain_Padma_5: 1717304005266631782
+      2_cut_Rain_Padma_50: -1307227278064743070
+      2_cut_Rain_Padma_51: -3353701283478181118
+      2_cut_Rain_Padma_52: -6574304833655630026
+      2_cut_Rain_Padma_53: -6166296447483625120
+      2_cut_Rain_Padma_54: 4035028585741463550
+      2_cut_Rain_Padma_55: -2126304893166402396
+      2_cut_Rain_Padma_56: 8277085864595478383
+      2_cut_Rain_Padma_57: 7881727676377224291
+      2_cut_Rain_Padma_58: -4844669964321956775
+      2_cut_Rain_Padma_59: 4348958850668011053
+      2_cut_Rain_Padma_6: -2871804774300091065
+      2_cut_Rain_Padma_60: -8583383589145852631
+      2_cut_Rain_Padma_61: -3227407853062772683
+      2_cut_Rain_Padma_62: -5351422773090386195
+      2_cut_Rain_Padma_63: -1338022744350670701
+      2_cut_Rain_Padma_64: -1742215948917708125
+      2_cut_Rain_Padma_65: -1024251195539230417
+      2_cut_Rain_Padma_66: -2334115723235293306
+      2_cut_Rain_Padma_67: -7223585009712164005
+      2_cut_Rain_Padma_68: 3233211494777862163
+      2_cut_Rain_Padma_69: -6720187816222256768
+      2_cut_Rain_Padma_7: 369546952725761100
+      2_cut_Rain_Padma_70: -3523947804759854152
+      2_cut_Rain_Padma_71: -301714556807878550
+      2_cut_Rain_Padma_72: 3819020183347750224
+      2_cut_Rain_Padma_73: 4135773943750098395
+      2_cut_Rain_Padma_74: -9013358256253066800
+      2_cut_Rain_Padma_75: 2516539379033696564
+      2_cut_Rain_Padma_76: 102645561109790673
+      2_cut_Rain_Padma_77: 4763652685314816396
+      2_cut_Rain_Padma_78: -1961702072078378744
+      2_cut_Rain_Padma_79: 2378568447547136396
+      2_cut_Rain_Padma_8: -1246109777862970424
+      2_cut_Rain_Padma_80: 5847096681792471063
+      2_cut_Rain_Padma_81: -8481099662756180091
+      2_cut_Rain_Padma_82: 5059856545232918705
+      2_cut_Rain_Padma_83: 8727588992472604612
+      2_cut_Rain_Padma_84: 2970837935875844363
+      2_cut_Rain_Padma_85: 6201540563592288839
+      2_cut_Rain_Padma_86: 4125837701054875398
+      2_cut_Rain_Padma_87: 494429448670689930
+      2_cut_Rain_Padma_88: -5195638864304468263
+      2_cut_Rain_Padma_89: -7170099657402268034
+      2_cut_Rain_Padma_9: -8769026442543505296
+      2_cut_Rain_Padma_90: 7429766307202629521
+      2_cut_Rain_Padma_91: 2188766804603925167
+      2_cut_Rain_Padma_92: -557915020513402297
+      2_cut_Rain_Padma_93: -4492009368311885491
+      2_cut_Rain_Padma_94: -2350210669799982820
+      2_cut_Rain_Padma_95: 1766912706239826266
+      2_cut_Rain_Padma_96: 8761483297931844931
+      2_cut_Rain_Padma_97: -6424220443684597842
+      2_cut_Rain_Padma_98: -4315184388307150604
+      2_cut_Rain_Padma_99: 2663379344691639323
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

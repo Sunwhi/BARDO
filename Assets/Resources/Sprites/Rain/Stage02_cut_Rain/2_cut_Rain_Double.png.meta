@@ -514,9 +514,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -540,10 +540,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -4051,7 +4051,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -4060,7 +4060,164 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      2_cut_Rain_Double_0: 3583455270708083493
+      2_cut_Rain_Double_1: 3230454621525908570
+      2_cut_Rain_Double_10: 1987626211192068545
+      2_cut_Rain_Double_100: -2146059040726017035
+      2_cut_Rain_Double_101: -502002581409845139
+      2_cut_Rain_Double_102: -7818893944289139960
+      2_cut_Rain_Double_103: 912543469598615727
+      2_cut_Rain_Double_104: 5694570244330909075
+      2_cut_Rain_Double_105: 6979808060618403804
+      2_cut_Rain_Double_106: 8159040278720727038
+      2_cut_Rain_Double_107: -910496298680034075
+      2_cut_Rain_Double_108: -8159650260062003456
+      2_cut_Rain_Double_109: 8212293029376412819
+      2_cut_Rain_Double_11: 3840007081031363590
+      2_cut_Rain_Double_110: -8674941856123901418
+      2_cut_Rain_Double_111: -6707459711061766195
+      2_cut_Rain_Double_112: -13279598020252027
+      2_cut_Rain_Double_113: 5865280411951850490
+      2_cut_Rain_Double_114: 8055635876330881195
+      2_cut_Rain_Double_115: -7731081534841724622
+      2_cut_Rain_Double_116: 8452305851312425369
+      2_cut_Rain_Double_117: 267661608555136780
+      2_cut_Rain_Double_118: 2719521674765659629
+      2_cut_Rain_Double_119: 1250454408727564922
+      2_cut_Rain_Double_12: -3411460003629192333
+      2_cut_Rain_Double_120: -6732521816953264432
+      2_cut_Rain_Double_121: 990932598396909418
+      2_cut_Rain_Double_122: 8385399696803954051
+      2_cut_Rain_Double_123: -6174837563409985366
+      2_cut_Rain_Double_124: 338592520353916489
+      2_cut_Rain_Double_125: -3296121868681684564
+      2_cut_Rain_Double_126: 4936290776093469980
+      2_cut_Rain_Double_127: -1914306290921026297
+      2_cut_Rain_Double_128: -6248797420755097521
+      2_cut_Rain_Double_129: 6798915908874117683
+      2_cut_Rain_Double_13: -8092548219181634829
+      2_cut_Rain_Double_130: -1400811775053626098
+      2_cut_Rain_Double_131: 8191499672786205757
+      2_cut_Rain_Double_132: -4073595211767832528
+      2_cut_Rain_Double_133: 3273620442214114615
+      2_cut_Rain_Double_134: 6895534042756461648
+      2_cut_Rain_Double_135: 783641505804377957
+      2_cut_Rain_Double_136: -7597789935734519117
+      2_cut_Rain_Double_137: -4379897235523168079
+      2_cut_Rain_Double_138: -1909400225267356395
+      2_cut_Rain_Double_139: 2870524241196847202
+      2_cut_Rain_Double_14: 7318090453174559900
+      2_cut_Rain_Double_140: 295445043876952701
+      2_cut_Rain_Double_141: 4520051122566094075
+      2_cut_Rain_Double_142: 3039798391954045541
+      2_cut_Rain_Double_143: -2874751924780090320
+      2_cut_Rain_Double_144: 7001824193935235315
+      2_cut_Rain_Double_145: 649102589635172908
+      2_cut_Rain_Double_146: -388432260727642010
+      2_cut_Rain_Double_147: -6513281754989229043
+      2_cut_Rain_Double_148: -8247108244615011188
+      2_cut_Rain_Double_149: -591986562934025214
+      2_cut_Rain_Double_15: -5107098690184810146
+      2_cut_Rain_Double_150: 3156654465123684481
+      2_cut_Rain_Double_151: -3581494118368942238
+      2_cut_Rain_Double_152: -1541257646152633177
+      2_cut_Rain_Double_153: -6067899105257875792
+      2_cut_Rain_Double_154: 3950428770956726860
+      2_cut_Rain_Double_155: 1318675692530694712
+      2_cut_Rain_Double_156: 3266296683371643469
+      2_cut_Rain_Double_16: 4498906703678918766
+      2_cut_Rain_Double_17: 5323338153722561388
+      2_cut_Rain_Double_18: -5731114504650460205
+      2_cut_Rain_Double_19: -8331438208215732986
+      2_cut_Rain_Double_2: 7466258680262848255
+      2_cut_Rain_Double_20: -2982780491551148033
+      2_cut_Rain_Double_21: 7910545149486495582
+      2_cut_Rain_Double_22: -7427891191761465786
+      2_cut_Rain_Double_23: -538440702450330261
+      2_cut_Rain_Double_24: -364399124605013899
+      2_cut_Rain_Double_25: 8445976219994750890
+      2_cut_Rain_Double_26: -2891749235505274291
+      2_cut_Rain_Double_27: -7763611682916848039
+      2_cut_Rain_Double_28: -3159916819504155992
+      2_cut_Rain_Double_29: -5012776001311517498
+      2_cut_Rain_Double_3: 3798231695038692748
+      2_cut_Rain_Double_30: -9130740250061010443
+      2_cut_Rain_Double_31: -291594089127604513
+      2_cut_Rain_Double_32: -5436388166091733635
+      2_cut_Rain_Double_33: -5738511795105851519
+      2_cut_Rain_Double_34: 7737440336841457338
+      2_cut_Rain_Double_35: 5798289308077118119
+      2_cut_Rain_Double_36: 4936104287622022988
+      2_cut_Rain_Double_37: 2992754951510676428
+      2_cut_Rain_Double_38: -2080164907010170253
+      2_cut_Rain_Double_39: -3026387301390694202
+      2_cut_Rain_Double_4: 527685174051400607
+      2_cut_Rain_Double_40: -1096308670944094906
+      2_cut_Rain_Double_41: -5326900551511592428
+      2_cut_Rain_Double_42: -5852819598823998206
+      2_cut_Rain_Double_43: 2621268898035231895
+      2_cut_Rain_Double_44: 6306580968550711213
+      2_cut_Rain_Double_45: -7581908736134412790
+      2_cut_Rain_Double_46: -6921102698595827206
+      2_cut_Rain_Double_47: 4683212096745852529
+      2_cut_Rain_Double_48: 6357126713573712241
+      2_cut_Rain_Double_49: -1615080504844945120
+      2_cut_Rain_Double_5: -3663903922607479600
+      2_cut_Rain_Double_50: -8177781394185197430
+      2_cut_Rain_Double_51: -8265856465346765393
+      2_cut_Rain_Double_52: 4145772283134765388
+      2_cut_Rain_Double_53: 1219073933459221920
+      2_cut_Rain_Double_54: -4050155374820756670
+      2_cut_Rain_Double_55: -8650207321093477077
+      2_cut_Rain_Double_56: 198270852897479221
+      2_cut_Rain_Double_57: -693599040134984348
+      2_cut_Rain_Double_58: 8181486201727384928
+      2_cut_Rain_Double_59: 6783933262168262358
+      2_cut_Rain_Double_6: -7845186206983542439
+      2_cut_Rain_Double_60: 805096781021635964
+      2_cut_Rain_Double_61: 3338911718411761032
+      2_cut_Rain_Double_62: 1508133808003708704
+      2_cut_Rain_Double_63: 3915922756876766992
+      2_cut_Rain_Double_64: -1648666486414022610
+      2_cut_Rain_Double_65: -6398850264836794381
+      2_cut_Rain_Double_66: -7666427110520830684
+      2_cut_Rain_Double_67: -1302098956261269721
+      2_cut_Rain_Double_68: -7705039509718848436
+      2_cut_Rain_Double_69: 2863157706581977172
+      2_cut_Rain_Double_7: -692691916368040094
+      2_cut_Rain_Double_70: -6938870861951288943
+      2_cut_Rain_Double_71: -8145208203845994905
+      2_cut_Rain_Double_72: 6030101355142891042
+      2_cut_Rain_Double_73: -4395428959112877001
+      2_cut_Rain_Double_74: 10028823500782130
+      2_cut_Rain_Double_75: -6384985201111600197
+      2_cut_Rain_Double_76: -8246284080421959146
+      2_cut_Rain_Double_77: 6149414620411898296
+      2_cut_Rain_Double_78: 2976692943561514532
+      2_cut_Rain_Double_79: 7783837783709057304
+      2_cut_Rain_Double_8: -3008188252777598629
+      2_cut_Rain_Double_80: 651137013528074978
+      2_cut_Rain_Double_81: 1234576175994521722
+      2_cut_Rain_Double_82: -4070071453156353728
+      2_cut_Rain_Double_83: 3554619158432643491
+      2_cut_Rain_Double_84: -267814989122682447
+      2_cut_Rain_Double_85: -24260832369936699
+      2_cut_Rain_Double_86: 1517674379301249874
+      2_cut_Rain_Double_87: 8085998396564260321
+      2_cut_Rain_Double_88: 7041012491277748785
+      2_cut_Rain_Double_89: -6944454083286300540
+      2_cut_Rain_Double_9: -3706067152851815299
+      2_cut_Rain_Double_90: 377806971853132187
+      2_cut_Rain_Double_91: 6619433976765640153
+      2_cut_Rain_Double_92: 5731708111073225060
+      2_cut_Rain_Double_93: 4066082320935740175
+      2_cut_Rain_Double_94: 2777076598478434958
+      2_cut_Rain_Double_95: 876102114286459605
+      2_cut_Rain_Double_96: -8713930116137128965
+      2_cut_Rain_Double_97: 2636253540540562422
+      2_cut_Rain_Double_98: -4641190538637209466
+      2_cut_Rain_Double_99: 6905471705695972276
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
