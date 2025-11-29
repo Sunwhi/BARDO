@@ -84,7 +84,6 @@ public class Stage2CutScene : UIBase
 
             rain1.anchoredPosition = startPos1;
             rain2.anchoredPosition = startPos2;
-            Debug.Log(rain1.anchoredPosition.y + ", " + rain2.anchoredPosition.y);
 
             Tween t1 = rain1
                 .DOAnchorPosY(startPos1.y - distance, duration)
