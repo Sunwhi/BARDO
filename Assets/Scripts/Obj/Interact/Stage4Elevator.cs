@@ -74,6 +74,8 @@ public class Stage4Elevator : InteractEnter
         // 도착 층의 문 열기
         yield return DoorInteract(true, isElevatorUp);
 
+        QuestManager.Instance.ClearSubQuest(0);
+
         // 플레이어를 출구까지 자동으로 걷게 한다.
         //Transform exit = isElevatorUp ? exitPointTop : exitPointBottom;
         //yield return StoryManager.Instance.PlayerWalkByPos(exit.position.x);

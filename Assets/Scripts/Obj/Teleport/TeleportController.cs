@@ -65,6 +65,7 @@ public class TeleportController : MonoBehaviour
         StoryManager.Instance.Player.playerInput.enabled = false;
         //StartCoroutine(StoryManager.Instance.PlayerWalkByPos(stopPos.position.x));
         videoController.PlayVideo(VideoType.Ending);
+        QuestManager.Instance.ClearSubQuest(0);
         gameObject.SetActive(false);
     }
 }

@@ -48,11 +48,21 @@
   },
   {
     "QuestID": 3,
-    "QuestTitle": "이상한 세계",
+    "QuestTitle": "진실을 향한 여정",
     "SubQuests": [
       {
         "SubQuestID": 1,
-        "SubQuestName": "도르래를 타고 내려가기",
+        "SubQuestName": "진실의 거울 올리기",
+        "isCompleted": true
+      },
+      {
+        "SubQuestID": 2,
+        "SubQuestName": "기억의 등불 올리기",
+        "isCompleted": false
+      },
+      {
+        "SubQuestID": 3,
+        "SubQuestName": "혼의 실 올리기",
         "isCompleted": false
       }
     ]
@@ -63,7 +73,18 @@
     "SubQuests": [
       {
         "SubQuestID": 1,
-        "SubQuestName": "파드마와 대화하기",
+        "SubQuestName": "도르래를 타고 내려가기",
+        "isCompleted": false
+      }
+    ]
+  },
+  {
+    "QuestID": 5,
+    "QuestTitle": "이상한 세계",
+    "SubQuests": [
+      {
+        "SubQuestID": 1,
+        "SubQuestName": "미로 탈출하기",
         "isCompleted": false
       }
     ]

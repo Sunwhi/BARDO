@@ -22,7 +22,7 @@ public class RoundTransition : UIBase
 
     public override void Opened(object[] param)
     {
-        SoundManager.Instance.StopBGM(4f);
+        SoundManager.Instance.StopBGM(3f);
 
         StoryManager.Instance.roundTransitionDone = false;
         Time.timeScale = 0f;
