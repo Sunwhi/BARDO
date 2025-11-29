@@ -18,6 +18,7 @@ public class YesNoPanel : UIBase
     [SerializeField] private TextMeshProUGUI contentTxt;
     [SerializeField] private Button YesBtn;
     [SerializeField] private Button NoBtn;
+    private GameObject blurImg;
 
     private readonly Dictionary< EYesNoPanelType, (string title, string content) > panelData = new()
     {
@@ -27,6 +28,12 @@ public class YesNoPanel : UIBase
         { EYesNoPanelType.Save, ("Save", "이 슬롯을 덮어쓸까요?") }
     };
 
+    override protected void Awake()
+    {
+        base.Awake();
+
+        closed += OnPanelClosed;
+    }
     //param guide
     // param[0] : EYesNoPanelType (type of panel to open)
     // param[1] : UnityAction (action to perform on Yes button click, optional)
@@ -57,6 +64,11 @@ public class YesNoPanel : UIBase
                 noAction.Invoke();
             });
         }
+
+        if (param.Length > 3 && param[3] is GameObject blurImg)
+        {
+            this.blurImg = blurImg;
+        }
         else
         {
             NoBtn.onClick.AddListener(BaseAction);
@@ -67,5 +79,10 @@ public class YesNoPanel : UIBase
     {
         SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
         UIManager.Hide(false);
+    }
+
+    private void OnPanelClosed(object[] parameters)
+    {
+        if(blurImg != null) blurImg.SetActive(false);
     }
 }

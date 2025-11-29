@@ -92,6 +92,8 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Expand()
     {
+        SoundManager.Instance.PlaySFX(ESFX.Card);
+
         if (isExpanded || overlayRoot == null) return;
         if (!isActivable) return;
         isActivable = false;

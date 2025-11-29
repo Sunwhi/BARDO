@@ -23,6 +23,7 @@ public class UIManager : Singleton<UIManager>
             Hide(false);
             GameEventBus.Raise<PauseGameEvent>(new PauseGameEvent(GameState.resume));
             if (ActiveStacks.Count == 0) StartCoroutine(EscDelayed());
+            Debug.Log("hide");
         }
     }
 
