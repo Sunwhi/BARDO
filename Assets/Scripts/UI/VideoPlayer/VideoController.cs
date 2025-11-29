@@ -64,6 +64,7 @@ public class VideoController : MonoBehaviour
     }
     public void PlayVideo(VideoType type)
     {
+        SetVideoVolume(0.5f);
         curVideoType = type;
         blackPanel.SetActive(true); //video 시작하면 blackPanel 뒤로 깐다.
         SoundManager.Instance.StopBGM();
@@ -90,5 +91,10 @@ public class VideoController : MonoBehaviour
     public void OnClickedVideoSkip()
     {
         HandleVIdeoFinished(videoPlayer);
+    }
+    public void SetVideoVolume(float volume)
+    {
+        // 트랙 0번의 볼륨을 조절 (0.0 ~ 1.0)
+        videoPlayer.SetDirectAudioVolume(0, volume);
     }
 }
