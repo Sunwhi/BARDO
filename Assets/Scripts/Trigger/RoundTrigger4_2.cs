@@ -19,6 +19,6 @@ public class RoundTrigger4_2 : MonoBehaviour
     IEnumerator PlayBGMMaze()
     {
         yield return new WaitForSeconds(4f);
-        SoundManager.Instance.PlayBGM(EBGM.Stage4Maze, 4);
+        SoundManager.Instance.PlayBGM(EBGM.Stage4Maze);
     }
 }

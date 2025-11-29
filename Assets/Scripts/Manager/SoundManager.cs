@@ -99,10 +99,10 @@ public class SoundManager : Singleton<SoundManager>
         PlayBGM(EBGM.Title);
 
         sfxSource.ignoreListenerPause = true;
-        originSourceVolume = bgmSource.volume;
+        originSourceVolume = 1.0f;
     }
 
-    public void PlayBGM(EBGM bgmType, float fadeDuration = 3.0f)
+    public void PlayBGM(EBGM bgmType, float fadeDuration = 4.0f)
     {
         // 현재 재생되고 있는 BGM을 또 재생하려 하면 return / 중복 재생 막기
         if(currentBGM == bgmType && bgmSource.isPlaying)
@@ -157,8 +157,7 @@ public class SoundManager : Singleton<SoundManager>
         while (timerIn < fadeInTime)
         {
             timerIn += Time.deltaTime;
-
-            bgmSource.volume = Mathf.Lerp(0, originSourceVolume, fadeInTime / timerIn);
+            bgmSource.volume = Mathf.Lerp(0, 1.0f, timerIn / fadeInTime);
             yield return null;
         }
 
@@ -190,7 +189,7 @@ public class SoundManager : Singleton<SoundManager>
         // 서서히 줄이기
         while (timer < duration)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             bgmSource.volume = Mathf.Lerp(startVolume, 0f, timer / duration);
             yield return null;
         }
