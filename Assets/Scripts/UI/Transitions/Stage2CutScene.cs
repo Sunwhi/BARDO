@@ -1,6 +1,6 @@
 using UnityEngine;  
 
-public class CutScene : UIBase
+public class Stage2CutScene : UIBase
 {
     [SerializeField] private Animator cutsceneAnimator;
     private Closeup previousCloseup;
