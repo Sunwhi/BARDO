@@ -28,7 +28,7 @@ public class YesNoPanel : UIBase
         { EYesNoPanelType.Save, ("Save", "이 슬롯을 덮어쓸까요?") }
     };
 
-    private void Awake()
+    override protected void Awake()
     {
         base.Awake();
 

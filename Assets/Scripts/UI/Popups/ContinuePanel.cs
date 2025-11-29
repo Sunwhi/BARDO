@@ -44,7 +44,7 @@ public class ContinuePanel : UIBase
     }
     public override void OnUICloseBtn()
     {
-        blurImg.SetActive(false);
+        if(blurImg != null) blurImg.SetActive(false);
 
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
         base.OnUICloseBtn();

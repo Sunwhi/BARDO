@@ -31,7 +31,7 @@ public class SettingPanel : UIBase
 
     public override void OnUICloseBtn()
     {
-        bgBlurImg.SetActive(false);
+        if(bgBlurImg != null)   bgBlurImg.SetActive(false);
 
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
         base.OnUICloseBtn();
