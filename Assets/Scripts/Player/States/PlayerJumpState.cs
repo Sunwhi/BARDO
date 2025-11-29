@@ -15,6 +15,7 @@ public class PlayerJumpState : PlayerState
     {
         if (Player.isGrounded)
         {
+            SoundManager.Instance.PlaySFX(ESFX.Character_land);
             if (Player.controller.MoveInput.x != 0)
                 fsm.ChangeState(fsm.MoveState);
             else

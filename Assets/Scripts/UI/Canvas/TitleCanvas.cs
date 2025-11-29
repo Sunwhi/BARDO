@@ -49,7 +49,8 @@ public class TitleCanvas : UICanvas
                 new UnityAction(() =>
                 {
                     BGBlurImage.SetActive(false);
-                })
+                }),
+                BGBlurImage
                 );
             }
             else

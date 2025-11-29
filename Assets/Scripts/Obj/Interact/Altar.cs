@@ -5,6 +5,7 @@ public class Altar : InteractEnter
 {
     [SerializeField] private GameObject item;
     [SerializeField] private Stage3_1Thread thread;
+    [SerializeField] private VideoController VideoController;
 
     private void Start()
     {
@@ -32,14 +33,20 @@ public class Altar : InteractEnter
             switch (storyIdx)
             {
                 case 0:
+                    SoundManager.Instance.PlaySFX(ESFX.Karmic_Shard);
                     SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 1);
-                    UIManager.Show<ItemDetailPanel>(eItemPanelType.Karmic_Shard);
+                    UIManager.Show<MapHintPanel>();
                     break;
                 case 1:
+                    SoundManager.Instance.PlaySFX(ESFX.Memory_Lamp);
                     SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 2);
-                    //TODO : 애니메이션 재생.
+                    if(VideoController != null)
+                    {
+                        VideoController.PlayVideo(VideoType.Stage3);
+                    }
                     break;
                 case 2:
+                    SoundManager.Instance.PlaySFX(ESFX.Soul_Thread);
                     SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 3);
                     thread.PlayThreadVideo();
                     break;

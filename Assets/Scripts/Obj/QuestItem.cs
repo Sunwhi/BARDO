@@ -23,6 +23,8 @@ public class QuestItem : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            SoundManager.Instance.PlaySFX(ESFX.Item_Get);
+
             SaveManager.Instance.SetSaveData(nameof(SaveData.quest1ItemAcquired), true, (int)itemType);
             SaveManager.Instance.SaveSlot();
 

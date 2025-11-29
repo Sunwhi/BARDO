@@ -902,22 +902,67 @@ MonoBehaviour:
   sfxSource: {fileID: 1567757891}
   ambientSource: {fileID: 2121566427}
   bgmClips:
-  - {fileID: 8300000, guid: b880baf761f0dbf4a8be7d5f434f2d77, type: 3}
-  - {fileID: 8300000, guid: 7559c4bdbbc0f214fb7c3cd658c1b41d, type: 3}
+  - {fileID: 8300000, guid: b8b24a9143f1fc84683ee330fadff6e3, type: 3}
+  - {fileID: 8300000, guid: bce5b6c0c77a4bf4cb15e1f2855ebcac, type: 3}
+  - {fileID: 8300000, guid: 94bc2f3cec4fc654b99b58ee38746076, type: 3}
+  - {fileID: 8300000, guid: 650e542e8ad589b439624a948ea0a256, type: 3}
+  - {fileID: 8300000, guid: 2bf92aadb0858c5489754737ae1774c6, type: 3}
+  - {fileID: 8300000, guid: 8fce0855e5a59ec40917c6ba92b7eefd, type: 3}
   sfxClips:
-  - {fileID: 8300000, guid: 00057c3f91fdcf544854b918217fc74e, type: 3}
-  - {fileID: 8300000, guid: b5015e64047e1b0408838b9373ac1269, type: 3}
-  - {fileID: 8300000, guid: cb4cc21efa11c0245a107efc5520c916, type: 3}
-  - {fileID: 8300000, guid: 131ed5648d3e1264a99021d05bb247bd, type: 3}
-  - {fileID: 8300000, guid: 8d2eeb41b9d783048aa80b10b5c314d1, type: 3}
-  - {fileID: 8300000, guid: a453d1b12fc6da64c91012c91c01d456, type: 3}
-  - {fileID: 8300000, guid: 32d730593050a6147b697d033930260f, type: 3}
-  - {fileID: 8300000, guid: 1a51e0cd865f0274faea5d2c777a21ec, type: 3}
-  - {fileID: 8300000, guid: ff8dfb1b4d696c541a3579f4155c576d, type: 3}
-  - {fileID: 8300000, guid: 52011c4d053e3864c955d8aa2cf9dacc, type: 3}
-  - {fileID: 8300000, guid: b97ab9506f09da4499a49cf03d340807, type: 3}
-  - {fileID: 8300000, guid: 2a0a07e61350b7e4e99bf5e7f83ccc82, type: 3}
-  - {fileID: 8300000, guid: d7188fe8ae0e63047ba8640d1c51778d, type: 3}
+  - name: Background_wind_water
+    clip: {fileID: 8300000, guid: 4e1f4f53a97fc5641af3de2680792616, type: 3}
+    volume: 1
+  - name: Opening_Door
+    clip: {fileID: 8300000, guid: b5015e64047e1b0408838b9373ac1269, type: 3}
+    volume: 1
+  - name: Character_Walk
+    clip: {fileID: 8300000, guid: 03ada5f6534028a48aaa87bf3bbdb381, type: 3}
+    volume: 0.631
+  - name: Character_Jump
+    clip: {fileID: 8300000, guid: 2ff495e5b723cf54992b293b4701ae06, type: 3}
+    volume: 1
+  - name: Character_land
+    clip: {fileID: 8300000, guid: 1ef3645e307aebd4dbd873a0d79b4eee, type: 3}
+    volume: 1
+  - name: Character_Death
+    clip: {fileID: 8300000, guid: 8d2eeb41b9d783048aa80b10b5c314d1, type: 3}
+    volume: 1
+  - name: _Scroll
+    clip: {fileID: 8300000, guid: a453d1b12fc6da64c91012c91c01d456, type: 3}
+    volume: 1
+  - name: UI_Button_Text
+    clip: {fileID: 8300000, guid: 32d730593050a6147b697d033930260f, type: 3}
+    volume: 1
+  - name: UI_Button_Open_Settings
+    clip: {fileID: 8300000, guid: 1a51e0cd865f0274faea5d2c777a21ec, type: 3}
+    volume: 1
+  - name: UI_Button_Select_Settings
+    clip: {fileID: 8300000, guid: ff8dfb1b4d696c541a3579f4155c576d, type: 3}
+    volume: 1
+  - name: Stage_Transition
+    clip: {fileID: 8300000, guid: 52011c4d053e3864c955d8aa2cf9dacc, type: 3}
+    volume: 1
+  - name: UI_Button_Hover
+    clip: {fileID: 8300000, guid: b97ab9506f09da4499a49cf03d340807, type: 3}
+    volume: 1
+  - name: UI_Mouse_Click
+    clip: {fileID: 8300000, guid: 2a0a07e61350b7e4e99bf5e7f83ccc82, type: 3}
+    volume: 1
+  - name: Item_Get
+    clip: {fileID: 8300000, guid: d7188fe8ae0e63047ba8640d1c51778d, type: 3}
+    volume: 0.18
+  - name: Card
+    clip: {fileID: 8300000, guid: e1bdc661ffaf935439b836870d9e8e2d, type: 3}
+    volume: 1
+  - name: Karmic_Shard
+    clip: {fileID: 8300000, guid: 44c5af1d601ced14f8a35e143fc616b5, type: 3}
+    volume: 1
+  - name: Memory_Lamp
+    clip: {fileID: 8300000, guid: ac9dac9fa1daa12459aa66b3101ad268, type: 3}
+    volume: 0.326
+  - name: Soul_Thread
+    clip: {fileID: 8300000, guid: 0b0a34014448449468693d666534b1fc, type: 3}
+    volume: 1
   audioMixer: {fileID: 24100000, guid: 554a10d72ceefc044bb1cecb7c25f6d4, type: 2}
 --- !u!4 &292843566
 Transform:

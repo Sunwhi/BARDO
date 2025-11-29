@@ -8,7 +8,9 @@ public class ContinuePanel : UIBase
     private GameObject blurImg;
     private void Awake()
     {
-        opened = OnPanelOpened;
+        base.Awake();
+        opened += OnPanelOpened;
+        closed += OnPanelClosed;
     }
     private void Start()
     {
@@ -33,9 +35,16 @@ public class ContinuePanel : UIBase
             }
         }
     }
+    private void OnPanelClosed(object[] parameters)
+    {
+        if(blurImg != null)
+        {
+            blurImg.SetActive(false);
+        }
+    }
     public override void OnUICloseBtn()
     {
-        blurImg.SetActive(false);
+        if(blurImg != null) blurImg.SetActive(false);
 
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
         base.OnUICloseBtn();

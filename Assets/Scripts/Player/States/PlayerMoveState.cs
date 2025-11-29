@@ -8,8 +8,12 @@ public class PlayerMoveState : PlayerState
     {
         Player.animator.SetBool(Player.AnimationData.MoveParamHash, true);
 
-        SoundManager.Instance.PlaySFX(ESFX.Character_Walk);
-        SoundManager.Instance.sfxSource.loop = true;
+        //SoundManager.Instance.PlaySFX(ESFX.Character_Walk);
+        //SoundManager.Instance.sfxSource.loop = true;
+        if(!Player.audioSource.isPlaying)
+        {
+            Player.audioSource.Play();
+        }
     }
 
     public override void Update()
@@ -26,7 +30,7 @@ public class PlayerMoveState : PlayerState
             return;
         }
     }
-
+   
     public override void FixedUpdate()
     {
         Player.controller.Move(); // 이동
@@ -34,6 +38,7 @@ public class PlayerMoveState : PlayerState
 
     public override void Exit()
     {
-        SoundManager.Instance.StopSFX();
+        //SoundManager.Instance.StopSFX();
+        Player.audioSource.Stop();
     }
 }

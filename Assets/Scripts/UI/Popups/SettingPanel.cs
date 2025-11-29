@@ -8,7 +8,9 @@ public class SettingPanel : UIBase
     private GameObject bgBlurImg;
     private void Awake()
     {
-        opened = OnPanelOpened;
+        base.Awake();
+        opened += OnPanelOpened;
+        closed += OnPanelClosed;
     }
     private void OnEnable()
     {
@@ -29,7 +31,7 @@ public class SettingPanel : UIBase
 
     public override void OnUICloseBtn()
     {
-        bgBlurImg.SetActive(false);
+        if(bgBlurImg != null)   bgBlurImg.SetActive(false);
 
         SoundManager.Instance.PlaySFX(ESFX.UI_Button_Select_Settings);
         base.OnUICloseBtn();
@@ -44,5 +46,10 @@ public class SettingPanel : UIBase
                 bgBlurImg = bgBlur;
             }
         }
+    }
+    private void OnPanelClosed(object[] parameters)
+    {
+        if(bgBlurImg != null)
+            bgBlurImg.SetActive(false);
     }
 }
