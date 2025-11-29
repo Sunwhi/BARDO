@@ -47,10 +47,8 @@ public class MovingPlatform : MonoBehaviour
                     yield return new WaitForSeconds(1f);
                 }
             }
-            else
-            {
-                yield return null;
-            }
+
+            yield return null;
         }
     }
 
