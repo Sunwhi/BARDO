@@ -47,10 +47,10 @@ public class VideoController : MonoBehaviour
     {
         StopVideo();
 
-        if(stoppedBgm != EBGM.Title) // 타이틀만 제외하고 이어서 재생
+        /*if(stoppedBgm != EBGM.Title && stoppedBgm != EBGM.Stage2) // 타이틀만 제외하고 이어서 재생
         {
             SoundManager.Instance.PlayBGM(stoppedBgm);
-        }
+        }*/
 
         videoDisplayUI.SetActive(false);
         skipBtn.SetActive(false);
