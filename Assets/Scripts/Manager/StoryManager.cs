@@ -111,6 +111,7 @@ public class StoryManager : Singleton<StoryManager>
             yield return new WaitForSeconds(1f);
 
             SoundManager.Instance.PlayAmbientSound(ESFX.Background_Wind);
+            SoundManager.Instance.PlayAmbientSound(ESFX.Cave_Sound);
 
             yield return PlayerWalkByPos(PlayerStopPos.position.x);
 

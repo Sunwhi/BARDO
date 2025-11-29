@@ -910,7 +910,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8fce0855e5a59ec40917c6ba92b7eefd, type: 3}
   sfxClips:
   - name: Background_wind_water
-    clip: {fileID: 8300000, guid: 4e1f4f53a97fc5641af3de2680792616, type: 3}
+    clip: {fileID: 8300000, guid: eb442406846efc6459397c1cab80b0a6, type: 3}
     volume: 1
   - name: Opening_Door
     clip: {fileID: 8300000, guid: b5015e64047e1b0408838b9373ac1269, type: 3}
@@ -932,7 +932,7 @@ MonoBehaviour:
     volume: 1
   - name: UI_Button_Text
     clip: {fileID: 8300000, guid: 32d730593050a6147b697d033930260f, type: 3}
-    volume: 1
+    volume: 0.498
   - name: UI_Button_Open_Settings
     clip: {fileID: 8300000, guid: 1a51e0cd865f0274faea5d2c777a21ec, type: 3}
     volume: 1
@@ -962,6 +962,21 @@ MonoBehaviour:
     volume: 0.326
   - name: Soul_Thread
     clip: {fileID: 8300000, guid: 0b0a34014448449468693d666534b1fc, type: 3}
+    volume: 1
+  - name: Elev_Step_Up
+    clip: {fileID: 8300000, guid: 8ed32d69d39bb954da8ef9e7ad5c62c6, type: 3}
+    volume: 1
+  - name: Elev_Step_Down
+    clip: {fileID: 8300000, guid: 0dcf3a41445385943b483dd29947648c, type: 3}
+    volume: 1
+  - name: Card_Flip
+    clip: {fileID: 8300000, guid: a1391a402c320864183e6f553adef295, type: 3}
+    volume: 1
+  - name: Cave_Sound
+    clip: {fileID: 8300000, guid: 266cc6d3cd29ecf43875107254f20c97, type: 3}
+    volume: 1
+  - name: Cave_Sound
+    clip: {fileID: 8300000, guid: 266cc6d3cd29ecf43875107254f20c97, type: 3}
     volume: 1
   audioMixer: {fileID: 24100000, guid: 554a10d72ceefc044bb1cecb7c25f6d4, type: 2}
 --- !u!4 &292843566
