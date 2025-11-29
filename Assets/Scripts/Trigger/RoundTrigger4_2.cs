@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class RoundTrigger4_2 : MonoBehaviour
@@ -8,7 +9,16 @@ public class RoundTrigger4_2 : MonoBehaviour
     //해당 코드는 StoryManager에서 만드는 것 추천.
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        SoundManager.Instance.StopBGM();
+        StartCoroutine(PlayBGMMaze());
+
         Player p = StoryManager.Instance.Player;
         p.transform.position = stage4_3.position;
+    }
+
+    IEnumerator PlayBGMMaze()
+    {
+        yield return new WaitForSeconds(4f);
+        SoundManager.Instance.PlayBGM(EBGM.Stage4Maze, 4);
     }
 }

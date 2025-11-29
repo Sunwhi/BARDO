@@ -3751,6 +3751,10 @@ PrefabInstance:
       propertyPath: VideoController
       value: 
       objectReference: {fileID: 2129499824}
+    - target: {fileID: 6010523701407693760, guid: 038d9e00a8d0e454980b62802337a97e, type: 3}
+      propertyPath: videoController
+      value: 
+      objectReference: {fileID: 2129499824}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

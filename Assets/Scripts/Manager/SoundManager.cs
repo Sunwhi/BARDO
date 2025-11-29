@@ -31,7 +31,12 @@ public enum ESFX
     Card,
     Karmic_Shard,
     Memory_Lamp,
-    Soul_Thread
+    Soul_Thread,
+    Elev_Step_Up,
+    Elev_Step_Down,
+    Card_Flip,
+    Cave_Sound,
+    Card_Select,
 }
 [Serializable]
 public class SFXData
@@ -97,7 +102,7 @@ public class SoundManager : Singleton<SoundManager>
         originSourceVolume = bgmSource.volume;
     }
 
-    public void PlayBGM(EBGM bgmType, float fadeDuration = 1.0f)
+    public void PlayBGM(EBGM bgmType, float fadeDuration = 3.0f)
     {
         // 현재 재생되고 있는 BGM을 또 재생하려 하면 return / 중복 재생 막기
         if(currentBGM == bgmType && bgmSource.isPlaying)
@@ -168,7 +173,7 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-    public void StopBGM(float fadeDuration = 1.0f)
+    public void StopBGM(float fadeDuration = 4.0f)
     {
         // 이미 꺼져있으면 패스  
         if (!bgmSource.isPlaying) return;
@@ -195,7 +200,7 @@ public class SoundManager : Singleton<SoundManager>
         bgmSource.loop = false;
 
         // (중요) 다음에 틀 때를 대비해 볼륨 복구는 하지 않고, 
-        // PlayBGM에서 0부터 키우도록 로직이 되어 있으므로 괜찮습니다.
+        // PlayBGM에서 0부터 키우도록 로직이 되어 있음
     }
     public void StopSFX()
     {

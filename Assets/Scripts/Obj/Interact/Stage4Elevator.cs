@@ -113,6 +113,8 @@ public class Stage4Elevator : InteractEnter
         {
             if (open)
             {
+                SoundManager.Instance.PlaySFX(ESFX.Elev_Step_Up);
+
                 // 반대쪽 문은 항상 닫힌 상태로 유지
                 if (otherHinge != null)
                     otherHinge.localRotation = Quaternion.identity;
@@ -124,6 +126,9 @@ public class Stage4Elevator : InteractEnter
             }
             else
             {
+                Debug.Log("elevsfx");
+                SoundManager.Instance.PlaySFX(ESFX.Elev_Step_Down);
+
                 // 닫기
                 yield return hingeToUse
                     .DOLocalRotate(Vector3.zero, 0.5f)

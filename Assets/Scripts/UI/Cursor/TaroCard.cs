@@ -119,6 +119,7 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         seq.Join(target.DOMove(centerWorld, 0.25f).SetEase(Ease.OutCubic));
         //seq.Join(target.DOScale(endScale, 0.25f).SetEase(Ease.OutCubic));
 
+        SoundManager.Instance.PlaySFX(ESFX.Card_Flip);
         // 플립(전면 교체)
         seq.Append(target.DORotate(new Vector3(0f, 90f, 0f), 0.12f).SetEase(Ease.InCubic));
         seq.AppendCallback(() => { if (img != null && openedSprite != null) img.sprite = openedSprite; });
@@ -171,6 +172,8 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void OnSelected()
     {
         Debug.Log("OnSelected() 호출됨. 현재 cardType: " + cardType.ToString());
+
+        SoundManager.Instance.PlaySFX(ESFX.Card_Select);
 
         SaveManager.Instance.SetSaveData(nameof(SaveData.selectedCard), cardType);
         SaveManager.Instance.SaveSlot();
