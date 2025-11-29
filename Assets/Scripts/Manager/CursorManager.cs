@@ -5,8 +5,8 @@ public class CursorChanger : Singleton<CursorChanger>
     public Texture2D cursorTexture;
     public Vector2 hotSpot = Vector2.zero;
     public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 resolution = new Vector2(1920, 1080);
-    private Vector3 mousePos = Vector3.zero;
+    //public Vector2 resolution = new Vector2(1920, 1080);
+    //private Vector3 mousePos = Vector3.zero;
 
     private void Start()
     {
