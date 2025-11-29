@@ -85,7 +85,7 @@ public class StoryManager : Singleton<StoryManager>
 
                 videoPlayer.SetActive(true);
                 videoImg.SetActive(true);
-                videoController.PlayVideo();
+                videoController.PlayVideo(VideoType.Intro);
             }
             UIManager.Instance.fadeView.FadeOut();
             UIManager.Instance.fadeView.FadeIn();
@@ -154,9 +154,7 @@ public class StoryManager : Singleton<StoryManager>
 
     public void PlayerWalkTimeCoroutine(float duration = 1f)
     {
-        //player.playerInput.enabled = false;
         StartCoroutine(PlayerWalkRight(duration));
-        //player.playerInput.enabled = true;
     }
 
     public IEnumerator PlayerWalkRight(float duration = 1f)
@@ -233,9 +231,12 @@ public class StoryManager : Singleton<StoryManager>
         yield return new WaitUntil(() => endFly);
     }
 
-    private void HandleVIdeoFinished()
+    private void HandleVIdeoFinished(VideoType type)
     {
-        StartCoroutine(MainSceneStart());
+        if(type == VideoType.Intro)
+        {
+            StartCoroutine(MainSceneStart());
+        }
     }
     #endregion
 

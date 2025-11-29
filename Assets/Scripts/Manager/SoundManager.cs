@@ -54,8 +54,10 @@ public class SoundManager : Singleton<SoundManager>
     [Header("Audio Mixer")]
     public AudioMixer audioMixer;
 
+    private EBGM currentBGM;
     private const string bgmVolumeParam = "BGM";
     private const string sfxVolumeParam = "SFX";
+
 
     public float GetBGMVolume() => PlayerPrefs.GetFloat(bgmVolumeParam);
     public float GetSFXVolume() => PlayerPrefs.GetFloat(sfxVolumeParam);
@@ -92,6 +94,7 @@ public class SoundManager : Singleton<SoundManager>
     public void PlayBGM(EBGM bgmType)
     {
         int index = (int)bgmType;
+        currentBGM = bgmType;
         if (index >= 0 && index < bgmClips.Length)
         {
             if (bgmSource.clip != null) StopBGM();
@@ -121,6 +124,11 @@ public class SoundManager : Singleton<SoundManager>
         sfxSource.loop = false;
     }
 
+    // 현재 재생되고 있는 bgm을 가져온다. 끊겼을 때 다시 이어서 틀기 위해 사용
+    public EBGM GetCurrentBGM()
+    {
+        return currentBGM;
+    }
     public void PlayAmbientSound(ESFX sfxType)
     {
         int index = (int)sfxType;

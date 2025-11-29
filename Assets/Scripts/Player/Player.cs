@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerAnimationData animationData;
     public PlayerAnimationData AnimationData => animationData;
 
+    // player 걷기만 audiosource로 따로 뺀다.
+    // 이유: 걷기 멈출 때 sfx자체를 멈추니 끊기는 sfx들이 있음(아이템 먹는 소리).
+    [Header("Audio")]
+    public AudioSource audioSource;
+
     public bool isGrounded = true;
     public bool isDownAllowed = false;
     private readonly float rayLength = 0.1f;

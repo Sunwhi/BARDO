@@ -65,4 +65,10 @@ public class ItemDetailPanel : UIBase
             GameEventBus.Raise<NextStageEvent>(new(3, stage3PlayerPos.position));
         }
     }
+
+    public override void OnUICloseBtn()
+    {
+        SoundManager.Instance.PlaySFX(ESFX.UI_Mouse_Click);
+        base.OnUICloseBtn();
+    }
 }
