@@ -42,7 +42,13 @@ public class QuestManager : Singleton<QuestManager>
             var curQuest = DataManager.Instance.GetObj<QuestData>(SaveManager.Instance.MySaveData.currentQuest.QuestID + 1);
             if (curQuest != null)
             {
+                foreach (var subQuest in curQuest.SubQuests)
+                {
+                    subQuest.isCompleted = false;
+                }
+
                 SaveManager.Instance.SetSaveData(nameof(SaveData.currentQuest), curQuest);
+
                 GameEventBus.Raise<DataChangeEvent<QuestData>>
                     (new DataChangeEvent<QuestData>(nameof(SaveData.currentQuest), curQuest));
             }

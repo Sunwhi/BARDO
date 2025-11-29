@@ -12,6 +12,9 @@ public class RoundTrigger4_2 : MonoBehaviour
         SoundManager.Instance.StopBGM();
         StartCoroutine(PlayBGMMaze());
 
+        QuestManager.Instance.SetNewQuest();
+        QuestManager.Instance.ShowQuestUI();
+
         Player p = StoryManager.Instance.Player;
         p.transform.position = stage4_3.position;
     }

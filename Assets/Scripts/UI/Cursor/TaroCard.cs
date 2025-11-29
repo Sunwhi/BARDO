@@ -194,5 +194,8 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Collapse();
         GameEventBus.Raise<NextStageEvent>(new(4, stage4PlayerPos));
         UIManager.Hide(true);
+
+        QuestManager.Instance.SetNewQuest();
+        QuestManager.Instance.ShowQuestUI();
     }
 }

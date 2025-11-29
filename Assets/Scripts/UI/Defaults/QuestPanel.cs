@@ -14,6 +14,7 @@ public class QuestPanel : UIBase
     [SerializeField] private GameObject subQuestTxtPrefab;
     private List<TextMeshProUGUI> subQuestTxts = new();
     [SerializeField] private Button questListBtn;
+    [SerializeField] private TMP_FontAsset myQuestFont;
 
     private QuestData currentQuestData;
     Sequence seq = null;

@@ -260,9 +260,15 @@ public class StoryManager : Singleton<StoryManager>
     {
         Player.playerInput.enabled = true;
         QuestManager.Instance.ShowQuestUI();
+        QuestManager.Instance.ClearSubQuest(0);
     }
     #endregion
     #region Stage3
+    public void S3_EnterStage()
+    {
+        QuestManager.Instance.SetNewQuest();
+        QuestManager.Instance.ShowQuestUI();
+    }
     #endregion
     #region Stage4
     public void S4_ElevatorIn()

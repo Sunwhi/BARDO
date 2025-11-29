@@ -35,11 +35,13 @@ public class Altar : InteractEnter
                 case 0:
                     SoundManager.Instance.PlaySFX(ESFX.Karmic_Shard);
                     SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 1);
+                    QuestManager.Instance.ClearSubQuest(0);
                     UIManager.Show<MapHintPanel>();
                     break;
                 case 1:
                     SoundManager.Instance.PlaySFX(ESFX.Memory_Lamp);
                     SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 2);
+                    QuestManager.Instance.ClearSubQuest(1);
                     if(VideoController != null)
                     {
                         VideoController.PlayVideo(VideoType.Stage3);
@@ -48,6 +50,7 @@ public class Altar : InteractEnter
                 case 2:
                     SoundManager.Instance.PlaySFX(ESFX.Soul_Thread);
                     SaveManager.Instance.SetSaveData(nameof(SaveData.storyIdx), 3);
+                    QuestManager.Instance.ClearSubQuest(2);
                     thread.PlayThreadVideo();
                     break;
             }
