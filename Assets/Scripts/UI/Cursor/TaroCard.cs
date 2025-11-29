@@ -173,6 +173,8 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         Debug.Log("OnSelected() 호출됨. 현재 cardType: " + cardType.ToString());
 
+        SoundManager.Instance.PlaySFX(ESFX.Card_Select);
+
         SaveManager.Instance.SetSaveData(nameof(SaveData.selectedCard), cardType);
         SaveManager.Instance.SaveSlot();
 

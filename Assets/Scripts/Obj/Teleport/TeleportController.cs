@@ -9,9 +9,11 @@ public class TeleportController : MonoBehaviour
     [Header("Stage5")]
     [SerializeField] private Transform stopPos;
 
+    [SerializeField] private VideoController videoController;
     public bool IsFinal { get; private set; } = false;
     private static readonly int[] pattern = { 4, 6, 3 };
 
+   
     public void Teleport(int destId)
     {        
         //이번 도착지가 유효 루트인지 확인.
@@ -61,7 +63,8 @@ public class TeleportController : MonoBehaviour
     public void FinalMove()
     {
         StoryManager.Instance.Player.playerInput.enabled = false;
-        StartCoroutine(StoryManager.Instance.PlayerWalkByPos(stopPos.position.x));
+        //StartCoroutine(StoryManager.Instance.PlayerWalkByPos(stopPos.position.x));
+        videoController.PlayVideo(VideoType.Ending);
         gameObject.SetActive(false);
     }
 }
