@@ -62,6 +62,7 @@ public class Stage3_1Thread : MonoBehaviour
 
     private void PlayLoopVideo()
     {
+        StartCoroutine(PlayRound3BGM());
         loop1_Thread.gameObject.SetActive(true);
         loop2_Thread.gameObject.SetActive(true);
 
@@ -74,7 +75,6 @@ public class Stage3_1Thread : MonoBehaviour
         //startThread_long.gameObject.SetActive(false);
         loop1_Thread.started += OnLoopVideoStarted;
     }
-
 
     private void OnLoopVideoStarted(VideoPlayer source)
     {
@@ -91,8 +91,6 @@ public class Stage3_1Thread : MonoBehaviour
 
     public void LastThreadVideo()
     {
-
-
         last_Thread.gameObject.SetActive(true);
         last_Thread.Play();
         last_Thread.loopPointReached += _ => StopThreadVideo();
@@ -106,5 +104,12 @@ public class Stage3_1Thread : MonoBehaviour
         loop1_Thread.gameObject.SetActive(false);
         loop2_Thread.gameObject.SetActive(false);
         last_Thread.gameObject.SetActive(false);
+    }
+
+    IEnumerator PlayRound3BGM()
+    {
+        yield return new WaitForSeconds(1f);
+
+        SoundManager.Instance.PlayBGM(EBGM.Stage3);
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using System;
+using System.Collections;
 public enum EBGM
 {
     Title,
@@ -58,6 +59,10 @@ public class SoundManager : Singleton<SoundManager>
     private const string bgmVolumeParam = "BGM";
     private const string sfxVolumeParam = "SFX";
 
+    //코루틴 제어
+    private Coroutine bgmFadeCoroutine;
+    private float originSourceVolume = 1.0f;
+
 
     public float GetBGMVolume() => PlayerPrefs.GetFloat(bgmVolumeParam);
     public float GetSFXVolume() => PlayerPrefs.GetFloat(sfxVolumeParam);
@@ -89,21 +94,71 @@ public class SoundManager : Singleton<SoundManager>
         PlayBGM(EBGM.Title);
 
         sfxSource.ignoreListenerPause = true;
+        originSourceVolume = bgmSource.volume;
     }
 
-    public void PlayBGM(EBGM bgmType)
+    public void PlayBGM(EBGM bgmType, float fadeDuration = 1.0f)
     {
-        int index = (int)bgmType;
+        // 현재 재생되고 있는 BGM을 또 재생하려 하면 return / 중복 재생 막기
+        if(currentBGM == bgmType && bgmSource.isPlaying)
+        {
+            Debug.Log("bgm 중복 재생");
+            return;
+        }
+
+
         currentBGM = bgmType;
-        if (index >= 0 && index < bgmClips.Length)
+        int index = (int)bgmType;
+        if (index < 0 || index >= bgmClips.Length) return;
+
+        // 기존에 돌고 있던 페이드 작업 취소
+        if (bgmFadeCoroutine != null) StopCoroutine(bgmFadeCoroutine);
+
+        bgmFadeCoroutine = StartCoroutine(CoPlayBGM(bgmClips[index], fadeDuration));
+        /*if (index >= 0 && index < bgmClips.Length)
         {
             if (bgmSource.clip != null) StopBGM();
 
             bgmSource.clip = bgmClips[index];
             bgmSource.Play();
-        }
+        }*/
     }
 
+    private IEnumerator CoPlayBGM(AudioClip nextClip, float duration)
+    {
+        if(bgmSource.isPlaying)
+        {
+            float startVolume = bgmSource.volume;
+
+            float fadeOutTime = duration * 0.5f;
+            float timer = 0f;
+
+            while ((timer < fadeOutTime))
+            {
+                timer += Time.deltaTime;
+                bgmSource.volume = Mathf.Lerp(startVolume, 0f, timer / fadeOutTime);
+                yield return null;
+            }
+            bgmSource.volume = 0f;
+            bgmSource.Stop();
+        }
+        
+        bgmSource.clip = nextClip;
+        bgmSource.Play();
+
+        float fadeInTime = duration * 0.5f;
+        float timerIn = 0f;
+
+        while (timerIn < fadeInTime)
+        {
+            timerIn += Time.deltaTime;
+
+            bgmSource.volume = Mathf.Lerp(0, originSourceVolume, fadeInTime / timerIn);
+            yield return null;
+        }
+
+        bgmSource.volume = originSourceVolume; // 볼륨 확실하게 고정
+    }
     public void PlaySFX(ESFX sfxType)
     {
         int index = (int)sfxType;
@@ -113,10 +168,34 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-    public void StopBGM()
+    public void StopBGM(float fadeDuration = 1.0f)
     {
-        bgmSource.Stop();
-        //bgmSource.loop = false;
+        // 이미 꺼져있으면 패스  
+        if (!bgmSource.isPlaying) return;
+
+        if (bgmFadeCoroutine != null) StopCoroutine(bgmFadeCoroutine);
+        bgmFadeCoroutine = StartCoroutine(CoStopBGM(fadeDuration));
+    }
+
+    private IEnumerator CoStopBGM(float duration)
+    {
+        float startVolume = bgmSource.volume;
+        float timer = 0f;
+
+        // 서서히 줄이기
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            bgmSource.volume = Mathf.Lerp(startVolume, 0f, timer / duration);
+            yield return null;
+        }
+
+        bgmSource.volume = 0f;
+        bgmSource.Stop(); // 완전히 줄어들면 정지
+        bgmSource.loop = false;
+
+        // (중요) 다음에 틀 때를 대비해 볼륨 복구는 하지 않고, 
+        // PlayBGM에서 0부터 키우도록 로직이 되어 있으므로 괜찮습니다.
     }
     public void StopSFX()
     {

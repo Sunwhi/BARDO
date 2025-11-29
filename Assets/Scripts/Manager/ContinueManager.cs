@@ -19,6 +19,10 @@ public class ContinueManager : Singleton<ContinueManager>
         {(4, 0), CamState.v4_0 },
     };
 
+    private Dictionary<int, EBGM> stageBGM = new()
+    {
+        {1,EBGM.Stage1 }, {2, EBGM.Stage2 }, {3, EBGM.Stage3 }, {4, EBGM.Stage4 },
+    };
     private void OnEnable()
     {
         GameEventBus.Subscribe<ClickContinueEvent>(ContinueGame);
@@ -30,7 +34,7 @@ public class ContinueManager : Singleton<ContinueManager>
 
     private void ContinueGame(ClickContinueEvent ev)
     {
-        SoundManager.Instance.PlayBGM(EBGM.Stage1);
+        SoundManager.Instance.PlayBGM(stageBGM[SaveManager.Instance.MySaveData.stageIdx]);
 
         loadedByContinue = true;
         StartCoroutine(SetPlayerPositionDelayed());

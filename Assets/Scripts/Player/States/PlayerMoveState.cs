@@ -18,6 +18,14 @@ public class PlayerMoveState : PlayerState
 
     public override void Update()
     {
+        if (Player.controller.RunInput)
+        {
+            Player.audioSource.pitch = 1.5f;
+        }
+        else
+        {
+            Player.audioSource.pitch = 1f;
+        }
         if (Player.controller.MoveInput.x == 0)
         {
             fsm.ChangeState(fsm.IdleState);
