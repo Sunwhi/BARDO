@@ -7,7 +7,7 @@ public class RoundCollByStage : MonoBehaviour
     [SerializeField] private int activeStage = 0;
     [SerializeField] private int activeStory = 0;
 
-    [SerializeField] private bool isStageEffectActive = false;
+    //[SerializeField] private bool isStageEffectActive = false;
     
     private void OnEnable()
     {
@@ -32,22 +32,6 @@ public class RoundCollByStage : MonoBehaviour
 
     private void OnNextStage(NextStageEvent e)
     {
-        if (isStageEffectActive)
-        {
-            switch (activeStage)
-            {
-                case 3:
-                    CameraManager.Instance.JumpAndCut(CamState.v3_1);
-                    break;
-                case 4:
-                    CameraManager.Instance.JumpAndCut(CamState.v4_0);
-                    break;
-            }
-            
-            Vector3 pos = e.playerTransform;
-            Player p = StoryManager.Instance.Player;
-            p.controller.ResetInput();
-            p.transform.position = pos;
-        }
+        
     }
 }

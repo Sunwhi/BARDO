@@ -190,7 +190,7 @@ public class TaroCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
 
         Collapse();
-        UIManager.Hide(true);
         GameEventBus.Raise<NextStageEvent>(new(4, stage4PlayerPos));
+        UIManager.Hide(true);
     }
 }
