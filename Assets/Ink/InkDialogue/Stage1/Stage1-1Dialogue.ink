@@ -3,8 +3,7 @@ VAR choice = ""
 ->Stage1_1
 
 ===Stage1_1===
-뭐지...? 날 아는건가?#speaker:Bardo
-안돼..! 일단 따라가야하나?!
+뭐지...? 도망가는건가?#speaker:Bardo
     *[따라간다.]
         ->a
     *[되돌아간다.]
